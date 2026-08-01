@@ -1,0 +1,16 @@
+[
+  {
+    "target": "DM",
+    "chat": "1479886581",
+    "ok": true,
+    "parts": 2,
+    "error": ""
+  },
+  {
+    "target": "US Oil channel",
+    "chat": "@jaredwticrudesignals",
+    "ok": true,
+    "parts": 2,
+    "error": ""
+  }
+]

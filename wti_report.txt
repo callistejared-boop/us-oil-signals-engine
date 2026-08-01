@@ -1,0 +1,33 @@
+WTI CRUDE (CL=F) — FULL ANALYSIS
+price: 71.41   bars: 3000   last: 2026-07-10 16:45:00
+
+KEY ZONES (where price is likely to react):
+  Resistance / range high : 76.08
+  Equilibrium (50%)       : 71.56
+  OTE entry zone          : 72.64 - 74.18
+  Support / range low     : 67.04
+  Unfilled FVG            : 71.56 - 71.75
+  Order block             : 72.04 - 72.39
+  Buy-side liquidity (stops above): [71.49, 71.7]
+  Sell-side liquidity (stops below): [71.25, 71.22]
+
+SMART MONEY READ (ICT / SMC):
+  bias  D=bull  4H=bear  1H=bear  15m=bear
+  dealing range 67.04-76.08  ->  equilibrium (eq 71.56, OTE 72.64-74.18)
+  buy-side liquidity: [71.49, 71.7]
+  sell-side liquidity: [71.25, 71.22]
+  last structure: CHoCH_down (5 bars ago)
+  nearest unfilled FVG (bear): 71.56-71.75
+  order block: 72.04-72.39
+  session: off-session
+  directional lean: BEARISH (est ~64%)
+
+TECHNICALS (1H) overall: BEARISH
+  - EMA trend: mixed (px 71.41 / 50 72.11 / 200 71.59)
+  - RSI(14): 43.1 (bearish)
+  - MACD hist: -0.01 (bearish)
+  - VWAP(20): 71.70 — price below
+  - Bollinger %B: 0.25 (mid-band)
+  - ATR(14): 0.66  (volatility gauge)
+
+SETUP: none qualifying right now (engine standing aside)

@@ -1,0 +1,90 @@
+//@version=5
+// Gold Engine — Structure & FVG indicator
+// Mirrors the Python engine's logic on TradingView charts:
+//   * fractal swing highs/lows (k=2, confirmed 2 bars later)
+//   * BOS / CHoCH labels on structural breaks
+//   * unfilled Fair Value Gaps drawn as boxes
+//   * London / New York kill-zone background shading
+// Paste into TradingView: Pine Editor -> New indicator -> replace all -> Save -> Add to chart.
+indicator("Gold Engine: Structure + FVG", overlay = true, max_boxes_count = 200, max_labels_count = 200)
+
+// ---------- inputs ----------------------------------------------------
+kzOn      = input.bool(true,  "Shade London/NY kill zones (UTC 07-10, 12-15)")
+fvgOn     = input.bool(true,  "Show unfilled Fair Value Gaps")
+structOn  = input.bool(true,  "Show BOS / CHoCH labels")
+maxAge    = input.int(96, "Max FVG age (bars)", minval = 10, maxval = 500)
+
+// ---------- swings (fractal k=2, evaluated on confirmed bar) ----------
+K = 2
+swingHigh = ta.pivothigh(high, K, K)   // confirmed K bars after the pivot
+swingLow  = ta.pivotlow(low,  K, K)
+
+var float lastH = na
+var float lastL = na
+if not na(swingHigh)
+    lastH := swingHigh
+if not na(swingLow)
+    lastL := swingLow
+
+// ---------- structure state ------------------------------------------
+var string trend = "range"
+brokeUp   = not na(lastH) and close > lastH
+brokeDown = not na(lastL) and close < lastL
+
+if brokeUp
+    evt = trend == "bull" ? "BOS" : "CHoCH"
+    if structOn
+        label.new(bar_index, low, evt + " ↑", style = label.style_label_up,
+                  color = color.new(color.teal, 20), textcolor = color.white, size = size.small)
+    trend := "bull"
+    lastH := na
+if brokeDown
+    evt = trend == "bear" ? "BOS" : "CHoCH"
+    if structOn
+        label.new(bar_index, high, evt + " ↓", style = label.style_label_down,
+                  color = color.new(color.red, 20), textcolor = color.white, size = size.small)
+    trend := "bear"
+    lastL := na
+
+// ---------- fair value gaps -------------------------------------------
+bullFVG = low > high[2]              // gap: high[2] .. low
+bearFVG = high < low[2]              // gap: high .. low[2]
+
+var box[] gaps = array.new_box()
+var bool[] gapIsBull = array.new_bool()
+
+if fvgOn and bullFVG
+    array.push(gaps, box.new(bar_index - 2, low, bar_index + maxAge, high[2],
+               border_color = color.new(color.teal, 60),
+               bgcolor = color.new(color.teal, 85)))
+    array.push(gapIsBull, true)
+if fvgOn and bearFVG
+    array.push(gaps, box.new(bar_index - 2, low[2], bar_index + maxAge, high,
+               border_color = color.new(color.red, 60),
+               bgcolor = color.new(color.red, 85)))
+    array.push(gapIsBull, false)
+
+// remove filled or expired gaps
+if array.size(gaps) > 0
+    for i = array.size(gaps) - 1 to 0
+        b = array.get(gaps, i)
+        isBull = array.get(gapIsBull, i)
+        filled = isBull ? low <= box.get_bottom(b) : high >= box.get_top(b)
+        expired = bar_index > box.get_right(b)
+        if filled or expired
+            box.delete(b)
+            array.remove(gaps, i)
+            array.remove(gapIsBull, i)
+
+// ---------- kill zones -------------------------------------------------
+inLondon = hour(time, "UTC") >= 7  and hour(time, "UTC") < 10
+inNY     = hour(time, "UTC") >= 12 and hour(time, "UTC") < 15
+bgcolor(kzOn and inLondon ? color.new(color.blue,   92) : na)
+bgcolor(kzOn and inNY     ? color.new(color.orange, 92) : na)
+
+// ---------- trend readout ----------------------------------------------
+var table t = table.new(position.top_right, 1, 1)
+if barstate.islast
+    table.cell(t, 0, 0, "structure: " + trend,
+               text_color = trend == "bull" ? color.teal : trend == "bear" ? color.red : color.gray,
+               bgcolor = color.new(color.black, 30))

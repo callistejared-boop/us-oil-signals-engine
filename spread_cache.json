@@ -1,0 +1,11 @@
+{
+  "wti": 90.47,
+  "brent": 98.38,
+  "brent_wti_spread": 7.91,
+  "brent_wti_trend": "widening",
+  "asof": "2026-07-24",
+  "generated": "2026-07-24T21:31:45+00:00",
+  "rbob": 3.273,
+  "crack_spread": 46.98,
+  "crack_trend": "narrowing"
+}

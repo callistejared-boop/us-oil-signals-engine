@@ -1,0 +1,33 @@
+name: Heartbeat watchdog
+
+# Added 2026-07-28 - the "watchdog heartbeat on the scheduler" backlog item,
+# made concrete now that the GitHub Actions migration is code-complete.
+# Reads alert_heartbeat.txt (committed by entry-scan.yml every ~15 min) and
+# sends exactly one Telegram DM (never a channel post) if it's gone stale -
+# a way to notice the whole pipeline going silent (broken secrets, a repo
+# push that never happened, GitHub Actions itself down) before you do.
+#
+# Read-only: this workflow never commits state, so it doesn't need the
+# `engine-state` concurrency group the other workflows share.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Check heartbeat freshness
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python heartbeat_watchdog.py

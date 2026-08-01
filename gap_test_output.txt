@@ -1,0 +1,19 @@
+COMPILE_DONE 
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 81%]
+................................................                         [100%]
+264 passed in 2.20s
+TESTS_DONE 
+==============================================
+  US OIL - INSTITUTIONAL TRADE NOTE
+  2026-07-20 16:36 UTC   |   price 81.56
+==============================================
+
+1) DIRECTIONAL BIAS (multi-timeframe)
+   D=bull  4H=bull  1H=bear  15m=bull
+   Consolidated technical lean: BULLISH (est ~64%)
+   Market regime (4H): RANGE / normal (distribution (range high))  |  ER 0.18  ATR-pct 0.66
+
+2) THE S
+LIVE_NOTE_DONE 

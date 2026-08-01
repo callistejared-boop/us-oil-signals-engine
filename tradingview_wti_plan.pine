@@ -1,0 +1,38 @@
+//@version=5
+// WTI Trade Plan overlay — mirrors the desktop ICT/SMC + geopolitical analysis.
+// Flat top-level hlines only (no indentation blocks), so it pastes cleanly.
+// Edit the numbers in the indicator Settings to reuse this for future setups.
+indicator("US Oil Trade Plan — Alpha Signals", overlay=true)
+
+grp  = "US Oil Trade Plan (18 Jul 2026, 21:11 UTC — 1D/4H/1H confluence)"
+grp2 = "Daily macro add-zone (only if a sharp pullback hits)"
+entryP = input.float(78.90, "Entry (1H/4H OTE + OB confluence)", group=grp)
+stopP  = input.float(77.60, "Stop",        group=grp)
+tp1P   = input.float(82.10, "TP1 (liquidity pool)",   group=grp)
+tp2P   = input.float(84.50, "TP2",                group=grp)
+tp3P   = input.float(88.00, "TP3 (escalation extension)", group=grp)
+oteHi  = input.float(79.20, "OTE high (1H/4H)",    group=grp)
+oteLo  = input.float(78.57, "OTE low (1H/4H)",     group=grp)
+eqP    = input.float(79.65, "Equilibrium (1H/4H)", group=grp)
+rHi    = input.float(82.07, "Range high / buy-side liquidity", group=grp)
+rLo    = input.float(77.78, "Range low (sweep origin)",  group=grp)
+brkP   = input.float(82.10, "Breakout trigger (hold above)", group=grp)
+dOteHi = input.float(72.71, "Daily OTE high (deep add)", group=grp2)
+dOteLo = input.float(70.16, "Daily OTE low (deep add)",  group=grp2)
+
+hEntry = hline(entryP, "Entry", color=color.blue, linewidth=2, linestyle=hline.style_solid)
+hStop  = hline(stopP,  "Stop",  color=color.red,  linewidth=2, linestyle=hline.style_solid)
+hTP1   = hline(tp1P,   "TP1",   color=color.new(color.green, 25), linewidth=1)
+hTP2   = hline(tp2P,   "TP2",   color=color.new(color.green, 12), linewidth=1)
+hTP3   = hline(tp3P,   "TP3",   color=color.green, linewidth=2)
+hEq    = hline(eqP,    "Equilibrium", color=color.gray, linestyle=hline.style_dashed)
+hOteHi = hline(oteHi,  "OTE high", color=color.new(color.green, 60))
+hOteLo = hline(oteLo,  "OTE low",  color=color.new(color.green, 60))
+hRHi   = hline(rHi,    "Range high / liquidity", color=color.new(color.red, 50),  linestyle=hline.style_dotted)
+hRLo   = hline(rLo,    "Range low",  color=color.new(color.gray, 50), linestyle=hline.style_dotted)
+hBrk   = hline(brkP,   "Breakout trigger", color=color.new(color.orange, 0), linewidth=2, linestyle=hline.style_dashed)
+hDOteHi = hline(dOteHi, "Daily OTE high", color=color.new(color.purple, 40), linestyle=hline.style_dotted)
+hDOteLo = hline(dOteLo, "Daily OTE low",  color=color.new(color.purple, 40), linestyle=hline.style_dotted)
+
+fill(hOteHi, hOteLo, color=color.new(color.green, 90), title="1H/4H OTE / discount buy zone")
+fill(hDOteHi, hDOteLo, color=color.new(color.purple, 92), title="Daily OTE / deep macro add zone")

@@ -1,0 +1,20 @@
+setChatTitle: ok=True 
+setChatDescription: ok=True 
+channel: @jaredwticrudesignals  (the @handle itself can only be changed manually in Telegram)
+[2026-07-17T17:04:46+00:00] WTI hourly pipeline start
+macro (DXY): flat
+WTI news: BUY HIGH (38 headlines)
+==============================================
+  US OIL - INSTITUTIONAL TRADE NOTE
+  2026-07-17 17:04 UTC   |   price 81.48
+==============================================
+
+1) DIRECTIONAL BIAS (multi-timeframe)
+   D=bull  4H=bull  1H=bull  15m=bull
+   Consolidated technical lean: BULLISH (est ~72%)
+   Market regime (4H): RANGE / normal (distribution (range high))  |  ER 0.19  ATR-pct 0.6
+
+2) THE SE
+
+[send status] [{"target": "DM", "chat": "1479886581", "ok": true, "parts": 2, "error": ""}, {"target": "US Oil channel", "chat": "@jaredwticrudesignals", "ok": true, "parts": 2, "error": ""}]
+WTI hourly pipeline done.

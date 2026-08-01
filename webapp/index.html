@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Institutional Signals — Live Dashboard</title>
+<meta name="description" content="Live institutional-grade trading signals for US Oil (WTI), Gold (XAUUSD) and Bitcoin — ICT/SMC + multi-strategy confluence engine.">
+<meta name="theme-color" content="#0b0e14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Signals">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<style>
+:root{
+  --bg:#0b0e14; --panel:#141a24; --panel2:#0f131b; --border:#232c3a; --border2:#202836;
+  --text:#e7eaf0; --muted:#8b93a3; --gold:#e6b312; --green:#38c172; --red:#e0526a;
+  --blue:#5aa9ff; --amber:#f5b942;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.5;
+  padding:14px; max-width:920px; margin:0 auto; padding-bottom:60px;
+}
+a{color:var(--blue)}
+.hero{
+  background:linear-gradient(135deg,#14161c 0%,#23262f 100%);
+  border-radius:16px; padding:22px 20px; position:relative; overflow:hidden; margin-bottom:14px;
+}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+  border-radius:50%;background:radial-gradient(circle,rgba(230,179,18,.3),transparent 70%);}
+.brand{font-size:24px;font-weight:800;letter-spacing:.4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand span{color:var(--gold)}
+.tag{color:var(--muted);margin-top:6px;font-size:13px}
+.livepill{display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  background:rgba(76,175,80,.15);color:#7ee089;border:1px solid rgba(76,175,80,.4);
+  padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:#4caf50;
+  box-shadow:0 0 0 0 rgba(76,175,80,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(76,175,80,.6)}70%{box-shadow:0 0 0 9px rgba(76,175,80,0)}100%{box-shadow:0 0 0 0 rgba(76,175,80,0)}}
+.updated{color:var(--muted);font-size:11px;margin-top:8px}
+
+h2.section{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);
+  margin:22px 4px 10px}
+
+.card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px}
+
+/* --- signal card --- */
+.signal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.dir{font-size:20px;font-weight:800;letter-spacing:.3px}
+.dir.long{color:var(--green)} .dir.short{color:var(--red)} .dir.none{color:var(--muted)}
+.grade-badge{font-size:14px;font-weight:800;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.g-Aplus,.g-A{background:rgba(56,193,114,.16);color:var(--green);border:1px solid rgba(56,193,114,.4)}
+.g-Bplus,.g-B{background:rgba(90,169,255,.16);color:var(--blue);border:1px solid rgba(90,169,255,.4)}
+.g-Cplus,.g-C{background:rgba(245,185,66,.16);color:var(--amber);border:1px solid rgba(245,185,66,.4)}
+.g-NOTRADE{background:rgba(224,82,106,.16);color:var(--red);border:1px solid rgba(224,82,106,.4)}
+.grade-label{color:var(--muted);font-size:12px;margin-top:6px}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:14px}
+.lvl{background:var(--panel2);border:1px solid var(--border2);border-radius:10px;padding:8px 10px}
+.lvl b{display:block;font-size:15px} .lvl span{color:var(--muted);font-size:10.5px;text-transform:uppercase}
+.confbar-wrap{margin-top:14px}
+.confbar-track{background:var(--panel2);border:1px solid var(--border2);border-radius:999px;height:9px;overflow:hidden}
+.confbar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.confbar-lbl{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-size:11.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--border2)}
+.chip.agree{color:var(--green);border-color:rgba(56,193,114,.35);background:rgba(56,193,114,.08)}
+.chip.disagree{color:var(--red);border-color:rgba(224,82,106,.35);background:rgba(224,82,106,.08)}
+.why{margin-top:12px;font-size:13px;color:var(--text)}
+.why ul{margin:6px 0 0;padding-left:18px} .why li{margin:3px 0;color:#c7cbd4}
+.warn{margin-top:12px;background:rgba(245,185,66,.1);border:1px solid rgba(245,185,66,.35);
+  color:var(--amber);border-radius:10px;padding:9px 12px;font-size:12.5px}
+.basis{margin-top:10px;color:var(--muted);font-size:11.5px}
+
+/* --- chart --- */
+.chart-card{padding:0;overflow:hidden}
+.tv-wrap{height:480px}
+@media (max-width:600px){.tv-wrap{height:360px}}
+
+/* --- markup chart --- */
+.markup-card{padding:14px}
+.markup-wrap{width:100%;height:340px;position:relative}
+#markup_chart_el{width:100%;height:100%;border-radius:8px;overflow:hidden}
+@media (max-width:600px){.markup-wrap{height:280px}}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.legend-swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
+.legend-swatch.dot{width:8px;height:8px;border-radius:50%}
+
+/* --- stats --- */
+.kpis{display:flex;gap:8px;flex-wrap:wrap}
+.kpi{background:var(--panel2);border:1px solid var(--border2);border-radius:10px;
+  padding:9px 14px;min-width:100px;flex:1 1 100px}
+.kpi b{display:block;font-size:18px} .kpi span{color:var(--muted);font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.4px}
+.pos{color:var(--green)} .neg{color:var(--red)}
+
+/* --- table --- */
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+th,td{padding:8px 8px;text-align:left;border-bottom:1px solid var(--border2)}
+th{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.4px}
+tr:last-child td{border-bottom:none}
+.status-win{color:var(--green);font-weight:700} .status-loss{color:var(--red);font-weight:700}
+.status-open{color:var(--blue)} .status-scratch,.status-expired{color:var(--muted)}
+.table-wrap{overflow-x:auto}
+
+/* --- institutional --- */
+.inst-line{font-size:13px;color:#c7cbd4;padding:8px 0;border-bottom:1px solid var(--border2)}
+.inst-line:last-child{border-bottom:none}
+.ictsmc-head{margin-top:16px;font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+.glossary{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+.gloss-item{display:flex;gap:10px;align-items:flex-start}
+.gloss-swatch{width:11px;height:11px;border-radius:50%;margin-top:3px;flex-shrink:0;border:1px solid rgba(255,255,255,.25)}
+.gloss-item b{display:block;font-size:12.5px;color:var(--text);margin-bottom:2px}
+.gloss-item span{font-size:12px;color:var(--muted);line-height:1.55}
+
+.foot{text-align:center;color:#9aa0ab;font-size:11.5px;margin:28px 0 10px;line-height:1.6}
+.err{background:rgba(224,82,106,.1);border:1px solid rgba(224,82,106,.3);color:var(--red);
+  border-radius:10px;padding:12px 14px;font-size:13px;margin-top:14px}
+.skel{color:var(--muted);font-size:13px;padding:20px 0;text-align:center}
+.stale-banner{background:rgba(245,185,66,.12);border:1px solid rgba(245,185,66,.4);
+  color:var(--amber);border-radius:10px;padding:9px 12px;font-size:12.5px;margin-bottom:14px}
+
+/* --- symbol switcher --- */
+.symtabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.symtab{background:var(--panel2);border:1px solid var(--border2);color:var(--muted);
+  font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:999px;cursor:pointer;
+  transition:all .15s}
+.symtab:hover{color:var(--text);border-color:var(--border)}
+.symtab.active{background:rgba(230,179,18,.16);color:var(--gold);border-color:rgba(230,179,18,.45)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand" id="brand">SIGNALS</div>
+  <div class="tag" id="tagline">Institutional-grade engine · ICT/SMC + multi-strategy MAST confluence</div>
+  <div class="livepill"><span class="dot"></span> LIVE · scanning every 15 minutes</div>
+  <div class="symtabs" id="symtabs"></div>
+  <div class="updated" id="updated">Loading…</div>
+</div>
+
+<div id="stale-wrap"></div>
+
+<div id="app">
+  <div class="skel">Loading live signal…</div>
+</div>
+
+<h2 class="section">Engine Markup Chart — indicators &amp; levels</h2>
+<div class="card markup-card">
+  <div class="markup-wrap">
+    <div id="markup_chart_el"></div>
+  </div>
+  <div class="legend" id="markup_legend"></div>
+  <div class="ictsmc-head">ICT / SMC Read</div>
+  <div id="ictsmc_summary"></div>
+  <div class="basis" style="margin-top:8px">1H candles · EMA 20/50/100/200 · entry/stop/targets, OTE zone, dealing range, premium/discount zones, Fair Value Gaps, order blocks and the last structure break (BOS/CHoCH) — all computed live from the same candle data shown here, and every line/zone above is labeled directly on the chart's price axis. Rendered with TradingView's own open-source Lightweight Charts library (this isn't the scriptable TradingView Charting Library — the public embed below can't take custom price lines or zone shading, this pane can).</div>
+
+  <div class="ictsmc-head">What Am I Looking At? — Glossary</div>
+  <div class="glossary">
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#5aa9ff"></span>
+      <div><b>EMA 20 / 50 / 100 / 200</b><span>Exponential Moving Averages — the average closing price over the last 20/50/100/200 hourly candles, weighted toward the most recent price. When price sits above all four and they're stacked in order (20 above 50 above 100 above 200), that's a classic strong-uptrend signature; stacked the other way signals a downtrend.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#e6b312"></span>
+      <div><b>Entry / Stop / TP1–TP3</b><span>The engine's proposed trade, when it has one active. Entry is where it would get in, Stop is where it would exit if wrong (the most it's risking), and TP1/TP2/TP3 are take-profit targets at 1×, 2× and a final structure-based multiple of that risk.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#e6b312;border-style:dashed"></span>
+      <div><b>OTE zone (Optimal Trade Entry)</b><span>The 62%–79% retracement band of the current price range — a Fibonacci-based zone that ICT/Smart Money traders treat as the highest-probability place to enter in the direction of the bigger trend, rather than chasing price at the extremes.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#4b5566"></span>
+      <div><b>Dealing range (Range hi / Range lo)</b><span>The recent swing-high-to-swing-low trading range everything else on this chart is measured against — the OTE zone and the premium/discount split both come from dividing up this range.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#e0526a"></span>
+      <div><b>Premium / extended zone (red shading)</b><span>The top portion of the range, above the OTE zone. Price here is statistically "expensive" relative to the recent range — buying up here means chasing the move rather than getting a favorable price.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#38c172"></span>
+      <div><b>Discount zone (green shading)</b><span>The bottom portion of the range, below the OTE zone. Price here is "cheap" relative to the recent range — generally the more favorable area to be a buyer.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#8a6ef6"></span>
+      <div><b>Fair Value Gap (FVG)</b><span>A 3-candle imbalance — price moved so fast between two candles that a gap was left with no trading in between. Price often returns to "fill" this gap before continuing in its original direction, so an unfilled FVG can act like a magnet, and also like support or resistance.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#38c1e5"></span>
+      <div><b>Order Block (OB)</b><span>The last candle of the opposite colour right before a strong, fast move. The theory is this is where large institutional orders were placed, so if price returns to that same candle's range later, it can act as support or resistance again.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#5aa9ff"></span>
+      <div><b>BOS (Break of Structure)</b><span>Price breaks the last significant swing high or low in the same direction as the existing trend — read as confirmation the trend is continuing.</span></div>
+    </div>
+    <div class="gloss-item"><span class="gloss-swatch" style="background:#f5b942"></span>
+      <div><b>CHoCH (Change of Character)</b><span>Price breaks the last significant swing high or low against the existing trend — an early warning sign the trend may be correcting or reversing, not just pausing.</span></div>
+    </div>
+  </div>
+</div>
+
+<h2 class="section">Live TradingView Chart</h2>
+<div class="card chart-card">
+  <div class="tv-wrap">
+    <div class="tradingview-widget-container" style="height:100%;width:100%">
+      <div id="tv_chart" style="height:100%;width:100%"></div>
+    </div>
+  </div>
+</div>
+
+<h2 class="section">Recent Signals</h2>
+<div class="card">
+  <div class="table-wrap" id="recent-table"><div class="skel">Loading…</div></div>
+</div>
+
+<h2 class="section">Track Record</h2>
+<div class="card" id="stats-card"><div class="skel">Loading…</div></div>
+
+<h2 class="section">Institutional Positioning &amp; Cross-Market</h2>
+<div class="card" id="inst-card"><div class="skel">Loading…</div></div>
+
+<div class="foot">
+  Research/education only — not financial advice. Confluence score is an<br>
+  explainability tool, not a promised win rate. Past results never guarantee<br>
+  future performance.<br><br>
+  <span id="foot-updated"></span>
+</div>
+
+<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+const SUPABASE_URL = "https://ftgihtwznkuyyhhnxafx.supabase.co";
+const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0Z2lodHd6bmt1eXloaG54YWZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NjU5MjAsImV4cCI6MjEwMDA0MTkyMH0.ka4GywiOh98PQT8hem2wNoT8HJTHx2TBde3L6WwsYiQ";
+
+// --- symbol switcher state ---
+// Each entry: TradingView symbol for the embedded chart, short tab label,
+// and the fallback display name (overwritten by the payload's own
+// display_name once a snapshot loads, so this is just a sane first paint).
+const SYMBOL_META = {
+  WTIUSD: { tv: "TVC:USOIL", tab: "US OIL", name: "US Oil (WTI)" },
+  XAUUSD: { tv: "OANDA:XAUUSD", tab: "GOLD", name: "Gold (XAUUSD)" },
+  BTCUSD: { tv: "COINBASE:BTCUSD", tab: "BITCOIN", name: "Bitcoin (BTCUSD)" },
+};
+const SYMBOL_ORDER = ["WTIUSD", "XAUUSD", "BTCUSD"];
+let currentSymbol = localStorage.getItem("dashboardSymbol") || "WTIUSD";
+if (!SYMBOL_META[currentSymbol]) currentSymbol = "WTIUSD";
+let _tvWidget = null;
+
+function renderSymTabs(){
+  const el = document.getElementById("symtabs");
+  el.innerHTML = SYMBOL_ORDER.map(sym => {
+    const meta = SYMBOL_META[sym];
+    return `<button class="symtab${sym === currentSymbol ? " active" : ""}" data-sym="${sym}">${esc(meta.tab)}</button>`;
+  }).join("");
+  el.querySelectorAll(".symtab").forEach(btn => {
+    btn.addEventListener("click", () => switchSymbol(btn.dataset.sym));
+  });
+}
+
+function createTVWidget(sym){
+  const container = document.getElementById("tv_chart");
+  container.innerHTML = "";
+  _tvWidget = new TradingView.widget({
+    "autosize": true,
+    "symbol": SYMBOL_META[sym].tv,
+    "interval": "60",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#0b0e14",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "hide_side_toolbar": false,
+    "withdateranges": true,
+    "studies": [
+      "MAExp@tv-basicstudies",
+      "MASimple@tv-basicstudies",
+      "MACD@tv-basicstudies",
+      "RSI@tv-basicstudies",
+      "Volume@tv-basicstudies"
+    ],
+    "container_id": "tv_chart"
+  });
+}
+
+function switchSymbol(sym){
+  if(sym === currentSymbol) return;
+  currentSymbol = sym;
+  localStorage.setItem("dashboardSymbol", sym);
+  renderSymTabs();
+  document.getElementById("brand").textContent = SYMBOL_META[sym].name.toUpperCase() + " SIGNALS";
+  document.getElementById("app").innerHTML = `<div class="skel">Loading live signal…</div>`;
+  createTVWidget(sym);
+  load();
+}
+
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function gradeClass(letter){
+  return "g-" + String(letter||"").replace("+","plus").replace(" ", "").toUpperCase();
+}
+function fmtAgo(iso){
+  if(!iso) return "";
+  const d = new Date(iso);
+  const diffMin = Math.round((Date.now() - d.getTime())/60000);
+  if(diffMin < 1) return "just now";
+  if(diffMin < 60) return diffMin + "m ago";
+  const h = Math.round(diffMin/60);
+  if(h < 24) return h + "h ago";
+  return Math.round(h/24) + "d ago";
+}
+
+function renderSignal(sig, price, structure, displayName){
+  const app = document.getElementById("app");
+  if(!sig || !sig.has_setup){
+    app.innerHTML = `<div class="card">
+      <div class="signal-top">
+        <div class="dir none">NO ACTIVE SETUP</div>
+        <div class="grade-badge g-NOTRADE">STANDING ASIDE</div>
+      </div>
+      <div class="grade-label">Engine found no qualifying Layer-1 (ICT/SMC) setup right now. Price: ${price ?? "—"}</div>
+    </div>`;
+    return;
+  }
+  const g = sig.grade || {};
+  const dirClass = sig.direction === "long" ? "long" : "short";
+  const dirLabel = sig.direction === "long" ? "LONG" : "SHORT";
+  const agree = (sig.confluence_agree||[]).map(a => `<span class="chip agree">✓ ${esc(a)}</span>`).join("");
+  const disagree = (sig.confluence_disagree||[]).map(a => `<span class="chip disagree">✕ ${esc(a)}</span>`).join("");
+  const reasoningTop = (sig.reasoning||[]).slice(0,4).map(r => `<li>${esc(r)}</li>`).join("");
+  const guardWarn = sig.guard_locked
+    ? `<div class="warn">⚠️ RISK GUARD ACTIVE: ${esc(sig.guard_reason)}</div>` : "";
+  const guardNote = sig.guard_note && !sig.guard_locked
+    ? `<div class="warn">${esc(sig.guard_note)}</div>` : "";
+
+  document.getElementById("app").innerHTML = `<div class="card">
+    <div class="signal-top">
+      <div>
+        <div class="dir ${dirClass}">${dirLabel} · ${esc((displayName||"").toUpperCase())}</div>
+        <div class="grade-label">${esc(g.label||"")}</div>
+      </div>
+      <div class="grade-badge ${gradeClass(g.letter)}">${esc(g.letter||"?")} · ${g.score ?? "—"}/100</div>
+    </div>
+
+    <div class="levels">
+      <div class="lvl"><b>${sig.entry ?? "—"}</b><span>Entry</span></div>
+      <div class="lvl"><b>${sig.stop ?? "—"}</b><span>Stop</span></div>
+      <div class="lvl"><b>${sig.tp1 ?? "—"}</b><span>TP1 (+1R)</span></div>
+      <div class="lvl"><b>${sig.tp2 ?? "—"}</b><span>TP2 (+2R)</span></div>
+      <div class="lvl"><b>${sig.tp3 ?? "—"}</b><span>TP3 (target)</span></div>
+      <div class="lvl"><b>${sig.rr ?? "—"}</b><span>Risk:Reward</span></div>
+    </div>
+
+    <div class="confbar-wrap">
+      <div class="confbar-track"><div class="confbar-fill" style="width:${Math.min(100, sig.confidence_guard_adjusted||0)}%"></div></div>
+      <div class="confbar-lbl"><span>Confidence (guard-adjusted)</span><span>${sig.confidence_guard_adjusted ?? "—"}/100</span></div>
+    </div>
+
+    ${agree || disagree ? `<div class="chips">${agree}${disagree}</div>` : ""}
+    ${reasoningTop ? `<div class="why"><b>Why:</b><ul>${reasoningTop}</ul></div>` : ""}
+    ${guardWarn}${guardNote}
+    <div class="basis">${esc(sig.basis_note||"")}</div>
+    <div class="basis" style="margin-top:4px">Invalidation: ${esc(sig.invalidation||"—")}</div>
+  </div>`;
+}
+
+function renderRecent(rows){
+  const el = document.getElementById("recent-table");
+  if(!rows || !rows.length){ el.innerHTML = `<div class="skel">No signals logged yet.</div>`; return; }
+  let html = `<table><tr><th>Opened</th><th>Dir</th><th>Grade</th><th>Entry</th><th>Result</th></tr>`;
+  for(const r of rows.slice(0,15)){
+    const statusCls = "status-" + (r.status || "open");
+    const result = ["win","loss","scratch"].includes(r.status)
+      ? `<span class="${statusCls}">${(r.result_r>=0?"+":"")}${(r.result_r||0).toFixed(2)}R</span>`
+      : `<span class="${statusCls}">${esc(r.status)}</span>`;
+    html += `<tr>
+      <td>${esc((r.opened||"").slice(0,16).replace("T"," "))}</td>
+      <td>${esc((r.direction||"").toUpperCase())}</td>
+      <td>${r.grade_letter ? `<span class="grade-badge ${gradeClass(r.grade_letter)}" style="padding:2px 8px;font-size:11px">${esc(r.grade_letter)}</span>` : "—"}</td>
+      <td>${r.entry ?? "—"}</td>
+      <td>${result}</td>
+    </tr>`;
+  }
+  html += `</table>`;
+  el.innerHTML = html;
+}
+
+function renderStats(s){
+  const el = document.getElementById("stats-card");
+  if(!s || !s.closed){
+    el.innerHTML = `<div class="skel">No closed trades yet — forward test began ${esc(s?.forward_test_start||"")}.</div>`;
+    return;
+  }
+  const wr = s.win_rate != null ? Math.round(s.win_rate*100) + "%" : "—";
+  const expCls = s.expectancy_r >= 0 ? "pos" : "neg";
+  const netCls = s.net_r >= 0 ? "pos" : "neg";
+  el.innerHTML = `<div class="kpis">
+    <div class="kpi"><b>${s.closed}</b><span>Closed trades</span></div>
+    <div class="kpi"><b>${wr}</b><span>Win rate</span></div>
+    <div class="kpi"><b class="${expCls}">${s.expectancy_r>=0?"+":""}${s.expectancy_r}R</b><span>Expectancy</span></div>
+    <div class="kpi"><b class="${netCls}">${s.net_r>=0?"+":""}${s.net_r}R</b><span>Net result</span></div>
+    <div class="kpi"><b>${s.profit_factor ?? "—"}</b><span>Profit factor</span></div>
+    <div class="kpi"><b class="neg">-${s.max_drawdown_r}R</b><span>Max drawdown</span></div>
+    <div class="kpi"><b>${s.open_now}</b><span>Open now</span></div>
+  </div>
+  <div class="basis" style="margin-top:10px">Forward-test (paper) phase began ${esc(s.forward_test_start)}. Results in R multiples (1R = amount risked). Every signal shown — wins, losses and opens alike.</div>`;
+}
+
+const EMA_COLORS = { ema20: "#5aa9ff", ema50: "#f5b942", ema100: "#c084fc", ema200: "#8b93a3" };
+let _lwChart = null; // torn down and rebuilt each poll cycle — cheap at ~120 bars
+
+// ---- lightweight ICT/SMC detectors ----
+// These run client-side straight off the same 1H candles already in the
+// payload, mirroring engine/structure.py + engine/ict.py's logic (3-candle
+// FVGs, opposite-colour-before-displacement order blocks, swing-based
+// BOS/CHoCH). Kept independent of the backend's own structure read so the
+// chart still shows FVG/OB/structure-break markup even on a snapshot
+// published before those fields existed server-side.
+function avgRange(candles, n){
+  const s = candles.slice(Math.max(0, candles.length - n));
+  return s.reduce((a,c) => a + (c.h - c.l), 0) / Math.max(1, s.length);
+}
+
+function findFVGs(candles){
+  const gaps = [];
+  for(let i=2;i<candles.length;i++){
+    const c0 = candles[i-2], c2 = candles[i];
+    if(c2.l > c0.h) gaps.push({type:"bull", top:c2.l, bottom:c0.h, idx:i-1});
+    else if(c2.h < c0.l) gaps.push({type:"bear", top:c0.l, bottom:c2.h, idx:i-1});
+  }
+  return gaps;
+}
+
+function nearestUnfilledFVG(candles, price, biasDir){
+  const gaps = findFVGs(candles).filter(g => {
+    for(let j=g.idx+2;j<candles.length;j++){
+      if(g.type==="bull" && candles[j].l <= g.bottom) return false;
+      if(g.type==="bear" && candles[j].h >= g.top) return false;
+    }
+    return true;
+  });
+  const wanted = biasDir === "long" ? "bull" : biasDir === "short" ? "bear" : null;
+  const pool = wanted ? gaps.filter(g => g.type === wanted) : gaps;
+  if(!pool.length) return null;
+  return pool.reduce((best,g) => {
+    const mid = (g.top+g.bottom)/2;
+    return (!best || Math.abs(price-mid) < Math.abs(price-(best.top+best.bottom)/2)) ? g : best;
+  }, null);
+}
+
+function findOrderBlock(candles, biasDir){
+  const n = candles.length;
+  const ar = avgRange(candles, 20);
+  for(let i=n-2;i>1;i--){
+    const c = candles[i], p = candles[i-1];
+    const bigGreen = c.c > c.o && (c.c-c.o) > 1.2*ar;
+    const bigRed   = c.c < c.o && (c.o-c.c) > 1.2*ar;
+    if(biasDir !== "short" && bigGreen && p.c < p.o) return {type:"bull", top:p.h, bottom:p.l, idx:i-1};
+    if(biasDir !== "long"  && bigRed   && p.c > p.o) return {type:"bear", top:p.h, bottom:p.l, idx:i-1};
+  }
+  return null;
+}
+
+function findSwings(candles, k){
+  const sw = [];
+  for(let i=k;i<candles.length-k;i++){
+    const win = candles.slice(i-k, i+k+1);
+    const hi = Math.max(...win.map(c=>c.h));
+    const lo = Math.min(...win.map(c=>c.l));
+    if(candles[i].h === hi) sw.push({idx:i, kind:"H", price:candles[i].h});
+    if(candles[i].l === lo) sw.push({idx:i, kind:"L", price:candles[i].l});
+  }
+  return sw;
+}
+
+// Walks the candles once, tracking the last confirmed swing high/low and a
+// running trend state. A break of the last swing WITH the prevailing trend
+// is a BOS (continuation); a break AGAINST it is a CHoCH (correction /
+// possible reversal) — standard ICT structure-break definitions.
+function lastStructureEvent(candles){
+  const sw = findSwings(candles, 2);
+  if(sw.length < 2) return null;
+  let trend = "range", lastH = null, lastL = null, lastEvent = null, si = 0;
+  for(let i=0;i<candles.length;i++){
+    while(si < sw.length && sw[si].idx === i){
+      if(sw[si].kind === "H") lastH = sw[si]; else lastL = sw[si];
+      si++;
+    }
+    const c = candles[i].c;
+    if(lastH && c > lastH.price){
+      lastEvent = {type: trend === "bear" ? "CHoCH" : "BOS", dir:"up", idx:i};
+      trend = "bull"; lastH = null;
+    } else if(lastL && c < lastL.price){
+      lastEvent = {type: trend === "bull" ? "CHoCH" : "BOS", dir:"down", idx:i};
+      trend = "bear"; lastL = null;
+    }
+  }
+  return lastEvent;
+}
+
+function renderMarkupChart(chart, sig, structure){
+  const container = document.getElementById("markup_chart_el");
+  const legendEl = document.getElementById("markup_legend");
+
+  if(_lwChart){ try{ _lwChart.remove(); }catch(e){} _lwChart = null; }
+  container.innerHTML = "";
+
+  if(!chart || !chart.candles || !chart.candles.length || typeof LightweightCharts === "undefined"){
+    legendEl.innerHTML = `<span class="legend-item">Chart data unavailable this run.</span>`;
+    return;
+  }
+
+  const candles = chart.candles;
+  const n = candles.length;
+  // Engine timestamps are naive UTC ISO strings ("YYYY-MM-DD HH:MM:SS");
+  // Lightweight Charts wants unix seconds.
+  const toTime = t => Math.floor(new Date(t.replace(" ", "T") + "Z").getTime() / 1000);
+
+  const lw = LightweightCharts.createChart(container, {
+    autoSize: true,
+    layout: { background: { color: "transparent" }, textColor: "#8b93a3", fontSize: 11 },
+    grid: { vertLines: { color: "#1a2130" }, horzLines: { color: "#1a2130" } },
+    rightPriceScale: { borderColor: "#232c3a" },
+    timeScale: { borderColor: "#232c3a", timeVisible: true, secondsVisible: false },
+    crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+  });
+  _lwChart = lw;
+
+  const candleSeries = lw.addCandlestickSeries({
+    upColor: "#38c172", downColor: "#e0526a", borderVisible: false,
+    wickUpColor: "#38c172", wickDownColor: "#e0526a",
+  });
+  candleSeries.setData(candles.map(c => ({
+    time: toTime(c.t), open: c.o, high: c.h, low: c.l, close: c.c,
+  })));
+
+  const EMA_LABELS = { ema20: "EMA 20", ema50: "EMA 50", ema100: "EMA 100", ema200: "EMA 200" };
+  for(const key of ["ema20","ema50","ema100","ema200"]){
+    const series = chart[key];
+    if(!series || series.length !== n) continue;
+    const line = lw.addLineSeries({
+      color: EMA_COLORS[key], lineWidth: 1,
+      // on-chart axis label (not just the bottom legend) so every line is
+      // identifiable straight off the chart itself.
+      priceLineVisible: true, lastValueVisible: true, crosshairMarkerVisible: false,
+      title: EMA_LABELS[key],
+    });
+    line.setData(candles.map((c,i) => ({ time: toTime(c.t), value: series[i] })));
+  }
+
+  const priceLines = [];
+  if(sig && sig.has_setup){
+    priceLines.push({price: sig.entry, color: "#e6b312", title: "Entry", lineStyle: 0});
+    priceLines.push({price: sig.stop, color: "#e0526a", title: "Stop", lineStyle: 2});
+    priceLines.push({price: sig.tp1, color: "#38c172", title: "TP1", lineStyle: 2});
+    priceLines.push({price: sig.tp2, color: "#38c172", title: "TP2", lineStyle: 2});
+    priceLines.push({price: sig.tp3, color: "#38c172", title: "TP3", lineStyle: 3});
+  }
+  let haveOte = false, haveRange = false, havePremium = false;
+  let oteHighVal = null, rangeHiVal = null, rangeLoVal = null;
+  if(structure){
+    if(Array.isArray(structure.ote) && structure.ote.length===2){
+      const [a,b] = structure.ote;
+      oteHighVal = Math.max(a,b);
+      priceLines.push({price: oteHighVal, color: "#e6b312", title: "OTE high", lineStyle: 1});
+      priceLines.push({price: Math.min(a,b), color: "#e6b312", title: "OTE low", lineStyle: 1});
+      haveOte = true;
+    }
+    if(Array.isArray(structure.dealing_range) && structure.dealing_range.length===2){
+      const [a,b] = structure.dealing_range;
+      rangeHiVal = Math.max(a,b);
+      rangeLoVal = Math.min(a,b);
+      priceLines.push({price: rangeHiVal, color: "#4b5566", title: "Range hi", lineStyle: 3});
+      priceLines.push({price: rangeLoVal, color: "#4b5566", title: "Range lo", lineStyle: 3});
+      haveRange = true;
+    }
+  }
+  for(const l of priceLines){
+    if(l.price == null) continue;
+    candleSeries.createPriceLine({
+      price: l.price, color: l.color, lineWidth: 1, lineStyle: l.lineStyle,
+      axisLabelVisible: true, title: l.title,
+    });
+  }
+
+  // ---- premium / extended zone shading (above OTE high, up to range hi) ----
+  // Discount = below OTE low (cheap, where the engine wants to buy).
+  // Premium/extended = above OTE high (expensive, where price is chasing) —
+  // shaded so it's visually obvious price is sitting in the extended part
+  // of the range rather than at a discount.
+  if(haveOte && haveRange && oteHighVal != null && rangeHiVal > oteHighVal){
+    const premiumBand = lw.addBaselineSeries({
+      baseValue: { type: "price", price: oteHighVal },
+      topLineColor: "rgba(230,120,20,0.0)",
+      topFillColor1: "rgba(224,82,106,0.20)",
+      topFillColor2: "rgba(224,82,106,0.04)",
+      bottomLineColor: "rgba(0,0,0,0)",
+      bottomFillColor1: "rgba(0,0,0,0)",
+      bottomFillColor2: "rgba(0,0,0,0)",
+      lineWidth: 0,
+      lastValueVisible: false,
+      priceLineVisible: false,
+      crosshairMarkerVisible: false,
+    });
+    premiumBand.setData(candles.map(c => ({ time: toTime(c.t), value: rangeHiVal })));
+    havePremium = true;
+  }
+  if(haveOte && rangeLoVal != null){
+    const discountBand = lw.addBaselineSeries({
+      baseValue: { type: "price", price: Math.min(...structure.ote) },
+      topLineColor: "rgba(0,0,0,0)",
+      topFillColor1: "rgba(0,0,0,0)",
+      topFillColor2: "rgba(0,0,0,0)",
+      bottomLineColor: "rgba(56,193,114,0.0)",
+      bottomFillColor1: "rgba(56,193,114,0.16)",
+      bottomFillColor2: "rgba(56,193,114,0.03)",
+      lineWidth: 0,
+      lastValueVisible: false,
+      priceLineVisible: false,
+      crosshairMarkerVisible: false,
+    });
+    discountBand.setData(candles.map(c => ({ time: toTime(c.t), value: rangeLoVal })));
+  }
+
+  // marker for where the current close actually sits (premium vs discount)
+  const lastClose = candles[n-1].c;
+  const sitting = (oteHighVal != null && lastClose > oteHighVal) ? "Premium / extended — chasing"
+    : (rangeLoVal != null && oteHighVal != null && lastClose < (structure.ote ? Math.min(...structure.ote) : oteHighVal)) ? "Discount — favorable"
+    : "Inside OTE — neutral";
+  candleSeries.createPriceLine({
+    price: lastClose, color: "#e7eaf0", lineWidth: 1, lineStyle: 0,
+    axisLabelVisible: true, title: "Now: " + sitting,
+  });
+
+  // ---- ICT / SMC: Fair Value Gap, Order Block, last structure break ----
+  const biasDir = (structure && structure.direction) || (sig && sig.has_setup ? sig.direction : null);
+  const fvgAuto = nearestUnfilledFVG(candles, lastClose, biasDir);
+  const obAuto = findOrderBlock(candles, biasDir);
+  const structEvent = lastStructureEvent(candles);
+
+  let haveFvg = false, haveOb = false;
+  const chartMarkers = [];
+  if(fvgAuto){
+    const fvgHex = fvgAuto.type === "bull" ? "#8a6ef6" : "#f66e92"; // violet / rose
+    const fvgRgb = fvgAuto.type === "bull" ? "138,110,246" : "246,110,146";
+    const fvgSeries = lw.addBaselineSeries({
+      baseValue: { type: "price", price: fvgAuto.bottom },
+      topLineColor: `rgba(${fvgRgb},0.5)`,
+      topFillColor1: `rgba(${fvgRgb},0.22)`,
+      topFillColor2: `rgba(${fvgRgb},0.04)`,
+      bottomLineColor: "rgba(0,0,0,0)", bottomFillColor1: "rgba(0,0,0,0)", bottomFillColor2: "rgba(0,0,0,0)",
+      lineWidth: 1, lastValueVisible: false, priceLineVisible: false, crosshairMarkerVisible: false,
+    });
+    fvgSeries.setData(candles.slice(fvgAuto.idx).map(c => ({ time: toTime(c.t), value: fvgAuto.top })));
+    // axis labels on the exact top/bottom of the gap, same pattern as every
+    // other level on this chart (Entry/Stop/OTE/Range), so it reads the
+    // same way without needing to already know what a baseline fill means.
+    candleSeries.createPriceLine({ price: fvgAuto.top, color: fvgHex, lineWidth: 1, lineStyle: 1,
+      axisLabelVisible: true, title: `FVG top (${fvgAuto.type})` });
+    candleSeries.createPriceLine({ price: fvgAuto.bottom, color: fvgHex, lineWidth: 1, lineStyle: 1,
+      axisLabelVisible: true, title: "FVG bottom" });
+    chartMarkers.push({ time: toTime(candles[fvgAuto.idx].t), position: "aboveBar",
+      color: fvgHex, shape: "circle", text: "FVG" });
+    haveFvg = true;
+  }
+  if(obAuto){
+    const obHex = obAuto.type === "bull" ? "#38c1e5" : "#e59638"; // cyan / amber
+    const obRgb = obAuto.type === "bull" ? "56,193,229" : "229,150,56";
+    const obSeries = lw.addBaselineSeries({
+      baseValue: { type: "price", price: obAuto.bottom },
+      topLineColor: `rgba(${obRgb},0.55)`,
+      topFillColor1: `rgba(${obRgb},0.24)`,
+      topFillColor2: `rgba(${obRgb},0.05)`,
+      bottomLineColor: "rgba(0,0,0,0)", bottomFillColor1: "rgba(0,0,0,0)", bottomFillColor2: "rgba(0,0,0,0)",
+      lineWidth: 1, lastValueVisible: false, priceLineVisible: false, crosshairMarkerVisible: false,
+    });
+    obSeries.setData(candles.slice(obAuto.idx).map(c => ({ time: toTime(c.t), value: obAuto.top })));
+    candleSeries.createPriceLine({ price: obAuto.top, color: obHex, lineWidth: 1, lineStyle: 1,
+      axisLabelVisible: true, title: `OB top (${obAuto.type})` });
+    candleSeries.createPriceLine({ price: obAuto.bottom, color: obHex, lineWidth: 1, lineStyle: 1,
+      axisLabelVisible: true, title: "OB bottom" });
+    chartMarkers.push({ time: toTime(candles[obAuto.idx].t), position: "belowBar",
+      color: obHex, shape: "circle", text: "OB" });
+    haveOb = true;
+  }
+  if(structEvent){
+    chartMarkers.push({
+      time: toTime(candles[structEvent.idx].t),
+      position: structEvent.dir === "up" ? "belowBar" : "aboveBar",
+      color: structEvent.type === "BOS" ? "#5aa9ff" : "#f5b942",
+      shape: structEvent.dir === "up" ? "arrowUp" : "arrowDown",
+      text: structEvent.type,
+    });
+  }
+  // Lightweight Charts requires markers passed in ascending time order, and
+  // setMarkers() replaces the full set — so every marker for this render
+  // has to go in through one sorted call.
+  if(chartMarkers.length){
+    chartMarkers.sort((a,b) => a.time - b.time);
+    candleSeries.setMarkers(chartMarkers);
+  }
+
+  lw.timeScale().fitContent();
+
+  // ---- legend ----
+  const items = [
+    {c: EMA_COLORS.ema20, t: "EMA 20"}, {c: EMA_COLORS.ema50, t: "EMA 50"},
+    {c: EMA_COLORS.ema100, t: "EMA 100"}, {c: EMA_COLORS.ema200, t: "EMA 200"},
+  ];
+  if(sig && sig.has_setup) items.push({c:"#e6b312", t:"Entry"}, {c:"#e0526a", t:"Stop"}, {c:"#38c172", t:"TP1/2/3"});
+  if(haveOte) items.push({c:"#e6b312", t:"OTE zone", dot:true});
+  if(haveRange) items.push({c:"#4b5566", t:"Dealing range"});
+  if(havePremium) items.push({c:"#e0526a", t:"Premium/extended zone", dot:true});
+  if(haveOte) items.push({c:"#38c172", t:"Discount zone", dot:true});
+  if(haveFvg) items.push({c: fvgAuto.type==="bull" ? "rgb(138,110,246)" : "rgb(246,110,146)", t:`FVG (${fvgAuto.type})`, dot:true});
+  if(haveOb) items.push({c: obAuto.type==="bull" ? "rgb(56,193,229)" : "rgb(229,150,56)", t:`Order Block (${obAuto.type})`, dot:true});
+  if(structEvent) items.push({c: structEvent.type==="BOS" ? "#5aa9ff" : "#f5b942", t:`${structEvent.type} ${structEvent.dir==="up"?"↑":"↓"}`, dot:true});
+  legendEl.innerHTML = items.map(it =>
+    `<span class="legend-item"><span class="legend-swatch${it.dot?' dot':''}" style="background:${it.c}"></span>${esc(it.t)}</span>`
+  ).join("");
+
+  // ---- ICT/SMC readable summary panel (same data, plain language) ----
+  const summaryEl = document.getElementById("ictsmc_summary");
+  if(summaryEl){
+    const rows = [];
+    if(structEvent){
+      const barsAgo = n - 1 - structEvent.idx;
+      const label = structEvent.type === "BOS" ? "continuation" : "correction / possible reversal";
+      const dirLbl = structEvent.dir === "up" ? "bullish ↑" : "bearish ↓";
+      rows.push(`<b>${structEvent.type}</b> — ${dirLbl}, ${label} · ${barsAgo} bar${barsAgo===1?"":"s"} ago`);
+    } else {
+      rows.push(`<b>Structure:</b> no clean swing break in the visible window`);
+    }
+    if(fvgAuto){
+      rows.push(`<b>Fair Value Gap</b> (${fvgAuto.type}, unfilled) — ${fvgAuto.bottom.toFixed(2)}–${fvgAuto.top.toFixed(2)}`);
+    } else {
+      rows.push(`<b>Fair Value Gap:</b> none unfilled nearby`);
+    }
+    if(obAuto){
+      rows.push(`<b>Order Block</b> (${obAuto.type}) — ${obAuto.bottom.toFixed(2)}–${obAuto.top.toFixed(2)}`);
+    } else {
+      rows.push(`<b>Order Block:</b> none found in range`);
+    }
+    rows.push(`<b>Bias:</b> ${biasDir ? biasDir.toUpperCase() : "neutral, no clear lean"} · price is ${sitting.toLowerCase()}`);
+    summaryEl.innerHTML = rows.map(r => `<div class="inst-line">${r}</div>`).join("");
+  }
+}
+
+function renderStaleBanner(payload){
+  const el = document.getElementById("stale-wrap");
+  if(!payload.data_stale){ el.innerHTML = ""; return; }
+  const mins = Math.round((payload.data_stale_since_s||0)/60);
+  el.innerHTML = `<div class="stale-banner">⚠ Live price feed is unreachable — showing the last known snapshot (~${mins}m old). No new setups are evaluated while the feed is down; the engine resumes automatically once it's back.</div>`;
+}
+
+function renderInst(inst){
+  const el = document.getElementById("inst-card");
+  if(!inst){ el.innerHTML = `<div class="skel">Unavailable.</div>`; return; }
+  const lines = [inst.cot, inst.spreads, inst.seasonality, inst.risk_sentiment, inst.eia].filter(Boolean);
+  el.innerHTML = lines.map(l => `<div class="inst-line">${esc(l)}</div>`).join("") || `<div class="skel">Unavailable.</div>`;
+}
+
+async function load(){
+  const sym = currentSymbol;
+  try{
+    const resp = await fetch(`${SUPABASE_URL}/rest/v1/dashboard_snapshot?select=payload,updated_at&symbol=eq.${encodeURIComponent(sym)}`, {
+      headers: { apikey: ANON_KEY, Authorization: `Bearer ${ANON_KEY}` }
+    });
+    if(!resp.ok) throw new Error("HTTP " + resp.status);
+    const rows = await resp.json();
+    if(sym !== currentSymbol) return; // user switched tabs while this was in flight
+    if(!rows.length){
+      document.getElementById("app").innerHTML = `<div class="err">No data published yet for ${esc(SYMBOL_META[sym].name)}. The engine publishes a fresh snapshot every hour (and on every new signal) once this symbol is enabled in SYMBOLS.</div>`;
+      document.getElementById("markup_chart_el").innerHTML = "";
+      renderRecent([]); renderStats(null); renderInst(null);
+      return;
+    }
+    const payload = rows[0].payload;
+    const updated = rows[0].updated_at;
+    const displayName = payload.display_name || SYMBOL_META[sym].name;
+
+    document.getElementById("brand").textContent = displayName.toUpperCase() + " SIGNALS";
+    document.getElementById("updated").textContent = "Last updated " + fmtAgo(updated) +
+      (payload.paper_mode ? " · FORWARD TEST (paper)" : "");
+    document.getElementById("foot-updated").textContent = "Snapshot generated " + esc(payload.generated || updated);
+
+    renderStaleBanner(payload);
+    renderSignal(payload.signal, payload.price, payload.market_structure, displayName);
+    renderMarkupChart(payload.chart, payload.signal, payload.market_structure);
+    renderRecent(payload.recent_trades);
+    renderStats(payload.stats);
+    renderInst(payload.institutional);
+  }catch(e){
+    if(sym !== currentSymbol) return;
+    document.getElementById("app").innerHTML = `<div class="err">Couldn't load live data (${esc(e.message)}). Pull to refresh or check back shortly.</div>`;
+  }
+}
+
+renderSymTabs();
+createTVWidget(currentSymbol);
+load();
+setInterval(load, 60000); // refresh every 60s
+</script>
+</body>
+</html>

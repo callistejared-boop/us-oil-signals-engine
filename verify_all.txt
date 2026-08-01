@@ -1,0 +1,61 @@
+PYTHON: 3.14.3
+
+[1] SYNTAX
+  OK   main.py
+  OK   hourly_briefing.py
+  OK   send_test_alert.py
+  OK   engine\__init__.py
+  OK   engine\backtest.py
+  OK   engine\config.py
+  OK   engine\data_loader.py
+  OK   engine\ict.py
+  OK   engine\journal.py
+  OK   engine\ltf.py
+  OK   engine\markets.py
+  OK   engine\montecarlo.py
+  OK   engine\news_guard.py
+  OK   engine\pending.py
+  OK   engine\report.py
+  OK   engine\signals.py
+  OK   engine\structure.py
+  OK   engine\technicals.py
+  OK   engine\telegram_alerts.py
+  -> syntax_failures=0
+
+[2] IMPORTS
+  all engine modules import OK
+
+[3] UNIT TESTS
+  9 passed in 0.73s
+
+[4] CONFIG / ENV (no secrets shown)
+  token_set=True chat_set=True channel=@jaredxauusdsignals
+
+[5] HISTORICAL LOAD + BRIEFING BUILD
+  csv_bars=480717 briefing_lines=29 track=True tech=True news_line=False
+
+[6] NEWS GUARD (live calendar)
+  ok=True blackout=False next=USD Core CPI m/m
+
+[7] JOURNAL STATE
+  {'total': 56, 'closed': 56, 'open': 0, 'wins': 29, 'losses': 27, 'win_rate': 0.518, 'net_r': 81.1, 'since': '2026-07-07'}
+
+[8] LIVE DATA FETCH
+  live_bars=3000 last=2026-07-10 16:45:00 px=4113.70
+
+[9] BACKTEST SANITY (2025-05..06, after costs)
+  {'trades': 39, 'win_rate': 0.41, 'loss_rate': 0.59, 'scratch_rate': 0.0, 'no_loss_rate': 0.41, 'avg_win_r': 2.34, 'avg_loss_r': -1.0, 'expectancy_r': 0.369, 'profit_factor': np.float64(1.63), 'total_r': 14.41, 'max_drawdown_r': -5.94}
+
+DONE 
+[10] SCHEDULED TASK 
+ 
+[11] KEY FILES PRESENT 
+  OK   main.py
+  OK   hourly_briefing.py
+  OK   3_START_SIGNALS.bat
+  OK   5_SCHEDULE_HOURLY.bat
+  OK   .env
+  OK   data\XAU_15m_data.csv
+  OK   engine\news_guard.py
+  OK   engine\journal.py
+DONE-BAT 

@@ -1,0 +1,14 @@
+Failed to get ticker 'CL=F' reason: Failed to perform, curl: (56) CONNECT tunnel failed, response 403. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+
+1 Failed download:
+['CL=F']: ProxyError('Failed to perform, curl: (56) CONNECT tunnel failed, response 403. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.')
+Traceback (most recent call last):
+  File "/sessions/determined-upbeat-turing/mnt/outputs/gold-engine/wti_note.py", line 284, in <module>
+    main()
+  File "/sessions/determined-upbeat-turing/mnt/outputs/gold-engine/wti_note.py", line 240, in main
+    df = markets.fetch("WTIUSD", s)
+  File "/sessions/determined-upbeat-turing/mnt/outputs/gold-engine/engine/markets.py", line 70, in fetch
+    return _yf(symbol, bars)
+  File "/sessions/determined-upbeat-turing/mnt/outputs/gold-engine/engine/markets.py", line 52, in _yf
+    raise RuntimeError(f"yfinance empty for {tk}")
+RuntimeError: yfinance empty for CL=F

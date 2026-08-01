@@ -1,0 +1,72 @@
+name: Entry scan (15 min)
+
+# Replaces the laptop's "XAUUSD Entry Scan 15min" Windows Task Scheduler job.
+# Two-stage entry alerter (alert_signals.py): heads-up on a confirmed setup,
+# then fires the actual entry when price taps the level. Deduped/stateful via
+# pending.json + trades.json, which this workflow commits back to the repo
+# after each run so state survives across ephemeral runner instances.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: engine-state
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Restore last-known-good market data cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: market-cache-${{ github.run_id }}
+          restore-keys: market-cache-
+
+      - name: Run entry scanner
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          TELEGRAM_CHANNEL_WTIUSD: ${{ secrets.TELEGRAM_CHANNEL_WTIUSD }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          SYMBOLS: ${{ secrets.SYMBOLS }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          DASHBOARD_PUBLISH_SECRET: ${{ secrets.DASHBOARD_PUBLISH_SECRET }}
+        run: python alert_signals.py
+
+      - name: Persist engine state
+        if: always()
+        run: |
+          git config user.name "gold-engine-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add pending.json trades.json run_ledger.jsonl 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "state: entry-scan update [skip ci]"
+            for i in 1 2 3 4 5; do
+              git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)" && \
+              git push origin HEAD && break
+              echo "push contended, retry $i..."; sleep $((RANDOM % 8 + 3))
+            done
+          else
+            echo "no state changes this run"
+          fi

@@ -1,0 +1,77 @@
+name: News + bias refresh (5 min)
+
+# Replaces the laptop's "Signals News 5min" Windows Task Scheduler job.
+# Note: 5-minute cron is at the edge of what GitHub Actions schedules
+# reliably guarantee -- expect occasional delays of a few extra minutes
+# under GH-wide load. If that matters more than freshness, widen this to
+# */10 or */15.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: engine-state
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Restore last-known-good market data cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: market-cache-${{ github.run_id }}
+          restore-keys: market-cache-
+
+      - name: Refresh macro / news / bias / command-center
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          TELEGRAM_CHANNEL_WTIUSD: ${{ secrets.TELEGRAM_CHANNEL_WTIUSD }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          SYMBOLS: ${{ secrets.SYMBOLS }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          DASHBOARD_PUBLISH_SECRET: ${{ secrets.DASHBOARD_PUBLISH_SECRET }}
+        run: |
+          python engine/correlation.py
+          python engine/fundamentals_feed.py
+          python news_bias.py
+          python command_center.py
+          python news_watch.py
+
+      - name: Persist engine state
+        if: always()
+        run: |
+          git config user.name "gold-engine-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add fundamentals.json macro.json news_state.json cot_cache.json spread_cache.json risk_sentiment_cache.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "state: news-refresh update [skip ci]"
+            for i in 1 2 3 4 5; do
+              git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)" && \
+              git push origin HEAD && break
+              echo "push contended, retry $i..."; sleep $((RANDOM % 8 + 3))
+            done
+          else
+            echo "no state changes this run"
+          fi

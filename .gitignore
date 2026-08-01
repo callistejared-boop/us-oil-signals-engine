@@ -1,0 +1,23 @@
+# secrets & local config
+.env
+
+# python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# last-known-good market data cache (engine/markets.py fetch_resilient)
+.cache/
+
+# journal backups / atomic temp files
+*.json.bak
+*.json.tmp
+
+# runtime result logs
+*_result.txt
+hb_check.txt
+alert_heartbeat.txt
+last_briefing.txt
+*.log
+task_audit_output.txt
+unregister_output.txt

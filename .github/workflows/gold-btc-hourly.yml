@@ -1,0 +1,89 @@
+name: Gold + Bitcoin hourly analysis
+
+# Added 2026-07-28 alongside wti-hourly.yml, as the gold/BTC twin of that
+# workflow. Full institutional trade note (multi-timeframe ICT/SMC + regime
+# + guards + live news) -> Telegram, for XAUUSD and BTCUSD. Runs at :16 (ten
+# minutes after wti-hourly's :06) so the two jobs' state commits don't race
+# each other on every run. Dashboard snapshots for all symbols (including
+# gold/BTC) are already published by wti-hourly.yml's dp.main() call, which
+# loops every symbol in SYMBOLS - no need to duplicate that here.
+#
+# Bitcoin has no dedicated Telegram channel yet (per user decision,
+# 2026-07-28): its notes fall back to TELEGRAM_CHANNEL, same as gold, via
+# engine.markets.channel_for()'s existing per-symbol fallback. Add
+# TELEGRAM_CHANNEL_BTCUSD as a secret whenever a dedicated channel exists -
+# no code change needed.
+
+on:
+  schedule:
+    - cron: "16 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: engine-state
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  hourly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Restore last-known-good market data cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: market-cache-${{ github.run_id }}
+          restore-keys: market-cache-
+
+      - name: Run Gold+BTC hourly pipeline
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          TELEGRAM_CHANNEL_XAUUSD: ${{ secrets.TELEGRAM_CHANNEL_XAUUSD }}
+          TELEGRAM_CHANNEL_BTCUSD: ${{ secrets.TELEGRAM_CHANNEL_BTCUSD }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          SYMBOLS: ${{ secrets.SYMBOLS }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          DASHBOARD_PUBLISH_SECRET: ${{ secrets.DASHBOARD_PUBLISH_SECRET }}
+        run: python gold_btc_hourly.py >> gold_btc_hourly.log 2>&1
+
+      - name: Persist engine state
+        if: always()
+        run: |
+          git config user.name "gold-engine-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add trades.json macro.json run_ledger.jsonl fundamentals.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "state: gold-btc-hourly update [skip ci]"
+            for i in 1 2 3 4 5; do
+              git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)" && \
+              git push origin HEAD && break
+              echo "push contended, retry $i..."; sleep $((RANDOM % 8 + 3))
+            done
+          else
+            echo "no state changes this run"
+          fi
+
+      - name: Upload run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gold-btc-hourly-log-${{ github.run_id }}
+          path: gold_btc_hourly.log
+          retention-days: 14

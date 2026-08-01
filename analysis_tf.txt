@@ -1,0 +1,37 @@
+WTIUSD — TOP-DOWN ICT/SMC ANALYSIS
+2026-07-17 00:35 UTC
+spot ~78.86
+Live news bias: BUY (HIGH) | context nudge (news+killzone): +3
+
+=== 4-HOUR (higher-timeframe bias & draw on liquidity) ===
+Bias/structure: BULL   price 78.86
+Dealing range 67.04-97.00 | eq 82.02 | price is in DISCOUNT (pos 0.39)
+Buy-side liquidity (targets up): [79.18, 80.87]
+Sell-side liquidity (targets down): [78.19, 78.0]
+Last structure event: CHoCH_up (25 bars ago)
+Nearest unfilled FVG: 75.21-77.65
+Order block: 70.44-72.93
+PLAN: ENTRY (long): buy the bull FVG at 75.21-77.65 on a bullish reaction. Stop: 69.99 (below the order block). Targets: TP1 79.18 (buy-side liquidity), TP2 80.87 (range high / next pool).
+
+=== 1-HOUR (intermediate structure & primary zone) ===
+Bias/structure: BEAR   price 78.86
+Dealing range 68.07-81.27 | eq 74.67 | price is in PREMIUM (pos 0.82)
+Buy-side liquidity (targets up): [79.07, 79.78]
+Sell-side liquidity (targets down): [78.83, 78.19]
+Last structure event: CHoCH_down (8 bars ago)
+Nearest unfilled FVG: 79.77-79.87
+Order block: 79.38-80.45
+PLAN: ENTRY (short): sell the bear FVG at 79.77-79.87 on a bearish reaction. Stop: 80.53 (above the order block). Targets: TP1 78.83 (sell-side liquidity), TP2 78.19 (range low / next pool).
+
+=== 15-MIN (execution / entry trigger) ===
+Bias/structure: BULL   price 78.86
+Dealing range 78.00-80.93 | eq 79.47 | price is in DISCOUNT (pos 0.29)
+Buy-side liquidity (targets up): [79.03, 79.07]
+Sell-side liquidity (targets down): [78.83, 78.79]
+Last structure event: CHoCH_up (11 bars ago)
+Nearest unfilled FVG: 78.51-78.74
+Order block: 78.04-78.29
+PLAN: ENTRY (long): buy the bull FVG at 78.51-78.74 on a bullish reaction. Stop: 78.00 (below the order block). Targets: TP1 79.03 (buy-side liquidity), TP2 79.07 (range high / next pool).
+
+TOP-DOWN VERDICT: TIMEFRAMES MIXED - trade the lower-TF entry only in the direction of the 4H bias; reduce size.
+Research/education only - not financial advice.

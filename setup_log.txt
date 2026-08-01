@@ -1,0 +1,111 @@
+=== PYTHON ===
+Python 3.14.3
+=== PIP INSTALL ===
+Collecting pandas>=2.0 (from -r requirements.txt (line 1))
+  Downloading pandas-3.0.3-cp314-cp314-win_amd64.whl.metadata (19 kB)
+Requirement already satisfied: numpy>=1.24 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from -r requirements.txt (line 2)) (2.4.6)
+Requirement already satisfied: requests>=2.31 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from -r requirements.txt (line 3)) (2.34.2)
+Collecting yfinance>=0.2.40 (from -r requirements.txt (line 4))
+  Downloading yfinance-1.5.1-py2.py3-none-any.whl.metadata (6.2 kB)
+Collecting pytest>=8.0 (from -r requirements.txt (line 5))
+  Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting python-dateutil>=2.8.2 (from pandas>=2.0->-r requirements.txt (line 1))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting tzdata (from pandas>=2.0->-r requirements.txt (line 1))
+  Downloading tzdata-2026.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: charset_normalizer<4,>=2 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from requests>=2.31->-r requirements.txt (line 3)) (3.4.7)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from requests>=2.31->-r requirements.txt (line 3)) (3.18)
+Requirement already satisfied: urllib3<3,>=1.26 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from requests>=2.31->-r requirements.txt (line 3)) (2.7.0)
+Requirement already satisfied: certifi>=2023.5.7 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from requests>=2.31->-r requirements.txt (line 3)) (2026.5.20)
+Collecting multitasking>=0.0.7 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading multitasking-0.0.13-py3-none-any.whl.metadata (16 kB)
+Collecting platformdirs>=2.0.0 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading platformdirs-4.10.0-py3-none-any.whl.metadata (5.5 kB)
+Collecting pytz>=2022.5 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading pytz-2026.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting peewee>=3.16.2 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading peewee-4.1.1-py3-none-any.whl.metadata (10 kB)
+Collecting beautifulsoup4>=4.11.1 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting curl_cffi>=0.15 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading curl_cffi-0.15.0-cp310-abi3-win_amd64.whl.metadata (18 kB)
+Collecting protobuf>=3.19.0 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading protobuf-7.35.1-cp310-abi3-win_amd64.whl.metadata (595 bytes)
+Collecting websockets>=13.0 (from yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading websockets-16.0-cp314-cp314-win_amd64.whl.metadata (7.0 kB)
+Requirement already satisfied: colorama>=0.4 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from pytest>=8.0->-r requirements.txt (line 5)) (0.4.6)
+Collecting iniconfig>=1.0.1 (from pytest>=8.0->-r requirements.txt (line 5))
+  Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting packaging>=22 (from pytest>=8.0->-r requirements.txt (line 5))
+  Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2,>=1.5 (from pytest>=8.0->-r requirements.txt (line 5))
+  Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest>=8.0->-r requirements.txt (line 5))
+  Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting soupsieve>=1.6.1 (from beautifulsoup4>=4.11.1->yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading soupsieve-2.8.4-py3-none-any.whl.metadata (4.6 kB)
+Requirement already satisfied: typing-extensions>=4.0.0 in c:\users\jared\appdata\local\python\pythoncore-3.14-64\lib\site-packages (from beautifulsoup4>=4.11.1->yfinance>=0.2.40->-r requirements.txt (line 4)) (4.15.0)
+Collecting cffi>=2.0.0 (from curl_cffi>=0.15->yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading cffi-2.0.0-cp314-cp314-win_amd64.whl.metadata (2.6 kB)
+Collecting rich (from curl_cffi>=0.15->yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting pycparser (from cffi>=2.0.0->curl_cffi>=0.15->yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas>=2.0->-r requirements.txt (line 1))
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting markdown-it-py>=2.2.0 (from rich->curl_cffi>=0.15->yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->curl_cffi>=0.15->yfinance>=0.2.40->-r requirements.txt (line 4))
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading pandas-3.0.3-cp314-cp314-win_amd64.whl (9.9 MB)
+   ---------------------------------------- 9.9/9.9 MB 11.0 MB/s  0:00:01
+Downloading yfinance-1.5.1-py2.py3-none-any.whl (144 kB)
+Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+Downloading curl_cffi-0.15.0-cp310-abi3-win_amd64.whl (1.7 MB)
+   ---------------------------------------- 1.7/1.7 MB 12.8 MB/s  0:00:00
+Downloading cffi-2.0.0-cp314-cp314-win_amd64.whl (185 kB)
+Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Downloading multitasking-0.0.13-py3-none-any.whl (16 kB)
+Downloading packaging-26.2-py3-none-any.whl (100 kB)
+Downloading peewee-4.1.1-py3-none-any.whl (170 kB)
+Downloading platformdirs-4.10.0-py3-none-any.whl (22 kB)
+Downloading protobuf-7.35.1-cp310-abi3-win_amd64.whl (439 kB)
+Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+   ---------------------------------------- 1.2/1.2 MB 11.5 MB/s  0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pytz-2026.2-py2.py3-none-any.whl (510 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading soupsieve-2.8.4-py3-none-any.whl (37 kB)
+Downloading websockets-16.0-cp314-cp314-win_amd64.whl (178 kB)
+Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading tzdata-2026.2-py2.py3-none-any.whl (349 kB)
+Installing collected packages: pytz, peewee, multitasking, websockets, tzdata, soupsieve, six, pygments, pycparser, protobuf, pluggy, platformdirs, packaging, mdurl, iniconfig, python-dateutil, pytest, markdown-it-py, cffi, beautifulsoup4, rich, pandas, curl_cffi, yfinance
+  WARNING: The script pwiz.exe is installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script websockets.exe is installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script pygmentize.exe is installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts py.test.exe and pytest.exe are installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script markdown-it.exe is installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script curl-cffi.exe is installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script sample.exe is installed in 'C:\Users\jared\AppData\Roaming\Python\Python314\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+Successfully installed beautifulsoup4-4.15.0 cffi-2.0.0 curl_cffi-0.15.0 iniconfig-2.3.0 markdown-it-py-4.2.0 mdurl-0.1.2 multitasking-0.0.13 packaging-26.2 pandas-3.0.3 peewee-4.1.1 platformdirs-4.10.0 pluggy-1.6.0 protobuf-7.35.1 pycparser-3.0 pygments-2.20.0 pytest-9.1.1 python-dateutil-2.9.0.post0 pytz-2026.2 rich-15.0.0 six-1.17.0 soupsieve-2.8.4 tzdata-2026.2 websockets-16.0 yfinance-1.5.1
+
+[notice] A new release of pip is available: 25.3 -> 26.1.2
+[notice] To update, run: C:\Users\jared\AppData\Local\Python\pythoncore-3.14-64\python.exe -m pip install --upgrade pip
+=== IMPORT CHECK ===
+imports OK 3.0.3 2.4.6
+=== LIVE SCAN ===
+[data] live: 3000 bars up to 2026-07-02 23:45:00
+No qualifying setup right now. (This is normal — the engine rejects everything below the confluence threshold.)

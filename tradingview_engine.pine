@@ -1,0 +1,67 @@
+//@version=5
+// Alpha Signals Engine — Smart-Money + ICT Kill Zones (mirror of the desktop engine)
+// Paste into TradingView -> Pine Editor -> Add to chart. Right-click chart ->
+// Add alert -> Condition = this indicator -> "Long setup (KZ)" / "Short setup (KZ)".
+// For webhook automation into the desktop engine, put your shared secret + symbol
+// in the alert message as JSON, e.g. {"secret":"YOURSECRET","symbol":"XAUUSD","action":"buy"}
+indicator("Alpha Signals Engine — SMC + Kill Zones", overlay=true, max_boxes_count=80, max_lines_count=80, max_labels_count=80)
+
+// ---------------- Inputs ----------------
+showKZ  = input.bool(true,  "Kill-zone shading (UTC)")
+showFVG = input.bool(true,  "Fair Value Gaps")
+showOTE = input.bool(true,  "OTE zone (0.62–0.79)")
+pivLen  = input.int(5,      "Swing pivot length", minval=2)
+
+// ---------------- Kill zones (UTC) ----------------
+hUTC = hour(time, "GMT")
+inLondon = hUTC >= 7  and hUTC < 10
+inNY     = hUTC >= 12 and hUTC < 15
+bgcolor(showKZ and inLondon ? color.new(color.blue,   88) : na, title="London KZ")
+bgcolor(showKZ and inNY     ? color.new(color.orange, 88) : na, title="New York KZ")
+
+// ---------------- Trend (EMA) ----------------
+ema50  = ta.ema(close, 50)
+ema200 = ta.ema(close, 200)
+plot(ema50,  "EMA50",  color.new(color.aqua, 0))
+plot(ema200, "EMA200", color.new(color.gray, 0))
+bull = ema50 > ema200
+bear = ema50 < ema200
+
+// ---------------- Structure: pivots + BOS ----------------
+ph = ta.pivothigh(high, pivLen, pivLen)
+pl = ta.pivotlow(low,  pivLen, pivLen)
+var float lastPH = na
+var float lastPL = na
+lastPH := na(ph) ? lastPH : ph
+lastPL := na(pl) ? lastPL : pl
+bosUp = not na(lastPH) and close > lastPH and close[1] <= lastPH
+bosDn = not na(lastPL) and close < lastPL and close[1] >= lastPL
+if bosUp
+    label.new(bar_index, high, "BOS↑", style=label.style_label_down, color=color.new(color.green,0), textcolor=color.white, size=size.tiny)
+if bosDn
+    label.new(bar_index, low,  "BOS↓", style=label.style_label_up,   color=color.new(color.red,0),   textcolor=color.white, size=size.tiny)
+
+// ---------------- Fair Value Gaps (3-bar) ----------------
+bullFVG = low > high[2]
+bearFVG = high < low[2]
+if showFVG and bullFVG
+    box.new(bar_index[2], low,    bar_index, high[2], border_color=color.new(color.green,50), bgcolor=color.new(color.green,85))
+if showFVG and bearFVG
+    box.new(bar_index[2], low[2], bar_index, high,    border_color=color.new(color.red,50),   bgcolor=color.new(color.red,85))
+
+// ---------------- OTE zone (0.62–0.79 of last swing leg) ----------------
+if showOTE and not na(lastPH) and not na(lastPL)
+    hiP = math.max(lastPH, lastPL)
+    loP = math.min(lastPH, lastPL)
+    rng = hiP - loP
+    ote1 = bull ? hiP - rng*0.62 : loP + rng*0.62
+    ote2 = bull ? hiP - rng*0.79 : loP + rng*0.79
+    box.new(bar_index-1, ote1, bar_index+8, ote2, border_color=color.new(color.yellow,60), bgcolor=color.new(color.yellow,90))
+
+// ---------------- Signals + Alerts (kill-zone gated) ----------------
+longSetup  = bull and bosUp and (inLondon or inNY)
+shortSetup = bear and bosDn and (inLondon or inNY)
+plotshape(longSetup,  "Long",  shape.triangleup,   location.belowbar, color.new(color.green,0), size=size.small)
+plotshape(shortSetup, "Short", shape.triangledown, location.abovebar, color.new(color.red,0),   size=size.small)
+alertcondition(longSetup,  "Long setup (KZ)",  "Alpha Engine LONG: BOS up in kill zone, trend up")
+alertcondition(shortSetup, "Short setup (KZ)", "Alpha Engine SHORT: BOS down in kill zone, trend down")

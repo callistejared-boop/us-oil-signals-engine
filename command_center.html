@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Command Center</title><style>
+body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0b0e14;color:#e7eaf0;max-width:1000px;margin:18px auto;padding:0 16px}
+h1{color:#e6b312;margin:0} .sub{color:#8b93a3;font-size:13px;margin:2px 0 16px}
+h2{color:#e6b312;font-size:16px;margin:24px 0 8px}
+.grid{display:grid;gap:10px} .g7{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.chip{background:#141a24;border:1px solid #232c3a;border-radius:12px;padding:10px 12px}
+.chip .cl{font-weight:700;font-size:13px} .chip .cb{display:inline-block;color:#fff;font-weight:800;font-size:12px;padding:2px 10px;border-radius:6px;margin:5px 0}
+.chip .cn{color:#8b93a3;font-size:11px}
+.tile{background:#141a24;border:1px solid #232c3a;border-radius:12px;padding:12px}
+.tile .k{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#8b93a3}
+.tile .v{font-size:22px;font-weight:800;margin-top:3px}
+.hc{background:#141a24;border:1px solid #2a3550;border-radius:12px;padding:12px 14px}
+.ht{font-weight:700;font-size:14px} .hm{color:#c3c9d4;font-size:12.5px;margin-top:4px;line-height:1.45}
+table{width:100%;border-collapse:collapse;background:#141a24;border:1px solid #232c3a;border-radius:10px;overflow:hidden;margin:6px 0}
+th,td{padding:8px 10px;text-align:left;font-size:12.5px;border-bottom:1px solid #202836}
+th{background:#0f131b;color:#8b93a3;font-size:10.5px;text-transform:uppercase}
+.pos{color:#38c172;font-weight:700} .neg{color:#e0526a;font-weight:700} .muted{color:#8b93a3;font-size:12px}
+.lc{display:block;background:#141a24;border:1px solid #232c3a;border-radius:12px;padding:12px 14px;text-decoration:none;color:#e7eaf0}
+.lc:hover{border-color:#e6b312} .lt{font-weight:700;font-size:13.5px;color:#e6b312} .ld{color:#8b93a3;font-size:12px;margin-top:2px}
+pre{background:#0f131b;border:1px solid #232c3a;border-radius:10px;padding:12px;font-size:11.5px;white-space:pre-wrap;color:#c9cfda;max-height:340px;overflow:auto}
+.disc{background:#1a1608;border:1px solid #3a3113;border-radius:10px;padding:11px 14px;font-size:11.5px;color:#d8c58c;margin-top:22px}
+</style></head><body>
+<h1>&#9889; Signals Command Center</h1>
+<div class="sub">Generated 2026-08-01 14:33 &middot; 99 settled trades &middot; one screen for the whole platform</div>
+<h2>Live news bias <a href='news_bias.html' style='font-size:12px;color:#e6b312'>full page &rarr;</a></h2><div class='chips'><div class='chip'><div class='cl'>US Oil</div><div class='cb' style='background:#1f9d55'>BUY</div><div class='cn'>net +6 &middot; 40 hl</div></div><div class='chip'><div class='cl'>Gold</div><div class='cb' style='background:#1f9d55'>BUY</div><div class='cn'>net +6 &middot; 39 hl</div></div><div class='chip'><div class='cl'>Bitcoin</div><div class='cb' style='background:#3a4252'>NEUTRAL</div><div class='cn'>net +1 &middot; 38 hl</div></div></div><div class='muted' style='font-size:11px;margin-top:4px'>auto-scored news sentiment &middot; generated 2026-08-01T18:33:15+00:00</div>
+<h2>Engine health</h2>
+<div class="grid g2"><div class='hc' style='border-color:#2a3550'><div class='ht'>&middot; Confidence roughly flat</div><div class='hm'>Not separating winners yet.</div></div><div class='hc' style='border-color:#1f6b3f'><div class='ht'>&#9989; Positive expectancy</div><div class='hm'>+0.85R per trade across 99 trades (PF 2.55).</div></div><div class='hc' style='border-color:#2a3550'><div class='ht'>&middot; Market spread</div><div class='hm'>'XAUUSD' leads (exp +1.06R); 'WTIUSD' lags (exp +0.18R, n=17).</div></div></div>
+<h2>Headline performance</h2>
+<div class="grid g7"><div class='tile'><div class='k'>Trades</div><div class='v'>99</div></div><div class='tile'><div class='k'>Win rate</div><div class='v'>42%</div></div><div class='tile'><div class='k'>Profit factor</div><div class='v'>2.55</div></div><div class='tile'><div class='k'>Expectancy</div><div class='v'>+0.85R</div></div><div class='tile'><div class='k'>Net</div><div class='v'>+83.9R</div></div><div class='tile'><div class='k'>Max DD</div><div class='v'>-11.0R</div></div><div class='tile'><div class='k'>Max losing streak</div><div class='v'>8</div></div></div>
+<h2>Equity curve (R)</h2><svg viewBox='0 0 900 200' style='width:100%;background:#0f131b;border-radius:10px'><line x1='0' y1='192.0' x2='900' y2='192.0' stroke='#2a3242' stroke-dasharray='4 4'/><polyline fill='none' stroke='#38c172' stroke-width='2' points='8.0,184.4 17.0,176.4 26.0,171.7 35.1,163.7 44.1,165.7 53.1,157.7 62.1,159.7 71.1,151.6 80.2,143.6 89.2,145.6 98.2,137.6 107.2,129.6 116.2,131.6 125.3,124.5 134.3,116.5 143.3,108.5 152.3,103.2 161.3,105.2 170.4,107.2 179.4,109.2 188.4,101.2 197.4,103.2 206.4,95.2 215.5,87.2 224.5,79.2 233.5,71.2 242.5,65.8 251.6,67.8 260.6,60.3 269.6,62.3 278.6,54.2 287.6,56.2 296.7,48.2 305.7,40.2 314.7,42.2 323.7,44.2 332.7,46.2 341.8,48.2 350.8,50.2 359.8,52.2 368.8,54.2 377.8,56.2 386.9,51.2 395.9,53.2 404.9,55.2 413.9,57.3 422.9,49.2 432.0,41.2 441.0,33.2 450.0,25.2 459.0,27.2 468.0,29.2 477.1,23.6 486.1,25.6 495.1,27.6 504.1,29.6 513.1,31.6 522.2,33.6 531.2,27.2 540.2,21.8 549.2,19.8 558.2,15.5 567.3,17.5 576.3,19.5 585.3,21.5 594.3,23.5 603.3,23.5 612.4,25.5 621.4,23.5 630.4,25.5 639.4,19.9 648.4,17.9 657.5,19.9 666.5,13.8 675.5,8.0 684.5,10.0 693.6,12.0 702.6,14.0 711.6,16.0 720.6,10.0 729.6,12.0 738.7,14.0 747.7,16.0 756.7,16.0 765.7,18.0 774.7,20.0 783.8,22.0 792.8,24.0 801.8,26.0 810.8,28.0 819.8,30.0 828.9,28.0 837.9,30.0 846.9,30.0 855.9,24.0 864.9,18.0 874.0,20.0 883.0,22.0 892.0,24.0'/></svg>
+<h2>What actually predicts wins</h2>
+<div class="grid g2">
+<div><table><tr><th>Confidence</th><th>Trades</th><th>Win</th><th>PF</th><th>Net</th><th>Exp</th></tr><tr><td>90-95</td><td>27</td><td>44%</td><td>3.19</td><td class='pos'>+32.8R</td><td>+1.22R</td></tr><tr><td>80-89</td><td>20</td><td>35%</td><td>2.30</td><td class='pos'>+14.3R</td><td>+0.72R</td></tr><tr><td>70-79</td><td>52</td><td>44%</td><td>2.31</td><td class='pos'>+36.7R</td><td>+0.71R</td></tr></table></div>
+<div><table><tr><th>Session</th><th>Trades</th><th>Win</th><th>PF</th><th>Net</th><th>Exp</th></tr><tr><td>London</td><td>22</td><td>36%</td><td>2.34</td><td class='pos'>+16.0R</td><td>+0.73R</td></tr><tr><td>New York</td><td>25</td><td>56%</td><td>4.65</td><td class='pos'>+40.1R</td><td>+1.60R</td></tr><tr><td>Asian</td><td>52</td><td>38%</td><td>1.89</td><td class='pos'>+27.7R</td><td>+0.53R</td></tr></table></div>
+<div><table><tr><th>Market</th><th>Trades</th><th>Win</th><th>PF</th><th>Net</th><th>Exp</th></tr><tr><td>?</td><td>1</td><td>100%</td><td>&#8734;</td><td class='pos'>+3.8R</td><td>+3.81R</td></tr><tr><td>BTCUSD</td><td>33</td><td>39%</td><td>2.41</td><td class='pos'>+26.8R</td><td>+0.81R</td></tr><tr><td>EURUSD</td><td>10</td><td>40%</td><td>2.95</td><td class='pos'>+9.8R</td><td>+0.98R</td></tr><tr><td>WTIUSD</td><td>17</td><td>35%</td><td>1.28</td><td class='pos'>+3.1R</td><td>+0.18R</td></tr><tr><td>XAUUSD</td><td>38</td><td>47%</td><td>3.12</td><td class='pos'>+40.4R</td><td>+1.06R</td></tr></table></div>
+<div><table><tr><th>Month</th><th>Trades</th><th>Win</th><th>PF</th><th>Net</th><th>Exp</th></tr><tr><td>2026-07</td><td>99</td><td>42%</td><td>2.55</td><td class='pos'>+83.9R</td><td>+0.85R</td></tr></table></div>
+</div>
+<h2>Latest signal note</h2><pre>==============================================
+  US OIL - INSTITUTIONAL TRADE NOTE
+  2026-07-24 02:23 UTC   |   price 91.63
+==============================================
+
+1) DIRECTIONAL BIAS (multi-timeframe)
+   D=bull  4H=bull  1H=bull  15m=bear
+   Consolidated technical lean: BULLISH (est ~64%)
+   Market regime (4H): TREND / expansion (markup (uptrend))  |  ER 0.59  ATR-pct 0.92
+
+2) THE SETUP
+   No A+ setup right now - engine standing aside. Levels to watch below.
+
+3) CONFIDENCE BREAKDOWN
+   - n/a (no qualifying setup)
+
+4) SMART-MONEY MAP (ICT / SMC)
+   Dealing range 73.43-93.50 | equilibrium 83.47 | OTE 85.87-89.29
+   Buy-side liquidity: [92.66, 92.82]   Sell-side: [91.59, 91.16]
+   Last structure event: BOS_up (18 bars ago)
+   Nearest unfilled FVG: (89.72, 89.95)   Order block: (90.68, 91.61)
+   Session: off-session
+
+5) TECHNICALS (1H)  overall: BULLISH
+   - EMA trend: bull (px 91.63 / 50 88.94 / 200 82.99)
+   - RSI(14): 60.2 (bullish)
+   - MACD hist: -0.18 (bearish)
+   - VWAP(20): 91.42 â€” price above
+   - Bollinger %B: 0.57 (mid-band)
+   - ATR(14): 0.86  (volatility gauge)
+
+6) FUNDAMENTAL &amp; GEOPOLITICAL (LIVE feed, as of 2026-07-23)
+   Fundamentals current (as-of is 0 day(s) old).
+   - Signal: BUY (HIGH)  |  net bias BULLISH (10 bull / 3 bear / 27 neutral, 40 headlines)
+   - [Claude] Geopolitical escalation (Red Sea attacks, Iran clashes, Hormuz bypass), Brent $100+, supply disruption premium justified.
+   - [BULLISH] Saudi Arabia takes center stage as oil hits $100 and the Iran war escalates amid Houthi attacks and nuclear expansion - Fortune
+   -       https://news.google.com/rss/articles/CBMipwFBVV95cUxONjlrRmdQZWZyUkZ4QXM4UXpMbnhKSHp5TUgwMi1HWk10RE1UZ1gwVHN6ZjZOd0IxdFBpMWJCTlV5SW9GQW1wOHd4aVBaU3U5M2t6bnk2RmhiLS1GeUNiNjE5VTBRM3lwTmJsZzNBdW1tR2JoZk5GTmFSQzJOX1RiTVYzbUtXZjlzZVQzNXJfY2haQXJZa19vb0w2c19XMWNkQUtXNVFnYw?oc=5
+   - [BULLISH] US military says itâ€™s launching strikes on Iran as clashes escalate over shipping routes - ABC7 New York
+   -       https://news.google.com/rss/articles/CBMiqwFBVV95cUxNZFlIOUdhNTJFQmRjcTdxajRiWUUxZTNFdGgyZWtmN0IxODRWR0NVTS1sdVU5ZWJRUkZtU3M5ank3TU91UW5hS3l4NkFFYnE1S0hGVWxhWk9STHV6YUc1ZkRNS28tRC1DNmtzTm1VWkgyV19nOGFsRTJaR0N5TVNNajNvd0pSTnNBNjNzNWkxZFF5OXNBZWI2ak9jbXotd0RzTm5heXFMX0p1alk?oc=5
+   - [BULLISH] Oil Prices Surge as Brent Tops $100 After Red Sea Tanker Attacks - Kurdistan24
+   -       https://news.google.com/rss/articles/CBMiVkFVX3lxTE1qSTZBMWotMFdxVDFtV19PWXluUnQxdXI1c1BLcUpXNG55QndPZjc1cEdvNk9RcjJ2WThMdS1sSWdGeFF1SldOaWNwODUzUlBPT0R1QmVn?oc=5
+   - [BULLISH] Oil passes $100 a barrel again and shares sl</pre>
+<h2>Open every tool</h2>
+<div class="grid g2"><a class='lc' href='news_bias.html'><div class='lt'>Live News & Bias</div><div class='ld'>BUY/SELL per pair from news, updates 5-min</div></a><a class='lc' href='dashboard.html'><div class='lt'>Performance dashboard</div><div class='ld'>Full stats + monthly returns</div></a><a class='lc' href='self_review.html'><div class='lt'>Self-review</div><div class='ld'>What predicts wins, in detail</div></a><a class='lc' href='wti_chart.html'><div class='lt'>WTI smart-money chart</div><div class='ld'>OTE, FVGs, order blocks, liquidity</div></a></div>
+<div class="disc">&#9888; Live-tracked on the engine's data feed (gold uses a futures proxy). Sample still young - evidence building, not proof. Research/education only, not financial advice.</div>
+</body></html>

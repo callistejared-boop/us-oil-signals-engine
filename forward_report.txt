@@ -1,0 +1,15 @@
+==============================================
+  FORWARD TEST SCOREBOARD (private) — WTIUSD
+  window since 2026-07-17 | generated 2026-07-19 11:16
+==============================================
+progress    : 2/30 closed  (0 open now)
+expectancy  : +1.00R per trade   <- THE number
+win rate    : 50%  (win-rate is NOT the goal; R is)
+profit factor: 3.00
+net         : +2.0R
+max drawdown: 1.0R
+
+VERDICT: IN PROGRESS: 2/30 closed trades. Keep paper mode on; no real size until the window completes. Patience IS the edge.
+
+Rules: risk fixed 0.5-1% | day-stop -2R (auto-enforced) | 1 position max (auto-enforced) | no size-up mid-window.
+NOTE: 3 pre-pivot legacy trade(s) in other markets are still open in the journal (stale, no live feed) — excluded from this WTI-only scoreboard, not counted toward the target.
