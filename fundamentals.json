@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-01T18:33:15+00:00",
+  "generated": "2026-08-01T18:38:14+00:00",
   "asof": "2026-08-01",
   "source": "Google News RSS (negation-aware headline sentiment)",
   "symbols": {
@@ -10,12 +10,12 @@
       "net_bias": "bullish",
       "net_score": 6,
       "counts": {
-        "bullish": 15,
+        "bullish": 14,
         "bearish": 1,
-        "neutral": 24
+        "neutral": 25
       },
       "n_total": 40,
-      "why": "[Claude] Geopolitical escalation (Iran/Hormuz threats) outweighs profit-taking; supply risk elevated near-term.",
+      "why": "[Claude] Geopolitical escalation (Iran, Hormuz, airstrikes) supports prices; range-bound trading limits upside.",
       "headlines": [
         {
           "title": "Oil jumps 7% on escalating Middle East airstrikes - Reuters",
@@ -46,18 +46,18 @@
           "score": 5
         },
         {
-          "title": "Crude Oil Prices Climb as Global Supplies Are Disrupted - TradingView",
-          "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQd0hIbmI1VWFvMF94bWtQdTFNV0R1LXNoWk04RG9DMENDSHBvS0pYS3A1ZnVEaUJwSHR6MUZjMkI0Z2ZYbDBqemhVdnJMR3NKU05SV3ZldFRNMmZybzcyZndQODllc1YtLXVFMkdjeFJ2T0dJUUQ3Mlg0eHFiOXVCbkNEYjJab012OGxxdk9Gdnpzc0YyaklxWGpOZ2ZTNWlod0MtbGxfQ25ZOFpfSU1pOVYzcTM?oc=5",
-          "pubdate": "Fri, 31 Jul 2026 15:50:35 GMT",
-          "bias": "bullish",
-          "score": 3
-        },
-        {
           "title": "OPEC+ Agrees to Boost Oil Output When Strait of Hormuz Reopens - EnergyNow.com",
           "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNbHJPcmIwM1FXUFAzM0hWdlZyb2xhb0VsN3g2dGJxdFRGakxQU1VrTEMyS2NpQTV6NVpLM09Ma09UOF9PWnVQSmd6bG9JcThtUGRCeDgzaDVXY1AxUGo3NUcwNkhtMUlULUgwZWxSbnNaaTRRM2Q0T1pTUFlWQWg1b1NfTHJXTmhUUnYxQzZiWDU4NzctVlpz?oc=5",
           "pubdate": "Fri, 31 Jul 2026 21:51:46 GMT",
           "bias": "bearish",
           "score": -3
+        },
+        {
+          "title": "Crude Oil Prices Climb as Global Supplies Are Disrupted - TradingView",
+          "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQd0hIbmI1VWFvMF94bWtQdTFNV0R1LXNoWk04RG9DMENDSHBvS0pYS3A1ZnVEaUJwSHR6MUZjMkI0Z2ZYbDBqemhVdnJMR3NKU05SV3ZldFRNMmZybzcyZndQODllc1YtLXVFMkdjeFJ2T0dJUUQ3Mlg0eHFiOXVCbkNEYjJab012OGxxdk9Gdnpzc0YyaklxWGpOZ2ZTNWlod0MtbGxfQ25ZOFpfSU1pOVYzcTM?oc=5",
+          "pubdate": "Fri, 31 Jul 2026 15:50:35 GMT",
+          "bias": "bullish",
+          "score": 3
         }
       ],
       "source": "claude-llm"
@@ -69,12 +69,12 @@
       "net_bias": "bullish",
       "net_score": 6,
       "counts": {
-        "bullish": 15,
+        "bullish": 16,
         "bearish": 1,
-        "neutral": 23
+        "neutral": 22
       },
       "n_total": 39,
-      "why": "[Claude] Rate cut expectations support gold; geopolitical tensions offset by oil normalization. Consolidation breakout setup.",
+      "why": "[Claude] Rate cut expectations rising; geopolitical tensions easing; technical consolidation breakout setup",
       "headlines": [
         {
           "title": "Trump wanted interest rate cuts to be 'Rocket Fuel' for the economy. He is losing that fight so far - Dallas News",
@@ -133,7 +133,7 @@
         "neutral": 22
       },
       "n_total": 38,
-      "why": "[Claude] Mixed signals: ETF inflows and July recovery offset by $5B sell pressure, rate hold, and hack fears.",
+      "why": "[Claude] Mixed signals: ETF inflows positive, but Strategy's $5B sales plan and Fed hawkishness offset gains.",
       "headlines": [
         {
           "title": "Bitcoin price tests $63K as ETF outflows hit $265M - Crypto News",
