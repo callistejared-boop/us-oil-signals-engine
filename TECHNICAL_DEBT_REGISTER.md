@@ -1,0 +1,58 @@
+# Technical Debt Register
+
+Research & Validation Cycle #2. Consolidates every open item disclosed
+across prior Days' own "Known limitations" sections, the original
+`audit_05_testing_and_debt.md`, `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md`,
+and this cycle's own live-data investigation
+(`RESEARCH_VALIDATION_CYCLE_2_REPORT.md`). No item here is invented
+fresh — each traces to a specific source. No code is changed by this
+document. Priority is the register's own judgment for sequencing, not a
+commitment; the platform owner decides what actually gets scheduled.
+
+Priority scale: **P0** = blocks trustworthy live evidence or safety,
+**P1** = real cost, should land within a few implementation Days, **P2**
+= worth doing opportunistically, next time the file is touched anyway.
+
+## P0 — blocks trustworthy live evidence
+
+| # | Item | Source | Impact | Complexity | Regression risk | Recommended milestone |
+|---|---|---|---|---|---|---|
+| 1 | Live scan loop / heartbeat appears stalled — `alert_heartbeat.txt` last updated 2026-07-24 21:31 UTC, `trades.json` last trade opened 2026-07-23, despite a `*/15min` GitHub Actions cron | `RESEARCH_VALIDATION_CYCLE_2_REPORT.md` Sec.0, Sec.5.2 | Every evidence-tier classification in this cycle's report is capped by this — no subsystem can be validated against real, recent trades while this is unresolved. This is an operational question (is the workflow actually running?), not necessarily a code defect. | Diagnosis: low. Fix: unknown until diagnosed (could be a GitHub Actions permissions/secrets expiry, a silent exception, or the workflow being intentionally paused) | None — diagnosis only | Immediate — before any further feature work, confirm whether the scan loop is intentionally paused or has silently failed |
+| 2 | Unified trade-ID `*_ref` chain (`id == regime_ref == confluence_ref == confidence_ref == macro_ref == execution_ref == broker_ref`) is completely unpopulated on all 102 live trades — the fields don't exist as keys at all | `RESEARCH_VALIDATION_CYCLE_2_REPORT.md` Sec.0 | Days 6-13 each built subsystems that depend on this join working; none of it has ever been exercised end-to-end on a real trade. This is the single largest gap between "built and tested" and "validated in production." | Medium — likely a wiring gap between origination and journal persistence, not a redesign | Low-medium — touches the trade-write path directly, needs careful testing | Next implementation Day after Item 1 is resolved — trace one real trade through the full chain and fix the join |
+| 3 | `journal.make_ref()` produces duplicate trade IDs — 5 confirmed duplicates in live `trades.json` | `RESEARCH_VALIDATION_CYCLE_2_REPORT.md` Sec.3.1; originally flagged `DAY10_NEXT_DAY_READINESS_REPORT.md` | Directly undermines Item 2's fix and any per-trade analytics — duplicate IDs make trade-level joins ambiguous. No regression test currently guards this. | Low-medium — likely needs sub-minute granularity or a monotonic counter appended to the existing timestamp-based ID | Low | Same Day as Item 2 — fix the ID generator and add the regression test that's been missing since Day 10 |
+
+## P1 — real, disclosed cost
+
+| # | Item | Source | Impact | Complexity | Regression risk | Recommended milestone |
+|---|---|---|---|---|---|---|
+| 4 | Paper Broker position model is symbol-aggregate, not per-trade — blocks any multi-strategy or multi-scalp concurrency | `STRATEGY_FRAMEWORK_SPECIFICATION.md` Sec.7, `SCALPING_ENGINE_DESIGN.md` Sec.7 | Prerequisite for both the Scalping Engine and any multi-strategy paper-trading — running concurrent positions today would produce evidence that looks like one blended position when it was actually several. | Medium-high — touches Day 13's core position-tracking model | Medium — Day 13's existing single-position-per-symbol tests would need rework, not just extension | Before any Scalping Engine or multi-strategy paper-trading work begins (Version 2.2, per roadmap sequencing) |
+| 5 | Caching-helper pattern duplicated across 6 modules (`cot_feed.py`, `eia_feed.py`, `risk_sentiment.py`, `spread_feed.py`, `correlation_dynamic.py`, `rates_feed.py`) | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.2.3; originally flagged `audit_05_testing_and_debt.md` against 4 modules, now grown to 6 | Six near-identical implementations of "fetch, cache, fall back to stale" — each is a separate place a bug could be introduced or fixed inconsistently. Not a correctness issue today (all 6 are tested individually), but a maintenance-cost issue. | Low — extract to `engine/feed_cache.py`, mechanical | Low — each of the 6 already has test coverage to migrate against | Opportunistic — next time any of the 6 modules is touched for another reason |
+| 6 | `4_SEND_SIGNAL_NOW.bat` still calls `hourly_briefing.py` directly, a separate live entry point from the primary tested path (`alert_signals.py`) | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.2.1; originally flagged `audit_05_testing_and_debt.md` | Lower severity than originally found — `hourly_briefing.py` now calls `risk_guard`/`portfolio_risk` directly (verified this cycle), so the original bypass concern is resolved. What remains: two live paths, one with full test coverage, one without. | Low — either retire `hourly_briefing.py` and repoint the `.bat`, or add test coverage matching `alert_signals.py`'s | Low | Next implementation Day with spare capacity — not urgent given the safety fix already landed |
+| 7 | Duplicate `class Trade` definitions in `engine/backtest.py:26` and `engine/journal.py:34` | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.2.2; `audit_05_testing_and_debt.md` | Two representations of the same concept risk silently drifting to mean different things over time. Not yet confirmed whether they already have. | Low to audit, medium to consolidate (depends what's found) | Medium if consolidated (touches both backtest and live journaling) | Audit first (confirm same/different) before scheduling a consolidation |
+| 8 | `performance_by_strategy_regime()`'s existing "strategy" parameter means origination-method (e.g. "ict_smc_mast"), not swing/day/scalp — will collide with the proposed `Trade.strategy` field | `STRATEGY_RESEARCH_FRAMEWORK.md` Sec.6, verified via direct code read | If the Strategy Framework schema change lands without this rename, "strategy" means two different things in the same codebase — a real source of future confusion/bugs. | Low — mechanical rename to `origination_method`, no behavior change | Low — pure rename, callers updated together | Same implementation Day that adds `Trade.strategy` (Version 2.2), so the collision never exists in shipped code |
+| 9 | `test_paper_broker.py::test_market_stress_stale_price_still_fills_with_wider_cost` is flaky under parallel test execution — unseeded RNG interacting with `pytest-xdist` worker state | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.3.3; `DAY14_VALIDATION_REPORT.md` Sec.1 | Reduces confidence in CI signal — an intermittent failure that isn't actually a regression costs investigation time every time it fires. | Low — add an explicit seed, matching every other stochastic test's convention | Low | Opportunistic — next time `test_paper_broker.py` is touched |
+
+## P2 — opportunistic
+
+| # | Item | Source | Impact | Complexity | Regression risk | Recommended milestone |
+|---|---|---|---|---|---|---|
+| 10 | JSONL append pattern (`_rotate()` re-reads entire file on every append) independently reimplemented across 6+ history modules; measured O(n)-per-append cost (0.082ms at 500 lines -> 0.220ms at 2,000 lines) | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.2.4; `PERFORMANCE_BENCHMARK_REPORT.md` Sec.3 | Not urgent at current volumes (low milliseconds even at cap) — but six-plus independent implementations of the same pattern is a maintenance cost, and the inefficiency compounds if trade volume grows substantially. | Medium — `engine/jsonl_store.py` shared helper, migrate 6+ call sites | Medium — every history file's tests would need to confirm identical behavior post-migration | Opportunistic, or bundled with Item 4's Paper Broker rework since that module is one of the six |
+| 11 | Two `test_market_memory.py` tests (`test_large_history_performance_analytics_completes`, `test_large_history_find_similar_completes_and_is_correct`) account for 91% of that file's runtime and roughly a quarter of full-suite wall-clock time | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.3.2 | Slows local development test iteration; doesn't affect correctness or CI-must-pass validation. | Low — introduce a `slow` pytest marker, exclude by default locally, keep in full CI/validation runs | None | Opportunistic |
+| 12 | Three `test_dashboard_publish.py` parametrized tests (`test_signal_basis_note_matches_symbol[*]`) construct real, unmocked `build_payload()` calls, paying Paper Broker + Data Health's full real cost (~270ms combined) despite not asserting on either | `ARCHITECTURE_AND_TEST_SUITE_REVIEW.md` Sec.3.2 | Several seconds of avoidable suite runtime. | Low — mock both dependencies, matching the pattern already used by the dedicated `paper_trading`/`data_health` tests | Low | Opportunistic |
+| 13 | Dashboard-script helper duplication (`equity_svg`, `pct`, `pf_fmt`, `session_of`, `conf_bucket`) across `command_center.py`, `performance_dashboard.py`, `self_review.py`, `weekly_audit.py` | `audit_05_testing_and_debt.md`; **not re-verified this cycle** | Unknown current severity — flagged as a gap in this cycle's own review, not a confirmed-current finding. | Unknown until re-audited | Unknown | Re-audit first, next cycle or next time one of these 4 files is touched |
+| 14 | `journal.py`'s backup-write silent-except block (originally flagged at line ~133) could not be re-located at that line number this cycle — the file has grown since the original audit and the exact location may have shifted | `audit_05_testing_and_debt.md`; **not re-confirmed this cycle** | Unknown current severity/location — needs a fresh, correctly-targeted search. | Low to re-locate | N/A until re-located | Re-audit next time `journal.py` is touched, or as a quick standalone check |
+| 15 | `hourly_briefing.py` has zero direct test coverage (per the original audit; not re-verified this cycle) despite now calling `risk_guard`/`portfolio_risk` directly | `audit_05_testing_and_debt.md`; cross-referenced against Item 6 | If this path diverges from `alert_signals.py` in the future, nothing would catch it. | Medium — needs its own test file mirroring `alert_signals.py`'s fixture patterns | Low | Bundle with Item 6's resolution, whichever direction that goes |
+
+## Explicitly out of scope for this register
+
+- Anything already captured as a "Known limitation" in a Day's own closing report but with no NEW evidence gathered this cycle to re-confirm severity (e.g., Day 9's Sharpe/Sortino non-annualization disclosure, Day 11's macro-source coverage gaps) — those remain accurately tracked in their own Day's documents and are not duplicated here to avoid this register drifting out of sync with the source of truth.
+- Anything proposed as NEW work in `STRATEGY_FRAMEWORK_SPECIFICATION.md` / `SCALPING_ENGINE_DESIGN.md` / `STRATEGY_RESEARCH_FRAMEWORK.md` that isn't a defect or debt item, but a forward design proposal — those live in their own documents, not here.
+
+## Summary
+
+3 P0 items (all trace back to the same root cause: the platform's live
+feedback loop needs to be confirmed running and its ID/join wiring
+needs to be trusted before any subsystem can earn stronger evidence),
+6 P1 items, 6 P2 items. 15 total, zero fabricated — every row above
+cites the specific document and, where applicable, the specific code
+location this cycle verified it against.
