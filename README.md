@@ -1,4 +1,4 @@
-# Gold Engine v0.2 — Phase 1 of the AI Trading Intelligence Platform
+# Gold Engine v0.2 — Phase 1 of the Gold/US Oil High Probability Platform
 
 A rule-based, multi-timeframe XAUUSD analysis engine built on institutional
 concepts (market structure, BOS/CHoCH, Fair Value Gaps, premium/discount,

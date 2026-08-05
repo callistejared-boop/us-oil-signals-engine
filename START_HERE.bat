@@ -11,7 +11,7 @@ echo     1   Install everything  [run once]
 echo     2   Verify the whole system
 echo.
 echo   DAILY USE
-echo     3   Send a signal now
+echo     3   Send a signal now [research read, risk-gated]
 echo     4   WTI institutional note
 echo     5   Command Center  [one screen for everything]
 echo     6   Performance dashboard
@@ -23,7 +23,7 @@ echo     9   Weekly self-audit to Telegram
 echo    10   Refresh live news + fundamentals now
 echo.
 echo   AUTOMATION  [set and forget]
-echo    11   Schedule 90-min briefings
+echo    11   Schedule 90-min briefings [research read, risk-gated]
 echo    12   Schedule 5-min news + bias + auto-alerts
 echo    13   Schedule entry scanner
 echo    14   Start TradingView webhook receiver

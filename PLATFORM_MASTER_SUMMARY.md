@@ -1,4 +1,4 @@
-# Alpha Signals Platform — Master Summary
+# Gold/US Oil High Probability Platform — Master Summary
 *Everything built, how it connects, and how a trade is set up, sent, and analyzed.*
 
 ---
