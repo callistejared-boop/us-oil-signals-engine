@@ -18,6 +18,13 @@ from . import ict_confluence as icf
 from .data_loader import resample
 from .technicals import ema
 
+# Day 8: retroactively assigned for version traceability (see
+# EXPLAINABILITY_SPECIFICATION.md Sec.5 / engine/platform_version.py) — this
+# module had no explicit version marker before Day 8; "1.0.0" reflects that
+# this is the first tagged version, not that meaningful revisions haven't
+# happened before today. Purely additive metadata; changes no logic.
+VERSION = "1.0.0"
+
 MIN_RR = 2.0
 MAX_RR = 4.0
 SPREAD_MULT = 0.0001   # min stop distance as a fraction of price (cost floor)

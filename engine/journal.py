@@ -54,6 +54,59 @@ class Trade:
     guard_headwind: str = ""  # "yes" | "no" | "" (was the trade fighting the dollar)
     confluence_score: int = -1   # 0-100 MAST score at entry, -1 = not computed
     confluence_agree: int = 0    # count of confirmation layers that agreed
+    # --- Day 6: direct stable references (see CONFIDENCE_ENGINE_SPECIFICATION.md
+    # Sec.5 "Trade Journal Integration"). Both are constructed with the exact
+    # same f"{symbol}-{timestamp}" format as this row's own `id` (by design —
+    # alert_signals.py computes the id ONCE and passes it through to
+    # confluence_history.record()/confidence_history.record() as `ref` before
+    # calling log_signal(), so `id == confluence_ref == confidence_ref` for
+    # every trade logged from Day 6 onward). "" means either the trade
+    # predates Day 6 (no ref was ever computed) or the corresponding engine
+    # read failed for this trade — callers must fall back to the
+    # nearest-timestamp join (confidence_calibration.join_trades_with_confidence)
+    # exactly as Day 4/5 already do, never assume a non-empty value.
+    confluence_ref: str = ""     # -> confluence_history.jsonl row (via find-by-ref)
+    confidence_ref: str = ""     # -> confidence_history.jsonl row (via confidence_history.find_by_ref)
+    # --- Day 7: completes the unified trade ID (see
+    # MARKET_MEMORY_SPECIFICATION.md Sec.2 "Reference Architecture"). Same
+    # equality-by-construction guarantee as confluence_ref/confidence_ref:
+    # id == regime_ref == confluence_ref == confidence_ref for every trade
+    # logged from Day 7 onward.
+    regime_ref: str = ""         # -> regime_history.jsonl row (via regime_history.find_by_ref)
+    # --- Day 11: completes the unified trade ID for the Macro Intelligence
+    # Engine (see MACRO_ENGINE_SPECIFICATION.md Sec.5 "Trade Journal
+    # Integration"). Same equality-by-construction guarantee as every ref
+    # above: id == regime_ref == confluence_ref == confidence_ref ==
+    # macro_ref for every trade logged from Day 11 onward. Advisory-only —
+    # this ref exists so a past macro assessment can be looked up for a
+    # specific trade during review; it is never read by any gating/sizing
+    # path.
+    macro_ref: str = ""          # -> macro_history.jsonl row (via macro_history.find_by_ref)
+    # --- Day 12: completes the unified trade ID for the Execution
+    # Simulator (see EXECUTION_SIMULATOR_SPECIFICATION.md Sec.6 "Trade
+    # Journal Integration"). Same equality-by-construction guarantee as
+    # every ref above: id == regime_ref == confluence_ref ==
+    # confidence_ref == macro_ref == execution_ref for every trade logged
+    # from Day 12 onward. Advisory-only — this ref exists so a trade's
+    # simulated fill-quality report can be looked up during review; it is
+    # never read by any gating/sizing path, and it never determines this
+    # row's own entry/stop/target (those remain the strategy's INTENDED
+    # levels, exactly as before Day 12 — see the spec's explicit note on
+    # why `Trade.entry` is never overwritten with a simulated fill price).
+    execution_ref: str = ""      # -> execution_history.jsonl row (via execution_history.find_by_ref)
+    # --- Day 13: completes the unified trade ID for the Broker
+    # Abstraction Layer (see PAPER_BROKER_SPECIFICATION.md Sec.6 "Trade
+    # Journal Integration"). Same equality-by-construction guarantee as
+    # every ref above: id == regime_ref == confluence_ref ==
+    # confidence_ref == macro_ref == execution_ref == broker_ref for
+    # every trade logged from Day 13 onward. Advisory-only — this ref is
+    # the same string passed as `OrderRequest.ref`/`client_order_id` to
+    # `PaperBroker.submit_order()`, so a trade's full paper-broker order/
+    # fill/event history can be looked up during review via
+    # `broker_history.py`'s `ref`-keyed queries. It is never read by any
+    # gating/sizing path, and — same as `execution_ref` before it — it
+    # never determines this row's own entry/stop/target.
+    broker_ref: str = ""         # -> broker_orders.jsonl / broker_fills.jsonl rows (via ref)
 
 
 def _news_stamp(symbol, direction):
@@ -145,8 +198,20 @@ def is_open(symbol: str, direction: str, entry: float) -> bool:
     return False
 
 
+def make_ref(symbol: str, when: pd.Timestamp) -> str:
+    """The single, canonical stable-reference format used across the trade
+    journal, confluence_history.jsonl, and confidence_history.jsonl (Day 6).
+    Extracted as its own function so every caller constructs the identical
+    string this row's own `id` will use — see Trade.confluence_ref /
+    Trade.confidence_ref's docstring for why that equality matters."""
+    return f"{symbol}-{str(when).replace(' ', 'T')}"
+
+
 def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
-              confluence=None) -> bool:
+              confluence=None, confluence_ref: str = "",
+              confidence_ref: str = "", regime_ref: str = "",
+              macro_ref: str = "", execution_ref: str = "",
+              broker_ref: str = "") -> bool:
     sym = getattr(sig, "symbol", "XAUUSD")
     if is_open(sym, sig.direction, sig.entry):
         return False
@@ -156,7 +221,7 @@ def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
     cf = confluence or {}
     rows = _load()
     rows.append(asdict(Trade(
-        id=f"{sym}-{str(when).replace(' ', 'T')}", opened=str(when),
+        id=make_ref(sym, when), opened=str(when),
         direction=sig.direction, entry=float(sig.entry), stop=float(sig.stop),
         target=float(sig.target), rr=float(sig.rr), confidence=int(sig.confidence),
         symbol=sym, news_signal=ns, news_strength=nstr, news_delta=nd,
@@ -166,7 +231,13 @@ def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
         guard_action=str(g.get("action", "")),
         guard_penalty=int(g.get("penalty", 0) or 0),
         guard_headwind=("yes" if g.get("macro_headwind") else
-                        "no" if g.get("action") else ""))))
+                        "no" if g.get("action") else ""),
+        confluence_ref=str(confluence_ref or ""),
+        confidence_ref=str(confidence_ref or ""),
+        regime_ref=str(regime_ref or ""),
+        macro_ref=str(macro_ref or ""),
+        execution_ref=str(execution_ref or ""),
+        broker_ref=str(broker_ref or ""))))
     _save(rows)
     return True
 

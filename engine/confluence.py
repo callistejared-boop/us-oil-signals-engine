@@ -49,6 +49,14 @@ from . import elliott_wave as ew
 from . import icc as icc_mod
 from .data_loader import resample
 
+# Day 8: retroactively assigned for version traceability (see
+# EXPLAINABILITY_SPECIFICATION.md Sec.5 / engine/platform_version.py) — no
+# explicit version marker existed before Day 8. Purely additive metadata;
+# changes no scoring/gate logic (same disclosure posture as Day 6's
+# confluence.py touches: this is not the first edit to this file since the
+# Day 5 audit, but it is the first one scoped to metadata only).
+VERSION = "1.0.0"
+
 NEWS_HARD_BLOCK_PTS = -6   # a HIGH-strength opposing news signal is a hard gate
 DEFAULT_MIN_SCORE = 70
 
@@ -66,6 +74,14 @@ class ConfluenceRead:
     reasoning: list = field(default_factory=list)
     layers: dict = field(default_factory=dict)
     sig: object = None
+    # Day 6 observability fix (approved, additive-only): the exact news
+    # point delta (bias_adjust.adjustment()'s return value), previously
+    # computed and added to `score` but never persisted anywhere on this
+    # object — explain()/measure_contribution() in confluence_analysis.py
+    # had to reconstruct a nominal approximation instead (see
+    # RESEARCH_CONFLUENCE_ENGINE.md Sec.2.3). Does not change `score` or
+    # any gate; purely makes an already-computed number readable.
+    news_delta: int = 0
 
     @property
     def tradeable(self) -> bool:
@@ -170,10 +186,17 @@ def analyze(df15, symbol="WTIUSD", min_score=DEFAULT_MIN_SCORE):
     if in_kz:
         score += 4; agree.append("session/kill-zone timing")
 
+    # Day 6 observability fix (approved, additive-only — see
+    # RESEARCH_CONFLUENCE_ENGINE.md Sec.2.3 and DAY6_IMPLEMENTATION_REPORT.md):
+    # this used to add points with no agree.append(), making it the one
+    # confluence source that was invisible to Day 5's explain()/
+    # quality_score() (surfaced there as "unlabeled_sources": ["regime_vol"]).
+    # Labeling it here changes NOTHING about the score — same +3/+2 as
+    # before — it only makes the existing points attributable.
     if reg.get("vol") == "expansion":
-        score += 3
+        score += 3; agree.append("regime volatility (expansion)")
     elif reg.get("vol") == "normal":
-        score += 2
+        score += 2; agree.append("regime volatility (normal)")
 
     # ---- the four additional confirmation sources (all soft, modest weight) --
     # Bug fix (2026-07-28): these three used to call .alignment(direction)
@@ -344,4 +367,5 @@ def analyze(df15, symbol="WTIUSD", min_score=DEFAULT_MIN_SCORE):
                 "fibonacci_abc": abc_align, "session_model": session_align,
                 "elliott_wave": ew_align, "icc": icc_align},
         sig=sig,
+        news_delta=int(news_delta),
     )

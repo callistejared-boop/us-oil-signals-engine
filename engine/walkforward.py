@@ -87,5 +87,56 @@ def report(closed=None, min_train=30):
     return "\n".join(lines)
 
 
+# --- Day 9: generalized expanding-window walk-forward ------------------------
+# The functions above (raw_model/base_model/calibrated_model/compare/report)
+# are scoped specifically to comparing PROBABILITY models by Brier score —
+# built Day 1-2, unchanged and untouched this Day (per the Day 9 mandate:
+# "Identify areas for future improvement without changing validated behavior
+# unless justified"). The function below GENERALIZES the same walk-forward
+# METHODOLOGY (expanding window: train on everything before trade i, evaluate
+# on trade i, never look ahead) to ANY metric function, so a future
+# experiment (e.g. a new strategy's own expectancy walk-forward) can reuse
+# this file's proven look-ahead-safe iteration rather than reimplementing it.
+#
+# METHODOLOGY NOTE (documented per the mandate's "specify rolling windows,
+# evaluation metrics, recalibration policy, reporting standards" requirement
+# — see RESEARCH_VALIDATION_SPECIFICATION.md Sec.4 for the full narrative):
+# this is an EXPANDING window (train set grows from `min_train` to i-1 for
+# each evaluated trade i), not a fixed-size ROLLING window — consistent with
+# `compare()`/`rolling_brier()` above, which already use this same
+# expanding-window shape. A fixed-size rolling window (e.g. always the last
+# 200 trades) is a legitimate alternative methodology NOT implemented here;
+# `window_size=None` (default) means expanding, an explicit `window_size=N`
+# truncates the train set to the last N trades before i, giving a true
+# rolling window when a future experiment wants recency-weighting instead of
+# ever-growing history.
+
+def expanding_window_series(metric_fn, closed=None, min_train=30, window_size=None) -> list:
+    """Walk the journal in time order (same `_ordered_closed()` this file's
+    existing functions use) and, for each trade i beyond `min_train`, call
+    `metric_fn(train)` where `train` is every closed trade STRICTLY before i
+    (or, if `window_size` is set, only the last `window_size` of them) —
+    never including trade i itself or anything after it. Returns a list of
+    `{"i": index, "opened": ts, "value": metric_fn(train)}` — an OOS metric
+    TIME SERIES, not a single number, so callers (e.g.
+    `engine.edge_decay_monitor`) can detect a metric declining over time,
+    not just its current level. Never raises; a `metric_fn` error at one
+    point is recorded as `"value": None, "error": ...` rather than aborting
+    the whole series."""
+    seq = _ordered_closed(closed)
+    out = []
+    for i in range(min_train, len(seq)):
+        train = seq[max(0, i - window_size):i] if window_size else seq[:i]
+        try:
+            value = metric_fn(train)
+        except Exception as exc:  # noqa: BLE001
+            value = None
+            out.append({"i": i, "opened": seq[i].get("opened", ""), "value": value,
+                       "error": str(exc)})
+            continue
+        out.append({"i": i, "opened": seq[i].get("opened", ""), "value": value})
+    return out
+
+
 if __name__ == "__main__":
     print(report())

@@ -38,12 +38,19 @@ from engine import config, markets, ict, signals, store          # noqa: E402
 from engine import bias_adjust as ba, regime as rg, correlation as co  # noqa: E402
 from engine import range_guard as rgd, confluence as cf, grade as gr   # noqa: E402
 from engine import risk_guard, eia_feed                            # noqa: E402
+from engine import (regime_engine as rgeng, portfolio_risk as pr,  # noqa: E402
+                    confidence_engine as confeng, news_guard, market_memory as mm,
+                    decision_audit_history as dah, explainability_engine as expl)
 from engine import cot_feed, spread_feed, seasonality, risk_sentiment  # noqa: E402
 from engine.data_loader import resample                            # noqa: E402
 from engine.freshness import staleness                             # noqa: E402
 from engine import fundamentals_feed as ff                         # noqa: E402
 from engine import technicals as tc                                # noqa: E402
 from engine import symbol_meta as sm                                # noqa: E402
+from engine import macro_engine as macro                            # noqa: E402
+from engine.execution import execution_history as exhist            # noqa: E402
+from engine.broker import paper_broker as pbroker                   # noqa: E402
+from engine.data_health import feed_monitor as dhfm                 # noqa: E402
 
 CHART_BARS = 120   # ~5 days of 1H candles — enough context without a huge payload
 
@@ -187,6 +194,7 @@ def build_payload(symbol, df=None, s=None):
            if not data_stale else None)
 
     signal_payload = {"has_setup": False}
+    memory_payload = None   # Day 7 — only computed when a setup exists (see below)
     if sig:
         risk = abs(sig.entry - sig.stop)
         sgn = 1 if sig.direction == "long" else -1
@@ -196,8 +204,16 @@ def build_payload(symbol, df=None, s=None):
         base_conf = sig.confidence
         adj_conf, ndelta, nwhy = ba.apply_context(symbol, sig.direction, base_conf)
 
-        macro = co.read_macro()
-        dxy = macro.get("trend") if macro else None
+        # NOTE: named dxy_macro, not "macro" — this function also references
+        # the module-level `macro` (engine.macro_engine, imported above) via
+        # the macro_advisory lambda near the end of this function. A local
+        # variable named `macro` here would shadow that import for this
+        # entire function scope (Python resolves free-variable closures at
+        # function level, not line level) and break macro_advisory with an
+        # UnboundLocalError on any code path where this `if sig:` block
+        # doesn't run. Found and fixed during Day 11 testing.
+        dxy_macro = co.read_macro()
+        dxy = dxy_macro.get("trend") if dxy_macro else None
         guard = rgd.evaluate(symbol, sig.direction, r.get("pos"), dxy, reg)
         g_conf = max(0, adj_conf + guard["penalty"])
 
@@ -211,6 +227,65 @@ def build_payload(symbol, df=None, s=None):
         grade = gr.grade_for(score, tier)
 
         rguard = risk_guard.evaluate(symbol)
+
+        # --- Day 6: Confidence Engine — read-only, display-only here (this
+        # function never gates publication, it only reports). Reuses every
+        # object already computed above (sig, cread, guard, rguard) plus one
+        # fresh regime_engine.classify() call (the dashboard is a separate
+        # process from alert_signals.py's scan loop, so it cannot reuse that
+        # scan's mkt_regime object — every entry point independently calling
+        # regime_engine.classify() is the same pattern Day 4/5 already
+        # established, not a new duplication). Fail-safe: never blocks the
+        # rest of the payload from building.
+        try:
+            d_regime = rgeng.classify(df, symbol)
+            d_pr = pr.evaluate(symbol, sig.direction, sig.entry, sig.stop,
+                               settings=s, session_label=r.get("session"))
+            d_news = news_guard.evaluate()
+            d_assessment = confeng.assess(
+                symbol, sig.direction, sig=sig, mkt_regime=d_regime, cr=cread,
+                portfolio_verdict=d_pr, guard=guard, news_state=d_news,
+                session=r.get("session"), risk_locked=bool(rguard.get("locked")),
+                settings=s)
+            confidence_payload = {
+                "overall_confidence": d_assessment.overall_confidence,
+                "tier": d_assessment.tier,
+                "is_calibrated": d_assessment.is_calibrated,
+                "calibrated_probability": d_assessment.calibrated_probability,
+                "probability_label": d_assessment.probability_label,
+                "evidence_quality": d_assessment.evidence_quality,
+                "evidence_diversity": d_assessment.evidence_diversity,
+                "market_quality": d_assessment.market_quality,
+                "regime_confidence": d_assessment.regime_confidence,
+                "confluence_quality": d_assessment.confluence_quality,
+                "uncertainty_indicators": d_assessment.uncertainty_indicators,
+                "supporting_rationale": d_assessment.supporting_rationale[:5],
+                "conflicting_rationale": d_assessment.conflicting_rationale[:5],
+            }
+        except Exception:  # noqa: BLE001
+            confidence_payload = None
+
+        # --- Day 7: Market Memory Engine — advisory-only, deliberately kept
+        # OUT of signal_payload (the mandate: "Keep these clearly separated
+        # from live trade recommendations") and surfaced instead as its own
+        # top-level `market_memory_advisory` payload key, below.
+        try:
+            mem_query = mm.query_features_from_live(
+                mkt_regime=d_regime, cr=cread, session=r.get("session"),
+                portfolio_verdict=d_pr, direction=sig.direction)
+            mem_ctx = mm.historical_context(mem_query, as_of=datetime.now(timezone.utc))
+            memory_payload = {
+                "advisory_only": True,
+                "note": "Historical context, not a trade recommendation.",
+                "comparable_count": mem_ctx.get("comparable_count"),
+                "sufficient_sample": mem_ctx.get("sufficient_sample"),
+                "quality": mem_ctx.get("quality"),
+                "aggregate": mem_ctx.get("aggregate"),
+                "strengths": mem_ctx.get("strengths"),
+                "weaknesses": mem_ctx.get("weaknesses"),
+            }
+        except Exception:  # noqa: BLE001
+            memory_payload = None
 
         signal_payload = {
             "has_setup": True,
@@ -230,9 +305,34 @@ def build_payload(symbol, df=None, s=None):
             "confluence_disagree": cread.disagree if cread else [],
             "checklist": [{"name": n, "passed": p} for n, p, _ in cread.checklist] if cread else [],
             "reasoning": cread.reasoning if cread else [],
+            "confidence_assessment": confidence_payload,   # Day 6 — None on failure, never blocks
             "basis_note": _BASIS_NOTES.get(
                 symbol, "Confirm your platform price against the source feed before filling."),
         }
+
+    # --- Day 8: Explainability Dashboard — read-only, advisory. Surfaces the
+    # most recent PERSISTED decision snapshots for this symbol (both
+    # approved and rejected) with their audit graph and explanation, purely
+    # for transparency/learning — never a live re-evaluation, never a signal.
+    # Kept as its own top-level payload key, same "clearly separated from
+    # live trade recommendations" pattern Day 7's `market_memory_advisory`
+    # already established. Fail-safe: never blocks the rest of the payload.
+    try:
+        recent_rows = dah.tail(5, symbol=symbol)
+        decision_audit_payload = {
+            "advisory_only": True,
+            "note": "Recent decision snapshots — transparency/audit trail, not a live signal.",
+            "recent": [
+                {"decision_id": row.get("decision_id"), "stage": row.get("stage"),
+                 "final_action": row.get("final_action"), "created": row.get("created"),
+                 "graph": expl.build_audit_graph(row),
+                 "explanation": (expl.explain_rejection(row) if row.get("final_action") == "rejected"
+                                else expl.explain_approval(row))}
+                for row in recent_rows
+            ],
+        }
+    except Exception:  # noqa: BLE001
+        decision_audit_payload = None
 
     fund_asof, fund_bias, fund_lines, live = _fundamentals(symbol)
     _, level, banner = staleness(fund_asof)
@@ -245,6 +345,34 @@ def build_payload(symbol, df=None, s=None):
         "symbol": symbol, "display_name": _DISPLAY_NAMES.get(symbol, symbol),
         "price": round(float(r["price"]), 2),
         "signal": signal_payload,
+        "market_memory_advisory": memory_payload,   # Day 7 — advisory-only, kept separate from `signal`
+        "decision_audit": decision_audit_payload,   # Day 8 — advisory-only, kept separate from `signal`
+        # Day 11 — advisory-only, kept separate from `signal`. Shows the
+        # MOST RECENTLY RECORDED macro assessment (from alert_signals.py's
+        # own Stage-2 logging via macro_history.jsonl), not a fresh live
+        # recompute — avoids adding another round of provider fetches to
+        # every dashboard page load. `None` until at least one entry has
+        # been logged since Day 11 shipped.
+        "macro_advisory": _safe_note(lambda: macro.last_assessment(symbol), "Macro"),
+        # Day 12: last RECORDED execution report (from execution_history.jsonl,
+        # written by alert_signals.py's Stage-2 logging), never a fresh
+        # recompute — same reasoning as macro_advisory above. Advisory only.
+        "execution_summary": _safe_note(lambda: exhist.last_for(symbol), "Execution"),
+        # Day 13: Paper Trading panel — account equity, open positions,
+        # pending (resting) orders, realized/unrealized P&L, and recent
+        # execution activity from the Paper Broker. Advisory only, same
+        # posture as execution_summary/macro_advisory above; the account
+        # this reads is symbol-agnostic (one shared paper account across
+        # every symbol this platform trades), so this key is IDENTICAL
+        # across every symbol's payload by design — see
+        # PAPER_BROKER_SPECIFICATION.md Sec.9 "Dashboard".
+        "paper_trading": _safe_note(lambda: pbroker.dashboard_snapshot(), "Paper Trading"),
+        # Day 14: Data Quality & Feed Health — advisory only, same posture
+        # as paper_trading/macro_advisory above. Symbol-agnostic (one
+        # platform-wide health report), so this key is IDENTICAL across
+        # every symbol's payload by design, same precedent as
+        # paper_trading. See DATA_HEALTH_SPECIFICATION.md Sec.9 "Dashboard".
+        "data_health": _safe_note(lambda: dhfm.dashboard_snapshot(), "Data Health"),
         "chart": chart,
         "market_structure": {
             "biases": r["biases"], "lean": r["lean"], "prob": r["prob"],
@@ -328,6 +456,21 @@ def main():
               f"(signal: {'setup' if payload['signal']['has_setup'] else 'none'})")
     if not syms:
         print("dashboard_publish: no symbols configured (check SYMBOLS in .env)")
+
+    # Day 14: record a "last successful publish" timestamp. Prior Days had
+    # no persisted publish heartbeat at all — a gap identified during this
+    # Day's Phase 1 audit — so engine/data_health/heartbeat.py's
+    # dashboard_publish_status() has something to read. Written only when
+    # at least one symbol actually published; never raises.
+    if any_ok:
+        try:
+            hb_path = ROOT / "dashboard_publish_heartbeat.json"
+            hb_path.write_text(json.dumps({
+                "published_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "symbols_published": syms,
+            }), encoding="utf-8")
+        except Exception as exc:  # noqa: BLE001
+            print(f"dashboard_publish: heartbeat write failed ({exc}) — non-fatal")
 
 
 if __name__ == "__main__":
