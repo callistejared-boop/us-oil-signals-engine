@@ -5,6 +5,30 @@ name: Entry scan (15 min)
 # then fires the actual entry when price taps the level. Deduped/stateful via
 # pending.json + trades.json, which this workflow commits back to the repo
 # after each run so state survives across ephemeral runner instances.
+#
+# Day 15: the "Restore last-known-good market data cache" step below also
+# now carries .cache/heartbeat_status.json — a small, structured record of
+# this run's outcome (per-symbol fetch success/failure, whether every
+# symbol failed at once) written by alert_signals.py and round-tripped to
+# the NEXT run (of this workflow OR of heartbeat-watchdog.yml, which
+# restores the same cache) via the same actions/cache mechanism already
+# used for market data. This is what heartbeat-watchdog.yml now reads.
+# See DAY15_IMPLEMENTATION_REPORT.md for why this exists: the previous
+# design (alert_heartbeat.txt) was gitignored and never committed, so the
+# watchdog's own fresh checkout could never see it — an 11+ day silent gap.
+#
+# Day 15 — second, larger fix: the "Persist engine state" step below used
+# to commit only pending.json/trades.json/run_ledger.jsonl. Every history/
+# audit store built across Days 4-14 (regime, confluence, confidence,
+# decision-audit, macro, execution, all 4 broker stores, all 3 data-health
+# stores, the experiment registry, the correlation cache) was written by
+# THIS SAME job every run and then silently discarded when the runner
+# terminated — none of it was ever in any workflow's `git add` list.
+# Confirmed by direct audit of every workflow file: see
+# DAY15_GIT_HYGIENE_REPORT.md. That means the entire Days 4-14 research/
+# evidence layer has likely never survived a single ephemeral run in
+# production, independent of the market-data issue above. Now committed
+# alongside the files that always were.
 
 on:
   schedule:
@@ -40,7 +64,16 @@ jobs:
           restore-keys: market-cache-
 
       - name: Run entry scanner
-        continue-on-error: true
+        # Day 15: continue-on-error was removed here. alert_signals.py
+        # already degrades gracefully for partial failures (one symbol's
+        # data unavailable never stops the others) — that behavior is
+        # unchanged. But a TOTAL outage (every symbol failed to fetch)
+        # now makes the script exit non-zero on purpose, specifically so
+        # this step — and therefore this job — shows red in the Actions
+        # tab instead of a permanently-green run that did nothing. The
+        # "Persist engine state" step below still runs regardless
+        # (if: always()), so any partial state from a mixed-outcome run
+        # is never lost.
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -59,7 +92,13 @@ jobs:
         run: |
           git config user.name "gold-engine-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add pending.json trades.json run_ledger.jsonl 2>/dev/null || true
+          git add pending.json trades.json run_ledger.jsonl \
+                  regime_history.jsonl confluence_history.jsonl confidence_history.jsonl \
+                  decision_audit.jsonl macro_history.jsonl execution_history.jsonl \
+                  broker_orders.jsonl broker_fills.jsonl broker_events.jsonl broker_accounts.jsonl \
+                  data_health_history.jsonl data_health_heartbeat_history.jsonl \
+                  data_health_observations.jsonl experiment_registry.jsonl correlation_cache.json \
+                  2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "state: entry-scan update [skip ci]"
             for i in 1 2 3 4 5; do

@@ -120,6 +120,200 @@ def test_publish_includes_symbol_in_rpc_body(monkeypatch):
     assert captured["body"]["p_secret"] == "test-secret"
 
 
+# --- Day 11: "macro_advisory" payload key -----------------------------------------
+
+def test_build_payload_includes_macro_advisory_from_last_recorded_assessment(monkeypatch):
+    """dashboard_publish must read the LAST RECORDED macro assessment (from
+    macro_history.jsonl, written by alert_signals.py's Stage-2 logging) —
+    never a fresh live recompute — to avoid adding another round of
+    provider fetches to every dashboard page load."""
+    df = _make_df()
+    calls = []
+
+    def fake_last_assessment(symbol):
+        calls.append(symbol)
+        return {"labels": ["Risk-On"], "macro_confidence": "high", "evidence_quality": "medium"}
+
+    monkeypatch.setattr(dp.macro, "last_assessment", fake_last_assessment)
+    payload = dp.build_payload("XAUUSD", df=df)
+    assert payload["macro_advisory"] == {"labels": ["Risk-On"], "macro_confidence": "high",
+                                         "evidence_quality": "medium"}
+    assert calls == ["XAUUSD"]  # exactly one read, scoped to this symbol
+
+
+def test_build_payload_macro_advisory_never_raises_when_history_read_fails(monkeypatch):
+    def boom(symbol):
+        raise RuntimeError("macro_history.jsonl unreadable")
+    monkeypatch.setattr(dp.macro, "last_assessment", boom)
+    df = _make_df()
+    payload = dp.build_payload("WTIUSD", df=df)
+    assert "macro_advisory" in payload
+    assert "unavailable" in payload["macro_advisory"]
+
+
+def test_build_payload_macro_advisory_none_when_no_history_yet(monkeypatch):
+    monkeypatch.setattr(dp.macro, "last_assessment", lambda symbol: None)
+    df = _make_df()
+    payload = dp.build_payload("BTCUSD", df=df)
+    assert payload["macro_advisory"] is None
+
+
+# --- Day 12: "execution_summary" payload key --------------------------------------
+
+def test_build_payload_includes_execution_summary_from_last_recorded_report(monkeypatch):
+    """dashboard_publish must read the LAST RECORDED execution report (from
+    execution_history.jsonl, written by alert_signals.py's Stage-2
+    logging) — never a fresh simulate/recompute — same reasoning as
+    macro_advisory above."""
+    df = _make_df()
+    calls = []
+
+    def fake_last_for(symbol):
+        calls.append(symbol)
+        return {"execution_score": "Good", "cost_r": 0.08}
+
+    monkeypatch.setattr(dp.exhist, "last_for", fake_last_for)
+    payload = dp.build_payload("XAUUSD", df=df)
+    assert payload["execution_summary"] == {"execution_score": "Good", "cost_r": 0.08}
+    assert calls == ["XAUUSD"]
+
+
+def test_build_payload_execution_summary_never_raises_when_history_read_fails(monkeypatch):
+    def boom(symbol):
+        raise RuntimeError("execution_history.jsonl unreadable")
+    monkeypatch.setattr(dp.exhist, "last_for", boom)
+    df = _make_df()
+    payload = dp.build_payload("WTIUSD", df=df)
+    assert "execution_summary" in payload
+    assert "unavailable" in payload["execution_summary"]
+
+
+def test_build_payload_execution_summary_none_when_no_history_yet(monkeypatch):
+    monkeypatch.setattr(dp.exhist, "last_for", lambda symbol: None)
+    df = _make_df()
+    payload = dp.build_payload("BTCUSD", df=df)
+    assert payload["execution_summary"] is None
+
+
+# --- Day 13: "paper_trading" payload key -------------------------------------
+
+def test_build_payload_includes_paper_trading_snapshot(monkeypatch):
+    """dashboard_publish must read PaperBroker's current snapshot (balances/
+    positions/pending orders/recent activity) via the dedicated
+    `pbroker.dashboard_snapshot()` helper — never assemble it inline."""
+    df = _make_df()
+    calls = []
+
+    def fake_snapshot(account_id="paper-default", n_events=10):
+        calls.append(account_id)
+        return {"account_id": "paper-default", "balances": {"equity": 10050.0},
+               "open_positions": [], "pending_orders": [], "recent_activity": []}
+
+    monkeypatch.setattr(dp.pbroker, "dashboard_snapshot", fake_snapshot)
+    payload = dp.build_payload("XAUUSD", df=df)
+    assert payload["paper_trading"]["balances"]["equity"] == 10050.0
+    assert calls == ["paper-default"]
+
+
+def test_build_payload_paper_trading_never_raises_when_broker_read_fails(monkeypatch):
+    def boom(account_id="paper-default", n_events=10):
+        raise RuntimeError("broker_history.jsonl unreadable")
+    monkeypatch.setattr(dp.pbroker, "dashboard_snapshot", boom)
+    df = _make_df()
+    payload = dp.build_payload("WTIUSD", df=df)
+    assert "paper_trading" in payload
+    assert "unavailable" in payload["paper_trading"]
+
+
+def test_build_payload_paper_trading_is_symbol_agnostic_same_account_every_symbol(monkeypatch):
+    """The paper account is shared across every symbol this platform
+    trades — the payload key is identical regardless of which symbol's
+    dashboard row is being built, by design (see the Day 13 comment in
+    dashboard_publish.py)."""
+    df = _make_df()
+    monkeypatch.setattr(dp.pbroker, "dashboard_snapshot",
+                        lambda account_id="paper-default", n_events=10:
+                        {"account_id": account_id, "balances": {"equity": 9999.0}})
+    p1 = dp.build_payload("XAUUSD", df=df)
+    p2 = dp.build_payload("BTCUSD", df=df)
+    assert p1["paper_trading"] == p2["paper_trading"]
+
+
+# --- Day 14: "data_health" payload key + publish-heartbeat write ------------
+
+def test_build_payload_includes_data_health_snapshot(monkeypatch):
+    df = _make_df()
+    calls = []
+
+    def fake_snapshot():
+        calls.append(True)
+        return {"overall_status": "operational", "counts": {"operational": 18}}
+
+    monkeypatch.setattr(dp.dhfm, "dashboard_snapshot", fake_snapshot)
+    payload = dp.build_payload("XAUUSD", df=df)
+    assert payload["data_health"]["overall_status"] == "operational"
+    assert calls == [True]
+
+
+def test_build_payload_data_health_never_raises_when_check_fails(monkeypatch):
+    def boom():
+        raise RuntimeError("data_health_history.jsonl unreadable")
+    monkeypatch.setattr(dp.dhfm, "dashboard_snapshot", boom)
+    df = _make_df()
+    payload = dp.build_payload("WTIUSD", df=df)
+    assert "data_health" in payload
+    assert "unavailable" in payload["data_health"]
+
+
+def test_build_payload_data_health_is_symbol_agnostic(monkeypatch):
+    df = _make_df()
+    monkeypatch.setattr(dp.dhfm, "dashboard_snapshot",
+                        lambda: {"overall_status": "degraded", "counts": {}})
+    p1 = dp.build_payload("XAUUSD", df=df)
+    p2 = dp.build_payload("BTCUSD", df=df)
+    assert p1["data_health"] == p2["data_health"]
+
+
+def test_main_writes_dashboard_publish_heartbeat_on_success(monkeypatch, tmp_path):
+    monkeypatch.setattr(dp, "ROOT", tmp_path)
+
+    class FakeSettings:
+        pass
+
+    monkeypatch.setattr(dp.config, "load", lambda: FakeSettings())
+    monkeypatch.setattr(dp.markets, "symbols", lambda s: ["XAUUSD"])
+    monkeypatch.setattr(dp, "build_payload", lambda symbol, s=None: {
+        "signal": {"has_setup": False}})
+    monkeypatch.setattr(dp, "publish", lambda payload, symbol: True)
+
+    dp.main()
+
+    hb_path = tmp_path / "dashboard_publish_heartbeat.json"
+    assert hb_path.exists()
+    import json
+    row = json.loads(hb_path.read_text(encoding="utf-8"))
+    assert "published_at" in row
+    assert row["symbols_published"] == ["XAUUSD"]
+
+
+def test_main_does_not_write_heartbeat_when_nothing_published(monkeypatch, tmp_path):
+    monkeypatch.setattr(dp, "ROOT", tmp_path)
+
+    class FakeSettings:
+        pass
+
+    monkeypatch.setattr(dp.config, "load", lambda: FakeSettings())
+    monkeypatch.setattr(dp.markets, "symbols", lambda s: ["XAUUSD"])
+    monkeypatch.setattr(dp, "build_payload", lambda symbol, s=None: {
+        "signal": {"has_setup": False}})
+    monkeypatch.setattr(dp, "publish", lambda payload, symbol: False)
+
+    dp.main()
+
+    hb_path = tmp_path / "dashboard_publish_heartbeat.json"
+    assert not hb_path.exists()
+
+
 if __name__ == "__main__":
     import subprocess
     subprocess.run([sys.executable, "-m", "pytest", __file__, "-v"], check=False)
