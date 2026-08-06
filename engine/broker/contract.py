@@ -32,7 +32,6 @@ from datetime import datetime, timezone
 
 CONTRACT_VERSION = "1.0.0"
 
-
 # --------------------------------------------------------------------------
 # Enums (plain str subclasses — JSON-serializable without a custom encoder,
 # consistent with every other Day 4-12 module's disclosed-constant style)
@@ -43,24 +42,21 @@ class OrderSide:
     SELL = "sell"
     ALL = (BUY, SELL)
 
-
 class OrderType:
     MARKET = "market"
     LIMIT = "limit"
     STOP = "stop"
     ALL = (MARKET, LIMIT, STOP)
 
-
 class TimeInForce:
     """Included for contract completeness (a live adapter will need it);
     the Paper Broker's own synchronous fill model (Day 12) means GTC/DAY
     are effectively equivalent to "resolve now or rest as WORKING" — see
     PAPER_BROKER_SPECIFICATION.md Sec.4 for the disclosed simplification."""
-    GTC = "gtc"      # good-till-cancelled — rests as WORKING if not filled
-    IOC = "ioc"       # immediate-or-cancel — never rests; unfilled -> CANCELLED
-    DAY = "day"       # treated as GTC by the Paper Broker (no session-close sweep yet)
+    GTC = "gtc"   # good-till-cancelled — rests as WORKING if not filled
+    IOC = "ioc"   # immediate-or-cancel — never rests; unfilled -> CANCELLED
+    DAY = "day"   # treated as GTC by the Paper Broker (no session-close sweep yet)
     ALL = (GTC, IOC, DAY)
-
 
 # --------------------------------------------------------------------------
 # Request / response value objects
@@ -78,26 +74,25 @@ class OrderRequest:
     client_order_id: str
     account_id: str
     symbol: str
-    side: str                       # OrderSide.BUY / .SELL
-    order_type: str                 # OrderType.MARKET / .LIMIT / .STOP
+    side: str            # OrderSide.BUY / .SELL
+    order_type: str       # OrderType.MARKET / .LIMIT / .STOP
     intended_price: float
-    quantity: float | None = None   # lots; None = auto-size from account risk (see account.py)
-    stop_price: float | None = None   # this trade's protective stop (for auto-sizing + cost_r)
-    limit_price: float | None = None  # required for order_type == LIMIT
+    quantity: "float | None" = None    # lots; None = auto-size from account risk (see account.py)
+    stop_price: "float | None" = None   # this trade's protective stop (for auto-sizing + cost_r)
+    limit_price: "float | None" = None  # required for order_type == LIMIT
     time_in_force: str = TimeInForce.GTC
     signal_ts: "datetime | None" = None
-    ref: str = ""                    # unified trade ID (journal.make_ref()) — "" if none available
+    ref: str = ""   # unified trade ID (journal.make_ref()) — "" if none available
     # Passthrough to engine.execution.fill_model — reused verbatim, never
     # recomputed (see PAPER_BROKER_SPECIFICATION.md Sec.3 "Reuse, not
     # Reimplementation").
-    atr_pct: float | None = None
+    atr_pct: "float | None" = None
     news_blackout: bool = False
-    session: str | None = None
-    price_path: "object" = None      # optional real subsequent bars for deterministic limit fills
+    session: "str | None" = None
+    price_path: "object" = None   # optional real subsequent bars for deterministic limit fills
     # Test/replay-only failure injection — NEVER set by the live
     # alert_signals.py call site. See paper_broker.py "Failure Handling".
-    simulate_failure: dict | None = None
-
+    simulate_failure: "dict | None" = None
 
 @dataclass(frozen=True)
 class Fill:
@@ -107,16 +102,15 @@ class Fill:
     account_id: str
     symbol: str
     side: str
-    leg: str                # "entry" | "exit"
+    leg: str    # "entry" | "exit"
     price: float
-    quantity: float          # lots actually filled (<= requested on a partial fill)
+    quantity: float   # lots actually filled (<= requested on a partial fill)
     fee: float
-    execution_cost: float    # from engine.execution.fill_model — spread+slippage cost, reused verbatim
+    execution_cost: float   # from engine.execution.fill_model — spread+slippage cost, reused verbatim
     is_partial: bool
-    ts: str                  # ISO timestamp
+    ts: str   # ISO timestamp
     is_estimate: bool = True
     source: str = "engine.broker.paper_broker"
-
 
 @dataclass(frozen=True)
 class Order:
@@ -131,42 +125,50 @@ class Order:
     order_type: str
     intended_price: float
     quantity: float
-    status: str               # order_state.OrderStatus.*
-    stop_price: float | None = None
-    limit_price: float | None = None
+    status: str   # order_state.OrderStatus.*
+    stop_price: "float | None" = None
+    limit_price: "float | None" = None
     time_in_force: str = TimeInForce.GTC
     ref: str = ""
     filled_quantity: float = 0.0
-    avg_fill_price: float | None = None
-    fills: tuple = field(default_factory=tuple)         # tuple[Fill, ...] — immutable
-    history: tuple = field(default_factory=tuple)        # tuple[dict, ...] — transition log
+    avg_fill_price: "float | None" = None
+    fills: tuple = field(default_factory=tuple)     # tuple[Fill, ...] — immutable
+    history: tuple = field(default_factory=tuple)   # tuple[dict, ...] — transition log
     reject_reason: str = ""
     created_ts: str = ""
     updated_ts: str = ""
     is_estimate: bool = True
     source: str = "engine.broker.paper_broker"
 
-
 @dataclass(frozen=True)
 class PositionSnapshot:
     """Read-only snapshot returned by `get_positions()` — the live
     mutable state lives in `position_engine.PositionEngine`, never
     exposed directly (same "expose a snapshot, not the mutable object"
-    convention as `account.AccountSnapshot` below)."""
+    convention as `account.AccountSnapshot` below).
+
+    Per-trade tracking (Version 2.2, Priority 1 Item 1): positions are
+    now tracked per `(account_id, symbol, ref)`, not per
+    `(account_id, symbol)` — see `position_engine.py`'s module
+    docstring. `ref` below identifies which specific trade this
+    snapshot represents; it is `""` when the snapshot is the BLENDED
+    aggregate across every open ref on the symbol (requested via
+    `PositionEngine.snapshot(..., ref=None)`), preserving the pre-2.2
+    "total symbol exposure" view for callers that still want it."""
     account_id: str
     symbol: str
-    direction: str            # "long" | "short" | "flat"
+    direction: str   # "long" | "short" | "flat"
     quantity: float
-    avg_entry: float | None
+    avg_entry: "float | None"
     realized_pnl: float
-    unrealized_pnl: float | None
+    unrealized_pnl: "float | None"
     fees_paid: float
     execution_costs: float
-    risk_utilization: float | None   # margin_used / equity for this position, 0-1+
+    risk_utilization: "float | None"   # margin_used / equity for this position, 0-1+
     opened_ts: str = ""
     updated_ts: str = ""
-    open_refs: tuple = field(default_factory=tuple)   # trade_ref(s) contributing to this net position
-
+    open_refs: tuple = field(default_factory=tuple)   # trade_ref(s) contributing to this position
+    ref: str = ""   # the specific trade ref this snapshot represents; "" if a symbol-level aggregate
 
 @dataclass(frozen=True)
 class AccountSnapshot:
@@ -174,18 +176,16 @@ class AccountSnapshot:
     account_id: str
     currency: str
     starting_capital: float
-    balance: float             # realized cash
-    equity: float               # balance + total unrealized P&L across positions
+    balance: float   # realized cash
+    equity: float    # balance + total unrealized P&L across positions
     margin_used: float
     buying_power: float
     leverage: float
     open_position_count: int
     as_of: str = ""
 
-
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
-
 
 # --------------------------------------------------------------------------
 # The interface itself
