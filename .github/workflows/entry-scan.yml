@@ -29,6 +29,17 @@ name: Entry scan (15 min)
 # evidence layer has likely never survived a single ephemeral run in
 # production, independent of the market-data issue above. Now committed
 # alongside the files that always were.
+#
+# Day 16 debug: the "Persist engine state" step below is temporarily
+# instrumented to answer why run_ledger.jsonl (and siblings) are not
+# growing on origin/main despite alert_signals.py's ledger.log() writes
+# succeeding with zero exceptions (confirmed via engine/ledger.py's own
+# Day 16 debug instrumentation on run #57). Diagnostics added: ls -l and
+# git check-ignore on run_ledger.jsonl, git status --short before/after
+# git add, git diff --cached --stat, and the 2>/dev/null suppression on
+# git add has been removed so any pathspec error is visible instead of
+# silently discarded. Remove this instrumentation once the root cause is
+# found and fixed.
 
 on:
   schedule:
@@ -92,13 +103,25 @@ jobs:
         run: |
           git config user.name "gold-engine-bot"
           git config user.email "actions@users.noreply.github.com"
+          echo "[DEBUG] pwd: $(pwd)"
+          echo "[DEBUG] git toplevel: $(git rev-parse --show-toplevel)"
+          echo "[DEBUG] ls -l run_ledger.jsonl:"
+          ls -l run_ledger.jsonl || echo "[DEBUG] run_ledger.jsonl missing from disk"
+          echo "[DEBUG] git check-ignore -v run_ledger.jsonl:"
+          git check-ignore -v run_ledger.jsonl || echo "[DEBUG] run_ledger.jsonl not ignored"
+          echo "[DEBUG] git status --short (before add):"
+          git status --short
           git add pending.json trades.json run_ledger.jsonl \
                   regime_history.jsonl confluence_history.jsonl confidence_history.jsonl \
                   decision_audit.jsonl macro_history.jsonl execution_history.jsonl \
                   broker_orders.jsonl broker_fills.jsonl broker_events.jsonl broker_accounts.jsonl \
                   data_health_history.jsonl data_health_heartbeat_history.jsonl \
                   data_health_observations.jsonl experiment_registry.jsonl correlation_cache.json \
-                  2>/dev/null || true
+                  || echo "[DEBUG] git add exited non-zero: $?"
+          echo "[DEBUG] git status --short (after add):"
+          git status --short
+          echo "[DEBUG] git diff --cached --stat:"
+          git diff --cached --stat
           if ! git diff --cached --quiet; then
             git commit -m "state: entry-scan update [skip ci]"
             for i in 1 2 3 4 5; do
