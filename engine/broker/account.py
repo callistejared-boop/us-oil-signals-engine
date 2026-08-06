@@ -159,19 +159,24 @@ class AccountRegistry:
         `position_engine.ENGINE.rebuild_from_history(account_id)` FIRST
         (`PaperBroker.__init__()` always does both, in that order).
         `balance = starting_capital + sum(realized_pnl) - sum(fees)`
-        across every symbol this account has ever traded;
+        across every symbol/trade this account has ever traded;
         `margin_used = sum(margin_required(...))` over currently-open
         positions, priced at each position's own average entry (the
         margin a real broker would have reserved at trade time, not a
         continuously repriced figure — a disclosed simplification, see
-        PAPER_BROKER_SPECIFICATION.md Sec.5). Never raises."""
+        PAPER_BROKER_SPECIFICATION.md Sec.5). Since Version 2.2
+        Priority 1 Item 1, `pos_engine._positions` is keyed by
+        `(account_id, symbol, ref)` rather than `(account_id, symbol)`
+        — one entry per open TRADE, not per symbol — so this correctly
+        sums margin across every concurrent same-symbol position too,
+        not just one per symbol. Never raises."""
         try:
             from .position_engine import ENGINE as pos_engine
             acct = self.get_or_create(account_id)
             total_realized = 0.0
             total_fees = 0.0
             margin = 0.0
-            for (acct_id, symbol), pos in pos_engine._positions.items():
+            for (acct_id, symbol, _ref), pos in pos_engine._positions.items():
                 if acct_id != account_id:
                     continue
                 total_realized += pos.realized_pnl
