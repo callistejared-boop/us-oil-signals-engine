@@ -58,3 +58,10 @@
 {"ts": "2026-08-06T04:29:27+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 66, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "COT positioning", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-06T04:29:27+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-06T04:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-06T04:29:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 3, "quality": 28, "transition": "high", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-08-06T07:17:25+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 22, "quality": 40, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-06T07:17:25+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 36, "quality": 52, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-06T07:17:26+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 7, "quality": 38, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-06T07:17:27+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 63, "quality_score": 63, "independent_agreement": 0.525, "n_conflicts": 0}
+{"ts": "2026-08-06T07:17:27+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 63, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "volume profile (buying above value)", "COT positioning", "candlestick pattern (opposing pattern just printed)"]}
+{"ts": "2026-08-06T07:17:27+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-06T07:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-06T07:17:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 10, "quality": 39, "transition": "medium", "tags": [], "mode": "advisory"}
