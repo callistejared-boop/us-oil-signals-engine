@@ -107,6 +107,16 @@ class Trade:
     # gating/sizing path, and — same as `execution_ref` before it — it
     # never determines this row's own entry/stop/target.
     broker_ref: str = ""         # -> broker_orders.jsonl / broker_fills.jsonl rows (via ref)
+    # --- V2.2 Priority 2 Item 4: first-class strategy tag (see
+    # STRATEGY_FRAMEWORK_SPECIFICATION.md Sec.2-3, engine/strategy_registry.py).
+    # Resolved via strategy_registry.strategy_for()'s fail-safe lookup at
+    # log_signal() time from the same `regime_strategy` value already used
+    # for regime classification and execution-style resolution (see
+    # alert_signals.py's main()) — NOT the same concept as regime_strategy
+    # itself (that selects a regime-compatibility table; this identifies
+    # which strategy actually originated the trade). "" means the trade
+    # predates this field (no per-strategy statistic can trust older rows).
+    strategy: str = ""
 
 
 def _news_stamp(symbol, direction):
@@ -211,7 +221,7 @@ def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
               confluence=None, confluence_ref: str = "",
               confidence_ref: str = "", regime_ref: str = "",
               macro_ref: str = "", execution_ref: str = "",
-              broker_ref: str = "") -> bool:
+              broker_ref: str = "", strategy: str = "") -> bool:
     sym = getattr(sig, "symbol", "XAUUSD")
     if is_open(sym, sig.direction, sig.entry):
         return False
@@ -237,7 +247,8 @@ def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
         regime_ref=str(regime_ref or ""),
         macro_ref=str(macro_ref or ""),
         execution_ref=str(execution_ref or ""),
-        broker_ref=str(broker_ref or ""))))
+        broker_ref=str(broker_ref or ""),
+        strategy=str(strategy or ""))))
     _save(rows)
     return True
 
