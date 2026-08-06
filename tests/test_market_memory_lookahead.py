@@ -20,7 +20,7 @@ def _rec(trade_id, opened, closed, status="win", result_r=2.0, regime_primary="S
         trade_id=trade_id, symbol="XAUUSD", direction=direction, opened=opened, closed=closed,
         status=status, result_r=result_r,
         regime={"primary": regime_primary, "source": "regime_history"},
-        strategy="ict_smc_mast",
+        origination_method="ict_smc_mast",
         confluence_summary={"agree": ["price action"], "disagree": [], "source": "confluence_history"},
         confidence_assessment={}, risk_profile={}, portfolio_context={}, session=session,
         news_context={}, outcome={"status": status, "result_r": result_r, "closed": closed},

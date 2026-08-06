@@ -11,7 +11,7 @@ governance layer) to review.
 
 Reuses, not duplicates: `engine.research_stats` for every metric,
 `engine.walkforward.expanding_window_series` for the trend detection,
-`engine.market_memory.performance_by_strategy_regime` (Day 7) for the
+`engine.market_memory.performance_by_origination_regime` (Day 7) for the
 regime-conditioned view. No new statistical formula is invented here.
 """
 from __future__ import annotations
@@ -126,7 +126,7 @@ def check(rows=None) -> dict:
             "n_flags": len(flags),
             "note": ("regime-conditioned decay (per the mandate's 'changing market regimes' item) "
                     "should be cross-checked against engine.market_memory."
-                    "performance_by_strategy_regime() directly — not duplicated here, since that "
+                    "performance_by_origination_regime() directly — not duplicated here, since that "
                     "function already exists and is regime-aware (Day 7)"),
         }
     except Exception as exc:  # noqa: BLE001

@@ -40,6 +40,20 @@ def test_build_memory_record_falls_back_to_trade_row_when_no_refs():
     assert rec.confluence_summary["score"] == 80
 
 
+def test_build_memory_record_origination_method_defaults_to_config_regime_strategy():
+    # V2.2 Priority 2 Item 4 rename (was `strategy`, collided with the new
+    # Trade.strategy concept — see MemoryRecord.origination_method's own
+    # docstring). Default source is config.regime_strategy, unchanged
+    # behavior from before the rename.
+    rec = mm.build_memory_record(_trade_row())
+    assert rec.origination_method == "ict_smc_mast"
+
+
+def test_build_memory_record_origination_method_explicit_override():
+    rec = mm.build_memory_record(_trade_row(), origination_method="future_strategy_x")
+    assert rec.origination_method == "future_strategy_x"
+
+
 def test_build_memory_record_uses_history_rows_when_refs_resolve(monkeypatch):
     from engine import regime_history as rh, confluence_history as cfh, confidence_history as cfdh
     ref = "XAUUSD-2026-08-01T10:00:00"
@@ -209,11 +223,14 @@ def test_performance_by_session_reports_sufficiency():
     assert london["sufficient"] is False   # below MIN_N_FOR_TRUST=30
 
 
-def test_performance_by_strategy_regime_groups_correctly():
+def test_performance_by_origination_regime_groups_correctly():
+    # Renamed from performance_by_strategy_regime() (V2.2 Priority 2 Item 4 /
+    # TECHNICAL_DEBT_REGISTER Item 8) — "strategy" meant origination method,
+    # not the new per-trade Trade.strategy concept.
     rows = [_trade_row(tid=f"t{i}", regime_trend="trend") for i in range(5)]
     rows += [_trade_row(tid=f"t{i+5}", regime_trend="range") for i in range(5)]
     records = mm.build_memory_records(rows)
-    out = mm.performance_by_strategy_regime(records)
+    out = mm.performance_by_origination_regime(records)
     keys = {b["key"] for b in out}
     assert ("ict_smc_mast", "trend") in keys
     assert ("ict_smc_mast", "range") in keys
@@ -228,7 +245,7 @@ def test_risk_adjusted_by_combo_flags_insufficient_below_trust_bar():
 
 def test_performance_analytics_never_raise_on_empty_history():
     assert mm.performance_by_session([]) == []
-    assert mm.performance_by_strategy_regime([]) == []
+    assert mm.performance_by_origination_regime([]) == []
     assert mm.risk_adjusted_by_combo([]) == []
 
 
@@ -307,7 +324,7 @@ def test_large_history_performance_analytics_completes():
     records = mm.build_memory_records(rows)
     start = time.time()
     mm.performance_by_session(records)
-    mm.performance_by_strategy_regime(records)
+    mm.performance_by_origination_regime(records)
     mm.risk_adjusted_by_combo(records)
     assert time.time() - start < 5.0
 

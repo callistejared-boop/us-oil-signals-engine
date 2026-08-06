@@ -691,7 +691,9 @@ def main():
                                            confluence=e_conf, confluence_ref=trade_ref,
                                            confidence_ref=trade_ref, regime_ref=trade_ref,
                                            macro_ref=trade_ref, execution_ref=trade_ref,
-                                           broker_ref=trade_ref)
+                                           broker_ref=trade_ref,
+                                           strategy=strategy_registry.strategy_for(
+                                               regime_strategy)["strategy_id"])
                     log.append(f"{sym}: ENTRY {rec['direction']} @ {rec['entry']}")
                     ledger.log({"event": "entry", "symbol": sym, "dir": rec["direction"],
                                 "entry": rec["entry"], "stop": rec["stop"], "rr": rec["rr"],

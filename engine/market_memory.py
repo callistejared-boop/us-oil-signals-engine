@@ -79,8 +79,15 @@ class MemoryRecord:
     status: str                    # win | loss | scratch | open | expired
     result_r: float
     regime: dict                   # {primary, confidence, quality_score, transition_label, source}
-    strategy: str                  # config.regime_strategy at assembly time — one production
-                                    # strategy platform-wide today (Day 4 precedent), not per-trade
+    origination_method: str        # config.regime_strategy at assembly time — one production
+                                    # origination method platform-wide today (Day 4 precedent), not
+                                    # per-trade. Renamed from `strategy` (V2.2 Priority 2 Item 4 /
+                                    # TECHNICAL_DEBT_REGISTER Item 8) to avoid colliding with the
+                                    # new, distinct Trade.strategy concept (engine/journal.py,
+                                    # engine/strategy_registry.py) — this field answers "which
+                                    # regime-compatibility origination path produced this trade"
+                                    # (regime_engine.STRATEGY_COMPATIBILITY key), not "which
+                                    # StrategyProfile/execution style governed it".
     confluence_summary: dict       # {score, final_tier, agree, disagree, quality_score, source}
     confidence_assessment: dict    # {overall_confidence, tier, is_calibrated, source} or {} if never assessed
     risk_profile: dict             # {guard_action, guard_penalty, guard_headwind}
@@ -99,7 +106,7 @@ class MemoryRecord:
         return asdict(self)
 
 
-def _strategy_default() -> str:
+def _origination_method_default() -> str:
     try:
         from engine import config
         return str(getattr(config.load(), "regime_strategy", "ict_smc_mast") or "ict_smc_mast")
@@ -109,7 +116,7 @@ def _strategy_default() -> str:
 
 def build_memory_record(trade_row: dict, regime_row: dict = None,
                         confluence_row: dict = None, confidence_row: dict = None,
-                        strategy: str = None) -> MemoryRecord:
+                        origination_method: str = None) -> MemoryRecord:
     """Assemble one MemoryRecord from a trades.json row plus (optionally,
     pre-fetched) history rows. When a history row is not supplied, this
     looks it up via the trade's own `*_ref` field — falling back to the
@@ -176,7 +183,7 @@ def build_memory_record(trade_row: dict, regime_row: dict = None,
             trade_id=tid, symbol=sym, direction=trade_row.get("direction", ""),
             opened=opened, closed=trade_row.get("closed", ""),
             status=trade_row.get("status", "open"), result_r=float(trade_row.get("result_r", 0) or 0),
-            regime=regime, strategy=strategy or _strategy_default(),
+            regime=regime, origination_method=origination_method or _origination_method_default(),
             confluence_summary=confluence_summary, confidence_assessment=confidence_assessment,
             risk_profile={"guard_action": trade_row.get("guard_action", ""),
                          "guard_penalty": trade_row.get("guard_penalty", 0),
@@ -196,7 +203,7 @@ def build_memory_record(trade_row: dict, regime_row: dict = None,
             trade_id=trade_row.get("id", "") if isinstance(trade_row, dict) else "",
             symbol=trade_row.get("symbol", "") if isinstance(trade_row, dict) else "",
             direction="", opened="", closed="", status="error", result_r=0.0,
-            regime={}, strategy=_strategy_default(), confluence_summary={},
+            regime={}, origination_method=_origination_method_default(), confluence_summary={},
             confidence_assessment={}, risk_profile={}, portfolio_context={}, session="unknown",
             news_context={}, outcome={}, post_trade_review={},
             data_completeness={"error": str(exc)},
@@ -523,12 +530,16 @@ def _bucket_stats(records: list, key_fn) -> list:
     return out
 
 
-def performance_by_strategy_regime(records: list = None) -> list:
-    """Which strategy performs best under which regime — grouped by
-    (strategy, regime_primary). Each bucket explicitly reports whether it
-    meets MIN_N_FOR_TRUST; never draws a conclusion below that bar."""
+def performance_by_origination_regime(records: list = None) -> list:
+    """Which origination method performs best under which regime — grouped
+    by (origination_method, regime_primary). Renamed from
+    performance_by_strategy_regime() (V2.2 Priority 2 Item 4 /
+    TECHNICAL_DEBT_REGISTER Item 8) — "strategy" in the old name meant
+    origination method, not the new per-trade Trade.strategy concept. Each
+    bucket explicitly reports whether it meets MIN_N_FOR_TRUST; never draws
+    a conclusion below that bar."""
     records = records if records is not None else build_memory_records()
-    return _bucket_stats(records, lambda r: (r.strategy, (r.regime or {}).get("primary")
+    return _bucket_stats(records, lambda r: (r.origination_method, (r.regime or {}).get("primary")
                                              or (r.regime or {}).get("trend") or "unknown"))
 
 
