@@ -271,7 +271,8 @@ def log_macro_context(sym, direction, ref=""):
 
 
 def log_execution_context(sym, direction, entry, stop, target, atr_pct=None,
-                          news_blackout=False, session=None, when=None, ref=""):
+                          news_blackout=False, session=None, when=None, ref="",
+                          style=None):
     """Day 12: purely observational — simulates this trade's entry fill
     (spread + slippage + latency, per the disclosed assumption model in
     engine/execution/) and persists a normalized report to
@@ -281,15 +282,26 @@ def log_execution_context(sym, direction, entry, stop, target, atr_pct=None,
     only records what a REALISTIC fill of that intent might have cost).
     Never raises. Called at Stage-2 entry, same placement as
     log_macro_context() above. See EXECUTION_SIMULATOR_SPECIFICATION.md
-    Sec.5."""
+    Sec.5.
+
+    `style` (V2.2 Priority 1 Item 3, optional): passed straight through to
+    build_trade_execution_report()'s own `style` parameter — see that
+    docstring and engine/execution/execution_profile.py. Callers today
+    pass `settings.execution_style` (one global config value, since no
+    Strategy Registry exists yet to assign a style per-strategy — see
+    config.py's own execution_style docstring)."""
     try:
         report = exrep.build_trade_execution_report(
             sym, direction, entry, exit_price=None, stop_price=stop,
-            signal_ts=when, atr_pct=atr_pct, news_blackout=news_blackout, session=session)
+            signal_ts=when, atr_pct=atr_pct, news_blackout=news_blackout, session=session,
+            style=style)
         row = exhist.record(sym, report, ref=ref)
+        prof_eval = report.get("execution_profile_evaluation") or {}
         ledger.log({"event": "execution_report", "symbol": sym, "direction": direction,
                     "execution_score": row.get("execution_score"),
-                    "cost_r": row.get("cost_r"), "ref": ref})
+                    "cost_r": row.get("cost_r"), "ref": ref,
+                    "execution_profile_style": prof_eval.get("style"),
+                    "execution_profile_within_tolerance": prof_eval.get("all_within_tolerance")})
         return report
     except Exception:  # noqa: BLE001
         return None
@@ -623,7 +635,8 @@ def main():
                         e_execution = log_execution_context(
                             sym, rec["direction"], rec["entry"], rec["stop"], rec["target"],
                             atr_pct=e_reg.get("atr_pct") if isinstance(e_reg, dict) else None,
-                            news_blackout=blackout, session=e_session, when=when, ref=trade_ref)
+                            news_blackout=blackout, session=e_session, when=when, ref=trade_ref,
+                            style=str(getattr(s, "execution_style", "day") or "day"))
 
                     # --- Day 13: Broker Abstraction Layer — advisory-only,
                     # same posture as Execution/Macro/Market-Memory above:
