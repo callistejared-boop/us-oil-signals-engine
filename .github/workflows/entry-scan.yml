@@ -30,32 +30,24 @@ name: Entry scan (15 min)
 # production, independent of the market-data issue above. Now committed
 # alongside the files that always were.
 #
-# Day 16 debug + fix #1: the persist step's `git add <17 fixed paths>` was
-# failing ATOMICALLY every run (exit 128, "did not match any files")
-# because some of those paths (confidence_history.jsonl, the broker_*
-# stores, experiment_registry.jsonl, etc.) legitimately don't exist yet —
-# they're only created once a trade is confirmed/executed, or a research
-# experiment is registered. `git add` with multiple pathspecs stages
-# NOTHING at all the moment any single pathspec fails to match, not just
-# the missing one, and the old `2>/dev/null || true` was silently hiding
-# that fatal error every run. Fixed by only passing paths that currently
-# exist on disk to `git add` (see the STATE_FILES loop below).
+# Day 16 — two more persistence bugs found and fixed, confirmed via run
+# #60 (commit 3ab0da3 landed on origin/main with run_ledger.jsonl growth
+# plus regime_history.jsonl and 3 data_health_*.jsonl files committed for
+# the first time ever):
 #
-# Day 16 fix #2: fixing #1 revealed a second, previously-unreachable bug.
-# Once `git add`/`git commit` started succeeding, the push loop still
-# failed all 5 retries with "cannot pull with rebase: you have unstaged
-# changes" — cot_cache.json / risk_sentiment_cache.json / spread_cache.json
-# are tracked files that change every run but are intentionally NOT part
-# of STATE_FILES, so they were left dirty after the commit, and
-# `git pull --rebase` refuses to run against a dirty working tree. Fixed
-# by discarding any leftover unstaged changes right after the commit,
-# before attempting the pull/rebase. Confirmed via run #59: local commit
-# c339559 (5 files, 22 insertions) was created but never reached
-# origin/main because of this.
+#   Fix #1 — `git add <fixed pathspec list>` used to fail ATOMICALLY (no
+#   files staged at all, not even ones that changed) any time one of the
+#   listed paths didn't exist yet (e.g. confidence_history.jsonl, which is
+#   only created after the first confirmed/executed trade). The old
+#   `2>/dev/null || true` hid that fatal error every run. Fixed below by
+#   only passing paths that currently exist on disk to `git add`.
 #
-# The ls/check-ignore/git-status/diff-stat debug lines are temporary —
-# remove once a live run confirms run_ledger.jsonl and friends are
-# actually landing on origin/main.
+#   Fix #2 — once fix #1 let a commit succeed, the push loop still failed
+#   because cot_cache.json / risk_sentiment_cache.json / spread_cache.json
+#   are tracked files that change every run but are intentionally not
+#   persisted here, so they were left dirty and blocked `git pull --rebase`
+#   (which refuses to run against a dirty tree). Fixed below by discarding
+#   those leftover diffs right after the commit.
 
 on:
   schedule:
@@ -119,21 +111,12 @@ jobs:
         run: |
           git config user.name "gold-engine-bot"
           git config user.email "actions@users.noreply.github.com"
-          echo "[DEBUG] pwd: $(pwd)"
-          echo "[DEBUG] git toplevel: $(git rev-parse --show-toplevel)"
-          echo "[DEBUG] ls -l run_ledger.jsonl:"
-          ls -l run_ledger.jsonl || echo "[DEBUG] run_ledger.jsonl missing from disk"
-          echo "[DEBUG] git check-ignore -v run_ledger.jsonl:"
-          git check-ignore -v run_ledger.jsonl || echo "[DEBUG] run_ledger.jsonl not ignored"
-          echo "[DEBUG] git status --short (before add):"
-          git status --short
 
-          # Day 16 fix #1: only add paths that actually exist right now.
+          # Day 16 fix #1: only add paths that currently exist on disk.
           # Files like confidence_history.jsonl / broker_*.jsonl /
           # experiment_registry.jsonl are legitimately absent until their
-          # first real write (confirmed trade, registered experiment,
-          # etc.) — that's expected, not an error, and must not abort
-          # staging of everything else.
+          # first real write — that's expected, not an error, and must
+          # not abort staging of everything else.
           STATE_FILES=(
             pending.json trades.json run_ledger.jsonl
             regime_history.jsonl confluence_history.jsonl confidence_history.jsonl
@@ -144,36 +127,20 @@ jobs:
           )
           TO_ADD=()
           for f in "${STATE_FILES[@]}"; do
-            if [ -e "$f" ]; then
-              TO_ADD+=("$f")
-            else
-              echo "[DEBUG] skipping $f — not present on disk this run (expected until its first write)"
-            fi
+            [ -e "$f" ] && TO_ADD+=("$f")
           done
           if [ "${#TO_ADD[@]}" -gt 0 ]; then
             git add -- "${TO_ADD[@]}"
-            echo "[DEBUG] git add exit code: $?"
-          else
-            echo "[DEBUG] no state files present to add"
           fi
 
-          echo "[DEBUG] git status --short (after add):"
-          git status --short
-          echo "[DEBUG] git diff --cached --stat:"
-          git diff --cached --stat
           if ! git diff --cached --quiet; then
             git commit -m "state: entry-scan update [skip ci]"
             # Day 16 fix #2: cot_cache.json / risk_sentiment_cache.json /
             # spread_cache.json are tracked files that legitimately change
             # every run but are intentionally excluded from STATE_FILES.
-            # Left dirty, they block `git pull --rebase` (it refuses to run
-            # against a dirty working tree). Discard them post-commit —
-            # they're scratch caches, not state we intend to persist here.
-            echo "[DEBUG] git status --short (before discard, pre-rebase):"
-            git status --short
-            git checkout -- . || true
-            echo "[DEBUG] git status --short (after discard, pre-rebase):"
-            git status --short
+            # Left dirty, they block `git pull --rebase`. Discard them
+            # post-commit — they're scratch caches, not state we persist.
+            git checkout -- .
             for i in 1 2 3 4 5; do
               git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)" && \
               git push origin HEAD && break
