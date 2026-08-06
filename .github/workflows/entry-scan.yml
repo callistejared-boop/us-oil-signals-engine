@@ -30,7 +30,7 @@ name: Entry scan (15 min)
 # production, independent of the market-data issue above. Now committed
 # alongside the files that always were.
 #
-# Day 16 debug + fix: the persist step's `git add <17 fixed paths>` was
+# Day 16 debug + fix #1: the persist step's `git add <17 fixed paths>` was
 # failing ATOMICALLY every run (exit 128, "did not match any files")
 # because some of those paths (confidence_history.jsonl, the broker_*
 # stores, experiment_registry.jsonl, etc.) legitimately don't exist yet —
@@ -38,17 +38,24 @@ name: Entry scan (15 min)
 # experiment is registered. `git add` with multiple pathspecs stages
 # NOTHING at all the moment any single pathspec fails to match, not just
 # the missing one, and the old `2>/dev/null || true` was silently hiding
-# that fatal error every run. Proven directly via run #58's log (see
-# DAY16 debug diagnostics below): run_ledger.jsonl showed as genuinely
-# modified in `git status` both before and after `git add`, because the
-# add itself never staged anything.
+# that fatal error every run. Fixed by only passing paths that currently
+# exist on disk to `git add` (see the STATE_FILES loop below).
 #
-# Fix: only pass paths that currently exist on disk to `git add`, so an
-# as-yet-unborn optional history file is normal, expected state rather
-# than an error that poisons the whole persist step. The ls/check-ignore/
-# git-status/diff-stat debug lines are temporary — remove once a live run
-# confirms run_ledger.jsonl and friends are actually landing on
-# origin/main again.
+# Day 16 fix #2: fixing #1 revealed a second, previously-unreachable bug.
+# Once `git add`/`git commit` started succeeding, the push loop still
+# failed all 5 retries with "cannot pull with rebase: you have unstaged
+# changes" — cot_cache.json / risk_sentiment_cache.json / spread_cache.json
+# are tracked files that change every run but are intentionally NOT part
+# of STATE_FILES, so they were left dirty after the commit, and
+# `git pull --rebase` refuses to run against a dirty working tree. Fixed
+# by discarding any leftover unstaged changes right after the commit,
+# before attempting the pull/rebase. Confirmed via run #59: local commit
+# c339559 (5 files, 22 insertions) was created but never reached
+# origin/main because of this.
+#
+# The ls/check-ignore/git-status/diff-stat debug lines are temporary —
+# remove once a live run confirms run_ledger.jsonl and friends are
+# actually landing on origin/main.
 
 on:
   schedule:
@@ -121,7 +128,7 @@ jobs:
           echo "[DEBUG] git status --short (before add):"
           git status --short
 
-          # Day 16 fix: only add paths that actually exist right now.
+          # Day 16 fix #1: only add paths that actually exist right now.
           # Files like confidence_history.jsonl / broker_*.jsonl /
           # experiment_registry.jsonl are legitimately absent until their
           # first real write (confirmed trade, registered experiment,
@@ -156,6 +163,17 @@ jobs:
           git diff --cached --stat
           if ! git diff --cached --quiet; then
             git commit -m "state: entry-scan update [skip ci]"
+            # Day 16 fix #2: cot_cache.json / risk_sentiment_cache.json /
+            # spread_cache.json are tracked files that legitimately change
+            # every run but are intentionally excluded from STATE_FILES.
+            # Left dirty, they block `git pull --rebase` (it refuses to run
+            # against a dirty working tree). Discard them post-commit —
+            # they're scratch caches, not state we intend to persist here.
+            echo "[DEBUG] git status --short (before discard, pre-rebase):"
+            git status --short
+            git checkout -- . || true
+            echo "[DEBUG] git status --short (after discard, pre-rebase):"
+            git status --short
             for i in 1 2 3 4 5; do
               git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)" && \
               git push origin HEAD && break
