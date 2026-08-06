@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import random
 
+from . import execution_profile as ep
 from . import fill_model as fm
 
 VERSION = "1.0.0"
@@ -69,11 +70,19 @@ def build_trade_execution_report(symbol: str, direction: str, entry_price: float
                                  session: str | None = None, zero_liquidity: bool = False,
                                  missing_data: bool = False, stale_price: bool = False,
                                  entry_limit_price: float | None = None, entry_price_path=None,
-                                 rng: "random.Random | None" = None) -> dict:
+                                 rng: "random.Random | None" = None,
+                                 style: str | None = None) -> dict:
     """Simulates entry (always) and exit (if `exit_price` given) fills and
     assembles the full fill-quality report + execution score. Never
     raises — any internal failure degrades to a report with `filled:
-    False` legs and an `error` field, never a fabricated cost."""
+    False` legs and an `error` field, never a fabricated cost.
+
+    `style` (V2.2 Priority 1 Item 3, optional, default None): when given
+    ("swing" | "day" | "scalping"), also evaluates the entry fill against
+    engine.execution.execution_profile's named tolerance profile for that
+    style, attached as `execution_profile_evaluation`. None (the default)
+    skips this entirely — every existing caller/test that doesn't pass
+    `style` sees byte-identical output to before this parameter existed."""
     try:
         entry_fill = fm.simulate_fill(
             symbol, direction, entry_order_type, entry_price, signal_ts=signal_ts,
@@ -107,9 +116,15 @@ def build_trade_execution_report(symbol: str, direction: str, entry_price: float
 
         score = score_execution(cost_r=cost_r, cost_bps=cost_bps, filled=bool(both_filled))
 
+        profile_eval = ep.evaluate(
+            {"entry_detail": entry_fill, "entry_filled": entry_fill.get("filled"),
+             "cost_r": cost_r},
+            style=style) if style else None
+
         return {
             "symbol": symbol, "direction": direction,
             "intended_entry": entry_price, "actual_entry": entry_fill.get("actual_price"),
+            "execution_profile_evaluation": profile_eval,
             "entry_filled": entry_fill.get("filled"), "entry_fill_reason": entry_fill.get("reason"),
             "expected_exit": exit_price,
             "actual_exit": exit_fill.get("actual_price") if exit_fill else None,
