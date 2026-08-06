@@ -40,6 +40,7 @@ from engine.execution import execution_report as exrep, execution_history as exh
 from engine.broker.contract import OrderRequest  # noqa: E402
 from engine.data_health import feed_monitor as dh_monitor, freshness as dh_freshness  # noqa: E402
 from engine import scan_latency, scan_latency_history as slhist        # noqa: E402
+from engine import strategy_registry                                    # noqa: E402
 
 # Day 13: one PaperBroker instance per (account_id, process). Constructed
 # lazily on first use — see `_broker()` below — and cached for the rest
@@ -287,9 +288,11 @@ def log_execution_context(sym, direction, entry, stop, target, atr_pct=None,
     `style` (V2.2 Priority 1 Item 3, optional): passed straight through to
     build_trade_execution_report()'s own `style` parameter — see that
     docstring and engine/execution/execution_profile.py. Callers today
-    pass `settings.execution_style` (one global config value, since no
-    Strategy Registry exists yet to assign a style per-strategy — see
-    config.py's own execution_style docstring)."""
+    resolve it via `engine.strategy_registry.execution_style_for()` (V2.2
+    Strategy Registry), which falls back to `settings.execution_style`
+    (the pre-Registry global interim value) whenever the strategy_id is
+    unset/unknown — see that module's docstring and config.py's own
+    execution_style docstring for the fallback chain."""
     try:
         report = exrep.build_trade_execution_report(
             sym, direction, entry, exit_price=None, stop_price=stop,
@@ -636,7 +639,7 @@ def main():
                             sym, rec["direction"], rec["entry"], rec["stop"], rec["target"],
                             atr_pct=e_reg.get("atr_pct") if isinstance(e_reg, dict) else None,
                             news_blackout=blackout, session=e_session, when=when, ref=trade_ref,
-                            style=str(getattr(s, "execution_style", "day") or "day"))
+                            style=strategy_registry.execution_style_for(regime_strategy, settings=s))
 
                     # --- Day 13: Broker Abstraction Layer — advisory-only,
                     # same posture as Execution/Macro/Market-Memory above:
