@@ -394,3 +394,62 @@ def test_close_position_never_raises_on_internal_error(broker_paths, monkeypatch
     result = broker.close_position("XAUUSD", "ref1", 2020.0)
     assert result["closed"] is False
     assert "error" in result
+
+
+# ---- Concurrent same-symbol positions (per-trade tracking, V2.2 P1 Item 1) --
+
+def test_concurrent_same_symbol_different_refs_tracked_separately(broker_paths):
+    broker = PaperBroker(account_id="acct1", starting_capital=20000.0)
+    o1 = broker.submit_order(_req(client_order_id="cA", ref="refA",
+                                  intended_price=2000.0, stop_price=1990.0))
+    o2 = broker.submit_order(_req(client_order_id="cB", ref="refB",
+                                  intended_price=2010.0, stop_price=2000.0))
+    assert o1.status == OrderStatus.FILLED
+    assert o2.status == OrderStatus.FILLED
+    positions = broker.get_positions("acct1")
+    xau_positions = [p for p in positions if p.symbol == "XAUUSD"]
+    assert len(xau_positions) == 2   # two separate lots, not blended into one
+    refs = {p.ref for p in xau_positions}
+    assert refs == {"refA", "refB"}
+    entries = {p.avg_entry for p in xau_positions}
+    assert len(entries) == 2   # distinct entry prices preserved, not weighted-averaged
+
+
+def test_close_one_of_two_concurrent_same_symbol_positions_only_closes_that_ref(broker_paths):
+    broker = PaperBroker(account_id="acct1", starting_capital=20000.0, leverage=30.0)
+    broker.submit_order(_req(client_order_id="cA", ref="refA",
+                             intended_price=2000.0, stop_price=1990.0))
+    broker.submit_order(_req(client_order_id="cB", ref="refB",
+                             intended_price=2010.0, stop_price=2000.0))
+    balances_before = broker.get_balances("acct1")
+
+    result = broker.close_position("XAUUSD", "refA", 2020.0)
+    assert result["closed"] is True
+
+    positions = broker.get_positions("acct1")
+    xau_positions = [p for p in positions if p.symbol == "XAUUSD"]
+    assert len(xau_positions) == 1
+    assert xau_positions[0].ref == "refB"   # refB untouched by refA's close
+
+    balances_after = broker.get_balances("acct1")
+    assert balances_after.margin_used > 0            # refB's margin still reserved
+    assert balances_after.margin_used < balances_before.margin_used  # refA's own margin released
+
+
+def test_rebuild_from_history_preserves_per_ref_positions_across_restart(broker_paths):
+    b1 = PaperBroker(account_id="acct1", starting_capital=20000.0)
+    b1.submit_order(_req(client_order_id="cA", ref="refA",
+                         intended_price=2000.0, stop_price=1990.0))
+    b1.submit_order(_req(client_order_id="cB", ref="refB",
+                         intended_price=2010.0, stop_price=2000.0))
+    b1_positions = {p.ref: p for p in b1.get_positions("acct1")}
+
+    b2 = PaperBroker(account_id="acct1", starting_capital=20000.0)   # fresh process
+    b2_positions = {p.ref: p for p in b2.get_positions("acct1")}
+    assert set(b2_positions.keys()) == {"refA", "refB"}
+    # Rebuilt state must exactly reproduce each trade's own actual fill
+    # price (which includes slippage, so it will not equal the bare
+    # intended_price) - not blend the two refs together.
+    assert b2_positions["refA"].avg_entry == b1_positions["refA"].avg_entry
+    assert b2_positions["refB"].avg_entry == b1_positions["refB"].avg_entry
+    assert b2_positions["refA"].avg_entry != b2_positions["refB"].avg_entry
