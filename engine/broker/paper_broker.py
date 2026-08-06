@@ -9,17 +9,17 @@ account balances, idempotency, and graceful failure handling.
 
 Order-type resolution policy (a disclosed design choice, not a fill_model
 change):
-  - MARKET / STOP: resolve IMMEDIATELY on submission (this platform's own
-    alert semantics mean the trigger condition is already met at signal
-    time — see `engine/execution/fill_model.py`'s own docstring for why
-    this is true upstream too). Outcome is FILLED, PARTIALLY_FILLED, or
-    REJECTED — never left WORKING.
-  - LIMIT with a supplied `price_path`: also resolves immediately,
-    deterministically (did price actually reach the limit level).
-  - LIMIT with NO `price_path`: rests as a genuine WORKING order — this
-    is what makes `cancel_order()`/`modify_order()` meaningful rather
-    than trivial no-ops. A later call to `check_working_orders()`
-    resolves it once a real price crossing is known.
+- MARKET / STOP: resolve IMMEDIATELY on submission (this platform's own
+  alert semantics mean the trigger condition is already met at signal
+  time — see `engine/execution/fill_model.py`'s own docstring for why
+  this is true upstream too). Outcome is FILLED, PARTIALLY_FILLED, or
+  REJECTED — never left WORKING.
+- LIMIT with a supplied `price_path`: also resolves immediately,
+  deterministically (did price actually reach the limit level).
+- LIMIT with NO `price_path`: rests as a genuine WORKING order — this
+  is what makes `cancel_order()`/`modify_order()` meaningful rather
+  than trivial no-ops. A later call to `check_working_orders()`
+  resolves it once a real price crossing is known.
 
 Units note (read before touching P&L math): `engine.execution.fill_model`
 reports execution cost in PRICE units (the same units as `entry`/`stop`).
@@ -31,12 +31,16 @@ happens exactly once, not scattered across the package.
 Concurrency note ("concurrent order scenarios" in the mandate): this
 platform's execution model is a single-threaded 15-minute scan loop, the
 same model every prior Day 1-12 subsystem already assumes. "Concurrent"
-here means MULTIPLE ORDERS ACROSS DIFFERENT SYMBOLS submitted within the
-same scan (e.g. XAUUSD and WTIUSD both trigger entries in the same
-15-minute tick) — verified in testing to be correctly isolated (no
-cross-symbol state bleed, no shared-account race), not true
-multi-threaded concurrency, which this codebase has never claimed to
-support anywhere.
+here originally meant MULTIPLE ORDERS ACROSS DIFFERENT SYMBOLS submitted
+within the same scan (e.g. XAUUSD and WTIUSD both trigger entries in the
+same 15-minute tick) — verified in testing to be correctly isolated (no
+cross-symbol state bleed, no shared-account race). As of Version 2.2
+Priority 1 Item 1, it also correctly covers MULTIPLE INDEPENDENT TRADES
+ON THE SAME SYMBOL within one process's lifetime — `position_engine.py`
+now tracks positions per `(account_id, symbol, ref)`, not per
+`(account_id, symbol)`, so two concurrent same-symbol trades no longer
+blend into one aggregate position. Still not true multi-threaded
+concurrency, which this codebase has never claimed to support anywhere.
 """
 from __future__ import annotations
 
@@ -56,20 +60,16 @@ VERSION = "1.0.0"
 
 DEFAULT_ACCOUNT_ID = "paper-default"
 
-
 def _direction_for_entry(side: str) -> str:
     return "long" if side == "buy" else "short"
 
-
 def _closing_side(direction: str) -> str:
     return "sell" if direction == "long" else "buy"
-
 
 def _dollar_cost(cost_price_units: "float | None", quantity: float, symbol: str) -> float:
     if not cost_price_units:
         return 0.0
     return round(abs(cost_price_units) * abs(quantity) * _mult(symbol), 6)
-
 
 def _failure_reason(sf: "dict | None") -> "str | None":
     """Maps a `simulate_failure` dict's BROKER-INFRASTRUCTURE flags
@@ -77,15 +77,15 @@ def _failure_reason(sf: "dict | None") -> "str | None":
     `fill_model` instead — see `submit_order()`) to a disclosed
     rejection reason. Only ever set by tests/replay — NEVER by the live
     `alert_signals.py` call site. Documented recovery behavior for each:
-      - broker_unavailable / network_interruption / timeout: transient —
-        SAFE TO RETRY with the identical `client_order_id`; the
-        idempotency check in `submit_order()` means a retry that
-        eventually succeeds will not double-open a position, and a retry
-        that hits the same simulated failure again is itself harmless
-        (still no position opened).
-      - stale_quote: the caller should refresh its price before retrying
-        with a NEW `client_order_id` (retrying with the same intended
-        price under the same stale condition will just reject again)."""
+    - broker_unavailable / network_interruption / timeout: transient —
+      SAFE TO RETRY with the identical `client_order_id`; the
+      idempotency check in `submit_order()` means a retry that
+      eventually succeeds will not double-open a position, and a retry
+      that hits the same simulated failure again is itself harmless
+      (still no position opened).
+    - stale_quote: the caller should refresh its price before retrying
+      with a NEW `client_order_id` (retrying with the same intended
+      price under the same stale condition will just reject again)."""
     sf = sf or {}
     if sf.get("broker_unavailable"):
         return "broker unavailable — simulated outage; safe to retry with the same client_order_id"
@@ -96,7 +96,6 @@ def _failure_reason(sf: "dict | None") -> "str | None":
     if sf.get("stale_quote"):
         return "stale quote — simulated; refresh price before retrying with a new client_order_id"
     return None
-
 
 class PaperBroker(BrokerInterface):
     """One `PaperBroker` instance is bound to one account for its
@@ -118,7 +117,7 @@ class PaperBroker(BrokerInterface):
         acct_mod.REGISTRY.rebuild_from_history(account_id)
         self._rng = rng
         self._working: dict = {}          # order_id -> Order (resting limit orders)
-        self._client_id_cache: dict = {}   # client_order_id -> order_id (this-process fast path)
+        self._client_id_cache: dict = {}  # client_order_id -> order_id (this-process fast path)
 
     # ---- BrokerInterface -------------------------------------------------
 
@@ -150,8 +149,6 @@ class PaperBroker(BrokerInterface):
 
             order = ost.transition(order, OrderStatus.ACCEPTED, reason="broker accepted order")
             bh.record_order_transition(order)
-            events.emit(events.EventType.ORDER_ACCEPTED, request.account_id, request.symbol,
-                       {"order_id": order.order_id}, ref=request.ref)
             order = ost.transition(order, OrderStatus.WORKING, reason="order is working")
             bh.record_order_transition(order)
 
@@ -167,16 +164,16 @@ class PaperBroker(BrokerInterface):
                     return order
                 quantity = acct_mod.REGISTRY.position_size(
                     request.account_id, request.intended_price, request.stop_price, request.symbol)
-            if quantity <= 0:
-                order = ost.transition(order, OrderStatus.REJECTED,
-                                       reason="cannot size order (zero risk distance or zero equity)",
-                                       reject_reason="cannot size order (zero risk distance or zero equity)")
-                bh.record_order_transition(order)
-                events.emit(events.EventType.REJECTION, request.account_id, request.symbol,
-                           {"order_id": order.order_id, "reason": order.reject_reason}, ref=request.ref)
-                return order
-            import dataclasses
-            order = dataclasses.replace(order, quantity=quantity)
+                if quantity <= 0:
+                    order = ost.transition(order, OrderStatus.REJECTED,
+                                           reason="cannot size order (zero risk distance or zero equity)",
+                                           reject_reason="cannot size order (zero risk distance or zero equity)")
+                    bh.record_order_transition(order)
+                    events.emit(events.EventType.REJECTION, request.account_id, request.symbol,
+                               {"order_id": order.order_id, "reason": order.reject_reason}, ref=request.ref)
+                    return order
+                import dataclasses
+                order = dataclasses.replace(order, quantity=quantity)
 
             acct = acct_mod.REGISTRY.get_or_create(request.account_id)
             margin_needed = pos_mod.ENGINE.margin_required(
@@ -320,7 +317,7 @@ class PaperBroker(BrokerInterface):
         positions = pos_mod.ENGINE.open_positions(account_id)
         unrealized_total = sum((p.unrealized_pnl or 0.0) for p in positions)
         return acct_mod.REGISTRY.snapshot(account_id, unrealized_pnl_total=unrealized_total,
-                                         open_position_count=len(positions))
+                                          open_position_count=len(positions))
 
     def get_execution_reports(self, account_id: str, n: int = 20) -> list:
         return bh.execution_reports(account_id, n=n)
@@ -379,8 +376,15 @@ class PaperBroker(BrokerInterface):
     def close_position(self, symbol: str, ref: str, exit_price: float, exit_ts=None,
                        reason: str = "position closed", atr_pct=None,
                        news_blackout: bool = False, session=None, stale_price: bool = False) -> dict:
-        """Submits the EXIT leg for this account's current position in
-        `symbol`. Not part of `BrokerInterface` (the mandate's 7 core
+        """Submits the EXIT leg for this account's position in `symbol`
+        identified by `ref` — the specific trade being closed, NOT the
+        blended symbol-wide aggregate. Prior to Version 2.2 Priority 1
+        Item 1 this looked up the whole symbol's aggregate position
+        (ignoring the `ref` it received), so closing one of several
+        concurrent same-symbol trades used the wrong avg_entry/quantity
+        for its P&L and margin-release math. `ENGINE.snapshot(...,
+        ref=ref)` now returns exactly the one position `ref` owns,
+        fixing that. Not part of `BrokerInterface` (the mandate's 7 core
         broker operations are entry/lifecycle-focused; closing is this
         platform's own trade-management concept, layered on top — same
         relationship `journal.settle()`'s partial-banking logic has to
@@ -388,9 +392,9 @@ class PaperBroker(BrokerInterface):
         try:
             from engine.execution import fill_model as fm
             account_id = self.account_id
-            snap = pos_mod.ENGINE.snapshot(account_id, symbol)
+            snap = pos_mod.ENGINE.snapshot(account_id, symbol, ref=ref)
             if snap.direction == "flat":
-                return {"closed": False, "reason": "no open position for this symbol"}
+                return {"closed": False, "reason": f"no open position for symbol={symbol!r} ref={ref!r}"}
             direction = snap.direction
             side = _closing_side(direction)
 
@@ -403,8 +407,8 @@ class PaperBroker(BrokerInterface):
             bh.record_order_transition(order)
 
             fill_out = fm.simulate_fill(symbol, direction, "market", exit_price, signal_ts=exit_ts,
-                                        leg="exit", atr_pct=atr_pct, news_blackout=news_blackout,
-                                        session=session, stale_price=stale_price, rng=self._rng)
+                                       leg="exit", atr_pct=atr_pct, news_blackout=news_blackout,
+                                       session=session, stale_price=stale_price, rng=self._rng)
             if not fill_out.get("filled"):
                 order = ost.transition(order, OrderStatus.REJECTED, reason=fill_out.get("reason", ""),
                                        reject_reason=fill_out.get("reason", ""))
@@ -421,7 +425,7 @@ class PaperBroker(BrokerInterface):
             bh.record_fill(fill)
 
             result = pos_mod.ENGINE.on_fill(account_id, symbol, side, "exit", fill_out["actual_price"],
-                                            quantity, 0.0, cost_dollars, ref=ref, ts=fill.ts)
+                                           quantity, 0.0, cost_dollars, ref=ref, ts=fill.ts)
             acct = acct_mod.REGISTRY.get_or_create(account_id)
             released = pos_mod.ENGINE.margin_required(symbol, snap.avg_entry, quantity, acct.leverage)
             acct_mod.REGISTRY.release_margin(account_id, released)
@@ -478,9 +482,9 @@ class PaperBroker(BrokerInterface):
                     if entry is None or stop is None:
                         continue
                     exit_price = approx_exit_price(entry, stop, row.get("direction", "long"),
-                                                   row.get("result_r", 0.0))
+                                                  row.get("result_r", 0.0))
                     result = self.close_position(symbol, ref, exit_price,
-                                                 exit_ts=row.get("closed") or row.get("opened"))
+                                                exit_ts=row.get("closed") or row.get("opened"))
                     out.append({"ref": ref, **result})
                 except Exception:  # noqa: BLE001
                     continue
@@ -541,7 +545,6 @@ class PaperBroker(BrokerInterface):
         except Exception:  # noqa: BLE001
             pass
 
-
 def _load_trades() -> list:
     """Same reuse pattern as `engine.execution.replay._load_trades()` —
     reads `journal.STORE` via `store.load_array()` rather than adding a
@@ -552,7 +555,6 @@ def _load_trades() -> list:
     except Exception:  # noqa: BLE001
         return []
 
-
 def dashboard_snapshot(account_id: str = DEFAULT_ACCOUNT_ID, n_events: int = 10) -> dict:
     """One-call, PLAIN-DICT summary for `dashboard_publish.py` (and any
     other reporting consumer): account balances, open positions, pending
@@ -561,7 +563,10 @@ def dashboard_snapshot(account_id: str = DEFAULT_ACCOUNT_ID, n_events: int = 10)
     objects `BrokerInterface` methods return directly, so this is safe to
     drop straight into a JSON-published dashboard payload the same way
     `execution_history.last_for()`/`macro_engine.last_assessment()`
-    already are.
+    already are. Since Version 2.2 Priority 1 Item 1, `open_positions`
+    below naturally contains one row per open TRADE (not per symbol) —
+    a strict increase in granularity for this payload, no code change
+    needed here.
 
     Constructs a fresh `PaperBroker` (which rebuilds from
     `broker_history.jsonl`) on every call — acceptable for a dashboard/
@@ -574,7 +579,7 @@ def dashboard_snapshot(account_id: str = DEFAULT_ACCOUNT_ID, n_events: int = 10)
         balances = dataclasses.asdict(broker.get_balances(account_id))
         positions = [dataclasses.asdict(p) for p in broker.get_positions(account_id)]
         pending_orders = [dataclasses.asdict(o) for o in broker._working.values()
-                          if o.account_id == account_id]
+                         if o.account_id == account_id]
         recent_activity = broker.get_execution_reports(account_id, n=n_events)
         return {
             "account_id": account_id, "balances": balances, "open_positions": positions,
