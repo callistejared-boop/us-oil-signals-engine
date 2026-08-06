@@ -39,6 +39,7 @@ from engine import (config, signals, journal, pending, news_guard,        # noqa
 from engine.execution import execution_report as exrep, execution_history as exhist  # noqa: E402
 from engine.broker.contract import OrderRequest  # noqa: E402
 from engine.data_health import feed_monitor as dh_monitor, freshness as dh_freshness  # noqa: E402
+from engine import scan_latency, scan_latency_history as slhist        # noqa: E402
 
 # Day 13: one PaperBroker instance per (account_id, process). Constructed
 # lazily on first use — see `_broker()` below — and cached for the rest
@@ -471,6 +472,7 @@ def write_scan_status(symbol_status: dict, elapsed_seconds: float) -> dict:
 
 def main():
     _scan_start = time.monotonic()
+    timer = scan_latency.ScanTimer()
     s = config.load()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     news_state = news_guard.evaluate()
@@ -490,7 +492,8 @@ def main():
     scan_symbol_status = {}   # Day 15: sym -> {"fetch_ok": bool, "error": str|None}
     for sym in markets.symbols(s):
         try:
-            df = markets.fetch(sym, s)
+            with timer.stage("market_fetch"):
+                df = markets.fetch(sym, s)
             scan_symbol_status[sym] = {"fetch_ok": True, "error": None}
             journal.settle(df, symbol=sym)
 
@@ -500,7 +503,8 @@ def main():
             # Purely observational — updates only the paper account's own
             # balance/positions, never the trade journal or any gate. See
             # PAPER_BROKER_SPECIFICATION.md Sec.8.
-            sync_paper_broker_closures(sym)
+            with timer.stage("paper_broker"):
+                sync_paper_broker_closures(sym)
 
             # --- Day 4: centralized Market Regime Engine ---------------------
             # Runs first, per symbol, per scan — the first analytical stage in
@@ -511,8 +515,9 @@ def main():
             # this is a separate, new, multi-timeframe classification used
             # only for history/explainability/advisory filtering, so nothing
             # about the existing, already-tested range_guard behavior changes.
-            mkt_regime = rgeng.classify(df, sym, strategy=regime_strategy,
-                                        news_state=news_state)
+            with timer.stage("regime"):
+                mkt_regime = rgeng.classify(df, sym, strategy=regime_strategy,
+                                            news_state=news_state)
             rhist.record(sym, "strategic", mkt_regime)
             ledger.log({"event": "regime", "symbol": sym, "primary": mkt_regime["primary"],
                         "confidence": mkt_regime["confidence"],
@@ -520,14 +525,17 @@ def main():
                         "transition": mkt_regime["transition_label"],
                         "tags": mkt_regime["tags"], "mode": regime_mode})
 
-            for typ, rec in pending.update(sym, df):
+            with timer.stage("origination"):
+                pending_events = pending.update(sym, df)
+            for typ, rec in pending_events:
                 if typ == "entry" and not blackout:
                     erk = risk_guard.evaluate(sym)
                     if erk["locked"]:
                         log.append(f"{sym}: entry HELD — {erk['reason']}")
                         ledger.log({"event": "entry_held", "symbol": sym,
                                     "reason": erk["reason"]})
-                        log_decision_snapshot(
+                        with timer.stage("explainability"):
+                            log_decision_snapshot(
                             sym, rec["direction"], pd.Timestamp(df.index[-1]),
                             stage="market_regime_assessment", final_action="rejected",
                             mkt_regime=mkt_regime,
@@ -550,8 +558,9 @@ def main():
                     # and the Market Memory Engine actually join against.
                     rhist.record(sym, "strategic", mkt_regime, ref=trade_ref)
                     try:
-                        e_cr = cf.analyze(df.tail(12000), symbol=sym,
-                                          min_score=s.confluence_min_score)
+                        with timer.stage("confluence"):
+                            e_cr = cf.analyze(df.tail(12000), symbol=sym,
+                                              min_score=s.confluence_min_score)
                         e_conf = ({"score": e_cr.score, "agree": len(e_cr.agree)}
                                   if e_cr else {})
                         log_confluence_explainability(sym, e_cr, ref=trade_ref)  # Day 5/6
@@ -565,14 +574,16 @@ def main():
                     # risk_guard [above] -> portfolio validation [here] ->
                     # publication). See engine/portfolio_risk.py and
                     # RISK_SPECIFICATION.md.
-                    e_pr = pr.evaluate(sym, rec["direction"], rec["entry"], rec["stop"],
-                                       settings=s, session_label=e_reg.get("session")
-                                       if isinstance(e_reg, dict) else None)
+                    with timer.stage("portfolio_risk"):
+                        e_pr = pr.evaluate(sym, rec["direction"], rec["entry"], rec["stop"],
+                                           settings=s, session_label=e_reg.get("session")
+                                           if isinstance(e_reg, dict) else None)
                     if not e_pr["allow"]:
                         log.append(f"{sym}: entry HELD (portfolio) — {e_pr['reason']}")
                         ledger.log({"event": "portfolio_held", "symbol": sym,
                                     "category": e_pr["category"], "reason": e_pr["reason"]})
-                        log_decision_snapshot(
+                        with timer.stage("explainability"):
+                            log_decision_snapshot(
                             sym, rec["direction"], when, stage="portfolio_risk",
                             final_action="rejected", mkt_regime=mkt_regime, regime_ref=trade_ref,
                             cr=e_cr, confluence_ref=trade_ref,
@@ -588,16 +599,18 @@ def main():
                     # rationale/assumptions but never its score. See
                     # MARKET_MEMORY_SPECIFICATION.md.
                     e_session = e_reg.get("session") if isinstance(e_reg, dict) else None
-                    e_memory = log_market_memory_context(
-                        sym, rec["direction"], mkt_regime=mkt_regime, cr=e_cr,
-                        portfolio_verdict=e_pr, session=e_session, as_of=when)
+                    with timer.stage("memory"):
+                        e_memory = log_market_memory_context(
+                            sym, rec["direction"], mkt_regime=mkt_regime, cr=e_cr,
+                            portfolio_verdict=e_pr, session=e_session, as_of=when)
 
                     # --- Day 11: Macro Intelligence Engine — advisory-only,
                     # same posture as Market Memory above: computed and
                     # persisted for later review/research, never read by any
                     # gate above and never folded into confidence or
                     # confluence. See MACRO_ENGINE_SPECIFICATION.md Sec.6.
-                    e_macro = log_macro_context(sym, rec["direction"], ref=trade_ref)
+                    with timer.stage("macro"):
+                        e_macro = log_macro_context(sym, rec["direction"], ref=trade_ref)
 
                     # --- Day 12: Execution Simulator — advisory-only, same
                     # posture as Macro/Market-Memory above: simulates this
@@ -606,10 +619,11 @@ def main():
                     # Never gates, never resizes, never touches the trade's
                     # own entry/stop/target. See
                     # EXECUTION_SIMULATOR_SPECIFICATION.md Sec.6.
-                    e_execution = log_execution_context(
-                        sym, rec["direction"], rec["entry"], rec["stop"], rec["target"],
-                        atr_pct=e_reg.get("atr_pct") if isinstance(e_reg, dict) else None,
-                        news_blackout=blackout, session=e_session, when=when, ref=trade_ref)
+                    with timer.stage("execution_simulation"):
+                        e_execution = log_execution_context(
+                            sym, rec["direction"], rec["entry"], rec["stop"], rec["target"],
+                            atr_pct=e_reg.get("atr_pct") if isinstance(e_reg, dict) else None,
+                            news_blackout=blackout, session=e_session, when=when, ref=trade_ref)
 
                     # --- Day 13: Broker Abstraction Layer — advisory-only,
                     # same posture as Execution/Macro/Market-Memory above:
@@ -620,10 +634,11 @@ def main():
                     # gates, never resizes, never touches the trade's own
                     # entry/stop/target. See PAPER_BROKER_SPECIFICATION.md
                     # Sec.8.
-                    e_broker = log_paper_broker_submission(
-                        sym, rec["direction"], rec["entry"], rec["stop"], rec["target"],
-                        atr_pct=e_reg.get("atr_pct") if isinstance(e_reg, dict) else None,
-                        news_blackout=blackout, session=e_session, when=when, ref=trade_ref)
+                    with timer.stage("paper_broker"):
+                        e_broker = log_paper_broker_submission(
+                            sym, rec["direction"], rec["entry"], rec["stop"], rec["target"],
+                            atr_pct=e_reg.get("atr_pct") if isinstance(e_reg, dict) else None,
+                            news_blackout=blackout, session=e_session, when=when, ref=trade_ref)
 
                     # --- Day 6: Confidence Engine — assessed last, after every
                     # upstream gate (origination, regime, confluence, risk,
@@ -631,18 +646,20 @@ def main():
                     # or downgrade this entry, only records/displays a
                     # transparent synthesis of what already happened. See
                     # CONFIDENCE_ENGINE_SPECIFICATION.md.
-                    e_assessment = log_confidence_assessment(
-                        sym, rec["direction"], sig=pending.as_signal(rec), mkt_regime=mkt_regime,
-                        cr=e_cr, portfolio_verdict=e_pr, guard=e_guard, news_state=news_state,
-                        session=e_session, risk_locked=bool(erk.get("locked")), settings=s,
-                        ref=trade_ref, memory_context=e_memory)
+                    with timer.stage("confidence"):
+                        e_assessment = log_confidence_assessment(
+                            sym, rec["direction"], sig=pending.as_signal(rec), mkt_regime=mkt_regime,
+                            cr=e_cr, portfolio_verdict=e_pr, guard=e_guard, news_state=news_state,
+                            session=e_session, risk_locked=bool(erk.get("locked")), settings=s,
+                            ref=trade_ref, memory_context=e_memory)
 
                     # --- Day 8: Explainability Engine — the final, immutable
                     # decision snapshot for this fill. Recorded AFTER every
                     # upstream gate/assessment above; purely observational,
                     # cannot affect whether this entry publishes. See
                     # EXPLAINABILITY_SPECIFICATION.md.
-                    log_decision_snapshot(
+                    with timer.stage("explainability"):
+                        log_decision_snapshot(
                         sym, rec["direction"], when, stage="approval_or_rejection",
                         final_action="approved_entry", mkt_regime=mkt_regime, regime_ref=trade_ref,
                         cr=e_cr, confluence_ref=trade_ref, confidence_assessment=e_assessment,
@@ -652,12 +669,13 @@ def main():
                     _send(s, build_entry(rec, lt, confluence=e_cr, confidence=e_assessment,
                                         macro=e_macro, execution=e_execution, broker=e_broker),
                          channel=markets.channel_for(sym, s))
-                    journal.log_signal(pending.as_signal(rec), when,
-                                       regime=e_reg, guard=e_guard,
-                                       confluence=e_conf, confluence_ref=trade_ref,
-                                       confidence_ref=trade_ref, regime_ref=trade_ref,
-                                       macro_ref=trade_ref, execution_ref=trade_ref,
-                                       broker_ref=trade_ref)
+                    with timer.stage("persistence"):
+                        journal.log_signal(pending.as_signal(rec), when,
+                                           regime=e_reg, guard=e_guard,
+                                           confluence=e_conf, confluence_ref=trade_ref,
+                                           confidence_ref=trade_ref, regime_ref=trade_ref,
+                                           macro_ref=trade_ref, execution_ref=trade_ref,
+                                           broker_ref=trade_ref)
                     log.append(f"{sym}: ENTRY {rec['direction']} @ {rec['entry']}")
                     ledger.log({"event": "entry", "symbol": sym, "dir": rec["direction"],
                                 "entry": rec["entry"], "stop": rec["stop"], "rr": rec["rr"],
@@ -676,8 +694,9 @@ def main():
                             "reason": rk["reason"], "day_r": rk["day_r"]})
                 continue
 
-            sig = signals.analyze(df.tail(12000),
-                                  min_conf=signals.PUBLISH_THRESHOLD, symbol=sym)
+            with timer.stage("origination"):
+                sig = signals.analyze(df.tail(12000),
+                                      min_conf=signals.PUBLISH_THRESHOLD, symbol=sym)
             if sig is None:
                 log.append(f"{sym}: no setup"); continue
             if pending.exists(sig) or journal.is_open(sym, sig.direction, sig.entry):
@@ -699,7 +718,8 @@ def main():
                             "primary": mkt_regime["primary"],
                             "quality_score": mkt_regime["quality_score"],
                             "threshold": regime_min_quality})
-                log_decision_snapshot(
+                with timer.stage("explainability"):
+                    log_decision_snapshot(
                     sym, sig.direction, pd.Timestamp(df.index[-1]),
                     stage="market_regime_assessment", final_action="rejected",
                     mkt_regime=mkt_regime,
@@ -712,8 +732,9 @@ def main():
             # a live channel. Confluence can only confirm or reject/downgrade
             # Layer 1's read, never originate a trade on its own.
             try:
-                cr = cf.analyze(df.tail(12000), symbol=sym,
-                                min_score=s.confluence_min_score)
+                with timer.stage("confluence"):
+                    cr = cf.analyze(df.tail(12000), symbol=sym,
+                                    min_score=s.confluence_min_score)
             except Exception as exc:  # noqa: BLE001
                 cr = None
                 log.append(f"{sym}: confluence engine error {exc}")
@@ -724,7 +745,8 @@ def main():
                 ledger.log({"event": "confluence_held", "symbol": sym,
                             "score": cr.score, "final_tier": cr.final_tier,
                             "disagree": cr.disagree})
-                log_decision_snapshot(
+                with timer.stage("explainability"):
+                    log_decision_snapshot(
                     sym, sig.direction, pd.Timestamp(df.index[-1]),
                     stage="confluence_assessment", final_action="rejected",
                     mkt_regime=mkt_regime, cr=cr,
@@ -747,13 +769,15 @@ def main():
             # the level with NO further portfolio check in between. So the
             # portfolio gate must run here too, not just at Stage-2 — see
             # RISK_SPECIFICATION.md Sec.3 for why both stages need it.
-            pr_verdict = pr.evaluate(sym, sig.direction, sig.entry, sig.stop,
-                                     settings=s, session_label=r.get("session"))
+            with timer.stage("portfolio_risk"):
+                pr_verdict = pr.evaluate(sym, sig.direction, sig.entry, sig.stop,
+                                         settings=s, session_label=r.get("session"))
             if not pr_verdict["allow"]:
                 log.append(f"{sym}: HEADS-UP HELD (portfolio) — {pr_verdict['reason']}")
                 ledger.log({"event": "portfolio_held", "symbol": sym,
                             "category": pr_verdict["category"], "reason": pr_verdict["reason"]})
-                log_decision_snapshot(
+                with timer.stage("explainability"):
+                    log_decision_snapshot(
                     sym, sig.direction, pd.Timestamp(df.index[-1]),
                     stage="portfolio_risk", final_action="rejected",
                     mkt_regime=mkt_regime, cr=cr,
@@ -766,30 +790,34 @@ def main():
 
             # --- Day 7: Market Memory Engine — advisory only, see Stage-2's
             # identical comment above.
-            heads_up_memory = log_market_memory_context(
-                sym, sig.direction, mkt_regime=mkt_regime, cr=cr,
-                portfolio_verdict=pr_verdict, session=r.get("session"),
-                as_of=pd.Timestamp(df.index[-1]))
+            with timer.stage("memory"):
+                heads_up_memory = log_market_memory_context(
+                    sym, sig.direction, mkt_regime=mkt_regime, cr=cr,
+                    portfolio_verdict=pr_verdict, session=r.get("session"),
+                    as_of=pd.Timestamp(df.index[-1]))
 
             # --- Day 6: Confidence Engine — Stage-1 heads-up assessment. No
             # trade row exists yet (this only seeds pending.json), so `ref`
             # is left empty; the join falls back to nearest-timestamp for
             # any research done on Stage-1 reads specifically.
-            assessment = log_confidence_assessment(
-                sym, sig.direction, sig=sig, mkt_regime=mkt_regime, cr=cr,
-                portfolio_verdict=pr_verdict, guard=guard, news_state=news_state,
-                session=r.get("session"), risk_locked=bool(rk.get("locked")), settings=s,
-                memory_context=heads_up_memory)
+            with timer.stage("confidence"):
+                assessment = log_confidence_assessment(
+                    sym, sig.direction, sig=sig, mkt_regime=mkt_regime, cr=cr,
+                    portfolio_verdict=pr_verdict, guard=guard, news_state=news_state,
+                    session=r.get("session"), risk_locked=bool(rk.get("locked")), settings=s,
+                    memory_context=heads_up_memory)
 
             # --- Day 8: Explainability Engine — heads-up decision snapshot.
             # Purely observational; recorded after every upstream gate above,
             # cannot affect whether this heads-up publishes.
-            log_decision_snapshot(
+            with timer.stage("explainability"):
+                log_decision_snapshot(
                 sym, sig.direction, pd.Timestamp(df.index[-1]), stage="approval_or_rejection",
                 final_action="approved_heads_up", mkt_regime=mkt_regime, cr=cr,
                 confidence_assessment=assessment, memory_context=heads_up_memory, settings=s)
 
-            pending.add(sig, pd.Timestamp(df.index[-1]))
+            with timer.stage("persistence"):
+                pending.add(sig, pd.Timestamp(df.index[-1]))
             _send(s, build_prealert(sig, r, guard, confluence=cr, confidence=assessment),
                  channel=markets.channel_for(sym, s))
             log.append(f"{sym}: HEADS-UP {sig.direction} @ {sig.entry}"
@@ -817,19 +845,32 @@ def main():
     log.append(f"data health: {health.get('overall_status')} "
                f"({health.get('counts', {})})")
 
-    (ROOT / "alert_heartbeat.txt").write_text("\n".join(log) + "\n", encoding="utf-8")
-    print(" | ".join(log))
+    with timer.stage("persistence"):
+        (ROOT / "alert_heartbeat.txt").write_text("\n".join(log) + "\n", encoding="utf-8")
+        print(" | ".join(log))
 
-    # Day 15: durable, cache-backed status (see write_scan_status docstring
-    # above) — written before the dashboard publish attempt so a dashboard
-    # bug can never suppress the scan-outcome record.
-    status = write_scan_status(scan_symbol_status, time.monotonic() - _scan_start)
+        # Day 15: durable, cache-backed status (see write_scan_status docstring
+        # above) — written before the dashboard publish attempt so a dashboard
+        # bug can never suppress the scan-outcome record.
+        status = write_scan_status(scan_symbol_status, time.monotonic() - _scan_start)
 
     try:
         from engine import dashboard_publish as dp
-        dp.main()   # keep the live mobile dashboard fresh every scan, not just hourly
+        with timer.stage("dashboard"):
+            dp.main()   # keep the live mobile dashboard fresh every scan, not just hourly
     except Exception as exc:  # noqa: BLE001
         print("dashboard publish skipped:", exc)
+
+    # V2.2 Priority 1 Item 2: persist this scan's per-stage latency
+    # (scan_latency.ScanTimer -> scan_latency_history.jsonl). "Workflow
+    # End" is total_ms itself (timer.total_ms(), captured at record() call
+    # time) rather than a separate wrapped stage - there is no code left to
+    # time once every stage above has run. Recorded unconditionally, before
+    # the total-outage check below, so latency data survives even on a scan
+    # that goes on to raise.
+    slhist.record(timer.snapshot(), timer.total_ms(),
+                   symbol_count=len(markets.symbols(s)),
+                   call_counts=timer.call_counts())
 
     if status.get("total_data_outage"):
         # Every symbol failed to even fetch data this scan. Everything
