@@ -17,18 +17,11 @@ MAX_LINES = 5000
 def log(event: dict) -> None:
     try:
         rec = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds"), **(event or {})}
-        # TEMP DEBUG (Day 16): run_ledger.jsonl has not grown on origin/main
-        # since 2026-07-24 despite alert_signals.py clearly calling log()
-        # every scan (confirmed via Actions logs). This function's own
-        # except-and-pass was hiding whatever is going wrong. These two
-        # print lines are diagnostic only — remove once the root cause is
-        # found and fixed; they are not a behavior change.
-        print(f"[LEDGER] Writing event '{rec.get('event')}' to {LEDGER}")
         with open(LEDGER, "a", encoding="utf-8") as f:
             f.write(json.dumps(rec) + "\n")
         _rotate()
-    except Exception as e:  # noqa: BLE001
-        print(f"[LEDGER ERROR] Failed to append to {LEDGER}: {type(e).__name__}: {e}")
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def _rotate() -> None:
