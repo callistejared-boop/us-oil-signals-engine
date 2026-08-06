@@ -29,6 +29,9 @@ _FIELDS = [
     # --- Day 6: confidence engine (see CONFIDENCE_ENGINE_SPECIFICATION.md) --
     "confidence_tier_low", "confidence_tier_moderate", "confidence_tier_high",
     "confidence_tier_exceptional",
+    # --- V2.2 Priority 1 Item 3: execution profile style (see
+    # engine/execution/execution_profile.py) ---------------------------------
+    "execution_style",
 ]
 
 
@@ -137,6 +140,16 @@ class Settings:
     confidence_tier_moderate: int = 55      # >= this -> "Moderate Confidence"
     confidence_tier_high: int = 70          # >= this -> "High Confidence"
     confidence_tier_exceptional: int = 85   # >= this -> "Exceptional Confidence"
+    # --- V2.2 Priority 1 Item 3: which named tolerance profile (see
+    # engine.execution.execution_profile.PROFILES: "swing" | "day" |
+    # "scalping") the live Execution Simulator evaluates every fill
+    # against. The platform has one production strategy today, same
+    # posture as regime_strategy above; this is config-driven so a second,
+    # differently-styled strategy is a value change, not a code change.
+    # Superseded per-strategy once the Strategy Registry (V2.2, not yet
+    # built) exists - this single global setting is the deliberate,
+    # disclosed interim source until then.
+    execution_style: str = "day"
 
 
 def load(path: Path | None = None) -> Settings:
