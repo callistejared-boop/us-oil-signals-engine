@@ -72,3 +72,7 @@
 {"ts": "2026-08-06T10:06:44+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 54, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-06T10:06:44+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-06T07:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-06T10:06:44+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 10, "quality": 33, "transition": "high", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-08-06T12:18:01+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 35, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-06T12:18:01+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 35, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-06T12:18:02+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 0, "quality": 15, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-06T12:18:02+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 21, "quality": 47, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
