@@ -20,14 +20,19 @@ def test_first_fill_opens_position():
 
 
 def test_same_direction_add_weighted_average():
+    # Both fills share ref="r1" - this is one trade being added to (e.g.
+    # a scale-in), which must still weighted-average within that one
+    # position. Two DIFFERENT refs on the same symbol are a separate
+    # scenario covered by test_different_refs_same_symbol_tracked_separately
+    # below - as of V2.2 Priority 1 Item 1 they are never blended.
     pe = PositionEngine()
     pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.1, 0.0, 0.0, ref="r1")
-    r = pe.on_fill("a1", "XAUUSD", "buy", "entry", 2010.0, 0.1, 0.0, 0.0, ref="r2")
+    r = pe.on_fill("a1", "XAUUSD", "buy", "entry", 2010.0, 0.1, 0.0, 0.0, ref="r1")
     assert r["action"] == "increased"
-    snap = pe.snapshot("a1", "XAUUSD")
+    snap = pe.snapshot("a1", "XAUUSD", ref="r1")
     assert snap.quantity == 0.2
     assert abs(snap.avg_entry - 2005.0) < 1e-9
-    assert set(snap.open_refs) == {"r1", "r2"}
+    assert snap.open_refs == ("r1",)
 
 
 def test_opposite_direction_reduces_and_realizes_pnl():
@@ -54,13 +59,48 @@ def test_full_close_flattens_position():
 
 
 def test_flip_when_opposite_fill_overshoots_quantity():
+    # Same ref throughout - one trade whose position flips direction
+    # (e.g. a reversal order on the same ticket), not two independent
+    # trades. See the note on test_same_direction_add_weighted_average.
     pe = PositionEngine()
     pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.1, 0.0, 0.0, ref="r1")
-    r = pe.on_fill("a1", "XAUUSD", "sell", "entry", 2000.0, 0.3, 0.0, 0.0, ref="r2")
+    r = pe.on_fill("a1", "XAUUSD", "sell", "entry", 2000.0, 0.3, 0.0, 0.0, ref="r1")
     assert r["action"] == "flipped"
-    snap = pe.snapshot("a1", "XAUUSD")
+    snap = pe.snapshot("a1", "XAUUSD", ref="r1")
     assert snap.direction == "short"
     assert abs(snap.quantity - 0.2) < 1e-9
+
+
+def test_different_refs_same_symbol_tracked_separately():
+    """V2.2 Priority 1 Item 1: the core behavioral change. Two
+    independently-managed trades on the same symbol (different refs)
+    must never blend into one weighted-average lot - each gets its own
+    position, keyed by (account_id, symbol, ref)."""
+    pe = PositionEngine()
+    pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.1, 0.0, 0.0, ref="r1")
+    r = pe.on_fill("a1", "XAUUSD", "buy", "entry", 2010.0, 0.1, 0.0, 0.0, ref="r2")
+    assert r["action"] == "opened"   # a brand new position for r2, not an add to r1
+    snap_r1 = pe.snapshot("a1", "XAUUSD", ref="r1")
+    snap_r2 = pe.snapshot("a1", "XAUUSD", ref="r2")
+    assert snap_r1.quantity == 0.1 and snap_r1.avg_entry == 2000.0
+    assert snap_r2.quantity == 0.1 and snap_r2.avg_entry == 2010.0
+    open_refs = {p.ref for p in pe.open_positions("a1", "XAUUSD")}
+    assert open_refs == {"r1", "r2"}
+
+
+def test_snapshot_without_ref_returns_blended_aggregate_across_refs():
+    """snapshot(account_id, symbol) with no ref still returns the old
+    symbol-wide aggregate view, computed on demand across every open
+    ref - preserved for callers that want total symbol exposure."""
+    pe = PositionEngine()
+    pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.1, 0.0, 0.0, ref="r1")
+    pe.on_fill("a1", "XAUUSD", "buy", "entry", 2010.0, 0.1, 0.0, 0.0, ref="r2")
+    agg = pe.snapshot("a1", "XAUUSD")
+    assert agg.direction == "long"
+    assert agg.quantity == 0.2
+    assert abs(agg.avg_entry - 2005.0) < 1e-9
+    assert set(agg.open_refs) == {"r1", "r2"}
+    assert agg.ref == ""   # empty ref marks this as the blended aggregate, not one trade
 
 
 def test_realized_pnl_accumulates_across_multiple_close_cycles():
