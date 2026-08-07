@@ -152,3 +152,10 @@
 {"ts": "2026-08-07T10:46:09+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 43, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "COT positioning", "pivot level confluence", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-07T10:46:09+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-07T10:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-07T10:46:09+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 13, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T11:40:13+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 44, "quality": 51, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T11:40:14+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 35, "quality": 52, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T11:40:14+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 0, "quality": 36, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T11:40:15+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 50, "quality_score": 67, "independent_agreement": 0.657, "n_conflicts": 1}
+{"ts": "2026-08-07T11:40:15+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 50, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-07T11:40:15+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-07T11:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-07T11:40:15+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
