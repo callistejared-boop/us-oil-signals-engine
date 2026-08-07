@@ -187,3 +187,13 @@
 {"ts": "2026-08-07T18:31:18+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 20, "quality": 39, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-07T18:31:18+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 12, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-07T18:31:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 24, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-07T19:38:09+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T19:38:11+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 66, "quality_score": 76, "independent_agreement": 0.644, "n_conflicts": 0}
+{"ts": "2026-08-07T19:38:11+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 66, "final_tier": "watch", "disagree": ["gold/silver ratio", "cross-asset risk sentiment", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-08-07T19:38:11+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-07T15:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-07T19:38:11+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 20, "quality": 39, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-07T19:38:11+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 13, "quality": 45, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-07T19:38:13+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 70, "quality_score": 79, "independent_agreement": 0.709, "n_conflicts": 1}
+{"ts": "2026-08-07T19:38:13+00:00", "event": "portfolio_held", "symbol": "BTCUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-07T19:38:13+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-07T19:30:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-07T19:38:13+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 17, "quality": 50, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
