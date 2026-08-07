@@ -90,3 +90,10 @@
 {"ts": "2026-08-06T16:38:02+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 54, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "COT positioning", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-06T16:38:02+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-06T16:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-06T16:38:02+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 4, "quality": 12, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-08-07T00:14:53+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 33, "quality": 50, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T00:14:55+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 79, "quality_score": 77, "independent_agreement": 0.636, "n_conflicts": 1}
+{"ts": "2026-08-07T00:14:55+00:00", "event": "portfolio_held", "symbol": "XAUUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-07T00:14:55+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-06T20:00:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-07T00:14:55+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 25, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T00:14:56+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 12, "quality": 24, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-07T00:14:56+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 4, "quality": 18, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
