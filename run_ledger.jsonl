@@ -115,3 +115,10 @@
 {"ts": "2026-08-07T06:19:10+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 34, "quality": 55, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-07T06:19:11+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 16, "quality": 25, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-07T06:19:11+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 7, "quality": 13, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T07:51:08+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 41, "quality": 50, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-07T07:51:10+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 54, "quality_score": 79, "independent_agreement": 0.583, "n_conflicts": 1}
+{"ts": "2026-08-07T07:51:10+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 54, "final_tier": "watch", "disagree": ["price action", "gold/silver ratio", "cross-asset risk sentiment", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-07T07:51:10+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-07T03:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-07T07:51:10+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 25, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T07:51:10+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 16, "quality": 25, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-07T07:51:11+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 16, "quality": 19, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
