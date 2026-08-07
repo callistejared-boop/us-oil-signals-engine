@@ -211,3 +211,10 @@
 {"ts": "2026-08-07T21:08:15+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 64, "final_tier": "watch", "disagree": ["COT positioning", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-07T21:08:15+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-07T21:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-07T21:08:16+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 13, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T21:54:50+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-07T21:54:50+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-07T21:54:51+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 13, "quality": 45, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-07T21:54:52+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 68, "quality_score": 84, "independent_agreement": 0.671, "n_conflicts": 0}
+{"ts": "2026-08-07T21:54:52+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 68, "final_tier": "watch", "disagree": ["price action", "COT positioning", "candlestick pattern (opposing pattern just printed)"]}
+{"ts": "2026-08-07T21:54:52+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-07T21:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-07T21:54:53+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 13, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
