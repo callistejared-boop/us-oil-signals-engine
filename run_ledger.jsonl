@@ -159,3 +159,7 @@
 {"ts": "2026-08-07T11:40:15+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 50, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-07T11:40:15+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-07T11:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-07T11:40:15+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-07T12:27:22+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 47, "quality": 55, "transition": "low", "tags": ["News-Driven"], "mode": "advisory"}
+{"ts": "2026-08-07T12:27:23+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 35, "quality": 52, "transition": "low", "tags": ["News-Driven"], "mode": "advisory"}
+{"ts": "2026-08-07T12:27:23+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 0, "quality": 30, "transition": "high", "tags": ["News-Driven"], "mode": "advisory"}
+{"ts": "2026-08-07T12:27:24+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 17, "quality": 50, "transition": "low", "tags": ["Contraction", "News-Driven"], "mode": "advisory"}
