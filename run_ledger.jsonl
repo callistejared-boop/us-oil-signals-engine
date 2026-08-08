@@ -247,3 +247,10 @@
 {"ts": "2026-08-08T03:00:04+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-08T03:00:04+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 14, "quality": 45, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-08T03:00:05+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 13, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-08T04:15:10+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-08T04:15:11+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-08T04:15:11+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 14, "quality": 39, "transition": "medium", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-08T04:15:12+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 62, "quality_score": 70, "independent_agreement": 0.55, "n_conflicts": 1}
+{"ts": "2026-08-08T04:15:12+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 62, "final_tier": "watch", "disagree": ["COT positioning", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-08T04:15:12+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-08T04:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-08T04:15:13+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 13, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
