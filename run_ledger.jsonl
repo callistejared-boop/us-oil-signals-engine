@@ -330,3 +330,10 @@
 {"ts": "2026-08-08T15:33:06+00:00", "event": "portfolio_held", "symbol": "BTCUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
 {"ts": "2026-08-08T15:33:06+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-08T15:30:00", "stage": "portfolio_risk", "final_action": "rejected"}
 {"ts": "2026-08-08T15:33:06+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 18, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-08-08T16:01:48+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-08T16:01:49+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-08T16:01:49+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 15, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-08T16:01:50+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 73, "quality_score": 74, "independent_agreement": 0.614, "n_conflicts": 2}
+{"ts": "2026-08-08T16:01:50+00:00", "event": "portfolio_held", "symbol": "BTCUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-08T16:01:50+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-08T16:00:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-08T16:01:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 18, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
