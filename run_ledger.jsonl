@@ -527,3 +527,10 @@
 {"ts": "2026-08-09T22:58:24+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-09T22:58:24+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 13, "quality": 39, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-09T22:58:24+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 13, "quality": 18, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-09T23:32:37+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 57, "quality": 58, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-09T23:32:39+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 81, "quality_score": 79, "independent_agreement": 0.691, "n_conflicts": 1}
+{"ts": "2026-08-09T23:32:39+00:00", "event": "portfolio_held", "symbol": "XAUUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-09T23:32:39+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-09T19:15:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-09T23:32:39+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 32, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-09T23:32:40+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 15, "quality": 18, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-09T23:32:40+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 13, "quality": 18, "transition": "medium", "tags": [], "mode": "advisory"}
