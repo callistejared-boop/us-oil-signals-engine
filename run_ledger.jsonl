@@ -612,3 +612,10 @@
 {"ts": "2026-08-10T15:39:27+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 45, "quality": 52, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-10T15:39:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 27, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-10T15:39:28+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 6, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-10T16:30:33+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 47, "quality": 52, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-10T16:30:36+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 60, "quality_score": 78, "independent_agreement": 0.514, "n_conflicts": 1}
+{"ts": "2026-08-10T16:30:36+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 60, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "gold/silver ratio", "cross-asset risk sentiment", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-10T16:30:36+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-10T12:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-10T16:30:36+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 46, "quality": 55, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-10T16:30:36+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 20, "quality": 23, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-10T16:30:37+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 12, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
