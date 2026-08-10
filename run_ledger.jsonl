@@ -598,3 +598,10 @@
 {"ts": "2026-08-10T13:42:08+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 42, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-10T13:42:09+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 23, "quality": 27, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-10T13:42:09+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 16, "quality": 25, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-10T14:43:35+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 46, "quality": 52, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-10T14:43:36+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 41, "quality_score": 79, "independent_agreement": 0.617, "n_conflicts": 1}
+{"ts": "2026-08-10T14:43:36+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 41, "final_tier": "rejected", "disagree": ["price action", "mean reversion (overextended)", "gold/silver ratio", "cross-asset risk sentiment", "candlestick pattern (opposing pattern just printed)", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-10T14:43:36+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-10T10:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-10T14:43:37+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 47, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-10T14:43:37+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 27, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-10T14:43:37+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 18, "transition": "medium", "tags": [], "mode": "advisory"}
