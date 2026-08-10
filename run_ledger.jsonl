@@ -546,3 +546,13 @@
 {"ts": "2026-08-10T04:18:00+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 46, "quality": 55, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-10T04:18:00+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 25, "quality": 48, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-10T04:18:01+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 2, "quality": 16, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-10T05:53:56+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 45, "quality": 51, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-10T05:53:57+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 74, "quality_score": 78, "independent_agreement": 0.69, "n_conflicts": 1}
+{"ts": "2026-08-10T05:53:57+00:00", "event": "portfolio_held", "symbol": "XAUUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-10T05:53:57+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-10T01:30:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-10T05:53:57+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 47, "quality": 55, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-10T05:53:57+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 25, "quality": 48, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-10T05:53:58+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 64, "quality_score": 77, "independent_agreement": 0.657, "n_conflicts": 0}
+{"ts": "2026-08-10T05:53:58+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 64, "final_tier": "watch", "disagree": ["COT positioning", "breaker/mitigation block (zone works against this)"]}
+{"ts": "2026-08-10T05:53:58+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-10T05:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-10T05:53:58+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 19, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
