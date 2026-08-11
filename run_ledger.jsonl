@@ -697,3 +697,7 @@
 {"ts": "2026-08-11T08:36:36+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 49, "quality_score": 80, "independent_agreement": 0.6, "n_conflicts": 0}
 {"ts": "2026-08-11T08:36:36+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 49, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)", "news", "RSI divergence (active divergence warns against this)"]}
 {"ts": "2026-08-11T08:36:36+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-11T04:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-11T09:40:59+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 34, "quality": 47, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T09:41:00+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 35, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T09:41:00+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 28, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T09:41:00+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 0, "quality": 31, "transition": "high", "tags": [], "mode": "advisory"}
