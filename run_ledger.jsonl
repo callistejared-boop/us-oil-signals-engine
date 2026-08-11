@@ -732,3 +732,10 @@
 {"ts": "2026-08-11T13:41:03+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-11T14:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-11T13:41:03+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 28, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-11T13:41:03+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 12, "quality": 24, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T14:43:53+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 33, "quality": 43, "transition": "high", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-11T14:43:55+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 64, "quality_score": 83, "independent_agreement": 0.614, "n_conflicts": 0}
+{"ts": "2026-08-11T14:43:55+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 64, "final_tier": "watch", "disagree": ["volume profile (buying above value)", "RSI divergence (active divergence warns against this)"]}
+{"ts": "2026-08-11T14:43:55+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-11T10:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-11T14:43:55+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 38, "quality": 50, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T14:43:55+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 31, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T14:43:56+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 15, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
