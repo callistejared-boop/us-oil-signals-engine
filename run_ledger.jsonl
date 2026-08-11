@@ -722,3 +722,13 @@
 {"ts": "2026-08-11T12:10:50+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 37, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-11T12:10:51+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 22, "quality": 27, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-11T12:10:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 3, "quality": 10, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T13:41:01+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 35, "quality": 44, "transition": "high", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-11T13:41:02+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 66, "quality_score": 78, "independent_agreement": 0.514, "n_conflicts": 0}
+{"ts": "2026-08-11T13:41:02+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 66, "final_tier": "watch", "disagree": ["price action", "volume profile (buying above value)", "breaker/mitigation block (zone works against this)"]}
+{"ts": "2026-08-11T13:41:02+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-11T09:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-11T13:41:02+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 38, "quality": 50, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T13:41:03+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 60, "quality_score": 76, "independent_agreement": 0.457, "n_conflicts": 1}
+{"ts": "2026-08-11T13:41:03+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 60, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-11T13:41:03+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-11T14:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-11T13:41:03+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 28, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-11T13:41:03+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 12, "quality": 24, "transition": "low", "tags": [], "mode": "advisory"}
