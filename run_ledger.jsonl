@@ -791,3 +791,13 @@
 {"ts": "2026-08-12T02:02:51+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-12T02:02:52+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 20, "quality": 51, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-12T02:02:52+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 0, "quality": 40, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T04:16:54+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 54, "quality": 57, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-12T04:16:56+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 82, "quality_score": 86, "independent_agreement": 0.587, "n_conflicts": 1}
+{"ts": "2026-08-12T04:16:56+00:00", "event": "portfolio_held", "symbol": "XAUUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-12T04:16:56+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-12T00:00:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-12T04:16:56+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 24, "quality": 52, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T04:16:56+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 24, "quality": 52, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T04:16:57+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 0, "quality": 40, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T04:16:58+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 40, "quality_score": 64, "independent_agreement": 0.475, "n_conflicts": 1}
+{"ts": "2026-08-12T04:16:58+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 40, "final_tier": "rejected", "disagree": ["price action", "mean reversion (overextended)", "volume profile (buying above value)", "news", "Brent-WTI/crack spreads", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-12T04:16:58+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-12T00:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
