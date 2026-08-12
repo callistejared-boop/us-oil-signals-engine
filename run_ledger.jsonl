@@ -873,3 +873,10 @@
 {"ts": "2026-08-12T21:02:28+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 26, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-12T21:02:29+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 25, "quality": 52, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-12T21:02:29+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 1, "quality": 16, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-12T22:01:54+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 34, "quality": 43, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T22:01:55+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 63, "quality_score": 77, "independent_agreement": 0.643, "n_conflicts": 0}
+{"ts": "2026-08-12T22:01:55+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 63, "final_tier": "watch", "disagree": ["breaker/mitigation block (zone works against this)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-08-12T22:01:55+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-12T16:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-12T22:01:55+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 25, "quality": 52, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-12T22:01:56+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 15, "quality": 41, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T22:01:56+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 1, "quality": 16, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
