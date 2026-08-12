@@ -784,3 +784,10 @@
 {"ts": "2026-08-11T23:58:20+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 30, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-11T23:58:20+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 21, "quality": 46, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-11T23:58:21+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 0, "quality": 40, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-12T02:02:49+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 50, "quality": 53, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-12T02:02:51+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 62, "quality_score": 79, "independent_agreement": 0.517, "n_conflicts": 1}
+{"ts": "2026-08-12T02:02:51+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 62, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-12T02:02:51+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-11T21:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-12T02:02:51+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T02:02:52+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 20, "quality": 51, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-12T02:02:52+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 0, "quality": 40, "transition": "low", "tags": [], "mode": "advisory"}
