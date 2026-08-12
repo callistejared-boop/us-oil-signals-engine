@@ -266,8 +266,28 @@ class PositionEngine:
         signed_qty = sum((p.quantity if p.direction == "long" else -p.quantity) for p in open_matches)
         direction = "long" if signed_qty > 0 else ("short" if signed_qty < 0 else "flat")
         same_dir = [p for p in open_matches if p.direction == direction] if direction != "flat" else []
-        total_qty = sum(p.quantity for p in same_dir)
-        avg_entry = (sum(p.avg_entry * p.quantity for p in same_dir) / total_qty) if total_qty else None
+        # Bug-hunt fix (V2.2 Pass 2): `total_qty` must be the NET quantity
+        # (abs(signed_qty)) so it stays consistent with `direction`, which
+        # is itself derived from the net signed quantity above. The old
+        # code summed only the same-direction refs' raw quantities, which
+        # silently ignored any offsetting opposite-direction ref open on
+        # the same symbol -- e.g. a 0.2-lot long ref concurrent with a
+        # 0.1-lot short ref reported quantity=0.2 (gross same-direction)
+        # instead of the net 0.1 exposure the "long, 0.1" direction+
+        # quantity pair is supposed to represent. Currently dead code (no
+        # production caller passes ref=None -- see module docstring, this
+        # is a documented hook for a future portfolio-risk/dashboard total-
+        # exposure view), caught during the V2.2 bug-hunt before anything
+        # started relying on it. `avg_entry` is still computed from only
+        # the same-direction lots' own entry prices (the best available
+        # per-lot data); netting two independently-managed trades doesn't
+        # have one universally "correct" blended entry price for the
+        # offsetting portion, so this remains an approximation -- the fix
+        # here is specifically about `quantity` matching `direction`, not
+        # about inventing a netting-aware price model.
+        total_qty = abs(signed_qty)
+        same_dir_qty = sum(p.quantity for p in same_dir)
+        avg_entry = (sum(p.avg_entry * p.quantity for p in same_dir) / same_dir_qty) if same_dir_qty else None
         realized = sum(p.realized_pnl for p in matches)
         fees = sum(p.fees_paid for p in matches)
         costs = sum(p.execution_costs for p in matches)

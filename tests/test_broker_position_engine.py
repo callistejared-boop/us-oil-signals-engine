@@ -103,6 +103,39 @@ def test_snapshot_without_ref_returns_blended_aggregate_across_refs():
     assert agg.ref == ""   # empty ref marks this as the blended aggregate, not one trade
 
 
+def test_snapshot_aggregate_nets_opposite_direction_refs():
+    """Bug-hunt fix (V2.2 Pass 2): if two independently-managed refs on
+    the same symbol are open in OPPOSITE directions (e.g. a 0.2-lot long
+    ref and a 0.1-lot short ref, both concurrently open), the blended
+    aggregate's `quantity` must be the NET quantity (0.1), consistent
+    with `direction` ("long") -- not the gross same-direction-only sum
+    (0.2), which was the actual bug: `direction` was already computed
+    from the net signed quantity, but `quantity` summed only the
+    same-direction refs, silently dropping the offsetting short ref's
+    contribution to total exposure."""
+    pe = PositionEngine()
+    pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.2, 0.0, 0.0, ref="r_long")
+    pe.on_fill("a1", "XAUUSD", "sell", "entry", 2010.0, 0.1, 0.0, 0.0, ref="r_short")
+    agg = pe.snapshot("a1", "XAUUSD")
+    assert agg.direction == "long"
+    assert abs(agg.quantity - 0.1) < 1e-9   # net, not gross-same-direction (0.2)
+    assert set(agg.open_refs) == {"r_long", "r_short"}
+
+
+def test_snapshot_aggregate_fully_hedged_refs_report_flat_net_quantity():
+    """Equal-and-opposite refs on the same symbol: direction/quantity
+    both derive from net signed quantity (0), even though two refs are
+    still individually open (open_refs still lists both -- this is a
+    net-exposure view, not a claim that nothing is open)."""
+    pe = PositionEngine()
+    pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.15, 0.0, 0.0, ref="r_long")
+    pe.on_fill("a1", "XAUUSD", "sell", "entry", 2005.0, 0.15, 0.0, 0.0, ref="r_short")
+    agg = pe.snapshot("a1", "XAUUSD")
+    assert agg.direction == "flat"
+    assert agg.quantity == 0.0
+    assert set(agg.open_refs) == {"r_long", "r_short"}
+
+
 def test_realized_pnl_accumulates_across_multiple_close_cycles():
     pe = PositionEngine()
     pe.on_fill("a1", "XAUUSD", "buy", "entry", 2000.0, 0.1, 0.0, 0.0, ref="r1")
