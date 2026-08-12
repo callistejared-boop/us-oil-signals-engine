@@ -231,10 +231,28 @@ def test_seasonality_btc_is_honestly_neutral_every_month():
     assert sea.alignment("long", symbol="BTCUSD", month=6)["supports"] is None
 
 
-def test_risk_sentiment_gold_inverts_oil_and_btc():
+def test_risk_sentiment_gold_inverts_oil_and_btc(monkeypatch):
     """Gold is a safe haven (risk-off supportive); oil and BTC both trade
     with risk sentiment (risk-on supportive). This was the actual bug: gold
-    used to reuse oil's mapping and would have scored backwards."""
+    used to reuse oil's mapping and would have scored backwards.
+
+    Bug-hunt fix (V2.2): the oil_off case exercises WTIUSD in a risk-off
+    regime, which is exactly the branch that consults the LIVE geopolitical
+    supply-shock override (rs._geopolitical_override_active -> bias_adjust.
+    news_view("WTIUSD")). That reads real, current news state, so this test
+    was non-deterministic: whenever oil's actual live news cache carries a
+    HIGH-strength BUY signal (e.g. a real Strait of Hormuz disruption
+    headline), the override correctly fires per the module's own documented
+    design and returns supports=None instead of False, failing this
+    hardcoded assertion. That is NOT a risk_sentiment.py defect -- it is
+    working exactly as documented. The sibling test directly above
+    (test_risk_sentiment_risk_off_normally_bearish_for_long) already avoids
+    this by using symbol="__no_news_symbol__"; this test must do the same
+    (via an explicit monkeypatch, since it needs the real "WTIUSD" symbol
+    for the assertion label) so it verifies the *inversion mapping* in
+    isolation from live news state, not real-world market conditions."""
+    monkeypatch.setattr(rs, "_geopolitical_override_active", lambda symbol="WTIUSD": False)
+
     risk_off = {"vix": 30.0, "spx": 5200.0, "regime": "risk-off", "asof": "2026-07-19"}
     risk_on = {"vix": 12.0, "spx": 5500.0, "regime": "risk-on", "asof": "2026-07-19"}
 
