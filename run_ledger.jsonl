@@ -828,3 +828,7 @@
 {"ts": "2026-08-12T11:42:46+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-12T11:42:47+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 16, "quality": 25, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-12T11:42:47+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 14, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T12:31:49+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 34, "quality": 43, "transition": "high", "tags": ["Expansion", "News-Driven"], "mode": "advisory"}
+{"ts": "2026-08-12T12:31:49+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 28, "quality": 47, "transition": "medium", "tags": ["News-Driven"], "mode": "advisory"}
+{"ts": "2026-08-12T12:31:50+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 16, "quality": 25, "transition": "low", "tags": ["News-Driven"], "mode": "advisory"}
+{"ts": "2026-08-12T12:31:50+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 3, "quality": 41, "transition": "low", "tags": ["News-Driven"], "mode": "advisory"}
