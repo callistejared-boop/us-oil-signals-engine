@@ -19,7 +19,9 @@ Never in a different order.**
 ## The scoreboard that matters
 
 - **Expectancy (avg R/trade)** — the only number that pays. Target > +0.15R.
-- **Max drawdown (R)** — keep under 6R per 30-trade window.
+- **Max drawdown (R)** — keep under 6R per 30-trade window (also capped
+  to the trailing 30 calendar days — see "Drawdown stand-down recovery"
+  below).
 - Win-rate is a *vanity* metric on its own: 45% at 2.5R average winners is a
   professional, profitable system; 80% with −3R losers is ruin.
 
@@ -27,6 +29,28 @@ Never in a different order.**
 
 0.5% risk → 30 more trades still positive → 0.75% → repeat → 1.0% cap.
 Any −6R window at any rung: drop one rung and re-validate.
+
+## Drawdown stand-down recovery (V2.2)
+
+If the trailing 30-trade drawdown hits the 6R cap, the engine enters
+`DRAWDOWN_PROTECTION` and blocks every new signal — by design, this is the
+account's last line of defense. That stand-down now clears two ways:
+
+1. **A new trade closes** and rolls the 30-trade window (the original
+   design) — normal path when trading is active.
+2. **30 calendar days pass** since a losing trade in the window closed —
+   that trade ages out of the drawdown calculation even with zero new
+   trades. This is the fix for a real deadlock found 2026-08-10: with no
+   open positions and the stand-down blocking every new entry, the
+   trade-count window could never advance on its own, so the stand-down
+   had no possible way to ever self-clear. See
+   `engine/portfolio_risk.py::portfolio_drawdown_r()` and
+   `RISK_SPECIFICATION.md` for the full mechanism
+   (`portfolio_drawdown_max_age_days`, default 30, tunable via
+   `engine/config.py`).
+
+Do not manually clear the stand-down. Let it expire on one of the two paths
+above — that's the whole point of a capital-preservation control.
 
 ## Known gap to respect
 

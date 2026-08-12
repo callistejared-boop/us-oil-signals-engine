@@ -19,12 +19,13 @@ def test_trade_has_day6_ref_fields():
         assert J.Trade.__dataclass_fields__[f].default == ""
 
 
-def test_make_ref_format_matches_trade_id():
+def test_make_ref_format_matches_trade_id(tmp_path, monkeypatch):
     """The whole point of Day 6's design: make_ref() produces the exact
     same string log_signal() uses for the row's own `id`, so a caller that
     computes make_ref() once and passes it through to both history logs and
     log_signal() gets id == confluence_ref == confidence_ref by
     construction."""
+    monkeypatch.setattr(J, "STORE", tmp_path / "t.json")
     when = pd.Timestamp("2026-08-03 10:00:00")
     ref = J.make_ref("XAUUSD", when)
     assert ref == "XAUUSD-2026-08-03T10:00:00"
@@ -86,6 +87,7 @@ def test_backward_compatible_read_of_pre_day6_rows(tmp_path, monkeypatch):
 def test_confluence_history_record_accepts_ref(tmp_path, monkeypatch):
     from engine import confluence_history as cfh
     monkeypatch.setattr(cfh, "HISTORY_PATH", tmp_path / "confluence_history.jsonl")
+    monkeypatch.setattr(J, "STORE", tmp_path / "t.json")
     ref = J.make_ref("XAUUSD", pd.Timestamp("2026-08-03 10:00:00"))
     rec = cfh.record("XAUUSD", "long", 82, "confirmed", ["price action"], [], {}, [], ref=ref)
     assert rec["ref"] == ref

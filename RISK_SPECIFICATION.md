@@ -77,7 +77,7 @@ not necessarily the only one.
 | 2 | Simultaneous directional exposure (max same-direction positions across all symbols) | new (`directional_exposure`) | `trade_frequency_control` | A distinct failure mode from #1: three *small* same-direction trades can each be individually small yet represent one concentrated market bet. |
 | 3 | Correlation concentration (same-direction + correlated open position) | `engine.correlation_dynamic.get_correlation` | `correlation_too_high` | Requires a network-backed lookup (cached), so it runs after the two purely-local checks above to avoid unnecessary correlation lookups when the trade would already be rejected on cheaper grounds. |
 | 4 | Portfolio-wide daily loss stop | `engine.risk_guard.today_realized_r(rows, symbol=None)` | `drawdown_protection` | Time-sensitive circuit breaker — checked before the slower-moving 30-trade drawdown check. |
-| 5 | Trailing 30-trade portfolio drawdown cap | `forward_report.drawdown_r` | `drawdown_protection` | Last line of defense: a structural capital-preservation stand-down, independent of today specifically. |
+| 5 | Trailing 30-trade portfolio drawdown cap | `forward_report.drawdown_r` | `drawdown_protection` | Last line of defense: a structural capital-preservation stand-down, independent of today specifically. V2.2: also capped to the trailing `portfolio_drawdown_max_age_days` calendar days (default 30) so the window can shrink from time passing alone, not just from a new trade closing — see §10 and §12.1. |
 
 If all five clear, `evaluate()` returns `allow=True, category=None` and the
 full explainability payload (`detail`) is still returned — every call is
@@ -259,6 +259,7 @@ that override. Flagged as a Day 4+ backlog item in
 | `portfolio_max_risk_pct` | `6.0` | Mirrors `engine.risk.MAX_PORTFOLIO_RISK_PCT`; kept in sync by `test_config_cap_matches_risk_module`. |
 | `portfolio_day_stop_r` | `2.0` | Account-wide daily loss stop (see §5). |
 | `portfolio_max_drawdown_r` | `6.0` | Trailing 30-trade portfolio drawdown cap, matching `RISK_RULES.md`. |
+| `portfolio_drawdown_max_age_days` | `30.0` | V2.2: calendar-day staleness ceiling on the trailing-30-trade drawdown window (§12.1) — a second, time-based way for the window to shrink so `DRAWDOWN_PROTECTION` can never permanently self-lock. |
 | `portfolio_max_directional` | `2` | Max simultaneous same-direction open positions across all symbols. |
 | `correlation_high_threshold` | `0.6` | \|correlation\| above which two symbols are treated as concentrated risk. |
 | `correlation_window_days` | `60` | Rolling window for `correlation_dynamic`. |
@@ -282,6 +283,45 @@ a code path could reach a real network call, it is explicitly monkeypatched
 — see the "correlation_cache.json pollution" fix documented in the
 Validation Report).
 
+## 12.1 Drawdown stand-down recovery mechanism (V2.2)
+
+**Problem found live 2026-08-10:** `portfolio_drawdown_r()`'s trailing
+30-trade window only ever advances when a NEW closed trade pushes the oldest
+one out. But the `DRAWDOWN_PROTECTION` stand-down (§4, rule 5) blocks every
+new trade from opening once triggered. With zero open positions and zero
+permitted new entries, the window was mathematically frozen — verified
+independently against production `trades.json`: a 12.0R/30-trade reading,
+static for 18 consecutive days, with no possible path back to compliant.
+This was a genuine, unbounded deadlock, not a market-conditions issue.
+
+**Fix:** `portfolio_drawdown_r()` gained two optional parameters,
+`max_age_days` and `as_of` (defaulting to `datetime.now(timezone.utc)`).
+When `max_age_days` is set, any closed trade in the window older than that
+many calendar days is additionally excluded from the drawdown calculation —
+independent of trade count. This gives the window a second, time-based path
+to shrink (and the computed drawdown to recover toward 0) purely from the
+passage of time, with no new trade required. `evaluate()` wires this through
+via the new `portfolio_drawdown_max_age_days` setting (§10), defaulting to
+30 calendar days — deliberately long enough that it never binds during
+healthy operation (this platform's own trade history shows a 30-trade
+window spanning as little as 9 calendar days) while still guaranteeing an
+eventual, evidence-based exit from any stand-down.
+
+Trade-count based windowing (`window=30`, the literal `RISK_RULES.md`
+"30-trade window" rule) remains unchanged and primary; the calendar-day
+ceiling is strictly additive. Calling `portfolio_drawdown_r()` without
+`max_age_days` (the default, `None`) reproduces the exact pre-V2.2
+behavior — a pure trade-count window with no time filtering — so any other
+caller of this function outside `evaluate()` is unaffected unless it opts
+in.
+
+Operationally: **do not manually clear a triggered stand-down.** Let it
+expire via a new trade closing or via the calendar-day ceiling — that is
+the intended, and now guaranteed, recovery path. See
+`tests/test_portfolio_drawdown_recovery.py` for the full regression suite
+covering this mechanism, and `RISK_RULES.md` for the operator-facing
+summary.
+
 ## 12. Interfaces reference
 
 ```python
@@ -292,7 +332,7 @@ evaluate(symbol, direction, entry, stop, settings=None, rows=None,
 
 open_positions_snapshot(open_rows, equity, base_risk_pct=None) -> list[dict]
 directional_exposure(open_rows) -> dict            # {"long": n, "short": n}
-portfolio_drawdown_r(closed_rows, window=30) -> float
+portfolio_drawdown_r(closed_rows, window=30, max_age_days=None, as_of=None) -> float
 portfolio_heat(open_risk_pct, cap_pct) -> float
 risk_budget_remaining_pct(open_risk_pct, cap_pct) -> float
 session_overlap_factor(session_label) -> float      # informational only

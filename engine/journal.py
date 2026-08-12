@@ -208,13 +208,41 @@ def is_open(symbol: str, direction: str, entry: float) -> bool:
     return False
 
 
-def make_ref(symbol: str, when: pd.Timestamp) -> str:
+def make_ref(symbol: str, when: pd.Timestamp, _rows: list | None = None) -> str:
     """The single, canonical stable-reference format used across the trade
     journal, confluence_history.jsonl, and confidence_history.jsonl (Day 6).
     Extracted as its own function so every caller constructs the identical
     string this row's own `id` will use — see Trade.confluence_ref /
-    Trade.confidence_ref's docstring for why that equality matters."""
-    return f"{symbol}-{str(when).replace(' ', 'T')}"
+    Trade.confidence_ref's docstring for why that equality matters.
+
+    V2.2 Priority 2 Item 7 (TECHNICAL_DEBT_REGISTER.md P0 Item 3): the
+    original pure-format version assumed symbol+timestamp always produces a
+    unique id. That's false — two distinct signals for the same symbol at
+    the same candle timestamp legitimately collide (confirmed: 5 live
+    duplicate ids in trades.json, root-caused in edge_investigation.py to a
+    different entry price bypassing is_open()'s own dedup check). This
+    version checks existing trades.json rows and appends -dup2/-dup3/...
+    on collision, scoped to the base symbol+timestamp ref.
+
+    `_rows` lets a caller that already has the rows loaded (log_signal())
+    pass them in directly, avoiding a redundant disk read — if omitted,
+    rows are loaded fresh. Critically, this function must be idempotent
+    across repeated calls with no intervening write: alert_signals.py
+    computes `trade_ref = make_ref(sym, when)` BEFORE calling
+    log_signal(), which internally calls make_ref(sym, when) again to
+    build the row's own `id` — nothing writes to trades.json between
+    those two calls, so both must return the exact same (possibly
+    disambiguated) string, or id/confluence_ref/confidence_ref/etc. would
+    silently drift apart. See tests/test_journal_dedup.py."""
+    base = f"{symbol}-{str(when).replace(' ', 'T')}"
+    rows = _rows if _rows is not None else _load()
+    existing_ids = {r.get("id", "") for r in rows}
+    if base not in existing_ids:
+        return base
+    n = 2
+    while f"{base}-dup{n}" in existing_ids:
+        n += 1
+    return f"{base}-dup{n}"
 
 
 def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
@@ -231,7 +259,7 @@ def log_signal(sig, when: pd.Timestamp, regime=None, guard=None,
     cf = confluence or {}
     rows = _load()
     rows.append(asdict(Trade(
-        id=make_ref(sym, when), opened=str(when),
+        id=make_ref(sym, when, _rows=rows), opened=str(when),
         direction=sig.direction, entry=float(sig.entry), stop=float(sig.stop),
         target=float(sig.target), rr=float(sig.rr), confidence=int(sig.confidence),
         symbol=sym, news_signal=ns, news_strength=nstr, news_delta=nd,

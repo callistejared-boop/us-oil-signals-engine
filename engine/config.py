@@ -22,7 +22,8 @@ _FIELDS = [
     "confluence_min_score", "eia_api_key",
     # --- Day 3: portfolio risk engine (see RISK_SPECIFICATION.md) -----------
     "portfolio_equity", "portfolio_risk_mode", "portfolio_max_risk_pct",
-    "portfolio_day_stop_r", "portfolio_max_drawdown_r", "portfolio_max_directional",
+    "portfolio_day_stop_r", "portfolio_max_drawdown_r", "portfolio_drawdown_max_age_days",
+    "portfolio_max_directional",
     "correlation_high_threshold", "correlation_window_days",
     # --- Day 4: market regime engine (see MARKET_REGIME_SPECIFICATION.md) ---
     "regime_filter_mode", "regime_min_quality_for_block", "regime_strategy",
@@ -101,6 +102,17 @@ class Settings:
     # RISK_RULES.md's documented "keep under 6R per 30-trade window" rule
     # (same 6.0 figure the Day 1 audit already validated — not a new number).
     portfolio_max_drawdown_r: float = 6.0
+    # V2.2: staleness ceiling (calendar days) on the trailing-30-trade
+    # drawdown window above — fixes a real production deadlock found
+    # 2026-08-10 where a triggered stand-down could never self-recover
+    # (the window only advances when a new trade closes, but the stand-down
+    # blocks every new trade from opening). 30 days is deliberately longer
+    # than this platform's own observed normal cadence (a 30-trade window
+    # has spanned as little as 9 calendar days historically), so it never
+    # binds during healthy operation — it only guarantees an eventual,
+    # evidence-based path out of an otherwise-permanent stand-down. See
+    # engine/portfolio_risk.py::portfolio_drawdown_r()'s docstring.
+    portfolio_drawdown_max_age_days: float = 30.0
     # Max number of simultaneous open positions in the SAME direction across
     # ALL symbols before same-direction concentration is flagged.
     portfolio_max_directional: int = 2

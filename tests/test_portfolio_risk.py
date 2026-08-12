@@ -4,7 +4,7 @@ tests/test_risk_guard.py) so nothing here touches disk or the network.
 """
 import pathlib
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -139,16 +139,21 @@ def test_portfolio_day_stop_ignores_yesterday():
 
 def test_trailing_drawdown_cap_blocks():
     # 10 wins (+1R) then 7 losses (-1R), pooled across symbols, on dates
-    # that are NOT today (so the day-stop check doesn't fire first).
+    # that are NOT today (so the day-stop check doesn't fire first) but are
+    # recent enough (2-3 days back) to survive the V2.2
+    # portfolio_drawdown_max_age_days staleness filter regardless of when
+    # this test suite is actually run.
     # Peak-to-trough: cum climbs to +10, then drops to +3 -> dd = 7R > 6R cap.
+    d1 = (datetime.now(timezone.utc) - timedelta(days=3)).date().isoformat()
+    d2 = (datetime.now(timezone.utc) - timedelta(days=2)).date().isoformat()
     rows = []
     for i in range(10):
         rows.append({"status": "win", "result_r": 1.0,
-                    "closed": f"2026-06-01T{i % 23:02d}:00:00",
+                    "closed": f"{d1}T{i % 23:02d}:00:00",
                     "symbol": "XAUUSD" if i % 2 else "WTIUSD"})
     for i in range(7):
         rows.append({"status": "loss", "result_r": -1.0,
-                    "closed": f"2026-06-02T{i % 23:02d}:00:00", "symbol": "BTCUSD"})
+                    "closed": f"{d2}T{i % 23:02d}:00:00", "symbol": "BTCUSD"})
     v = pr.evaluate("EURUSD", "long", 1.10, 1.09, settings=_Settings(), rows=rows)
     assert v["allow"] is False
     assert v["category"] == pr.DRAWDOWN_PROTECTION

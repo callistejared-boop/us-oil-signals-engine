@@ -43,7 +43,7 @@ Design principles (see DAY3_PHASE1_EXECUTION_PATH.md and RISK_SPECIFICATION.md):
 from __future__ import annotations
 
 import pathlib
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from . import risk
 from . import risk_guard
@@ -127,16 +127,43 @@ def directional_exposure(open_rows) -> dict:
     return out
 
 
-def portfolio_drawdown_r(closed_rows, window: int = 30) -> float:
+def portfolio_drawdown_r(closed_rows, window: int = 30, max_age_days: float | None = None,
+                          as_of: datetime | None = None) -> float:
     """Trailing peak-to-trough drawdown across the last `window` CLOSED
     trades, pooled across every symbol. Reuses forward_report.drawdown_r
-    rather than reimplementing drawdown math."""
+    rather than reimplementing drawdown math.
+
+    V2.2: `max_age_days` (paired with `as_of`, defaulting to now) additionally
+    excludes any closed trade older than that many days from the window —
+    fixes a real production deadlock found 2026-08-10: this check only ever
+    advances its window when a NEW trade closes, but a triggered stand-down
+    (this same function returning >= the cap) blocks every new trade from
+    ever opening. With zero open positions and zero new entries permitted,
+    the window was mathematically frozen forever — 18 days of a real 12.0R/
+    30-trade reading with no possible path back to compliant. `max_age_days`
+    gives the window a second, time-based way to shrink (and the computed
+    drawdown to recover toward 0) purely from the passage of time, without
+    requiring a new trade — restoring the check's own documented purpose
+    ("Last line of defense" per RISK_SPECIFICATION.md, not a permanent kill
+    switch). Trade-count based windowing (the literal RISK_RULES.md "30-
+    trade window" rule) is unchanged and still primary; this is strictly an
+    additional staleness ceiling on top of it, so normal operation (trades
+    closing at a healthy cadence) is unaffected — see
+    engine/config.py's `portfolio_drawdown_max_age_days` default (30) for
+    why that default is long enough to never bind during normal operation
+    (this platform's own history shows a 30-trade window spanning as little
+    as 9 calendar days) yet guarantees eventual self-recovery from any
+    stand-down."""
     try:
         import forward_report as fr
     except Exception:  # noqa: BLE001
         return 0.0
     closed = sorted((r for r in closed_rows if r.get("status") in ("win", "loss", "scratch")),
                     key=lambda r: str(r.get("closed", "")))[-window:]
+    if max_age_days is not None:
+        cutoff = (as_of or datetime.now(timezone.utc)) - timedelta(days=max_age_days)
+        cutoff_str = cutoff.strftime("%Y-%m-%d %H:%M:%S")
+        closed = [r for r in closed if str(r.get("closed", "")) >= cutoff_str]
     rs = [float(r.get("result_r", 0) or 0) for r in closed]
     return fr.drawdown_r(rs)
 
@@ -202,6 +229,7 @@ def evaluate(symbol: str, direction: str, entry: float, stop: float,
                         or risk.MAX_PORTFOLIO_RISK_PCT)
         day_stop_r = float(getattr(settings, "portfolio_day_stop_r", 2.0) or 2.0)
         max_dd_r = float(getattr(settings, "portfolio_max_drawdown_r", 6.0) or 6.0)
+        dd_max_age_days = float(getattr(settings, "portfolio_drawdown_max_age_days", 30.0) or 30.0)
         max_dir = int(getattr(settings, "portfolio_max_directional", 2) or 2)
         corr_hi = float(getattr(settings, "correlation_high_threshold", 0.6) or 0.6)
 
@@ -275,8 +303,9 @@ def evaluate(symbol: str, direction: str, entry: float, stop: float,
                 **explain)
 
         # --- 5. Trailing portfolio drawdown cap (RISK_RULES.md: <6R/30-trade) --
-        dd = portfolio_drawdown_r(closed_rows, window=30)
+        dd = portfolio_drawdown_r(closed_rows, window=30, max_age_days=dd_max_age_days)
         explain["portfolio_drawdown_r_30"] = dd
+        explain["portfolio_drawdown_max_age_days"] = dd_max_age_days
         if dd >= max_dd_r:
             return _verdict(False, mode, DRAWDOWN_PROTECTION,
                 f"Trailing 30-trade portfolio drawdown is {dd:.2f}R (cap {max_dd_r:.1f}R) "
