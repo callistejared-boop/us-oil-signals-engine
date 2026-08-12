@@ -813,3 +813,10 @@
 {"ts": "2026-08-12T08:41:14+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-12T08:41:14+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 24, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-12T08:41:14+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 15, "quality": 44, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T09:46:33+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 47, "quality": 52, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T09:46:35+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 66, "quality_score": 82, "independent_agreement": 0.643, "n_conflicts": 0}
+{"ts": "2026-08-12T09:46:35+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 66, "final_tier": "watch", "disagree": ["price action", "volume profile (buying above value)", "gold/silver ratio", "candlestick pattern (opposing pattern just printed)"]}
+{"ts": "2026-08-12T09:46:35+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-12T05:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-12T09:46:36+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T09:46:36+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 21, "quality": 51, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-12T09:46:36+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 13, "quality": 18, "transition": "medium", "tags": [], "mode": "advisory"}
