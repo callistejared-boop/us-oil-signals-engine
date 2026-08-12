@@ -30,7 +30,7 @@ drive `alert_signals.py`'s live control flow — see Section 5.
 | `HOLD` | This specific candidate is held (regime quality or MAST confluence tier) — softer than `REJECT`: nothing about the account/symbol is locked, a fresh read may qualify later | Stage-1 only |
 | `REJECT` | `portfolio_risk.evaluate()` rejected this specific candidate on a per-trade category (exposure, correlation, session, confidence, liquidity, duplicate) | Both |
 | `BLOCKED` | An account/symbol-wide condition pre-empts evaluating ANY candidate — news blackout or `risk_guard` lock | Both |
-| `STAND_DOWN` | A `portfolio_risk` rejection specifically in `DRAWDOWN_PROTECTION` or `TRADE_FREQUENCY_CONTROL` — the platform pulling back generally, not a per-candidate judgment | Both |
+| `STAND_DOWN` | A `portfolio_risk` rejection specifically in `DRAWDOWN_PROTECTION` (portfolio-wide day-stop or trailing drawdown cap — both direction-independent) — the platform pulling back generally, not a per-candidate judgment. `TRADE_FREQUENCY_CONTROL` deliberately excluded despite its name: it's the directional-concentration cap, which depends on THIS candidate's own direction (`dirs[direction] + 1 > max_dir`), so it maps to `REJECT` — see the `STAND_DOWN_CATEGORIES` comment in `engine/decision_gate.py` for the full verification trail. | Both |
 
 `REJECT` vs. `STAND_DOWN` are both `portfolio_risk.evaluate()` rejections;
 the split exists so a future kill-switch abstraction (`TECHNICAL_DEBT_

@@ -85,7 +85,27 @@ ACTIONS = {ENTER, WAIT, HOLD, REJECT, BLOCKED, STAND_DOWN}
 # platform-wide protective stand-down rather than a per-candidate risk
 # judgment. Reused directly from portfolio_risk.py's own category
 # constants — not a new taxonomy.
-STAND_DOWN_CATEGORIES = {pr.DRAWDOWN_PROTECTION, pr.TRADE_FREQUENCY_CONTROL}
+#
+# DRAWDOWN_PROTECTION only: verified against portfolio_risk.py's actual
+# evaluate() body (checks #4 "portfolio-wide daily loss stop" and #5
+# "trailing 30-trade drawdown cap") -- both are pure functions of
+# portfolio-wide state (today's realized R across every symbol; the
+# trailing closed-trade drawdown), with NO dependency on the specific
+# candidate's own direction/entry/stop. Every other candidate evaluated
+# in the same moment would get the identical rejection -- a genuine
+# platform-wide stand-down.
+#
+# TRADE_FREQUENCY_CONTROL deliberately excluded despite its name sounding
+# stand-down-like: it's actually check #2, "simultaneous directional
+# exposure" -- `dirs[direction] + 1 > max_dir` -- which depends on THIS
+# candidate's own `direction`. A same-symbol candidate proposed in the
+# OPPOSITE direction at the same instant would NOT get this rejection,
+# so it is a per-candidate REJECT, not a platform-wide STAND_DOWN. (The
+# category name not matching its actual check is an existing naming
+# quirk in portfolio_risk.py, not something to "fix" here -- the string
+# is a live schema value other modules pattern-match on; renaming it
+# would be a breaking change out of scope for this module.)
+STAND_DOWN_CATEGORIES = {pr.DRAWDOWN_PROTECTION}
 
 
 @dataclass

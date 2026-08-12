@@ -148,15 +148,40 @@ def test_origination_rejected_on_portfolio_risk_category(monkeypatch):
     assert v.reason == "too correlated"
 
 
-@pytest.mark.parametrize("category", [pr.DRAWDOWN_PROTECTION, pr.TRADE_FREQUENCY_CONTROL])
-def test_origination_stand_down_categories_map_to_stand_down_not_reject(monkeypatch, category):
+def test_origination_drawdown_protection_maps_to_stand_down(monkeypatch):
+    """DRAWDOWN_PROTECTION covers portfolio_risk.evaluate()'s checks #4
+    (portfolio-wide day-stop) and #5 (trailing drawdown cap) -- both pure
+    functions of portfolio state, independent of this candidate's own
+    direction. A genuine platform-wide stand-down."""
     monkeypatch.setattr(dg.risk_guard, "evaluate", lambda sym: _no_lock())
-    monkeypatch.setattr(dg.pr, "evaluate", lambda *a, **k: _reject_pr(category))
+    monkeypatch.setattr(dg.pr, "evaluate",
+                        lambda *a, **k: _reject_pr(pr.DRAWDOWN_PROTECTION))
     v = dg.evaluate_origination_gate(
         "XAUUSD", "long", 2000.0, 1990.0, mkt_regime={"quality_score": 90}, cr=_CR(),
         news_state={"blackout": False})
     assert v.action == dg.STAND_DOWN
-    assert v.category == category
+    assert v.category == pr.DRAWDOWN_PROTECTION
+
+
+def test_origination_trade_frequency_control_maps_to_reject_not_stand_down(monkeypatch):
+    """Regression: TRADE_FREQUENCY_CONTROL is portfolio_risk.evaluate()'s
+    check #2 ("simultaneous directional exposure",
+    `dirs[direction] + 1 > max_dir`) -- it depends on THIS candidate's
+    own direction, so a same-symbol candidate proposed in the opposite
+    direction at the same instant would NOT get this rejection. That
+    makes it a per-candidate REJECT, not a platform-wide STAND_DOWN,
+    despite the category name sounding stand-down-like. Caught during
+    review of decision_gate.py's own STAND_DOWN_CATEGORIES set, which
+    originally (incorrectly) included this category -- fixed before it
+    was ever wired into anything."""
+    monkeypatch.setattr(dg.risk_guard, "evaluate", lambda sym: _no_lock())
+    monkeypatch.setattr(dg.pr, "evaluate",
+                        lambda *a, **k: _reject_pr(pr.TRADE_FREQUENCY_CONTROL))
+    v = dg.evaluate_origination_gate(
+        "XAUUSD", "long", 2000.0, 1990.0, mkt_regime={"quality_score": 90}, cr=_CR(),
+        news_state={"blackout": False})
+    assert v.action == dg.REJECT
+    assert v.category == pr.TRADE_FREQUENCY_CONTROL
 
 
 def test_origination_waits_when_everything_passes(monkeypatch):
