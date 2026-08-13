@@ -887,3 +887,10 @@
 {"ts": "2026-08-12T23:47:52+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 16, "quality": 45, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-12T23:47:52+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 15, "quality": 41, "transition": "medium", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-08-12T23:47:52+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 1, "quality": 16, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-13T01:22:01+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 36, "quality": 44, "transition": "high", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-13T01:22:02+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 76, "quality_score": 81, "independent_agreement": 0.537, "n_conflicts": 2}
+{"ts": "2026-08-13T01:22:02+00:00", "event": "portfolio_held", "symbol": "XAUUSD", "category": "drawdown_protection", "reason": "Trailing 30-trade portfolio drawdown is 12.00R (cap 6.0R) \u2014 capital-preservation stand-down until the drawdown recovers."}
+{"ts": "2026-08-13T01:22:02+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-12T21:00:00", "stage": "portfolio_risk", "final_action": "rejected"}
+{"ts": "2026-08-13T01:22:03+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 20, "quality": 46, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-13T01:22:03+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 18, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-13T01:22:03+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 8, "quality": 22, "transition": "low", "tags": [], "mode": "advisory"}
