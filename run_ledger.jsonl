@@ -898,3 +898,10 @@
 {"ts": "2026-08-13T03:38:45+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 19, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-13T03:38:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 17, "quality": 50, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-13T03:38:46+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 12, "quality": 18, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-13T05:22:37+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 27, "quality": 41, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-13T05:22:38+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 55, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-13T05:22:38+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-13T05:22:38+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 17, "quality": 50, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-13T05:22:40+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 57, "quality_score": 75, "independent_agreement": 0.7, "n_conflicts": 1}
+{"ts": "2026-08-13T05:22:40+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 57, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "Brent-WTI/crack spreads", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-13T05:22:40+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-13T01:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
