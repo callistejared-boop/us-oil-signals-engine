@@ -1003,3 +1003,7 @@
 {"ts": "2026-08-14T09:34:02+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 45, "final_tier": "rejected", "disagree": ["price action", "volume profile (selling below value)", "news", "RSI divergence (active divergence warns against this)", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-14T09:34:02+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-08-14T09:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-14T09:34:02+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 26, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-14T10:39:16+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 39, "quality": 57, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-14T10:39:16+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 33, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-14T10:39:17+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 18, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-14T10:39:17+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 26, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
