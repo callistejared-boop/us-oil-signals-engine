@@ -51,6 +51,8 @@ from engine import macro_engine as macro                            # noqa: E402
 from engine.execution import execution_history as exhist            # noqa: E402
 from engine.broker import paper_broker as pbroker                   # noqa: E402
 from engine.data_health import feed_monitor as dhfm                 # noqa: E402
+from engine import opportunity_ranking as oprank                    # noqa: E402
+from engine import why_not as wn                                    # noqa: E402
 
 CHART_BARS = 120   # ~5 days of 1H candles — enough context without a huge payload
 
@@ -237,6 +239,7 @@ def build_payload(symbol, df=None, s=None):
         # regime_engine.classify() is the same pattern Day 4/5 already
         # established, not a new duplication). Fail-safe: never blocks the
         # rest of the payload from building.
+        d_regime = None
         try:
             d_regime = rgeng.classify(df, symbol)
             d_pr = pr.evaluate(symbol, sig.direction, sig.entry, sig.stop,
@@ -308,6 +311,12 @@ def build_payload(symbol, df=None, s=None):
             "confidence_assessment": confidence_payload,   # Day 6 — None on failure, never blocks
             "basis_note": _BASIS_NOTES.get(
                 symbol, "Confirm your platform price against the source feed before filling."),
+            # V2.2 Priority 5 Item 2: raw ingredients opportunity_ranking.py needs
+            # to score this candidate the same way alert_signals.py-scope callers
+            # do (candidate_from_dashboard_payload() reads these two fields) --
+            # additive, nothing above reads or changes them.
+            "confluence_score": score,
+            "regime_quality": (d_regime or {}).get("quality_score", 0),
         }
 
     # --- Day 8: Explainability Dashboard — read-only, advisory. Surfaces the
@@ -437,19 +446,76 @@ def publish(payload, symbol) -> bool:
         return False
 
 
+def _attach_opportunity_views(payloads: dict, s) -> None:
+    """V2.2 Priority 5 Item 2: ranked-opportunities + blocking-reason views.
+    Computed ONCE across this cycle's whole batch, after every symbol's
+    payload is already built — reuses `opportunity_ranking.py` (Priority 3)
+    and `why_not.py` (Priority 3) exactly as designed, zero new scoring or
+    explanation logic here. Mutates `payloads` in place, adding
+    `opportunity_rank`/`why_not` keys to EACH symbol's own payload rather
+    than creating a new cross-symbol Supabase row: the existing
+    `publish_snapshot` RPC and `dashboard_snapshot` table are keyed
+    one-row-per-symbol, and extending that schema is a separate, deliberate
+    decision — not something to fold silently into an additive JSON-payload
+    landing (the same posture `opportunity_ranking.py`'s own docstring
+    already established for wiring ranking into live publish behavior).
+    Never raises: a failure here must not prevent any symbol's existing
+    payload from still publishing."""
+    candidates = []
+    for symbol, payload in payloads.items():
+        try:
+            c = oprank.candidate_from_dashboard_payload(symbol, payload)
+            if c is not None:
+                candidates.append(c)
+        except Exception as exc:  # noqa: BLE001
+            print(f"dashboard_publish[{symbol}]: opportunity candidate build failed "
+                  f"({exc}) — excluded from ranking")
+
+    try:
+        ranked = oprank.rank_opportunities(candidates)
+    except Exception as exc:  # noqa: BLE001
+        print(f"dashboard_publish: rank_opportunities failed ({exc}) — no ranking this cycle")
+        ranked = []
+    ranked_by_symbol = {r.symbol: r for r in ranked}
+
+    for symbol, payload in payloads.items():
+        r = ranked_by_symbol.get(symbol)
+        payload["opportunity_rank"] = ({
+            "advisory_only": True,
+            "note": "Rank among this cycle's qualifying candidates by composite score — "
+                   "not a publish/suppress decision (see opportunity_ranking.py).",
+            "rank": r.rank, "of": len(ranked), "composite_score": r.composite_score,
+            "primary_confidence": r.primary_confidence, "confidence_source": r.confidence_source,
+        } if r else {
+            "advisory_only": True,
+            "note": "No qualifying setup this cycle for this symbol — nothing to rank.",
+            "rank": None, "of": len(ranked),
+        })
+        payload["why_not"] = _safe_note(lambda sym=symbol: wn.why_not_now(sym, settings=s), "Why-not")
+
+
 def main():
-    """Publish a snapshot for every configured symbol. Each symbol is fully
-    isolated — a build/publish failure on one (e.g. a bad feed for BTC) must
-    never block the others (e.g. oil and gold still get published)."""
+    """Publish a snapshot for every configured symbol. Each symbol's BUILD
+    is fully isolated — a build failure on one (e.g. a bad feed for BTC)
+    must never block the others (e.g. oil and gold still get published).
+    Publish now happens in a second pass (V2.2 Priority 5 Item 2) so the
+    ranked-opportunities view can be computed across the whole batch
+    first — this does not weaken the isolation guarantee: a symbol whose
+    build fails is simply absent from both the payload set and the
+    ranking, exactly as before it would have just been skipped."""
     s = config.load()
     syms = markets.symbols(s)
-    any_ok = False
+    payloads = {}
     for symbol in syms:
         try:
-            payload = build_payload(symbol, s=s)
+            payloads[symbol] = build_payload(symbol, s=s)
         except Exception as exc:  # noqa: BLE001
             print(f"dashboard_publish[{symbol}]: build_payload failed ({exc}) — skipping this symbol")
-            continue
+
+    _attach_opportunity_views(payloads, s)
+
+    any_ok = False
+    for symbol, payload in payloads.items():
         ok = publish(payload, symbol)
         any_ok = any_ok or ok
         print(f"dashboard_publish[{symbol}]: {'published' if ok else 'NOT published'} "

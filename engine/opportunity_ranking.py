@@ -139,6 +139,38 @@ def rank_opportunities(candidates) -> list:
     return out
 
 
+def candidate_from_dashboard_payload(symbol: str, payload: dict) -> "OpportunityCandidate | None":
+    """Convenience adapter for `dashboard_publish.py` (V2.2 Priority 5, Item
+    2) -- a SEPARATE process from alert_signals.py's scan loop, so it never
+    has the raw ConfidenceAssessment/ConfluenceRead/mkt_regime objects
+    `candidate_from_alert_signals_context()` expects in scope. Instead it
+    only ever has its own already-built `build_payload()` dict in hand.
+    Reads `payload["signal"]["confluence_score"]`/`["regime_quality"]`
+    (added to `build_payload()` alongside this Item, additive keys, no
+    existing field changed) plus the pre-existing `confidence_assessment`
+    sub-dict. Returns None when the payload shows no qualifying setup this
+    cycle -- nothing to rank. Never raises: a malformed/partial payload
+    (e.g. a stub used in a test) degrades to safe defaults, same fail-open
+    posture as `candidate_from_alert_signals_context()` above."""
+    try:
+        sig = (payload or {}).get("signal") or {}
+        if not sig.get("has_setup"):
+            return None
+        conf = sig.get("confidence_assessment") or {}
+        grade = sig.get("grade") or {}
+        return OpportunityCandidate(
+            symbol=symbol, direction=sig.get("direction", ""),
+            overall_confidence=conf.get("overall_confidence", 0),
+            confluence_score=sig.get("confluence_score", 0),
+            regime_quality=sig.get("regime_quality", 0),
+            calibrated_probability=conf.get("calibrated_probability"),
+            is_calibrated=bool(conf.get("is_calibrated", False)),
+            risk_budget_remaining_pct=None,   # not surfaced in the dashboard payload today
+            session=None, grade_letter=grade.get("letter"))
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def candidate_from_alert_signals_context(symbol, direction, *, assessment, cr, mkt_regime,
                                          pr_verdict=None, session=None,
                                          grade_letter=None) -> OpportunityCandidate:

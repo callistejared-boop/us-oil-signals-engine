@@ -210,3 +210,75 @@ def test_candidate_from_alert_signals_context_feeds_into_ranking_end_to_end():
     assert ranked[0].symbol == "XAUUSD"
     assert ranked[0].rank == 1
     assert ranked[1].symbol == "WTIUSD"
+
+
+# --------------------------------------------------------------------------
+# candidate_from_dashboard_payload (V2.2 Priority 5 Item 2)
+# --------------------------------------------------------------------------
+
+def _payload(has_setup=True, direction="long", overall_confidence=70,
+            confluence_score=75, regime_quality=60, calibrated_probability=None,
+            is_calibrated=False, grade_letter="B"):
+    if not has_setup:
+        return {"signal": {"has_setup": False}}
+    return {
+        "signal": {
+            "has_setup": True,
+            "direction": direction,
+            "confluence_score": confluence_score,
+            "regime_quality": regime_quality,
+            "grade": {"letter": grade_letter},
+            "confidence_assessment": {
+                "overall_confidence": overall_confidence,
+                "calibrated_probability": calibrated_probability,
+                "is_calibrated": is_calibrated,
+            },
+        }
+    }
+
+
+def test_candidate_from_dashboard_payload_returns_none_without_setup():
+    assert opr.candidate_from_dashboard_payload("XAUUSD", _payload(has_setup=False)) is None
+
+
+def test_candidate_from_dashboard_payload_returns_none_on_missing_payload():
+    assert opr.candidate_from_dashboard_payload("XAUUSD", {}) is None
+    assert opr.candidate_from_dashboard_payload("XAUUSD", None) is None
+
+
+def test_candidate_from_dashboard_payload_extracts_fields():
+    payload = _payload(direction="short", overall_confidence=82, confluence_score=91,
+                       regime_quality=77, grade_letter="A")
+    c = opr.candidate_from_dashboard_payload("BTCUSD", payload)
+    assert c.symbol == "BTCUSD"
+    assert c.direction == "short"
+    assert c.overall_confidence == 82
+    assert c.confluence_score == 91
+    assert c.regime_quality == 77
+    assert c.grade_letter == "A"
+    assert c.is_calibrated is False
+
+
+def test_candidate_from_dashboard_payload_honors_calibrated_probability():
+    payload = _payload(calibrated_probability=0.71, is_calibrated=True)
+    c = opr.candidate_from_dashboard_payload("XAUUSD", payload)
+    assert c.is_calibrated is True
+    assert c.calibrated_probability == 0.71
+    composite, primary, source = opr.score_opportunity(c)
+    assert source == "calibrated_probability"
+    assert primary == 71.0
+
+
+def test_candidate_from_dashboard_payload_feeds_ranking_end_to_end():
+    strong = opr.candidate_from_dashboard_payload(
+        "XAUUSD", _payload(overall_confidence=88, confluence_score=90, regime_quality=85))
+    weak = opr.candidate_from_dashboard_payload(
+        "WTIUSD", _payload(overall_confidence=45, confluence_score=50, regime_quality=40))
+    ranked = opr.rank_opportunities([weak, strong])
+    assert ranked[0].symbol == "XAUUSD"
+    assert ranked[1].symbol == "WTIUSD"
+
+
+def test_candidate_from_dashboard_payload_never_raises_on_garbage():
+    assert opr.candidate_from_dashboard_payload("X", {"signal": "not-a-dict"}) is None
+    assert opr.candidate_from_dashboard_payload("X", {"signal": {"has_setup": True}}) is not None

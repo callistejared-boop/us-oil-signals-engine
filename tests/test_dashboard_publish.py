@@ -317,3 +317,150 @@ def test_main_does_not_write_heartbeat_when_nothing_published(monkeypatch, tmp_p
 if __name__ == "__main__":
     import subprocess
     subprocess.run([sys.executable, "-m", "pytest", __file__, "-v"], check=False)
+
+
+# --------------------------------------------------------------------------
+# V2.2 Priority 5 Item 2: confluence_score/regime_quality fields + the
+# ranked-opportunities / why-not views main() attaches to each payload.
+# --------------------------------------------------------------------------
+
+def test_build_payload_signal_carries_confluence_score_and_regime_quality(monkeypatch):
+    """These two fields are the ONLY new surface area build_payload() gained
+    for this Item -- opportunity_ranking.candidate_from_dashboard_payload()
+    reads them directly, so they must be present and correctly sourced
+    whenever a setup exists."""
+    df = _make_df()
+    fake_sig = signals.Signal(
+        time=df.index[-1], direction="long", entry=100.0, stop=99.0,
+        target=103.0, rr=3.0, confidence=70, symbol="XAUUSD", tier="confirmed")
+    monkeypatch.setattr(dp.signals, "analyze", lambda *a, **k: fake_sig)
+
+    payload = dp.build_payload("XAUUSD", df=df)
+    assert payload["signal"]["has_setup"] is True
+    assert "confluence_score" in payload["signal"]
+    assert "regime_quality" in payload["signal"]
+    assert isinstance(payload["signal"]["confluence_score"], (int, float))
+    assert isinstance(payload["signal"]["regime_quality"], (int, float))
+
+
+def test_build_payload_regime_quality_survives_regime_engine_failure(monkeypatch):
+    """d_regime is now initialized before the try block specifically so a
+    regime_engine.classify() failure can't leave it undefined -- regression
+    guard for exactly that NameError risk."""
+    df = _make_df()
+    fake_sig = signals.Signal(
+        time=df.index[-1], direction="long", entry=100.0, stop=99.0,
+        target=103.0, rr=3.0, confidence=70, symbol="XAUUSD", tier="confirmed")
+    monkeypatch.setattr(dp.signals, "analyze", lambda *a, **k: fake_sig)
+    monkeypatch.setattr(dp.rgeng, "classify", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom")))
+
+    payload = dp.build_payload("XAUUSD", df=df)
+    assert payload["signal"]["has_setup"] is True
+    assert payload["signal"]["regime_quality"] == 0
+
+
+def _fake_payload_with_setup(symbol, overall_confidence, confluence_score=80, regime_quality=70):
+    return {
+        "symbol": symbol,
+        "signal": {
+            "has_setup": True,
+            "direction": "long",
+            "confluence_score": confluence_score,
+            "regime_quality": regime_quality,
+            "grade": {"letter": "B"},
+            "confidence_assessment": {
+                "overall_confidence": overall_confidence,
+                "calibrated_probability": None,
+                "is_calibrated": False,
+            },
+        },
+    }
+
+
+def test_main_attaches_opportunity_rank_across_symbols(monkeypatch):
+    """Two symbols with qualifying setups this cycle -- main() must rank
+    them relative to EACH OTHER (not independently), matching
+    opportunity_ranking.rank_opportunities()'s own ordering."""
+    class FakeSettings:
+        pass
+
+    fake_payloads = {
+        "XAUUSD": _fake_payload_with_setup("XAUUSD", overall_confidence=90),
+        "WTIUSD": _fake_payload_with_setup("WTIUSD", overall_confidence=40),
+    }
+    published = {}
+
+    monkeypatch.setattr(dp.config, "load", lambda: FakeSettings())
+    monkeypatch.setattr(dp.markets, "symbols", lambda s: ["XAUUSD", "WTIUSD"])
+    monkeypatch.setattr(dp, "build_payload", lambda symbol, s=None: fake_payloads[symbol])
+    monkeypatch.setattr(dp.wn, "why_not_now", lambda symbol, **k: {"symbol": symbol, "answer_source": "test"})
+    monkeypatch.setattr(dp, "publish", lambda payload, symbol: published.setdefault(symbol, payload) or True)
+
+    dp.main()
+
+    assert published["XAUUSD"]["opportunity_rank"]["rank"] == 1
+    assert published["WTIUSD"]["opportunity_rank"]["rank"] == 2
+    assert published["XAUUSD"]["opportunity_rank"]["of"] == 2
+    assert published["XAUUSD"]["why_not"]["symbol"] == "XAUUSD"
+
+
+def test_main_opportunity_rank_none_when_no_setup(monkeypatch):
+    class FakeSettings:
+        pass
+
+    monkeypatch.setattr(dp.config, "load", lambda: FakeSettings())
+    monkeypatch.setattr(dp.markets, "symbols", lambda s: ["XAUUSD"])
+    monkeypatch.setattr(dp, "build_payload", lambda symbol, s=None: {"signal": {"has_setup": False}})
+    monkeypatch.setattr(dp.wn, "why_not_now", lambda symbol, **k: {"symbol": symbol})
+    published = {}
+    monkeypatch.setattr(dp, "publish", lambda payload, symbol: published.setdefault(symbol, payload) or True)
+
+    dp.main()
+
+    assert published["XAUUSD"]["opportunity_rank"]["rank"] is None
+    assert published["XAUUSD"]["opportunity_rank"]["of"] == 0
+
+
+def test_main_still_isolates_build_failures_from_ranking(monkeypatch):
+    """A build_payload() failure on one symbol must still exclude it from
+    both publishing AND ranking -- same isolation guarantee main()'s own
+    docstring has always claimed, now verified across the two-pass
+    restructure this Item introduced."""
+    class FakeSettings:
+        pass
+
+    def fake_build(symbol, s=None):
+        if symbol == "BTCUSD":
+            raise RuntimeError("feed down")
+        return _fake_payload_with_setup(symbol, overall_confidence=77)
+
+    published = {}
+    monkeypatch.setattr(dp.config, "load", lambda: FakeSettings())
+    monkeypatch.setattr(dp.markets, "symbols", lambda s: ["XAUUSD", "BTCUSD"])
+    monkeypatch.setattr(dp, "build_payload", fake_build)
+    monkeypatch.setattr(dp.wn, "why_not_now", lambda symbol, **k: {"symbol": symbol})
+    monkeypatch.setattr(dp, "publish", lambda payload, symbol: published.setdefault(symbol, payload) or True)
+
+    dp.main()
+
+    assert "BTCUSD" not in published
+    assert published["XAUUSD"]["opportunity_rank"]["of"] == 1
+
+
+def test_main_ranking_never_raises_even_if_opportunity_ranking_breaks(monkeypatch):
+    class FakeSettings:
+        pass
+
+    monkeypatch.setattr(dp.config, "load", lambda: FakeSettings())
+    monkeypatch.setattr(dp.markets, "symbols", lambda s: ["XAUUSD"])
+    monkeypatch.setattr(dp, "build_payload",
+                        lambda symbol, s=None: _fake_payload_with_setup(symbol, overall_confidence=77))
+    monkeypatch.setattr(dp.oprank, "rank_opportunities",
+                        lambda candidates: (_ for _ in ()).throw(RuntimeError("boom")))
+    monkeypatch.setattr(dp.wn, "why_not_now", lambda symbol, **k: {"symbol": symbol})
+    published = {}
+    monkeypatch.setattr(dp, "publish", lambda payload, symbol: published.setdefault(symbol, payload) or True)
+
+    dp.main()   # must not raise
+
+    assert published["XAUUSD"]["opportunity_rank"]["rank"] is None
