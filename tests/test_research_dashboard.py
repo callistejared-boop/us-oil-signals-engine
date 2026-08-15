@@ -71,3 +71,20 @@ def test_evidence_tier_reference_matches_evidence_tiers_module():
 def test_lifecycle_stages_exposed_for_dashboard():
     out = rd.build_research_payload()
     assert out["lifecycle_stages"] == er.LIFECYCLE_STAGES
+
+
+# --------------------------------------------------------------------------
+# V2.2 Priority 5 extension: qualification_diagnostics
+# --------------------------------------------------------------------------
+
+def test_payload_includes_qualification_diagnostics():
+    out = rd.build_research_payload()
+    assert "qualification_diagnostics" in out
+    assert out["qualification_diagnostics"]["advisory_only"] is True
+
+
+def test_payload_never_raises_when_qualification_diagnostics_breaks(monkeypatch):
+    from engine import qualification_diagnostics as qd
+    monkeypatch.setattr(qd, "summary", lambda **k: (_ for _ in ()).throw(RuntimeError("boom")))
+    out = rd.build_research_payload()   # must not raise
+    assert "error" in out["qualification_diagnostics"]

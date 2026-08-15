@@ -24,6 +24,7 @@ from engine import experiment_registry as er   # noqa: E402
 from engine import edge_decay_monitor as edm   # noqa: E402
 from engine import evidence_tiers as et        # noqa: E402
 from engine import promotion_gate as pg        # noqa: E402
+from engine import qualification_diagnostics as qd   # noqa: E402
 
 VERSION = "1.0.0"
 
@@ -79,6 +80,11 @@ def build_research_payload() -> dict:
     except Exception as exc:  # noqa: BLE001
         promotion_audit = {"error": str(exc)}
 
+    try:
+        qualification_diagnostics = qd.summary()
+    except Exception as exc:  # noqa: BLE001
+        qualification_diagnostics = {"error": str(exc)}
+
     return {
         "advisory_only": True,
         "note": "Research and validation status — entirely separate from live trade "
@@ -95,6 +101,7 @@ def build_research_payload() -> dict:
                    "rejected": rejected_error}.items() if v},
         "edge_decay_check": decay,
         "promotion_pipeline_audit": promotion_audit,
+        "qualification_diagnostics": qualification_diagnostics,
         "evidence_tier_reference": [
             {"tier": name, "min_n": floor, "description": desc}
             for name, floor, desc in et.TIERS
