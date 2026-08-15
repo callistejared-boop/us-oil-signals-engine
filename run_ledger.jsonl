@@ -1254,3 +1254,7 @@
 {"ts": "2026-08-15T19:57:04+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-15T19:57:05+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 24, "quality": 47, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-15T19:57:05+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-15T20:19:53+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-15T20:19:53+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-15T20:19:54+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 37, "quality": 56, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-15T20:19:54+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
