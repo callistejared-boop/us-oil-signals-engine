@@ -41,6 +41,7 @@ from engine.broker.contract import OrderRequest  # noqa: E402
 from engine.data_health import feed_monitor as dh_monitor, freshness as dh_freshness  # noqa: E402
 from engine import scan_latency, scan_latency_history as slhist        # noqa: E402
 from engine import strategy_registry                                    # noqa: E402
+from engine import trade_lifecycle as tl                                # noqa: E402
 
 # Day 13: one PaperBroker instance per (account_id, process). Constructed
 # lazily on first use — see `_broker()` below — and cached for the rest
@@ -358,6 +359,26 @@ def sync_paper_broker_closures(sym):
         return []
 
 
+def sync_lifecycle_closures(sym):
+    """Priority 5 Item 3: closes the trade-lifecycle chain for `sym`
+    against any trade that `journal.settle()` (called immediately before
+    this, at the top of the per-symbol loop) just marked win/loss/
+    scratch/expired -- same call site and same idempotency idiom as
+    `sync_paper_broker_closures()` immediately above. Purely
+    observational -- this only updates `trade_lifecycle.jsonl` for later
+    review, never the trade journal or any gating decision. Never
+    raises. See engine/trade_lifecycle.py."""
+    try:
+        results = tl.sync_closures(sym)
+        for r in results:
+            ledger.log({"event": "lifecycle_closed", "symbol": sym,
+                        "lifecycle_id": r.get("lifecycle_id"), "trade_ref": r.get("trade_ref"),
+                        "outcome": r.get("outcome")})
+        return results
+    except Exception:  # noqa: BLE001
+        return []
+
+
 def _guard_for(sym, direction, df):
     """Compute the range-guard verdict for a live signal. Fail-safe → allow."""
     try:
@@ -520,6 +541,8 @@ def main():
             # PAPER_BROKER_SPECIFICATION.md Sec.8.
             with timer.stage("paper_broker"):
                 sync_paper_broker_closures(sym)
+            with timer.stage("lifecycle"):
+                sync_lifecycle_closures(sym)
 
             # --- Day 4: centralized Market Regime Engine ---------------------
             # Runs first, per symbol, per scan — the first analytical stage in
@@ -556,6 +579,7 @@ def main():
                             mkt_regime=mkt_regime,
                             rejection={"category": expl.RISK_LOCK, "reason": erk["reason"]},
                             settings=s)
+                            tl.mark_rejected(rec.get("id", ""), reason=erk["reason"])
                         continue
                     lt = ltf.confirm(rec["direction"]) if sym == "XAUUSD" else {}
                     e_reg = regime.classify(resample(df, "4h"))
@@ -604,6 +628,7 @@ def main():
                             cr=e_cr, confluence_ref=trade_ref,
                             rejection={"category": e_pr["category"], "reason": e_pr["reason"]},
                             settings=s)
+                            tl.mark_rejected(rec.get("id", ""), reason=e_pr["reason"])
                         continue
                     if e_pr.get("would_block"):
                         ledger.log({"event": "portfolio_warn", "symbol": sym,
@@ -694,12 +719,15 @@ def main():
                                            broker_ref=trade_ref,
                                            strategy=strategy_registry.strategy_for(
                                                regime_strategy)["strategy_id"])
+                        tl.mark_entered(rec.get("id", ""), trade_ref, sym, rec["direction"],
+                                        reason="setup tapped, trade logged")
                     log.append(f"{sym}: ENTRY {rec['direction']} @ {rec['entry']}")
                     ledger.log({"event": "entry", "symbol": sym, "dir": rec["direction"],
                                 "entry": rec["entry"], "stop": rec["stop"], "rr": rec["rr"],
                                 "guard": e_guard.get("action")})
                 elif typ == "void":
                     log.append(f"{sym}: setup voided")
+                    tl.mark_voided(rec.get("id", ""), reason="never tapped within MAX_WAIT_BARS")
 
             if blackout:
                 log.append(f"{sym}: held (news)")
@@ -719,6 +747,15 @@ def main():
                 log.append(f"{sym}: no setup"); continue
             if pending.exists(sig) or journal.is_open(sym, sig.direction, sig.entry):
                 log.append(f"{sym}: already tracked"); continue
+
+            # Priority 5 Item 3: the unified lifecycle chain's anchor id for
+            # this Stage-1 opportunity -- deliberately computed with the
+            # SAME journal.make_ref(sym, when) call every log_decision_snapshot()
+            # below will independently make for its own decision_id, so the
+            # two stay identical by construction (no new ID scheme; see
+            # engine/trade_lifecycle.py's module docstring). Purely
+            # observational -- never read by any gate below.
+            s1_lifecycle_id = journal.make_ref(sym, pd.Timestamp(df.index[-1]))
 
             # --- Day 4: Market Regime Engine advisory/block gate -------------
             # Per the documented risk hierarchy (session -> regime -> strategy
@@ -743,6 +780,7 @@ def main():
                     mkt_regime=mkt_regime,
                     rejection={"category": pr.MARKET_REGIME_UNSUITABLE, "reason": regime_note},
                     settings=s)
+                    tl.seed_rejected(s1_lifecycle_id, sym, sig.direction, reason=regime_note)
                 continue
 
             # MAST confluence engine — Layer 1 (ICT/SMC) found the setup,
@@ -771,7 +809,16 @@ def main():
                     rejection={"category": expl.WEAK_EVIDENCE,
                               "reason": f"MAST {cr.final_tier} (score {cr.score})"},
                     settings=s)
+                    tl.seed_rejected(s1_lifecycle_id, sym, sig.direction,
+                                     reason=f"MAST {cr.final_tier} (score {cr.score})")
                 continue
+
+            # Priority 5 Item 3: confluence just confirmed this setup --
+            # DETECTED -> QUALIFIED. Recorded once, here, regardless of what
+            # happens next (portfolio risk may still reject it, or it may
+            # proceed to pending.add() below).
+            tl.seed_qualified(s1_lifecycle_id, sym, sig.direction,
+                              reason=f"MAST confirmed (score {cr.score if cr else 0})")
 
             r = ict.read(df)
             guard = _guard_for(sym, sig.direction, df)
@@ -801,6 +848,7 @@ def main():
                     mkt_regime=mkt_regime, cr=cr,
                     rejection={"category": pr_verdict["category"], "reason": pr_verdict["reason"]},
                     settings=s)
+                    tl.mark_rejected(s1_lifecycle_id, reason=pr_verdict["reason"])
                 continue
             if pr_verdict.get("would_block"):
                 ledger.log({"event": "portfolio_warn", "symbol": sym,
@@ -836,6 +884,8 @@ def main():
 
             with timer.stage("persistence"):
                 pending.add(sig, pd.Timestamp(df.index[-1]))
+                tl.mark_pending(s1_lifecycle_id, sym, sig.direction,
+                                reason="heads-up published, watching for entry")
             _send(s, build_prealert(sig, r, guard, confluence=cr, confidence=assessment),
                  channel=markets.channel_for(sym, s))
             log.append(f"{sym}: HEADS-UP {sig.direction} @ {sig.entry}"

@@ -88,3 +88,20 @@ def test_payload_never_raises_when_qualification_diagnostics_breaks(monkeypatch)
     monkeypatch.setattr(qd, "summary", lambda **k: (_ for _ in ()).throw(RuntimeError("boom")))
     out = rd.build_research_payload()   # must not raise
     assert "error" in out["qualification_diagnostics"]
+
+
+# --------------------------------------------------------------------------
+# Priority 5 Item 3 extension: lifecycle_stage_summary
+# --------------------------------------------------------------------------
+
+def test_payload_includes_lifecycle_stage_summary():
+    out = rd.build_research_payload()
+    assert "lifecycle_stage_summary" in out
+    assert out["lifecycle_stage_summary"]["advisory_only"] is True
+
+
+def test_payload_never_raises_when_lifecycle_stage_summary_breaks(monkeypatch):
+    from engine import trade_lifecycle as tl
+    monkeypatch.setattr(tl, "stage_summary", lambda **k: (_ for _ in ()).throw(RuntimeError("boom")))
+    out = rd.build_research_payload()   # must not raise
+    assert "error" in out["lifecycle_stage_summary"]
