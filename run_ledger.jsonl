@@ -1305,3 +1305,7 @@
 {"ts": "2026-08-16T00:11:04+00:00", "event": "execution_report", "symbol": "XAUUSD", "direction": "long", "execution_score": "Excellent", "cost_r": 0.023446, "ref": "", "execution_profile_style": "day", "execution_profile_within_tolerance": false}
 {"ts": "2026-08-16T00:12:26+00:00", "event": "execution_report", "symbol": "XAUUSD", "direction": "long", "execution_score": "Excellent", "cost_r": 0.002634, "ref": "", "execution_profile_style": "day", "execution_profile_within_tolerance": true}
 {"ts": "2026-08-16T00:13:23+00:00", "event": "execution_report", "symbol": "XAUUSD", "direction": "long", "execution_score": "Excellent", "cost_r": 0.006612, "ref": "", "execution_profile_style": "day", "execution_profile_within_tolerance": false}
+{"ts": "2026-08-16T01:14:00+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-16T01:14:01+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-16T01:14:01+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 21, "quality": 51, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-16T01:14:01+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
