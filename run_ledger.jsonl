@@ -1364,3 +1364,10 @@
 {"ts": "2026-08-16T09:50:04+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 64, "final_tier": "rejected", "disagree": ["price action", "news", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-16T09:50:04+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-08-16T09:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-16T09:50:04+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-16T10:16:44+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-16T10:16:45+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-16T10:16:45+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 18, "quality": 46, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-16T10:16:46+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 62, "quality_score": 82, "independent_agreement": 0.6, "n_conflicts": 1}
+{"ts": "2026-08-16T10:16:46+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 62, "final_tier": "rejected", "disagree": ["news", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-16T10:16:46+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-08-16T10:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-16T10:16:47+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
