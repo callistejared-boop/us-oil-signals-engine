@@ -1717,3 +1717,10 @@
 {"ts": "2026-08-17T16:56:42+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 48, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
 {"ts": "2026-08-17T16:56:42+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-17T16:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-17T16:56:43+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 28, "quality": 28, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-17T17:23:50+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 36, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T17:23:50+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 26, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T17:23:50+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 0, "quality": 12, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T17:23:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 26, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-17T17:23:53+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 91, "quality_score": 82, "independent_agreement": 0.554, "n_conflicts": 2}
+{"ts": "2026-08-17T17:23:53+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 91, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)", "Brent-WTI/crack spreads"]}
+{"ts": "2026-08-17T17:23:53+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-17T13:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
