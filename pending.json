@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "EURUSD-2026-08-17T02:00:00",
+    "symbol": "EURUSD",
+    "created": "2026-08-17 02:00:00",
+    "direction": "long",
+    "entry": 1.15788,
+    "stop": 1.15775,
+    "target": 1.1584,
+    "rr": 4.0,
+    "confidence": 86,
+    "prob": 70,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 1.1581 (4 bars ago) \u2014 stop-hunt reversal [+12]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 1.15775 voids it \u2014 bull FVG mitigated."
+  }
+]
