@@ -1555,3 +1555,10 @@
 {"ts": "2026-08-17T02:33:46+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 38, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-17T02:33:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 19, "quality": 51, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-17T02:33:47+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 33, "quality": 24, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T03:32:24+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 37, "quality": 48, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-17T03:32:24+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 38, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T03:32:25+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 19, "quality": 51, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T03:32:26+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 52, "quality_score": 54, "independent_agreement": 0.55, "n_conflicts": 1}
+{"ts": "2026-08-17T03:32:26+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 52, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "volume profile (buying above value)", "COT positioning", "pivot level confluence", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-17T03:32:26+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-17T03:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-17T03:32:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 34, "quality": 24, "transition": "medium", "tags": [], "mode": "advisory"}
