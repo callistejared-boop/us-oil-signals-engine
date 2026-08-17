@@ -1633,3 +1633,10 @@
 {"ts": "2026-08-17T10:56:48+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 38, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-17T10:56:48+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-17T10:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-17T10:56:48+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 42, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T11:22:18+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 35, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T11:22:18+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 27, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T11:22:18+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 15, "quality": 44, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T11:22:19+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 49, "quality_score": 67, "independent_agreement": 0.683, "n_conflicts": 1}
+{"ts": "2026-08-17T11:22:19+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 49, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-17T11:22:19+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-17T11:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-17T11:22:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 28, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
