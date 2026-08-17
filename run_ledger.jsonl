@@ -1622,3 +1622,14 @@
 {"ts": "2026-08-17T10:26:33+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 54, "quality_score": 81, "independent_agreement": 0.617, "n_conflicts": 0}
 {"ts": "2026-08-17T10:26:33+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 54, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)", "Brent-WTI/crack spreads", "candlestick pattern (opposing pattern just printed)"]}
 {"ts": "2026-08-17T10:26:33+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-17T06:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-17T10:56:44+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 35, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T10:56:45+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 70, "quality_score": 77, "independent_agreement": 0.617, "n_conflicts": 2}
+{"ts": "2026-08-17T10:56:45+00:00", "event": "market_memory_context", "symbol": "XAUUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-17T10:56:45+00:00", "event": "confidence_assessment", "symbol": "XAUUSD", "direction": "long", "overall_confidence": 51, "tier": "Low Confidence", "is_calibrated": false}
+{"ts": "2026-08-17T10:56:45+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-17T06:45:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-17T10:56:46+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 27, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T10:56:47+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 15, "quality": 50, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T10:56:48+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 38, "quality_score": 50, "independent_agreement": 0.475, "n_conflicts": 1}
+{"ts": "2026-08-17T10:56:48+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 38, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "volume profile (buying above value)", "COT positioning", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-17T10:56:48+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-17T10:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-17T10:56:48+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 42, "transition": "medium", "tags": [], "mode": "advisory"}
