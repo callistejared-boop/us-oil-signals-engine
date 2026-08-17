@@ -1757,3 +1757,10 @@
 {"ts": "2026-08-17T19:07:58+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 67, "quality_score": 80, "independent_agreement": 0.567, "n_conflicts": 1}
 {"ts": "2026-08-17T19:07:58+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 67, "final_tier": "watch", "disagree": ["volume profile (buying above value)", "Brent-WTI/crack spreads", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-17T19:07:58+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-17T14:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-17T19:40:58+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 36, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T19:40:59+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 26, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T19:40:59+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 0, "quality": 12, "transition": "medium", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-17T19:40:59+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 47, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-17T19:41:01+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 56, "quality_score": 72, "independent_agreement": 0.625, "n_conflicts": 1}
+{"ts": "2026-08-17T19:41:01+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 56, "final_tier": "watch", "disagree": ["volume profile (buying above value)", "Brent-WTI/crack spreads", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-17T19:41:01+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-17T15:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
