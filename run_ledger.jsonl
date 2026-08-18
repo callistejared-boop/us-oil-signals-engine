@@ -1881,3 +1881,10 @@
 {"ts": "2026-08-18T07:03:04+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 49, "quality_score": 63, "independent_agreement": 0.614, "n_conflicts": 1}
 {"ts": "2026-08-18T07:03:04+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 49, "final_tier": "watch", "disagree": ["price action", "volume profile (buying above value)", "Brent-WTI/crack spreads", "RSI divergence (active divergence warns against this)", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-18T07:03:04+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-18T02:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-18T07:52:25+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 33, "quality": 47, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-18T07:52:26+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 30, "quality": 46, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-18T07:52:26+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 72, "quality_score": 71, "independent_agreement": 0.475, "n_conflicts": 1}
+{"ts": "2026-08-18T07:52:26+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 72, "final_tier": "rejected", "disagree": ["news"]}
+{"ts": "2026-08-18T07:52:26+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-18T08:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-18T07:52:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 2, "quality": 10, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-18T07:52:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 15, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
