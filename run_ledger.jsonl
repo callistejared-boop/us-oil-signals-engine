@@ -2023,3 +2023,7 @@
 {"ts": "2026-08-18T20:47:29+00:00", "event": "market_memory_context", "symbol": "WTIUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
 {"ts": "2026-08-18T20:47:29+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 54, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-08-18T20:47:29+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-18T16:30:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-18T21:17:35+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 34, "quality": 52, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-18T21:17:36+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 30, "quality": 46, "transition": "medium", "tags": ["Low Volatility", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-18T21:17:36+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 7, "quality": 17, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-18T21:17:36+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 14, "quality": 45, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
