@@ -18,24 +18,5 @@
       "RR 4.0 >= 3 [+4]"
     ],
     "invalidation": "15m close below 83.39 voids it \u2014 bull FVG mitigated."
-  },
-  {
-    "id": "WTIUSD-2026-08-18T11:45:00",
-    "symbol": "WTIUSD",
-    "created": "2026-08-18 11:45:00",
-    "direction": "long",
-    "entry": 84.6,
-    "stop": 84.45,
-    "target": 85.07,
-    "rr": 3.04,
-    "confidence": 84,
-    "prob": 68,
-    "reasons": [
-      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bear'} (weighted 4) [+20]",
-      "sell-side liquidity SWEPT at 84.82 (1 bars ago) \u2014 stop-hunt reversal [+12]",
-      "entry FVG born of displacement (impulse leg) [+8]",
-      "RR 3.0 >= 3 [+4]"
-    ],
-    "invalidation": "15m close below 84.45 voids it \u2014 bull FVG mitigated."
   }
 ]
