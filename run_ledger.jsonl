@@ -1888,3 +1888,7 @@
 {"ts": "2026-08-18T07:52:26+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-18T08:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-18T07:52:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 2, "quality": 10, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-18T07:52:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 15, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-18T08:28:18+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 32, "quality": 47, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-18T08:28:18+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 36, "quality": 51, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-18T08:28:18+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 3, "quality": 10, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-18T08:28:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 14, "quality": 39, "transition": "medium", "tags": [], "mode": "advisory"}
