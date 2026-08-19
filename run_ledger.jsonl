@@ -2247,3 +2247,10 @@
 {"ts": "2026-08-19T19:58:11+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 60, "quality": 59, "transition": "low", "tags": ["Low Volatility"], "mode": "advisory"}
 {"ts": "2026-08-19T19:58:11+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 17, "quality": 42, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-19T19:58:11+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 19, "quality": 51, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T20:28:45+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 50, "quality": 51, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T20:28:46+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 68, "quality_score": 77, "independent_agreement": 0.633, "n_conflicts": 0}
+{"ts": "2026-08-19T20:28:46+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 68, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)"]}
+{"ts": "2026-08-19T20:28:46+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-19T16:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-19T20:28:47+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 60, "quality": 59, "transition": "low", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-19T20:28:47+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 23, "quality": 40, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-19T20:28:47+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 19, "quality": 51, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
