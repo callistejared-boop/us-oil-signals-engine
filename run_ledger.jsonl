@@ -2060,3 +2060,10 @@
 {"ts": "2026-08-18T23:59:54+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 51, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "COT positioning", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-18T23:59:54+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-18T23:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-18T23:59:55+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 10, "quality": 44, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-19T01:37:35+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 39, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T01:37:35+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 28, "quality": 45, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-19T01:37:35+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 0, "quality": 9, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T01:37:35+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 9, "quality": 38, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T01:37:37+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 70, "quality_score": 83, "independent_agreement": 0.613, "n_conflicts": 1}
+{"ts": "2026-08-19T01:37:37+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 70, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "Brent-WTI/crack spreads"]}
+{"ts": "2026-08-19T01:37:37+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-18T21:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
