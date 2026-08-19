@@ -2192,3 +2192,10 @@
 {"ts": "2026-08-19T14:52:24+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 51, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "volume profile (buying above value)", "COT positioning"]}
 {"ts": "2026-08-19T14:52:24+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-19T14:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-19T14:52:25+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 9, "quality": 33, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T15:24:28+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 53, "quality": 52, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-19T15:24:29+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 62, "quality_score": 85, "independent_agreement": 0.683, "n_conflicts": 0}
+{"ts": "2026-08-19T15:24:29+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 62, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "pivot level confluence"]}
+{"ts": "2026-08-19T15:24:29+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-19T11:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-19T15:24:30+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 62, "quality": 60, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T15:24:30+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 9, "quality": 30, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T15:24:30+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 10, "quality": 33, "transition": "high", "tags": [], "mode": "advisory"}
