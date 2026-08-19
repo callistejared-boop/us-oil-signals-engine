@@ -2107,3 +2107,10 @@
 {"ts": "2026-08-19T08:02:01+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 55, "quality": 62, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-08-19T08:02:01+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 17, "quality": 19, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-19T08:02:01+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 41, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T08:53:56+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 33, "quality": 47, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-19T08:53:56+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 56, "quality": 58, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-19T08:53:56+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 16, "quality": 19, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T08:53:58+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 50, "quality_score": 62, "independent_agreement": 0.512, "n_conflicts": 1}
+{"ts": "2026-08-19T08:53:58+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 50, "final_tier": "watch", "disagree": ["price action", "trend (HTF stack disagrees)", "COT positioning", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-19T08:53:58+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-19T08:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-19T08:53:58+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 41, "transition": "medium", "tags": [], "mode": "advisory"}
