@@ -2088,3 +2088,10 @@
 {"ts": "2026-08-19T05:00:54+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-19T05:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-19T05:00:54+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 13, "quality": 24, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-19T05:00:54+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 21, "quality": 47, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-19T05:45:40+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 38, "quality": 52, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-19T05:45:40+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bull Trend", "confidence": 34, "quality": 47, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-19T05:45:41+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 60, "quality_score": 77, "independent_agreement": 0.5, "n_conflicts": 0}
+{"ts": "2026-08-19T05:45:41+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 60, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)", "news"]}
+{"ts": "2026-08-19T05:45:41+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-19T06:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-19T05:45:41+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 17, "quality": 25, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-19T05:45:41+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 47, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
