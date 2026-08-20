@@ -2337,3 +2337,7 @@
 {"ts": "2026-08-20T05:45:16+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 61, "quality_score": 75, "independent_agreement": 0.643, "n_conflicts": 0}
 {"ts": "2026-08-20T05:45:16+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 61, "final_tier": "watch", "disagree": ["price action", "Brent-WTI/crack spreads", "breaker/mitigation block (zone works against this)"]}
 {"ts": "2026-08-20T05:45:16+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-20T01:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-20T06:05:47+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 55, "quality": 77, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T06:05:47+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 67, "quality": 81, "transition": "low", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-20T06:05:48+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 64, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T06:05:48+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 17, "quality": 46, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
