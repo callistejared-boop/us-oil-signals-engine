@@ -2501,3 +2501,7 @@
 {"ts": "2026-08-20T20:01:29+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 60, "quality": 80, "transition": "low", "tags": ["Low Volatility", "Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-20T20:01:29+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 74, "quality": 83, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-20T20:01:30+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 11, "quality": 40, "transition": "medium", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-20T20:45:30+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 47, "quality": 67, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T20:45:30+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 60, "quality": 80, "transition": "low", "tags": ["Low Volatility", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-20T20:45:31+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 74, "quality": 83, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T20:45:31+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 52, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
