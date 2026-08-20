@@ -2517,3 +2517,10 @@
 {"ts": "2026-08-20T22:02:19+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 60, "quality": 80, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-20T22:02:20+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 74, "quality": 83, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-20T22:02:20+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 52, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-20T22:43:57+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 47, "quality": 67, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T22:43:58+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 65, "quality": 77, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-20T22:43:59+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 56, "quality_score": 74, "independent_agreement": 0.613, "n_conflicts": 1}
+{"ts": "2026-08-20T22:43:59+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 56, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "cross-asset risk sentiment", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-08-20T22:43:59+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-20T23:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-20T22:44:00+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 74, "quality": 83, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T22:44:00+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 52, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
