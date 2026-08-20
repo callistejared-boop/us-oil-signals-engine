@@ -2531,3 +2531,10 @@
 {"ts": "2026-08-20T23:03:24+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T00:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-20T23:03:25+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 74, "quality": 83, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-20T23:03:25+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 52, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-20T23:38:36+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 47, "quality": 67, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T23:38:37+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 63, "quality": 77, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-20T23:38:37+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 72, "quality_score": 84, "independent_agreement": 0.62, "n_conflicts": 0}
+{"ts": "2026-08-20T23:38:37+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 72, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "cross-asset risk sentiment"]}
+{"ts": "2026-08-20T23:38:37+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T00:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-20T23:38:37+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 75, "quality": 84, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-20T23:38:38+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 52, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
