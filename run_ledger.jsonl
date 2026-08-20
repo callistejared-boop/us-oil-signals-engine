@@ -2323,3 +2323,10 @@
 {"ts": "2026-08-20T04:21:07+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 68, "quality": 81, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-20T04:21:07+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 64, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-20T04:21:08+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 17, "quality": 46, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-20T05:03:12+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 51, "quality": 76, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T05:03:12+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 67, "quality": 81, "transition": "low", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-20T05:03:12+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 64, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-20T05:03:13+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 17, "quality": 50, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-20T05:03:14+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 63, "quality_score": 75, "independent_agreement": 0.617, "n_conflicts": 0}
+{"ts": "2026-08-20T05:03:14+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 63, "final_tier": "watch", "disagree": ["Brent-WTI/crack spreads", "breaker/mitigation block (zone works against this)"]}
+{"ts": "2026-08-20T05:03:14+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-20T00:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
