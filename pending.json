@@ -1,23 +1,5 @@
 [
   {
-    "id": "BTCUSD-2026-08-20T15:45:00",
-    "symbol": "BTCUSD",
-    "created": "2026-08-20 15:45:00",
-    "direction": "long",
-    "entry": 71864.02,
-    "stop": 71681.98,
-    "target": 72592.19,
-    "rr": 4.0,
-    "confidence": 86,
-    "prob": 70,
-    "reasons": [
-      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
-      "sell-side liquidity SWEPT at 71621.8828 (4 bars ago) \u2014 stop-hunt reversal [+12]",
-      "RR 4.0 >= 3 [+4]"
-    ],
-    "invalidation": "15m close below 71681.98 voids it \u2014 bull FVG mitigated."
-  },
-  {
     "id": "XAUUSD-2026-08-20T12:15:00",
     "symbol": "XAUUSD",
     "created": "2026-08-20 12:15:00",
