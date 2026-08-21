@@ -72,5 +72,25 @@
       "sell-side liquidity SWEPT at 4571.0 (8 bars ago) \u2014 stop-hunt reversal [+12]"
     ],
     "invalidation": "15m close below 4582.28 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "WTIUSD-2026-08-21T09:15:00",
+    "symbol": "WTIUSD",
+    "created": "2026-08-21 09:15:00",
+    "direction": "long",
+    "entry": 86.66,
+    "stop": 86.46,
+    "target": 87.33,
+    "rr": 3.4,
+    "confidence": 95,
+    "prob": 76,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 86.37 (7 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG born of displacement (impulse leg) [+8]",
+      "inside London/NY kill zone [+8]",
+      "RR 3.4 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 86.46 voids it \u2014 bull FVG mitigated."
   }
 ]
