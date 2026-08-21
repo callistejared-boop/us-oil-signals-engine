@@ -1,26 +1,5 @@
 [
   {
-    "id": "BTCUSD-2026-08-20T07:45:00",
-    "symbol": "BTCUSD",
-    "created": "2026-08-20 07:45:00",
-    "direction": "long",
-    "entry": 69476.61,
-    "stop": 69344.81,
-    "target": 69957.09,
-    "rr": 3.65,
-    "confidence": 95,
-    "prob": 76,
-    "reasons": [
-      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
-      "sell-side liquidity SWEPT at 69239.6719 (13 bars ago) \u2014 stop-hunt reversal [+12]",
-      "entry FVG born of displacement (impulse leg) [+8]",
-      "entry FVG overlaps order block [+6]",
-      "inside London/NY kill zone [+8]",
-      "RR 3.6 >= 3 [+4]"
-    ],
-    "invalidation": "15m close below 69344.81 voids it \u2014 bull FVG mitigated."
-  },
-  {
     "id": "BTCUSD-2026-08-20T15:45:00",
     "symbol": "BTCUSD",
     "created": "2026-08-20 15:45:00",
