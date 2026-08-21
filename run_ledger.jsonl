@@ -2739,3 +2739,7 @@
 {"ts": "2026-08-21T18:55:07+00:00", "event": "broker_order", "symbol": "WTIUSD", "direction": "long", "status": "filled", "quantity": 9.090909, "avg_fill_price": 86.9895638, "ref": "WTIUSD-2026-08-21T14:30:00"}
 {"ts": "2026-08-21T18:55:07+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 50, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-08-21T18:55:07+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-21T14:30:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
+{"ts": "2026-08-21T19:21:28+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 67, "quality": 81, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T19:21:29+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 80, "transition": "low", "tags": ["Low Volatility", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-21T19:21:29+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 74, "quality": 80, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T19:21:30+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 21, "quality": 47, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
