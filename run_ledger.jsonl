@@ -2625,3 +2625,11 @@
 {"ts": "2026-08-21T10:05:27+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T11:00:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
 {"ts": "2026-08-21T10:05:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 83, "quality": 86, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
 {"ts": "2026-08-21T10:05:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T10:45:50+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 70, "quality": 82, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-21T10:45:50+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 65, "quality": 77, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-21T10:45:50+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 83, "quality": 86, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T10:45:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 21, "quality": 41, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T10:45:52+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 88, "quality_score": 86, "independent_agreement": 0.645, "n_conflicts": 1}
+{"ts": "2026-08-21T10:45:52+00:00", "event": "market_memory_context", "symbol": "WTIUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-21T10:45:52+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 67, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-08-21T10:45:52+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-08-21T06:30:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
