@@ -2566,3 +2566,10 @@
 {"ts": "2026-08-21T03:35:42+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T04:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-21T03:35:43+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 82, "quality": 86, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
 {"ts": "2026-08-21T03:35:43+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T04:22:31+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 43, "quality": 66, "transition": "high", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-21T04:22:31+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 64, "quality": 77, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T04:22:31+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 56, "quality_score": 72, "independent_agreement": 0.557, "n_conflicts": 1}
+{"ts": "2026-08-21T04:22:31+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 56, "final_tier": "watch", "disagree": ["price action", "cross-asset risk sentiment", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-21T04:22:31+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T05:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-21T04:22:32+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 83, "quality": 86, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T04:22:32+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 51, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
