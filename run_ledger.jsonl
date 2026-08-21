@@ -2617,3 +2617,11 @@
 {"ts": "2026-08-21T09:32:54+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T10:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-21T09:32:55+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 87, "quality": 87, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
 {"ts": "2026-08-21T09:32:55+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 19, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T10:05:26+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 70, "quality": 82, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-21T10:05:26+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 65, "quality": 77, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-21T10:05:26+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 81, "quality_score": 81, "independent_agreement": 0.556, "n_conflicts": 2}
+{"ts": "2026-08-21T10:05:26+00:00", "event": "market_memory_context", "symbol": "EURUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-21T10:05:27+00:00", "event": "confidence_assessment", "symbol": "EURUSD", "direction": "long", "overall_confidence": 74, "tier": "High Confidence", "is_calibrated": false}
+{"ts": "2026-08-21T10:05:27+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-21T11:00:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-21T10:05:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 83, "quality": 86, "transition": "low", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-21T10:05:27+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 20, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
