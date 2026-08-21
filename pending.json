@@ -34,5 +34,24 @@
       "RR 4.0 >= 3 [+4]"
     ],
     "invalidation": "15m close below 4652.22 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "BTCUSD-2026-08-21T20:45:00",
+    "symbol": "BTCUSD",
+    "created": "2026-08-21 20:45:00",
+    "direction": "long",
+    "entry": 77306.48,
+    "stop": 77194.65,
+    "target": 77753.8,
+    "rr": 4.0,
+    "confidence": 92,
+    "prob": 74,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 76795.3672 (8 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG overlaps order block [+6]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 77194.65 voids it \u2014 bull FVG mitigated."
   }
 ]
