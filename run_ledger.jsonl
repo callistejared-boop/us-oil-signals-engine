@@ -2970,3 +2970,11 @@
 {"ts": "2026-08-22T17:57:19+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 65, "final_tier": "watch", "disagree": ["cross-asset risk sentiment", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-22T17:57:19+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-22T17:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-22T17:57:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 21, "quality": 47, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-08-22T18:28:20+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 67, "quality": 81, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-22T18:28:21+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 65, "quality": 81, "transition": "low", "tags": ["Low Volatility", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-22T18:28:21+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 66, "quality": 78, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-22T18:28:22+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 79, "quality_score": 83, "independent_agreement": 0.589, "n_conflicts": 2}
+{"ts": "2026-08-22T18:28:23+00:00", "event": "market_memory_context", "symbol": "BTCUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-22T18:28:23+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 72, "tier": "High Confidence", "is_calibrated": false}
+{"ts": "2026-08-22T18:28:23+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-22T18:15:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-22T18:28:24+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 21, "quality": 47, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
