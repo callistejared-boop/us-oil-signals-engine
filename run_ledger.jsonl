@@ -3422,3 +3422,10 @@
 {"ts": "2026-08-24T23:17:19+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 44, "quality": 70, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
 {"ts": "2026-08-24T23:17:20+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 54, "quality": 69, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-24T23:17:20+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 13, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-24T23:44:50+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 69, "quality": 78, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-24T23:44:51+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 64, "quality_score": 83, "independent_agreement": 0.638, "n_conflicts": 1}
+{"ts": "2026-08-24T23:44:51+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 64, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-08-24T23:44:51+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-24T19:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-24T23:44:52+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 52, "quality": 76, "transition": "low", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-24T23:44:52+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 55, "quality": 70, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-24T23:44:52+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
