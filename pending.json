@@ -15,24 +15,5 @@
       "sell-side liquidity SWEPT at 4571.0 (8 bars ago) \u2014 stop-hunt reversal [+12]"
     ],
     "invalidation": "15m close below 4582.28 voids it \u2014 bull FVG mitigated."
-  },
-  {
-    "id": "XAUUSD-2026-08-21T13:15:00",
-    "symbol": "XAUUSD",
-    "created": "2026-08-21 13:15:00",
-    "direction": "long",
-    "entry": 4656.05,
-    "stop": 4652.22,
-    "target": 4671.37,
-    "rr": 4.0,
-    "confidence": 94,
-    "prob": 75,
-    "reasons": [
-      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
-      "sell-side liquidity SWEPT at 4634.5 (14 bars ago) \u2014 stop-hunt reversal [+12]",
-      "inside London/NY kill zone [+8]",
-      "RR 4.0 >= 3 [+4]"
-    ],
-    "invalidation": "15m close below 4652.22 voids it \u2014 bull FVG mitigated."
   }
 ]

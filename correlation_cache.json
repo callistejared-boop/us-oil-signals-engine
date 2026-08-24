@@ -1,11 +1,11 @@
 {
-  "asof": "2026-08-22",
-  "generated": "2026-08-22T21:15:40+00:00",
+  "asof": "2026-08-24",
+  "generated": "2026-08-24T01:04:05+00:00",
   "window_days": 60,
   "matrix": {
-    "BTCUSD|WTIUSD": {
-      "corr": -0.0387,
-      "n": 26,
+    "XAUUSD|WTIUSD": {
+      "corr": -0.1576,
+      "n": 39,
       "sample": "ok",
       "method": "rolling_pearson"
     }
