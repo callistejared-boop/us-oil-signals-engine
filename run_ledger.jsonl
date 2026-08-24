@@ -3260,3 +3260,10 @@
 {"ts": "2026-08-24T05:53:46+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-24T05:53:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 48, "quality": 67, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-24T05:53:47+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 15, "quality": 50, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-24T06:43:11+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 72, "quality": 83, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-24T06:43:12+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 80, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-24T06:43:12+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 49, "quality": 68, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-24T06:43:14+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 67, "quality_score": 84, "independent_agreement": 0.643, "n_conflicts": 0}
+{"ts": "2026-08-24T06:43:14+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 67, "final_tier": "watch", "disagree": ["cross-asset risk sentiment", "candlestick pattern (opposing pattern just printed)"]}
+{"ts": "2026-08-24T06:43:14+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-24T06:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-24T06:43:14+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
