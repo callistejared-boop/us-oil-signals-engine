@@ -17,5 +17,24 @@
       "RR 4.0 >= 3 [+4]"
     ],
     "invalidation": "15m close below 4674.16 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "XAUUSD-2026-08-24T08:30:00",
+    "symbol": "XAUUSD",
+    "created": "2026-08-24 08:30:00",
+    "direction": "long",
+    "entry": 4705.5,
+    "stop": 4702.83,
+    "target": 4716.18,
+    "rr": 4.0,
+    "confidence": 94,
+    "prob": 75,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 4688.8999 (12 bars ago) \u2014 stop-hunt reversal [+12]",
+      "inside London/NY kill zone [+8]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 4702.83 voids it \u2014 bull FVG mitigated."
   }
 ]
