@@ -3551,3 +3551,10 @@
 {"ts": "2026-08-25T15:14:06+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 48, "final_tier": "watch", "disagree": ["price action", "candlestick pattern (opposing pattern just printed)", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-25T15:14:06+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-25T15:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-25T15:14:06+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 1, "quality": 6, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T16:01:36+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 76, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T16:01:38+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 69, "quality_score": 81, "independent_agreement": 0.557, "n_conflicts": 1}
+{"ts": "2026-08-25T16:01:38+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 69, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-25T16:01:38+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-25T11:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-25T16:01:38+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 50, "quality": 72, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T16:01:38+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 55, "quality": 70, "transition": "high", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T16:01:39+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 6, "transition": "high", "tags": [], "mode": "advisory"}
