@@ -3544,3 +3544,10 @@
 {"ts": "2026-08-25T14:27:21+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 57, "tier": "Moderate Confidence", "is_calibrated": false}
 {"ts": "2026-08-25T14:27:21+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-25T14:15:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
 {"ts": "2026-08-25T14:27:22+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 8, "quality": 18, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T15:14:02+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 80, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T15:14:02+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 45, "quality": 70, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T15:14:03+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 54, "quality": 69, "transition": "high", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T15:14:06+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 48, "quality_score": 81, "independent_agreement": 0.66, "n_conflicts": 1}
+{"ts": "2026-08-25T15:14:06+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 48, "final_tier": "watch", "disagree": ["price action", "candlestick pattern (opposing pattern just printed)", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-08-25T15:14:06+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-25T15:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-25T15:14:06+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 1, "quality": 6, "transition": "high", "tags": [], "mode": "advisory"}
