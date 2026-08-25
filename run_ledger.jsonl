@@ -3504,3 +3504,7 @@
 {"ts": "2026-08-25T08:09:50+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 54, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-08-25T08:09:50+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-25T08:00:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
 {"ts": "2026-08-25T08:09:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 23, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T08:58:59+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 61, "quality": 80, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T08:58:59+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 45, "quality": 70, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T08:59:00+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 55, "quality": 70, "transition": "high", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T08:59:00+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 20, "quality": 20, "transition": "medium", "tags": [], "mode": "advisory"}
