@@ -3577,3 +3577,11 @@
 {"ts": "2026-08-25T17:25:29+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
 {"ts": "2026-08-25T17:25:30+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 53, "quality": 69, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-25T17:25:31+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 12, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-25T17:54:17+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 76, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T17:54:18+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 95, "quality_score": 78, "independent_agreement": 0.6, "n_conflicts": 1}
+{"ts": "2026-08-25T17:54:18+00:00", "event": "market_memory_context", "symbol": "XAUUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-25T17:54:18+00:00", "event": "confidence_assessment", "symbol": "XAUUSD", "direction": "long", "overall_confidence": 86, "tier": "Exceptional Confidence", "is_calibrated": false}
+{"ts": "2026-08-25T17:54:18+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-25T13:30:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-25T17:54:19+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-25T17:54:19+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 54, "quality": 69, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T17:54:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 12, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
