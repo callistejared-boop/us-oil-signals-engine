@@ -37,5 +37,41 @@
       "RR 4.0 >= 3 [+4]"
     ],
     "invalidation": "15m close below 77759.76 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "XAUUSD-2026-08-24T21:30:00",
+    "symbol": "XAUUSD",
+    "created": "2026-08-24 21:30:00",
+    "direction": "long",
+    "entry": 4720.55,
+    "stop": 4715.37,
+    "target": 4741.28,
+    "rr": 4.0,
+    "confidence": 86,
+    "prob": 70,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 4712.0 (14 bars ago) \u2014 stop-hunt reversal [+12]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 4715.37 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "BTCUSD-2026-08-25T01:45:00",
+    "symbol": "BTCUSD",
+    "created": "2026-08-25 01:45:00",
+    "direction": "long",
+    "entry": 79476.9,
+    "stop": 79269.84,
+    "target": 79969.03,
+    "rr": 2.38,
+    "confidence": 90,
+    "prob": 73,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 78809.2812 (5 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG born of displacement (impulse leg) [+8]"
+    ],
+    "invalidation": "15m close below 79269.84 voids it \u2014 bull FVG mitigated."
   }
 ]
