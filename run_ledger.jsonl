@@ -3566,3 +3566,14 @@
 {"ts": "2026-08-25T16:54:30+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 50, "quality": 72, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-25T16:54:30+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 54, "quality": 69, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-25T16:54:31+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 6, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T17:25:22+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 62, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T17:25:24+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 97, "quality_score": 80, "independent_agreement": 0.655, "n_conflicts": 1}
+{"ts": "2026-08-25T17:25:24+00:00", "event": "market_memory_context", "symbol": "XAUUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-25T17:25:29+00:00", "event": "macro_assessment", "symbol": "XAUUSD", "direction": "long", "labels": ["Easing", "Mixed"], "macro_confidence": "low", "evidence_quality": "medium", "ref": "XAUUSD-2026-08-25T13:15:00"}
+{"ts": "2026-08-25T17:25:29+00:00", "event": "execution_report", "symbol": "XAUUSD", "direction": "long", "execution_score": "Excellent", "cost_r": 0.040367, "ref": "XAUUSD-2026-08-25T13:15:00", "execution_profile_style": "day", "execution_profile_within_tolerance": false}
+{"ts": "2026-08-25T17:25:29+00:00", "event": "broker_order", "symbol": "XAUUSD", "direction": "long", "status": "filled", "quantity": 0.238663, "avg_fill_price": 4694.59611482, "ref": "XAUUSD-2026-08-25T13:15:00"}
+{"ts": "2026-08-25T17:25:29+00:00", "event": "confidence_assessment", "symbol": "XAUUSD", "direction": "long", "overall_confidence": 88, "tier": "Exceptional Confidence", "is_calibrated": false}
+{"ts": "2026-08-25T17:25:29+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-25T13:15:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
+{"ts": "2026-08-25T17:25:29+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-08-25T17:25:30+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 53, "quality": 69, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T17:25:31+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 12, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
