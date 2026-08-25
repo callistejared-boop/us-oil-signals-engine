@@ -3494,3 +3494,13 @@
 {"ts": "2026-08-25T07:30:10+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 43, "quality": 70, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-08-25T07:30:10+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 56, "quality": 70, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-25T07:30:11+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 23, "quality": 21, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T08:09:42+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 61, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T08:09:43+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 43, "quality": 70, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T08:09:44+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 55, "quality": 70, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T08:09:44+00:00", "event": "market_memory_context", "symbol": "BTCUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-25T08:09:50+00:00", "event": "macro_assessment", "symbol": "BTCUSD", "direction": "long", "labels": ["Easing", "Mixed"], "macro_confidence": "low", "evidence_quality": "medium", "ref": "BTCUSD-2026-08-25T08:00:00"}
+{"ts": "2026-08-25T08:09:50+00:00", "event": "execution_report", "symbol": "BTCUSD", "direction": "long", "execution_score": "Excellent", "cost_r": 0.017264, "ref": "BTCUSD-2026-08-25T08:00:00", "execution_profile_style": "day", "execution_profile_within_tolerance": false}
+{"ts": "2026-08-25T08:09:50+00:00", "event": "broker_order", "symbol": "BTCUSD", "direction": "long", "status": "filled", "quantity": 0.482952, "avg_fill_price": 79486.72906949, "ref": "BTCUSD-2026-08-25T08:00:00"}
+{"ts": "2026-08-25T08:09:50+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 54, "tier": "Low Confidence", "is_calibrated": false}
+{"ts": "2026-08-25T08:09:50+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-25T08:00:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
+{"ts": "2026-08-25T08:09:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 23, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
