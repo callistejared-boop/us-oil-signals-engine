@@ -3639,3 +3639,11 @@
 {"ts": "2026-08-25T21:51:55+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-08-25T21:51:55+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 51, "quality": 72, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
 {"ts": "2026-08-25T21:51:55+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 8, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T22:19:48+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 63, "quality": 77, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T22:19:49+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 90, "quality_score": 86, "independent_agreement": 0.633, "n_conflicts": 2}
+{"ts": "2026-08-25T22:19:49+00:00", "event": "market_memory_context", "symbol": "XAUUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-25T22:19:49+00:00", "event": "confidence_assessment", "symbol": "XAUUSD", "direction": "long", "overall_confidence": 83, "tier": "High Confidence", "is_calibrated": false}
+{"ts": "2026-08-25T22:19:49+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-25T18:00:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-25T22:19:50+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T22:19:50+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 53, "quality": 69, "transition": "high", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T22:19:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 2, "transition": "high", "tags": [], "mode": "advisory"}
