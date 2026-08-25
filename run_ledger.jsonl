@@ -3616,3 +3616,11 @@
 {"ts": "2026-08-25T20:21:10+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-25T20:21:10+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 53, "quality": 69, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-25T20:21:10+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 8, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T20:54:20+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 63, "quality": 77, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T20:54:23+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 74, "quality_score": 83, "independent_agreement": 0.587, "n_conflicts": 2}
+{"ts": "2026-08-25T20:54:23+00:00", "event": "market_memory_context", "symbol": "XAUUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-08-25T20:54:23+00:00", "event": "confidence_assessment", "symbol": "XAUUSD", "direction": "long", "overall_confidence": 68, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-08-25T20:54:23+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-25T16:30:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-08-25T20:54:24+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-25T20:54:24+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 53, "quality": 73, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-25T20:54:25+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 2, "transition": "high", "tags": [], "mode": "advisory"}
