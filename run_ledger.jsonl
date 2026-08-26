@@ -3774,3 +3774,10 @@
 {"ts": "2026-08-26T20:27:52+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 52, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-08-26T20:27:52+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-26T20:15:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
 {"ts": "2026-08-26T20:27:53+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 2, "quality": 16, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-08-26T23:57:09+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Strong Bull Trend", "confidence": 52, "quality": 73, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-08-26T23:57:10+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 45, "quality": 58, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-08-26T23:57:10+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 58, "quality": 70, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-08-26T23:57:12+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 66, "quality_score": 76, "independent_agreement": 0.588, "n_conflicts": 0}
+{"ts": "2026-08-26T23:57:12+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 66, "final_tier": "rejected", "disagree": ["mean reversion (overextended)"]}
+{"ts": "2026-08-26T23:57:12+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-26T23:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-08-26T23:57:13+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 15, "transition": "low", "tags": [], "mode": "advisory"}
