@@ -1,42 +1,35 @@
 {
-  "generated": "2026-08-27T17:15:01+00:00",
-  "asof": "2026-08-27",
+  "generated": "2026-08-28T18:07:37+00:00",
+  "asof": "2026-08-28",
   "source": "Google News RSS (negation-aware headline sentiment)",
   "symbols": {
     "WTIUSD": {
       "label": "US Oil",
       "signal": "BUY",
-      "strength": "HIGH",
+      "strength": "MED",
       "net_bias": "bullish",
-      "net_score": 19,
+      "net_score": 6,
       "counts": {
         "bullish": 8,
-        "bearish": 2,
-        "neutral": 30
+        "bearish": 8,
+        "neutral": 24
       },
       "n_total": 40,
-      "why": "BUY bias - news flow is bullish: 8 bullish vs 2 bearish headlines (net +19). Main drivers: 'Qatari PM heads to Iran to 'de-escalate tensions' as tanker ' (+); 'Iran, Qatar hold Hormuz talks as US blockade squeezes Iran o' (+).",
+      "why": "BUY bias - news flow is bullish: 8 bullish vs 8 bearish headlines (net +6). Main drivers: 'U.S. Navy blockade slashes Iran oil exports as Trump adminis' (+); 'Oil Prices Head for a Weekly Loss Despite Escalating Iran Te' (+).",
       "headlines": [
         {
-          "title": "Qatari PM heads to Iran to 'de-escalate tensions' as tanker attack tests Trump\u2019s Hormuz claim - CNBC",
-          "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9nVjBrMDlsNXlyYk9iZDVzTXVhRjRMOUZ5WkNQQ3FjeF9VN0otNzlJR3puUVdZM3p5Y1hPUXh3N1dGM3lTTEk2NUh4ZlVZQTdjT2RPaGVockhDcmE2b2xleVVVd0cyQjdyUVBoTkdZMFNjcF93WW5FQ2gzazFZSEHSAYQBQVVfeXFMTU44UVVHTUt3UktXUzlDRW82U3p3S19Lc3VSU3VxRVUzcm1iOVhJYmswZU8zZ3AzWF96OUtWSUVoOXFWdzBzc1NUT0NzR1lCSUtTdHp3WS1JSGNCa1Q0Tkl2eTFzdkZ0eHRDVWc4MTJBSDE5M3F1RHlWNGNqdDQxaTRUR3dR?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 04:45:01 GMT",
+          "title": "U.S. Navy blockade slashes Iran oil exports as Trump administration shifts to economic warfare - CNBC",
+          "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPSV90MnZta3FaMFdyYVVaVXRPS256QjR4M08tZjBmdXl4bmFfQVE1enhwTHlaMzJMMDZfWmlxQTNHRDdIeXFiTWQwS0g0dlVYdEx1bnUyWHpjQjNXTVpubWUwT0ZuNDhEVFBRdVh4R3FEekljZUp2b25yVVh0cmhDQUQ2NWQ1MXBBQWFr0gGQAUFVX3lxTE5NdHFaMDlCZFRxYTBuTXhhc1Uxejg0RFFmc2lUcnVKVWE3eHhac2FDV0JFUUYzLWhTT3kwaTkxNXRUdXZCSWZheVNBTlp3bk5NcG1GYktVRVF1blkwekg1MEFjWE1TR2Njdk9PWkxBSnJiM1M0bDhsTTlDa0lNLTNZcFpIQlV1QnVFQndwdGNMQg?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 10:55:08 GMT",
+          "bias": "bullish",
+          "score": 6
+        },
+        {
+          "title": "Oil Prices Head for a Weekly Loss Despite Escalating Iran Tensions - Crude Oil Prices Today | OilPrice.com",
+          "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONFJpRGhTbWRHTDU4RzVpaEd3cE5pWnluMG90Zm5BbDdmOWdmTGxTOXlPTFZZazJIdFZsTkxMVTE0SWN5Wkcya0NSeVlXcURMWDNGYUotZEtqUkJMZGNQNTZ6R216VkhjQVkxWWR5ZlQyMi1FWkZCdlA2N3RCYVFJTlpXbkRrR3gyVG1NRENsblh1MnBVc2RUZEJMSVFlb3Z0cm1TUEItNndBWkJtd0RHemVzQ09uaG5CN2RmYTYxZ9IBxAFBVV95cUxQTnZEQXFUMnpSeUJSb1B3dm1Td3N4UFhXT2pkdExVdlFrVzdVVk5hN21TNXA3SHFtbFJleDNVRk1lc2hNa1k1Rl95cmtFTGJNNS05eFVKd1pURzN0VU51c2Q4RVhxZHJZZHNhVXNFZV9RTmJvYzRjZ0VYT0dycWdGaUg3MFZtWXJndjhCUGM3TnA0TlJjWjkyT1Q3dU1qdGZQMS0xaHJkTnJjZ2FwMDdMMFZabExLbUpKTTNjMDFzM3NPcVRO?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 05:15:00 GMT",
           "bias": "bullish",
           "score": 5
-        },
-        {
-          "title": "Iran, Qatar hold Hormuz talks as US blockade squeezes Iran oil exports - France 24",
-          "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNbmdVeU8xNU5VMjVYZFdQci01MGJXai1DYWFDVTFka3VDMDFTeWNlRzRuSmF1TUxqYUxKazlCb3I0bzFjellEclpFZTRGXzV1WTNkdFFRc2Q5cnlZREF6Zm56dGFwdmNNNExQd0FIMV9KN2c5RXhsUlB0dTZnZ0RwWmZ5Y3FVejcwRHJXeGN1bnI1ZGE2WkVqZzNhc0xpNy1FYXBTSEF1LWRnckx6eXoyUHNOY1pRWlU?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 12:01:16 GMT",
-          "bias": "bullish",
-          "score": 4
-        },
-        {
-          "title": "Oil Inventories Headed Toward Multi-Decade Lows, US EIA Warns - EnergyNow",
-          "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPZXE0LTc3TFJjeHVDaFB1blFrbVRfdl9QdU91dUVOcE9xenpVcE14aGJNTnlETUtuTVdOMjRJRkFQa3lnd1QzOVNBTDl0OU43U1hjbXQwSzl4eE8yZnprSkVOWkNZcjRMR3duU1FyV082Z0JWTEFtRDBEQlFLMklkMHEzZ1RKX09jNUozelhnbUt1VVR0?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 13:55:42 GMT",
-          "bias": "bullish",
-          "score": 4
         },
         {
           "title": "Oil prices dip as cautious optimism over Iran trumps new fears of Russian escalation in Ukraine - NBC News",
@@ -46,18 +39,25 @@
           "score": 3
         },
         {
-          "title": "OPEC+ Agrees to Boost Oil Output When Strait of Hormuz Reopens - EnergyNow.com",
-          "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNbHJPcmIwM1FXUFAzM0hWdlZyb2xhb0VsN3g2dGJxdFRGakxQU1VrTEMyS2NpQTV6NVpLM09Ma09UOF9PWnVQSmd6bG9JcThtUGRCeDgzaDVXY1AxUGo3NUcwNkhtMUlULUgwZWxSbnNaaTRRM2Q0T1pTUFlWQWg1b1NfTHJXTmhUUnYxQzZiWDU4NzctVlpz?oc=5",
-          "pubdate": "Wed, 26 Aug 2026 18:25:04 GMT",
+          "title": "Iran urges other nations not to join new US sanctions, mediators focus on reopening strait - Reuters",
+          "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObFhWQ0dIN3p1bUEzcUdpNlN2VFhmaWRhUk5zbkhfWE45U2swM1ViQ0RvRHhxZjJfT2xaUEhnWU9jZ3MzRXl3bXdabG1mM0xpTmdoRzZEQ3dRNDJOVEpTUnJfX3lCV0s4b2RPSzhPbXlZSllrb1l6SjA0NVRVRzNRR0pBYWFwTWdPU0xtOTduNnUyd3hpZjFUUDZUb1NnMkRoanl1Z2V5SjIwYWpubGc?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 15:29:15 GMT",
           "bias": "bearish",
           "score": -3
         },
         {
-          "title": "WTI Crude Oil futures ease as Middle East tensions cool. - CME Group",
-          "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNWWtSLVdDWXY3UnpFLVlpNGxqd1lHV3NieXV1ek04UFdDb18tZF9MNHlBWnp1azQ1VW1qUU5XTU12Y2NGdkdZWF9sNmpUczFtWkYta012emE2b0xsLVNzUGI1cmRLQmEyTjMwalEwd1NIdWlyNk5hMGk1OWJLOWVRVHNlUWlxaWgxeHByUWdWSEpFSDZXUFJXd2hhQVViUjVjSzVHNzlzXzdVUjBMTlFaTw?oc=5",
-          "pubdate": "Wed, 26 Aug 2026 22:13:06 GMT",
-          "bias": "bullish",
-          "score": 2
+          "title": "Oil prices fall after Iran steps up truce efforts, US says Hormuz mines cleared - Al-Monitor",
+          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVWl6RkRCbkVfUDFiLURNdlJFOE5ZcU9icTFmUzdLY200QUp2RjJpY3p3X2Uxcmc5QjZxc3FXVFRpaDM4Y2NJOHYzSnNDTWZmbVVZbmNjNU44Q2xlY0lPZl9VX1NDRFRhZDRBWnFrUnM0MWdFNVo4cnIxbjRvVjhHaWlOQk5oOUJkX3dRazMzeDcteUN5RDdxSGY5NXVpUDNlSUd2Q2NoWWU4SGlJZTVBNmRHRjl2anlqbVZvaw?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 14:57:50 GMT",
+          "bias": "bearish",
+          "score": -3
+        },
+        {
+          "title": "Tehran engages in renewed diplomatic push, touts proposal to reopen Strait of Hormuz - CBS News",
+          "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQUzJMQjNVM25NNWFDSVZ5MjlBRThTT1o3Q3k4QWZRemJLa2VEajBVR0l4OW0xVUNURWZraGVRcGlFWm5iZDZUektjWnlwQjdVdV94YU94Z2hlVklPbW1uc0dkYVdNQlhmeldmWG9OWjJrSHB6UkVFeEVjTXlvRkxTLXNn?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 06:23:00 GMT",
+          "bias": "bearish",
+          "score": -3
         }
       ],
       "source": "lexicon"
@@ -67,35 +67,21 @@
       "signal": "BUY",
       "strength": "HIGH",
       "net_bias": "bullish",
-      "net_score": 52,
+      "net_score": 29,
       "counts": {
-        "bullish": 18,
-        "bearish": 2,
-        "neutral": 17
+        "bullish": 14,
+        "bearish": 3,
+        "neutral": 22
       },
-      "n_total": 37,
-      "why": "BUY bias - news flow is bullish: 18 bullish vs 2 bearish headlines (net +52). Main drivers: 'Gold Price Forecast: Hotter-Than-Expected PCE Inflation Pres' (+); 'Fed Chairman Kevin Warsh Cut the Fed's Post-Meeting Statemen' (+).",
+      "n_total": 39,
+      "why": "BUY bias - news flow is bullish: 14 bullish vs 3 bearish headlines (net +29). Main drivers: 'Gold (XAU/USD) & Silver Price Forecast: Warsh at Jackson Hol' (+); 'Truflation calls for Fed rate cut after PCE forecast - Crypt' (+).",
       "headlines": [
         {
-          "title": "Gold Price Forecast: Hotter-Than-Expected PCE Inflation Pressures Gold, Will Warsh's Jackson Hole Speech Spark a New Rally? - TradingKey",
-          "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNakpwaDhtcHNKMkh4Y3ZiYVdhSlk4TlJXeTZGSm5qb0Nuc21pWUpQN2ZXNVVBZ2VBTVEwWkxUZDdNMDJid3o2NDYzdHJ6RnVuS1dBNXMyZ1QxT0RkVjFiZFpxN3dPOEJRQUVWc0xWWVlOU0Y4VFU2SXFPUUVvaXd2Y3dNcnM4eFFpQU84YVJnblJuRFctRExhV25kQTdGRENwMFhPbUREalpGZEthRkdNRUJUQ1IzMGQ1MElvZ1BWb1ppVVU5N2FUOG5XNTVUVXFNNVBTVmFyd2ExYWpuX2RYbzZUdw?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 08:46:33 GMT",
+          "title": "Gold (XAU/USD) & Silver Price Forecast: Warsh at Jackson Hole Looms as Fed Inflation Warnings Grow - FXEmpire",
+          "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNTkdQRzEweWNDMkc2YnYzM1pFZ0s2SFhpSVRVbThSa1dHTzFmcHFIUTJFX1c4ZW1udGd5S21RejVnMVhPdjQ1YTdMM0tkbGZydlBaSGFER0JELWs1ZGN1OEUzV3VnUlBOV3JmcWtyWW1wT1NuLVVKS2x6WVhDWG5CVlowb015a2NkamtPeHdVaGw2Q0NPZC1XYTlQSTU2UTFuakliVGExNU9yeV8yN3o3RnRNb0tEWWxhQjhFUldjeVpZc2hfNXJkRVNIQkpHZ3ZLalVEaGF4OW56dzN2?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 05:48:00 GMT",
           "bias": "bullish",
           "score": 6
-        },
-        {
-          "title": "Fed Chairman Kevin Warsh Cut the Fed's Post-Meeting Statement From 341 Words to Just 130, Dropping All Mention of Future Rate Cuts. Does That Signal Higher-for-Longer Rates Are Here to Stay? - The Motley Fool",
-          "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQbVNraU12QXlGb0xzTVprdmdnRUlja05UZkVNVHNkWXJ6Z3N3aWpDaHhDa3A5WGExcVBMUmt0Y2xXTFpubjdKVktLRjN5ZFp5OWY1ckdZTXBIVS02VmRjSGlTUm9LcTFyZklYenpaSE5pSkxlbU0wRE9SdWRBSENJY1hTcUItSWxKa2gwSXpXTnhfTFltZDJZMg?oc=5",
-          "pubdate": "Tue, 25 Aug 2026 23:15:00 GMT",
-          "bias": "bullish",
-          "score": 6
-        },
-        {
-          "title": "Gold Hits Record High as Tariff Conflict Fuels Safe-Haven Demand: Commerzbank - CryptoRank",
-          "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPNTJncUo1ZkJxTUpIbjZQY3BFdkxDLUROTkZ5NHRSZGkwUVNacHl6TmR2VktSLWZXQndWYlc1NkFzMmhTZVBkY0dVZjNxNFlxWVl2cmZBd0NuWTYyaE04YWJjc25FQVFVSG54Nm5kSG45RmZoTWR6S3JlekVKRTlLb1lqUWZTZ2JY?oc=5",
-          "pubdate": "Tue, 25 Aug 2026 16:51:17 GMT",
-          "bias": "bullish",
-          "score": 5
         },
         {
           "title": "Truflation calls for Fed rate cut after PCE forecast - Crypto News",
@@ -112,11 +98,25 @@
           "score": 4
         },
         {
-          "title": "NZD/USD Slides to 0.5950 as Hot US PCE Data Dents Rate Cut Hopes - CryptoRank",
-          "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPal9EY3pXWGpScjA0ZHJfcDRFUXZ1Ri1BSkNlRFpQNWdnQTJnT0pUQVZaem1hR1Y2cVFwcFVFZ0dMZkpkNlpZNWNBb3JqamNJb2RHdWJybEx0R2gyM2ZxQ0F1WXlpVGtXa0ROSXFaeFdUMXFVQTdKYXFkZURIYnByYUdadEt4MlplbDI5RDB3?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 04:57:27 GMT",
+          "title": "Dollar rises as PCE, GDP data keeps traders on edge about Fed rate outlook - Investing.com",
+          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQckxPRFBuWVljZnlUakdlS0ZWUHJ0UHBtOGtzNWk0Y3RETkVhYUlTOVB2QVNac1JwZHR1bHVZQ2cwNi1zWHR6NXlmaG9LdXlUR051Y1V3Qy1fZm0xQ3h5WERqeDFUVWZybE1BTTdSLW85T19wWmlWamlGblhjWnFoUDZTUGQtc3FxcWhQVkZjc01MbVdBUXRQdHNkRW9CQUZGVTNYcFAxd2xZYnRlMkN6TGZ5cUpEaTdhTWJxNg?oc=5",
+          "pubdate": "Wed, 26 Aug 2026 19:51:04 GMT",
+          "bias": "bearish",
+          "score": -3
+        },
+        {
+          "title": "Gold Edges Higher as Falling Yields Offset Fed Hawkish Stance - CryptoRank",
+          "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOcmg0MnpsR0g3QUZEQkUtQW56Rlpwa0t4R3JZRkxGMURHUmU1MjZ6S2RhOGtHWkEzRlhMM05SMkkwSS1sdWFlX3JwZk15VGUyQ1Rma25mTGZoUVRKNEhHcHFJWTdROUF2RmNNQzl0NWd6QjlJdnZuZGt2TEMxVUtweHJCb0ZLNXRuMmtaVzE3M2JqVVhvUjFKejhaeW0?oc=5",
+          "pubdate": "Thu, 27 Aug 2026 20:37:15 GMT",
+          "bias": "bearish",
+          "score": -3
+        },
+        {
+          "title": "Gold Pulls Back From $4,700 As Hormuz Hopes Cool Haven Demand - Bitcoin World",
+          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE85bVMzN2gzRmZoUWZXR3I1SkwyNXg1dUxkQlRqWFJ6MHRpUkZmYjB5S3dja0M3SEwwSmxZVE9KcjNHNElKV0NIZkd4bkJOckp0SEpIX0VQclNKLUJybTJCMGQwSUZhaTUtQzQtczhxTHM?oc=5",
+          "pubdate": "Tue, 25 Aug 2026 18:25:11 GMT",
           "bias": "bullish",
-          "score": 4
+          "score": 3
         }
       ],
       "source": "lexicon"
@@ -126,33 +126,26 @@
       "signal": "SELL",
       "strength": "MED",
       "net_bias": "bearish",
-      "net_score": -3,
+      "net_score": -6,
       "counts": {
-        "bullish": 1,
+        "bullish": 0,
         "bearish": 2,
-        "neutral": 37
+        "neutral": 36
       },
-      "n_total": 40,
-      "why": "SELL bias - news flow is bearish: 1 bullish vs 2 bearish headlines (net -3). Main drivers: 'US data buoys dollar as Fed hike expectations nudged higher ' (-); 'Canadian dollar falls as traders weigh Fed outlook and U.S. ' (+).",
+      "n_total": 38,
+      "why": "SELL bias - news flow is bearish: 0 bullish vs 2 bearish headlines (net -6). Main drivers: 'New Zealand Dollar Slips as Hawkish Fed Tone Boosts US Dolla' (-); 'Dollar rises after Warsh speech - CNBC' (-).",
       "headlines": [
         {
-          "title": "US data buoys dollar as Fed hike expectations nudged higher - Reuters",
-          "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQalFaeTZ2Tl9BS09vVjROdl84Z24tcVpyWWRLMVltR3hyQ1g5OThDMllnMGxscnZMWktXT2FxNVVMd1ZGTTVycFJMV0JVT202NFFncFh0MVRYUlBiLS1XWEVvUnI1dHNaMEt0TXgzanprZGp5MDRsRXl5cTVVRDZ0SjYwNXc0UUtGNWlMVDlQUE9MRk5EbDgzTFllcWlOZ3ZFWkM0MWFwOGYtYk9CRUl3bWNJVXk?oc=5",
-          "pubdate": "Wed, 26 Aug 2026 01:51:00 GMT",
+          "title": "New Zealand Dollar Slips as Hawkish Fed Tone Boosts US Dollar - TradingView",
+          "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPcXgxVjUtWVAzTkh4cTlpWDMzTjkwSks3Wmx6Q3hxVWRBV2NVem1yN014amRLU1JQX0l4eVFfTGVRTm4xTWlHT01xSGEtRW11eDFyNkUzQzllMEZEd1VhZFl2a1JGd1Z5eVY1ZDNYZkk4TlllR1VHTHJXa01KOG1sQWRHTUo5dGpBNjV6NXowS2NBaHFJY1F2RVVGTVVQUGltXy1LMmR0bUxjVXpycElUbS1n?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 15:21:09 GMT",
           "bias": "bearish",
           "score": -3
         },
         {
-          "title": "Canadian dollar falls as traders weigh Fed outlook and U.S. dollar strength - Investing.com",
-          "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOM243UHNtaURLLWFiUW54ZXJwN3c0R3Q0WUE4c1IwQzdQd2k2S05RUVZFMnN5cEtPb1dUMzFGbTMxTFQ2VlhSNnEwZTA1YVQyejRCR1pJUWVoZDRQZWJXVGx4eXNrT0gteWFFREdYSXI1VGxJT3lXNDBDeVdRWk5DVW5HekRHVmNwSEZwanBtN0hsYlFYM1I0aWxZcTk4QndtWmZJbWxvcHJLUkdpSUJLdTA1QUlLRFdmMUNxejdoc2dXcDZ2T2xzbjJsUQ?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 13:58:00 GMT",
-          "bias": "bullish",
-          "score": 3
-        },
-        {
-          "title": "Dollar near eight-day high as US data lifts Fed hike bets - The Economic Times",
-          "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQb1JDdnNta2NXbTBzYi1lX2lETzllYU1tbTMtR0pWTlBfM0E3aXduOUhBbl9yNElCU0FtNkVLaXV1bFdBeUtVcjYyR0hhczJBNDRGNVpqbXBQTmRoZEswdl9kNVBPejdmYm41RDRRZlZTTkJCN2JLZWVjUnBNamNMQmw1elFyRHhLR3ZnY3pndURleTU2MEFJQjNxazU3eEQ3aGZjR01xbjB3R2dBQ1lLeEhXX1VKUTdMZWFtRkxGNGtHOUl3NTdtNExtZUxpMEN1SmfSAdcBQVVfeXFMUEF5SEtlVFQwbmJZdlE1WHlmWEZZdnBmVlBmNnIwSUEtN3dlUlQ2RDVrRnNoNFJzaUkyS0M2OHI3V19EZkNYOFU4NUNqYTVHSUlYMzF1c0x6NEliNXpyVXE1clVaeDB6TC1nM21YOUs2STNNTmZPcG5FSE9lVnNkNlRkUUxJSEtmcm5hSjJ0LURiLUNzUVoyQlZFZndOSUx5dTRXMkQ5VzBHOHBLc3RDRGxNSmRoUWhaWkRVcGNOaG1QVFZ4cVRxUFpxZVN0U0FMcVRCS3N4ZHM?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 01:50:41 GMT",
+          "title": "Dollar rises after Warsh speech - CNBC",
+          "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOanlNNVpTVDdjS3h1VUtWVXNxZHF4Y2xPREllbVBhX3ZNQ1MwUlJaTGlWeVY3UTM4QmVMbW54a1BNand2eDViNV9JRnR4aVhOdDBpR2Z0Z01qY0EtRmFUWXZabEdONXZURGpUNGo2dWpHNnBLejhfMG5fRGZnRUp0aTBpVExJOGxlbE1KbThpNTJGU2tvZXgway1namdvVGVWcUHSAacBQVVfeXFMT1pORFNoRHVORVI4YTdOcVlXbS1GZ3I5MHNNZXNjbXRDaW5rQXBPbWRSbWNKcDlhSFg4UlpYSFA2Ul9RbVIwRGV5bjlpT1RXaTVMSFNYdElGZ24zUUhkQXhwVjV2NUxPNFZaT0hBWmxUMlNMakcwSlRpYXFqNGdvZ25EZ2JjcHFGaDRQYXIySUtwTkNsUWJnelVZNjBsN1ZSS1VPT1pZQkE?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 02:53:00 GMT",
           "bias": "bearish",
           "score": -3
         }
@@ -164,56 +157,56 @@
       "signal": "BUY",
       "strength": "HIGH",
       "net_bias": "bullish",
-      "net_score": 69,
+      "net_score": 79,
       "counts": {
-        "bullish": 15,
-        "bearish": 0,
-        "neutral": 23
+        "bullish": 14,
+        "bearish": 1,
+        "neutral": 24
       },
-      "n_total": 38,
-      "why": "BUY bias - news flow is bullish: 15 bullish vs 0 bearish headlines (net +69). Main drivers: 'BTC price steadies above $79,000 as ETF inflows hit longest ' (+); 'Live Updates: Bitcoin ETF Inflows Hit Eight Straight Days as' (+).",
+      "n_total": 39,
+      "why": "BUY bias - news flow is bullish: 14 bullish vs 1 bearish headlines (net +79). Main drivers: 'Bitcoin ETF Inflows Explode as Treasury Buybacks Hit Yields ' (+); 'Crypto Today: Bitcoin, Ethereum, XRP rally loses steam despi' (+).",
       "headlines": [
         {
-          "title": "BTC price steadies above $79,000 as ETF inflows hit longest streak since April: Crypto Markets Today - CoinDesk",
-          "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOR2N1R21LQkMzWG9UZkFVaXk5R3hsSE9ocHo2eTA5U1Y0RlFaMUxUSjBPajNFNC1jM0NIQ25CcG1tTzVnWXVwaXVyWnNJVkRxY0lnM3o4cVJ5VTczeWNqb2NrT1JNR0ZCaEkwV3ZKQ0ZnOHRDMmlXcm1KbzQwNXVERjAyUzdGbC1vdXJKWDNDakV1WFpyMmhOeEt2S1F3dU9fRzVTb2pxVnRCcFp1R2UtV3gwcmVKcUtvdEl1YWE4VQ?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 10:31:21 GMT",
+          "title": "Bitcoin ETF Inflows Explode as Treasury Buybacks Hit Yields \u2014 Is an $80K Breakout Igniting the Next Crypto Rally? - Bitcoin Foundation",
+          "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPWHBseVN0VkNzMkNjeXBEQXlMbFdGWTBOV1RJVnR2WW9GOW50OVlSRVlfTU1jMnl2UU1jMHFqSTZjTERkczB1WUpudjFDQ2p5QnFBY205ZEtoRDZ5dk45TnNXSzY3RkEtVi1qM0taMzNsaGI4R0s4LUVnbHduR0M0bmNVemZWZzJCc2tXZkNXamozVmhWSDFPRkJtTmt4eDZ5V09jNzJKa1pQSllQV0k2SWRUZzdveGVETXg3aGUwdFVzQmc0TWpHdElzV1NCRVN1SGFTTGFFUzZlZVFGUjhWdWpJTmxDempS?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 10:27:52 GMT",
+          "bias": "bullish",
+          "score": 9
+        },
+        {
+          "title": "Crypto Today: Bitcoin, Ethereum, XRP rally loses steam despite steady ETF inflows - tmgm.com",
+          "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNeDZxelZKYlg3WXRvV21iOUlDZHJMN3BoMTBxNVZwQXhfRk84QjNRRGRzSzBpR1p2eDdFajJseXBORmpsekJTMjFDZV82YkVFRms1eEcwdnltTkdINktwY2hrRFp6ckgxNWcwT3ZPamZjaXRyOWI0Z2JqR2J4Wk5WZWphMnplVnZoaVViQy00V2EwSVJkUFJKMUVKM2JOYVo1bjFTU2VwMFo0VFVSSUhIQl9MaG03bzZRRG1fRms4aHo1T3pnRERFUFc5TnhhcnFMUkt3cDZldEU2TFl0?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 10:51:06 GMT",
+          "bias": "bullish",
+          "score": 9
+        },
+        {
+          "title": "Grayscale CEO says institutional flows, corporate adoption matter more than bitcoin's 20 percent surge - \ub514\uc9c0\ud138\ud22c\ub370\uc774",
+          "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNbHM2OF96ZlpDMEo5WHlkWlp0WHNweUtDcGFXYVE4aG01bElIcURMQWRacndnTDV3REk3LXlXd0kwcnF5RXJORmRXUE40ZkxwdjNuNHJiR0ZtVEFDRVEwY1VHLVQ5VS1PVkMySE4tS0FrVjRqYlgxdlNYM21wdXRISDBibm5sOS1iVHUwQ09mY05RZHdnODBsYmMyN1ZqbHRlTGZFS1hxaS1qbndVRlFOSDBsMDUxUXVUaW5NN05yTUxJRkxXdGNV?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 06:30:00 GMT",
+          "bias": "bullish",
+          "score": 8
+        },
+        {
+          "title": "Bitcoin ETF Inflows Are Finally Returning After a Difficult Summer. Here's Why Bitcoin Is a Buy Right Now. - Yahoo Finance",
+          "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNaS1Wd0NSWmoybllDeEVrRDVJRXU5NmhlQ1V1X3d0d2hpYVpfZUN6bVZadzdkazhOVEp2eUFQeWxUckxzakpkRnhlcXpXVEg5Qy11ZnU4NU9kV3NFRkY2Nms2QkYycllHNFNjRjhWMHpURUs4c19zUVl5aFRuaUFoLWxDNU1fRkpIUF9pT3FDTThmV2xBUVBnYmZFNHdPSUlVemNZUA?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 15:29:00 GMT",
           "bias": "bullish",
           "score": 7
         },
         {
-          "title": "Live Updates: Bitcoin ETF Inflows Hit Eight Straight Days as August Tops $3 Billion - Moomoo",
-          "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPbmNFLW1QSUF5MnNpaS1HYWVIcWJubnJoc2FfWkU0YWJiZlpCM0VVNm9IenRwaE9kODNERE1aLWZzaFQ1ek5hU24xOUpLNEtlVUxMdmNpOVNCSDJoTHRHOGR2TDBTWkhvTFVQRzVLQy1UNkVSUnBkLTlCNmVnZk4zYjk0bHlxNTJ2VXdTYllRZkM5em92UmJfdlM5cmtwWFVraWN3?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 09:00:13 GMT",
+          "title": "BlackRock just pulled in 115% of all Bitcoin ETF inflows in a single day as rival funds bleed cash - CryptoRank",
+          "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQUHVqbFV3cHZOOUNxVnpId3cySUE3WDExenFTZi1BNWJ1TkVIQ0hlTE1pT1BtSzA2UEEyTld6UThYY1JNZTlaYVJBc3pKQl9sSVlkZVNxbUpidUlXQ0hxNi1WVjg0MUNnUGlLdFkxZzdfaGRzMTRXX3pEN1hidmdZM1dVbk45bTF3ZW5aaGMxYm1HcFhJZXhxWUZwVXZIN3Z5MXFWR0NPcUV6OHY2dGxWMDZIb2hxclc2VEZXZXkzYXhYQkZBUUpOTnVMYm9zTEF3?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 15:10:15 GMT",
           "bias": "bullish",
           "score": 7
         },
         {
-          "title": "Bitcoin ETF Inflows Slow to $232M as BTC Holds Below $80K - Altcoin Buzz",
-          "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBhMVA0QkptaHVxQ1FKbmQyNEZjSGd1eW1RN196Yng4Zmx0aUNSNU1oQTdsbzV4eWxYRDNkbFlLY1FnZk9fR1U3emVHUjBlVEpXZ3FMOE5pd205TUJBYWVReS1VX1F0MS1kUXZhQ2JyWURxZ0tLTWNfaE5zUG4?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 10:42:16 GMT",
+          "title": "Bitcoin Steadies Above $79,000 as ETF Inflows Hit Longest Streak Since April - Moomoo",
+          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPdWQ0M1VOcUNObGpMZXlBUlRfS0l4ZVVtN3U4c0VhMDllVURHYmJ6M2tDNFFWYk5WWjB3NElNNjZBS09lUGNRaUlMa0hrRTVwWlR1Y1oxQlVGSVN5cFlTVHc1bnlSYzRvcFAyOUxSTlo0NVplelVBQWRPcXFUVzRaNGhNMUhtd1BQVVgzcmhTazRId0hFZXhOT0NOam1UbW5ETlJCRWtORQ?oc=5",
+          "pubdate": "Fri, 28 Aug 2026 07:04:17 GMT",
           "bias": "bullish",
           "score": 7
-        },
-        {
-          "title": "Bitcoin ETF inflows slow to $232M as BTC holds under $80K - TradingView",
-          "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNandUemg5dGVORU50b0doNDIwWHJKMnktYmtSWUh6ZGNETl9GcC1qZzRMa0VxcVR6ZENQZUVhQjBpdUgwZW1ndUV4MGJ4LVd4OHhyb2VSdnJDSUtjVHVSUFNMRWN1VHE5SjExR1FuLVhHNTloNl9kd0F3RDEweTI0NU1kaEQ3VTNmdnJjX0Y0aDJGNkRMOWJ6eEpSa3hWRWI4NDdKdF9kS3JKT01sQW9VdUpFOWFQQ09zU3hr?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 07:01:19 GMT",
-          "bias": "bullish",
-          "score": 7
-        },
-        {
-          "title": "Bitcoin News: Bitcoin Tops $80,000 as ETF Inflows Reach Eight Straight Days and $2.8 Billion - Binance",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBWeW0tTnZKY0w3b1FobG01TU5mSnItSU1STW5yVUFwdWJsZWpzc0kxZjVsWEttd3ZINkZWYm84aTZCOVNpSWY3YmZOSkgtaXpueUxuV21WQmdJa1pmTW5rcEV5WXdkZE85?oc=5",
-          "pubdate": "Thu, 27 Aug 2026 09:32:18 GMT",
-          "bias": "bullish",
-          "score": 7
-        },
-        {
-          "title": "BlackRock's Robert Mitchnick on bitcoin's comeback and what's next for institutional adoption - CNBC",
-          "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNekdtRXlBRlhuV1Z0aDJkZzdKdE05NUY5OE9lZktTNGNIZEplVmdFVnZ6UUlXZ2RFdklQbFVvZVZnMVdHYUpaR2RpaGVvcVA2OU9PSzFVX2RROGlCOWVrQkFLZDhibGpYa3FISVZINXBuYzI1TWxKaldRTWFvaXNvY0tnblNUMXd3TG9sUE5DbENNVFc3dnFvcXRHWTY4cEZaZlpBSnBXNU9XcDVXOF9V?oc=5",
-          "pubdate": "Wed, 26 Aug 2026 17:56:49 GMT",
-          "bias": "bullish",
-          "score": 6
         }
       ],
       "source": "lexicon"
