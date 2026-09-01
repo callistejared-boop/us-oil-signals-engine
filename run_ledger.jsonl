@@ -3886,3 +3886,10 @@
 {"ts": "2026-09-01T03:03:04+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-01T03:03:04+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 46, "quality": 71, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
 {"ts": "2026-09-01T03:03:05+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 29, "quality": 39, "transition": "high", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-09-01T08:36:28+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 0, "quality": 2, "transition": "high", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-09-01T08:36:28+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 9, "quality": 33, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-01T08:36:28+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 43, "quality": 70, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-09-01T08:36:29+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 29, "quality": 39, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-01T08:36:30+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 60, "quality_score": 70, "independent_agreement": 0.55, "n_conflicts": 1}
+{"ts": "2026-09-01T08:36:30+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 60, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-01T08:36:30+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-09-01T04:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
