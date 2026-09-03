@@ -3955,3 +3955,14 @@
 {"ts": "2026-09-03T05:03:40+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 29, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-03T05:03:41+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 47, "quality": 71, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-03T05:03:41+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 22, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-03T09:46:26+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 6, "quality": 44, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-03T09:46:26+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-03T09:46:26+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Strong Bull Trend", "confidence": 43, "quality": 70, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-03T09:46:26+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 26, "quality": 38, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-03T09:46:28+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 78, "quality_score": 85, "independent_agreement": 0.656, "n_conflicts": 2}
+{"ts": "2026-09-03T09:46:28+00:00", "event": "market_memory_context", "symbol": "WTIUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-09-03T09:46:30+00:00", "event": "macro_assessment", "symbol": "WTIUSD", "direction": "long", "labels": ["Mixed", "Tightening"], "macro_confidence": "low", "evidence_quality": "medium", "ref": "WTIUSD-2026-09-03T05:30:00"}
+{"ts": "2026-09-03T09:46:30+00:00", "event": "execution_report", "symbol": "WTIUSD", "direction": "long", "execution_score": "Average", "cost_r": 0.204716, "ref": "WTIUSD-2026-09-03T05:30:00", "execution_profile_style": "day", "execution_profile_within_tolerance": false}
+{"ts": "2026-09-03T09:46:30+00:00", "event": "broker_order", "symbol": "WTIUSD", "direction": "long", "status": "filled", "quantity": 5.0, "avg_fill_price": 90.27258304, "ref": "WTIUSD-2026-09-03T05:30:00"}
+{"ts": "2026-09-03T09:46:30+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 68, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-09-03T09:46:30+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-09-03T05:30:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
