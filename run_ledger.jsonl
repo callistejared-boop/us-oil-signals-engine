@@ -4012,3 +4012,11 @@
 {"ts": "2026-09-04T13:39:45+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 24, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-04T13:39:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 42, "quality": 50, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-09-04T13:39:46+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 37, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-04T17:05:30+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-04T17:05:30+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 26, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-04T17:05:30+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 44, "quality": 50, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-04T17:05:31+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 41, "quality": 51, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-04T17:05:32+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 83, "quality_score": 84, "independent_agreement": 0.578, "n_conflicts": 1}
+{"ts": "2026-09-04T17:05:32+00:00", "event": "market_memory_context", "symbol": "WTIUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-09-04T17:05:32+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 69, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-09-04T17:05:32+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-09-04T12:45:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
