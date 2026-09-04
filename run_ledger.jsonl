@@ -4041,3 +4041,10 @@
 {"ts": "2026-09-04T21:49:37+00:00", "event": "broker_order", "symbol": "WTIUSD", "direction": "long", "status": "partially_filled", "quantity": 4.545455, "avg_fill_price": 91.27706602, "ref": "WTIUSD-2026-09-04T16:45:00"}
 {"ts": "2026-09-04T21:49:37+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 48, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-09-04T21:49:37+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-09-04T16:45:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
+{"ts": "2026-09-04T23:37:45+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-04T23:37:45+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 26, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-04T23:37:46+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 46, "quality_score": 56, "independent_agreement": 0.54, "n_conflicts": 1}
+{"ts": "2026-09-04T23:37:46+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 46, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-04T23:37:46+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-04T22:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-04T23:37:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 40, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-04T23:37:46+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 43, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
