@@ -4160,3 +4160,13 @@
 {"ts": "2026-09-06T19:56:43+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 62, "tier": "Moderate Confidence", "is_calibrated": false}
 {"ts": "2026-09-06T19:56:43+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-09-06T19:45:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
 {"ts": "2026-09-06T19:56:43+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-06T21:56:55+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-06T21:56:55+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 26, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-06T21:56:55+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 46, "quality_score": 56, "independent_agreement": 0.54, "n_conflicts": 1}
+{"ts": "2026-09-06T21:56:55+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 46, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-06T21:56:55+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-04T22:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-06T21:56:56+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 39, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-06T21:56:56+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 68, "quality_score": 80, "independent_agreement": 0.537, "n_conflicts": 1}
+{"ts": "2026-09-06T21:56:56+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 68, "final_tier": "watch", "disagree": ["price action", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-06T21:56:56+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-09-06T21:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-06T21:56:57+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
