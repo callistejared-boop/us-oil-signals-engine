@@ -4209,3 +4209,10 @@
 {"ts": "2026-09-07T20:59:24+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-09-07T20:59:25+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 38, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-07T20:59:25+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-07T23:21:44+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-07T23:21:45+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 25, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-07T23:21:46+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 56, "quality_score": 75, "independent_agreement": 0.467, "n_conflicts": 1}
+{"ts": "2026-09-07T23:21:46+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 56, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "news", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-07T23:21:46+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-08T00:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-07T23:21:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 33, "quality": 47, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-09-07T23:21:46+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
