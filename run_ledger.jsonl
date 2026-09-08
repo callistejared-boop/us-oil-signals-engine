@@ -4216,3 +4216,10 @@
 {"ts": "2026-09-07T23:21:46+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-08T00:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-07T23:21:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 33, "quality": 47, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-09-07T23:21:46+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T01:17:05+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 14, "quality": 49, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T01:17:05+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 25, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-08T01:17:05+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 46, "quality_score": 63, "independent_agreement": 0.42, "n_conflicts": 1}
+{"ts": "2026-09-08T01:17:05+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 46, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)", "news", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-08T01:17:05+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-08T02:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-08T01:17:06+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 24, "quality": 44, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-09-08T01:17:06+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
