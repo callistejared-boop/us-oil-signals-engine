@@ -4223,3 +4223,13 @@
 {"ts": "2026-09-08T01:17:05+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-08T02:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-08T01:17:06+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 24, "quality": 44, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-09-08T01:17:06+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 44, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T06:10:43+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 20, "quality": 51, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-08T06:10:44+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 33, "quality": 55, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T06:10:45+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 65, "quality_score": 64, "independent_agreement": 0.4, "n_conflicts": 1}
+{"ts": "2026-09-08T06:10:45+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 65, "final_tier": "watch", "disagree": ["price action", "news", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-08T06:10:45+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-08T07:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-08T06:10:45+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 41, "quality": 57, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-08T06:10:46+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 35, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-08T06:10:48+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 58, "quality_score": 84, "independent_agreement": 0.66, "n_conflicts": 0}
+{"ts": "2026-09-08T06:10:48+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 58, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (buying above value)"]}
+{"ts": "2026-09-08T06:10:48+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-09-08T02:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
