@@ -4247,3 +4247,14 @@
 {"ts": "2026-09-08T15:13:01+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-09-08T16:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-08T15:13:02+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 45, "quality": 52, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-08T15:13:02+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 29, "quality": 42, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-08T18:40:55+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 17, "quality": 25, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T18:40:55+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 33, "quality": 55, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T18:40:56+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 45, "quality": 58, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-08T18:40:58+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 43, "quality_score": 66, "independent_agreement": 0.66, "n_conflicts": 1}
+{"ts": "2026-09-08T18:40:58+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 43, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "news", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-09-08T18:40:58+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-09-08T18:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-08T18:40:58+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 29, "quality": 42, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-08T18:41:00+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 74, "quality_score": 79, "independent_agreement": 0.556, "n_conflicts": 3}
+{"ts": "2026-09-08T18:41:00+00:00", "event": "market_memory_context", "symbol": "WTIUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-09-08T18:41:00+00:00", "event": "confidence_assessment", "symbol": "WTIUSD", "direction": "long", "overall_confidence": 58, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-09-08T18:41:00+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-09-08T14:30:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
