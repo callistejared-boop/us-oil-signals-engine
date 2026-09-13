@@ -4470,3 +4470,10 @@
 {"ts": "2026-09-12T22:35:55+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 53, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "candlestick pattern (opposing pattern just printed)"]}
 {"ts": "2026-09-12T22:35:55+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-09-12T22:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-12T22:35:56+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 40, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-13T00:20:26+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 15, "quality": 24, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-13T00:20:26+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Range", "confidence": 19, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-13T00:20:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 21, "quality": 51, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-09-13T00:20:30+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 53, "quality_score": 68, "independent_agreement": 0.617, "n_conflicts": 0}
+{"ts": "2026-09-13T00:20:30+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 53, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "candlestick pattern (opposing pattern just printed)"]}
+{"ts": "2026-09-13T00:20:30+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-09-13T00:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-13T00:20:31+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 40, "quality": 54, "transition": "low", "tags": [], "mode": "advisory"}
