@@ -4518,3 +4518,7 @@
 {"ts": "2026-09-14T10:15:15+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 38, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "volume profile (buying above value)", "cross-asset risk sentiment", "RSI divergence (active divergence warns against this)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-09-14T10:15:15+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-09-14T10:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-14T10:15:15+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 53, "quality": 57, "transition": "low", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-09-14T16:23:24+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 32, "quality": 24, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-09-14T16:23:24+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 6, "quality": 42, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-14T16:23:25+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 2, "quality": 36, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-14T16:23:25+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 32, "quality": 43, "transition": "high", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
