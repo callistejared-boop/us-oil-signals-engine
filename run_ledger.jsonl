@@ -4504,3 +4504,10 @@
 {"ts": "2026-09-14T00:01:44+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Range", "confidence": 16, "quality": 25, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
 {"ts": "2026-09-14T00:01:44+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 21, "quality": 51, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-14T00:01:45+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 52, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-09-14T04:51:59+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 30, "quality": 29, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-14T04:51:59+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Range", "confidence": 3, "quality": 14, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-14T04:51:59+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 17, "quality": 50, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-09-14T04:52:00+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 48, "quality_score": 63, "independent_agreement": 0.575, "n_conflicts": 0}
+{"ts": "2026-09-14T04:52:00+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 48, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "volume profile (buying above value)", "cross-asset risk sentiment", "pivot level confluence"]}
+{"ts": "2026-09-14T04:52:00+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-09-14T04:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-14T04:52:01+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 50, "quality": 53, "transition": "medium", "tags": [], "mode": "advisory"}
