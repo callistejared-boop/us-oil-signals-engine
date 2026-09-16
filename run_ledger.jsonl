@@ -4612,3 +4612,11 @@
 {"ts": "2026-09-16T05:33:51+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 28, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-16T05:33:51+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 33, "quality": 55, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
 {"ts": "2026-09-16T05:33:52+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 33, "quality": 43, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-16T10:18:08+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 43, "quality": 27, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-16T10:18:08+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 27, "quality": 41, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-16T10:18:08+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 73, "quality_score": 85, "independent_agreement": 0.613, "n_conflicts": 1}
+{"ts": "2026-09-16T10:18:08+00:00", "event": "market_memory_context", "symbol": "EURUSD", "direction": "short", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-09-16T10:18:08+00:00", "event": "confidence_assessment", "symbol": "EURUSD", "direction": "short", "overall_confidence": 60, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-09-16T10:18:08+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "short", "decision_id": "EURUSD-2026-09-16T11:15:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-09-16T10:18:09+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 33, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-16T10:18:09+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 29, "quality": 46, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
