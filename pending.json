@@ -16,5 +16,23 @@
       "RR 4.0 >= 3 [+4]"
     ],
     "invalidation": "15m close above 1.15495 voids it \u2014 bear FVG mitigated."
+  },
+  {
+    "id": "WTIUSD-2026-09-17T00:15:00",
+    "symbol": "WTIUSD",
+    "created": "2026-09-17 00:15:00",
+    "direction": "long",
+    "entry": 101.95,
+    "stop": 101.57,
+    "target": 103.48,
+    "rr": 4.0,
+    "confidence": 76,
+    "prob": 63,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bear'} (weighted 4) [+20]",
+      "sell-side liquidity SWEPT at 101.72 (5 bars ago) \u2014 stop-hunt reversal [+12]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 101.57 voids it \u2014 bull FVG mitigated."
   }
 ]
