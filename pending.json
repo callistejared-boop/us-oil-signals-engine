@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "id": "EURUSD-2026-09-17T19:15:00",
+    "symbol": "EURUSD",
+    "created": "2026-09-17 19:15:00",
+    "direction": "short",
+    "entry": 1.14837,
+    "stop": 1.1486,
+    "target": 1.14771,
+    "rr": 2.88,
+    "confidence": 72,
+    "prob": 60,
+    "reasons": [
+      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bull'} (weighted 4) [+20]",
+      "buy-side liquidity SWEPT at 1.1486 (12 bars ago) \u2014 stop-hunt reversal [+12]"
+    ],
+    "invalidation": "15m close above 1.1486 voids it \u2014 bear FVG mitigated."
+  }
+]
