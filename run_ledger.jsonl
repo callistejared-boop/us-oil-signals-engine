@@ -4702,3 +4702,10 @@
 {"ts": "2026-09-17T23:41:10+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 64, "final_tier": "rejected", "disagree": ["news", "cross-asset risk sentiment"]}
 {"ts": "2026-09-17T23:41:10+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-09-17T23:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-17T23:41:11+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 25, "quality": 44, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-18T01:30:32+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 36, "quality": 25, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-18T01:30:32+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 46, "quality": 52, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-18T01:30:32+00:00", "event": "confluence_quality", "symbol": "EURUSD", "score": 48, "quality_score": 74, "independent_agreement": 0.62, "n_conflicts": 1}
+{"ts": "2026-09-18T01:30:32+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 48, "final_tier": "watch", "disagree": ["cross-asset risk sentiment", "chart pattern (opposing formation just confirmed)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-18T01:30:32+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "short", "decision_id": "EURUSD-2026-09-18T02:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-18T01:30:33+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 9, "quality": 43, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-09-18T01:30:33+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bull Trend", "confidence": 26, "quality": 45, "transition": "medium", "tags": [], "mode": "advisory"}
