@@ -4744,3 +4744,11 @@
 {"ts": "2026-09-19T06:11:40+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 36, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-19T06:11:40+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 7, "quality": 35, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-09-19T06:11:40+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 9, "quality": 40, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-19T10:57:11+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 33, "quality": 30, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-19T10:57:12+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 36, "quality": 48, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-19T10:57:12+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 16, "quality": 41, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-19T10:57:13+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 90, "quality_score": 84, "independent_agreement": 0.589, "n_conflicts": 2}
+{"ts": "2026-09-19T10:57:13+00:00", "event": "market_memory_context", "symbol": "BTCUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-09-19T10:57:13+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 78, "tier": "High Confidence", "is_calibrated": false}
+{"ts": "2026-09-19T10:57:13+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-09-19T10:45:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-09-19T10:57:13+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Distribution", "confidence": 15, "quality": 42, "transition": "medium", "tags": [], "mode": "advisory"}
