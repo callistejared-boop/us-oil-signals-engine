@@ -16,5 +16,23 @@
       "entry FVG born of displacement (impulse leg) [+8]"
     ],
     "invalidation": "15m close below 80884.99 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "BTCUSD-2026-09-21T01:00:00",
+    "symbol": "BTCUSD",
+    "created": "2026-09-21 01:00:00",
+    "direction": "long",
+    "entry": 81354.62,
+    "stop": 81153.99,
+    "target": 81824.69,
+    "rr": 2.34,
+    "confidence": 90,
+    "prob": 73,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 81176.1562 (4 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG born of displacement (impulse leg) [+8]"
+    ],
+    "invalidation": "15m close below 81153.99 voids it \u2014 bull FVG mitigated."
   }
 ]
