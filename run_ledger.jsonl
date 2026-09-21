@@ -4871,3 +4871,7 @@
 {"ts": "2026-09-21T18:40:33+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 38, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-21T18:40:34+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 25, "quality": 40, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-09-21T18:40:34+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 16, "quality": 13, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-21T22:13:49+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Accumulation", "confidence": 39, "quality": 57, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-09-21T22:13:49+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 46, "quality": 52, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
+{"ts": "2026-09-21T22:13:49+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 27, "quality": 41, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-21T22:13:50+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 23, "quality": 18, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
