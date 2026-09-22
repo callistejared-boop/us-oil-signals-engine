@@ -4917,3 +4917,11 @@
 {"ts": "2026-09-22T21:44:56+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 40, "quality": 45, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-22T21:44:57+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 33, "quality": 46, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-09-22T21:44:57+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 16, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-22T23:51:40+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Accumulation", "confidence": 30, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-22T23:51:41+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Weak Bear Trend", "confidence": 37, "quality": 44, "transition": "high", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-22T23:51:41+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 33, "quality": 46, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-22T23:51:43+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 80, "quality_score": 79, "independent_agreement": 0.613, "n_conflicts": 1}
+{"ts": "2026-09-22T23:51:43+00:00", "event": "market_memory_context", "symbol": "BTCUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
+{"ts": "2026-09-22T23:51:43+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "long", "overall_confidence": 69, "tier": "Moderate Confidence", "is_calibrated": false}
+{"ts": "2026-09-22T23:51:43+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-09-22T23:45:00", "stage": "approval_or_rejection", "final_action": "approved_heads_up"}
+{"ts": "2026-09-22T23:51:43+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 16, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
