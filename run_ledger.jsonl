@@ -4966,3 +4966,10 @@
 {"ts": "2026-09-23T17:58:11+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 63, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-23T17:58:11+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 24, "quality": 52, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-09-23T17:58:11+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 30, "quality": 23, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-09-23T21:11:58+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Accumulation", "confidence": 25, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-09-23T21:12:04+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 44, "quality_score": 61, "independent_agreement": 0.58, "n_conflicts": 1}
+{"ts": "2026-09-23T21:12:04+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 44, "final_tier": "rejected", "disagree": ["volume profile (selling below value)", "news", "seasonality", "pivot level confluence", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-09-23T21:12:04+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "short", "decision_id": "XAUUSD-2026-09-23T17:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-23T21:12:05+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 64, "quality": 80, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-23T21:12:05+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 16, "quality": 47, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-23T21:12:05+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 31, "quality": 29, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
