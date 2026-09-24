@@ -4987,3 +4987,10 @@
 {"ts": "2026-09-24T01:39:18+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "short", "decision_id": "EURUSD-2026-09-24T02:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-09-24T01:39:19+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 24, "quality": 49, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-09-24T01:39:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 25, "quality": 28, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-24T06:45:01+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Accumulation", "confidence": 29, "quality": 54, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-09-24T06:45:02+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 39, "quality_score": 58, "independent_agreement": 0.5, "n_conflicts": 1}
+{"ts": "2026-09-24T06:45:02+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 39, "final_tier": "rejected", "disagree": ["news", "seasonality", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-09-24T06:45:02+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "short", "decision_id": "XAUUSD-2026-09-24T02:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-09-24T06:45:03+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 56, "quality": 75, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-09-24T06:45:03+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 31, "quality": 54, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-09-24T06:45:03+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 24, "quality": 21, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
