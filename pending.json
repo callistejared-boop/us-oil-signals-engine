@@ -1,21 +1,22 @@
 [
   {
-    "id": "EURUSD-2026-09-24T13:15:00",
-    "symbol": "EURUSD",
+    "id": "WTIUSD-2026-09-24T13:15:00",
+    "symbol": "WTIUSD",
     "created": "2026-09-24 13:15:00",
-    "direction": "short",
-    "entry": 1.13727,
-    "stop": 1.13752,
-    "target": 1.13649,
-    "rr": 3.11,
-    "confidence": 94,
-    "prob": 75,
+    "direction": "long",
+    "entry": 92.53,
+    "stop": 92.11,
+    "target": 94.22,
+    "rr": 4.0,
+    "confidence": 95,
+    "prob": 76,
     "reasons": [
-      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bear'} (weighted 6) [+30]",
-      "buy-side liquidity SWEPT at 1.1387 (14 bars ago) \u2014 stop-hunt reversal [+12]",
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "price in discount of 1H range (32%) [+12]",
+      "entry inside true OTE (62-79% retracement) [+8]",
       "inside London/NY kill zone [+8]",
-      "RR 3.1 >= 3 [+4]"
+      "RR 4.0 >= 3 [+4]"
     ],
-    "invalidation": "15m close above 1.13752 voids it \u2014 bear FVG mitigated."
+    "invalidation": "15m close below 92.11 voids it \u2014 bull FVG mitigated."
   }
 ]
