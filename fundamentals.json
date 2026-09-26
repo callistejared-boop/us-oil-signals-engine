@@ -1,88 +1,81 @@
 {
-  "generated": "2026-09-25T10:59:56+00:00",
-  "asof": "2026-09-25",
+  "generated": "2026-09-26T10:42:26+00:00",
+  "asof": "2026-09-26",
   "source": "Google News RSS (negation-aware headline sentiment)",
   "symbols": {
     "WTIUSD": {
       "label": "US Oil",
-      "signal": "BUY",
+      "signal": "SELL",
       "strength": "HIGH",
-      "net_bias": "bullish",
-      "net_score": 9,
+      "net_bias": "bearish",
+      "net_score": -15,
       "counts": {
         "bullish": 7,
-        "bearish": 4,
-        "neutral": 28
+        "bearish": 9,
+        "neutral": 24
       },
-      "n_total": 39,
-      "why": "BUY bias - news flow is bullish: 7 bullish vs 4 bearish headlines (net +9). Main drivers: 'Oil Futures Post Back-to-Back Gains on Escalation Concerns -' (+); 'Global diesel shortage likely to last into 2027 as storage t' (+).",
+      "n_total": 40,
+      "why": "SELL bias - news flow is bearish: 7 bullish vs 9 bearish headlines (net -15). Main drivers: 'Saudi Arabia crude oil exports hit highest level since Iran ' (+); 'Iran offers US deal to reopen Strait of Hormuz in seven days' (-).",
       "headlines": [
         {
-          "title": "Oil Futures Post Back-to-Back Gains on Escalation Concerns - WSJ",
-          "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNc29xMFBSemJycEFLTjczSkpBdEtkcVVaZTZfYmJ0NkpfTl81cjdocU14c2tqNnBPOTZ1VnZEeGxCaHN2a3VHQUUwRDhnR2w1N2Q3aC1kbkJHRzZqMzNQeGxRdzZYYjF5amJiTWJNNklyZHZQNWJaelhxRTdsTEpYZ3ktOE1nZzVMMGlCV1JaWnhCUDY2aFVZYlc4V0hrak0xdm9xUThsanREZGlzclFGX09aVVBYZw?oc=5",
-          "pubdate": "Thu, 24 Sep 2026 20:54:00 GMT",
+          "title": "Saudi Arabia crude oil exports hit highest level since Iran war began despite pipeline outage - CNBC",
+          "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNQTZiYU0xWTcyLWxpd3FwcTRRR3ZHa0xxUGdLUE5UUXZNZl9wbnNDNVk3RXY0ZXJKLXk5SkdDc192blJXZ3FYTS1rSDlpU2d0ZmdYY2pHWHp5WHpwZWJQVlNrdTNxTzRuX1RqTmQyQXlVVktUUHF5LWdyNndQdkFOUDZCSXpFYmVxZmdsYXJENzhRQjc5OTR4SFpjYjJqYnQyVUlB0gGoAUFVX3lxTE54bkFvZk5aUHNlVWhfVkkyMEtuSTVGeU1XTEhBbDduWlEzYXV4aWpnQWdNY0Nqa1FQQzRkbjRDOTdfelhDVndJQVpMcDhmZUlLOVY4UmJ6dnMzYW9vd19QYS1lM1BYalNSOUdDYlVTTU9raFdCZU5fYXBHakF2THlWQ3owaDlmeWlnOUZybDVBX0I4TWVhZzRlYnhWalY4dWZTRHl1ckNMZw?oc=5",
+          "pubdate": "Fri, 25 Sep 2026 17:41:53 GMT",
           "bias": "bullish",
-          "score": 3
+          "score": 5
         },
         {
-          "title": "Global diesel shortage likely to last into 2027 as storage tanks drain - Reuters",
-          "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOLUROTUZDbzRZN3VncG9haUs0bGR6TFhhQ3JZTEYzZzUtVE5BV3c2SGE3dVFzN2JRS0xfYUcxdW9zay1yXzBXakItRDM4SnhYb3FudmdISGlhVGsycDhhY0FxazdVU21HdW9oQXFSckF6YlVETl9wSzJhbEM1LVlFZGM2VEpJbUZlcVY4bGs4aV94Qmh4Z3ZpTFRibVItNHFfWk8tSXhlb3hMRng2VHlmdHBMYnEwVWs?oc=5",
-          "pubdate": "Mon, 21 Sep 2026 10:17:57 GMT",
-          "bias": "bullish",
-          "score": 3
-        },
-        {
-          "title": "Crude Oil Trading Alert: US-Iran Talks Signal Easing Tensions; WTI Crude Rallies Then Retraces - Moomoo",
-          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNR2NQQ2o4VmREMGdmVmNIYTU5Z3RaTWxrVmRYbDVCY29JOXBTYXFJblljR0RWV2xVc19PRWtLNThmVVAzZlZ3T2ZFOEhLdENralZLNS1GTXEyaV9OdkFqcmpQVWxicTVnaWZFUEp6TG1fMHJGY0wtSHV6T2RUcWlPWFFaUXpKSEQyU2pRWWxtSW1EUWNVOXJRV1ZGaTduTTBwb0M3cmw3NA?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 02:02:10 GMT",
-          "bias": "bullish",
-          "score": 2
-        },
-        {
-          "title": "Oil Prices Fall as U.S.-Iran Diplomacy and Regional Tensions Remain in Focus - WSJ",
-          "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQYkwxOXhTT2ExSk55Yy1KWDl0NVlKOERpbW04c2Q2NVE1aXRmT2ZpSFNoRkpGYmJKSUZpajZ6NURoanZiTlU0Tkx5anJaWUhLY3dhQ0N5RUN6SGJ0M1haR25NZDBwdWRZb2REbURyU2gxbk4zN2VZRU1aLUg2ZHdDd3duUU1Wa1pSb20yal96N0VXeFRvMEY3ZDgwWS1WUmVYOV9CdUlVY3c2QWRMWVVMQzhpbw?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 09:10:56 GMT",
-          "bias": "bullish",
-          "score": 2
-        },
-        {
-          "title": "Iran pitches seven-day roadmap to end conflict with US - Al Jazeera",
-          "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQQ2p2aDJ4dC1JV2lYaGZXWXBpenhCOEpxVWlubEQxUUZkTEd1VGxMZmJEY0FfdzllbUNGSDZLZEhuY0EwWXNlTk1xcDhNMkRLRGY1RlBoNkkwQzlqc2tUQ1NxRUNtM0hJRXROUjdKdzZuWXFtTTRJUlpEcjJLVkRkTWhIS1A2RnJObFhPYmdERy1EelZFUWFGNmc5b9IBoAFBVV95cUxNVEowcUwwd0U1VGp0TXQ2dGtTMm5RYm1DUy1Xem5ZVzFETzdHZWladVJuZHNWQzljM0l0SVlWUEk2VlJCcy1SWC05YTRZcXhhT0hMWWpINVBrby1RNTJrSHR2a3YzQ0x1U1NERm9MeXdtQlpYN2tfQ191UEkyVk9DQXFWSG16ZDZ5NHhnMkVEa2FfOTZWejVMT1dsZk1NY25a?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 10:12:28 GMT",
-          "bias": "bullish",
-          "score": 2
-        },
-        {
-          "title": "Oil Prices Decline on Hopes of a Hormuz Deal - Bloomberg",
-          "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNZ244NVRTa20yWml0U2RMRDFyc2R5T3NLVG11a2tuMERyLU56R2wwM0o0a2pzMElPMlNUUVhmUTFuV29YS0tIMmoxUEtDb21sOEV2clEzekJIYldaM3paN1duR0J2cmhJZ0t5Y2I5My1VTE0tbFRyOWJMYmZoQTZUYlRNYXdVWGdPUDh5c2M1OXBBX2dJSWRYb3ZQclBFNzA?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 10:56:06 GMT",
+          "title": "Iran offers US deal to reopen Strait of Hormuz in seven days - BBC",
+          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE45Z0pMeUNRaTNfWUlMQmJEWE1mcW04c09tZERDRTR0aFRicWJ0b1pLczlhQ2lYMGZDTFlBMXMya3ZrOHdwcmRqTk5PQzZiODFFNndGTm1iT1NBc1U?oc=5",
+          "pubdate": "Sat, 26 Sep 2026 05:03:09 GMT",
           "bias": "bearish",
-          "score": -2
+          "score": -5
+        },
+        {
+          "title": "Iran has suggested a deal to reopen the Strait of Hormuz in 7 days - PBS",
+          "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOczZkNFNvZkpweENjLTZ5eHpEbVdZcWpKSWE3bGtBanVfamo4ZTNfazZreldrM3NULU1aOVAwSU0ySlk1eUNsb1BJaU5CdlhWZnpxQ0w2VWszbUw0U3l6b0pGbFJHTVFISmFnUXVUZkdOLUlCTmIxM2dmQzJQVllad3gyQmtwSi1XSWh3NnZKRzRfUEd5MEEydTlseVItcTdxNkxr0gGoAUFVX3lxTE9PR1VBVVRhOTVURUs3alR4STFac2RGV09YQ2x2OFlOTU9salFTT21neWpVSGNXSU43Z3VGdHFwaHdwLTNCOG04ZGo1amtKUFFKaS1INFRqRk9sMjU3SDZydWZPb01WOU91UzJxdEFSSjlvTE51WENtMWZobjJmVnFBbkFHNW5zSmJkM0NSVUMxYUdxR29ZTk9aRTBBVUttZ3pQaXI4VU5pNg?oc=5",
+          "pubdate": "Fri, 25 Sep 2026 14:31:47 GMT",
+          "bias": "bearish",
+          "score": -5
+        },
+        {
+          "title": "Trump reportedly rejects Iran\u2019s seven-day peace deal to reopen strait of Hormuz - The Guardian",
+          "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPazdjdl95TUw5YndNMUkzTkNvZGh2VER3MEhQTVI0MHd2WDQ4cmdITTBhZnBrQlhlX19fMHVXU2F6Q3dCWGxOVS1TTGlkcjY0TWFrbGdvQVp3TWQ3Uy1kMFJ0aEV6aEhWN05IM0xKUzRtSjJXS0tPZjAwV0ZlUjVyd09sWmNZa0lrMVAtS0p0TGtlcVYya01z?oc=5",
+          "pubdate": "Sat, 26 Sep 2026 09:33:00 GMT",
+          "bias": "bearish",
+          "score": -5
+        },
+        {
+          "title": "Iran says Strait of Hormuz could reopen within seven days if US accepts deal - politico.eu",
+          "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNYW92SVJqSzczaUNwX0dmLTVoNzBKTG1DMFhkU3poUWF3QXFJdXhXRmYwZUNtNnBXSlFqRldKQ2pmMlhJVnkyeFpnUXh6T2dhb3JXaHU0czZfb1pNczliSXg5TUt2YjB0TnctZkJNRnNqTHMtMWpjaVB6amxPVDNKcjIwSQ?oc=5",
+          "pubdate": "Sat, 26 Sep 2026 09:32:11 GMT",
+          "bias": "bearish",
+          "score": -5
+        },
+        {
+          "title": "Iran pitches 7-day plan to restart US talks, reopen Strait of Hormuz - The Hill",
+          "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOaGRUWXNEUGtvUzdxSUxUeWh5bU8tdEl6Y0hnOU9WMVg5bjdacFZGUWZGako2RWQza1AyRHNpc3h3S2ZlZ0FOODh0UlJmcG50YXF3YkJpUG5PSTBaV182WTgxeWZYM2hxMnJocFA3ZUV3dmwwakh2RGZJSmVTbVNEeXMtSnPSAYoBQVVfeXFMUEFrMjBncUtRMGMyWmlhNkwxa2MxWkRlYmZSVjZSNEp1YnV4dDVuUTljdEgwcjdRWmpvMnY1N0JVb2NsZllZdWpQZ1c4d096elRUVXRsV0lLZk01djc3eWhDVklhalAwQzJsWFczZTVyclo0VHlUb0dGUnpHZ0ZBem5hQjZxN3ZfYzh3?oc=5",
+          "pubdate": "Fri, 25 Sep 2026 22:16:00 GMT",
+          "bias": "bearish",
+          "score": -5
         }
       ],
       "source": "lexicon"
     },
     "XAUUSD": {
       "label": "Gold",
-      "signal": "SELL",
-      "strength": "HIGH",
-      "net_bias": "bearish",
-      "net_score": -9,
+      "signal": "BUY",
+      "strength": "MED",
+      "net_bias": "bullish",
+      "net_score": 3,
       "counts": {
-        "bullish": 7,
-        "bearish": 10,
-        "neutral": 23
+        "bullish": 9,
+        "bearish": 6,
+        "neutral": 25
       },
       "n_total": 40,
-      "why": "SELL bias - news flow is bearish: 7 bullish vs 10 bearish headlines (net -9). Main drivers: 'Singapore CPI rises as expected in August, core inflation hi' (+); 'US-Iran Talks Show Signs of Progress, Oil Prices Surge; Fed ' (-).",
+      "why": "BUY bias - news flow is bullish: 9 bullish vs 6 bearish headlines (net +3). Main drivers: 'US-Iran Talks Show Signs of Progress, Oil Prices Surge; Fed ' (-); 'Mounting rate hike bets keep weekly loss in sight for gold -' (-).",
       "headlines": [
-        {
-          "title": "Singapore CPI rises as expected in August, core inflation hits 2-yr high By Investing.com - Investing.com South Africa",
-          "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQalBVN2U1ZmtVZXJ6NFdOMVhKampEdEZSRlBSSDRFbUUtQlhyRUFNODZJcTdVanhDbkZMMDVSMG91endoQWFUOERRQXVTV05vUU1ZbkdXb1FxdC1jaXdKVUNFeFpiZENnYmo3aGJwaUcyem00SllGeEVIZ081RzdwejhIZ2ZPZVhQNHYweVA1Z2ZPajlqVXZVVFo5aVdoOW5naVFSTHZEVU9lWGhOZk16Q2FXSGNCSFZOWWJIaTJDOFU4OW9vZU5R?oc=5",
-          "pubdate": "Wed, 23 Sep 2026 05:27:35 GMT",
-          "bias": "bullish",
-          "score": 5
-        },
         {
           "title": "US-Iran Talks Show Signs of Progress, Oil Prices Surge; Fed Officials Strike Hawkish Tone, Lifting October Rate Hike Odds - finance.biggo.com",
           "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBINk1pTFMyblJ0VHNvQ044MWU4Zk5NaVBqZEZudWpqMmhMbzl1aU03Uzhnd3ltN0RBRjNReVRwOEpjeFVtNU1ELVZudUNhWEVqNkRBRHJxX01sc2F3MnAta3JJdENxZlNfczM0VE0wOGhhZmpQX0E?oc=5",
@@ -91,9 +84,9 @@
           "score": -5
         },
         {
-          "title": "Gold on track for weekly loss as Fed rate hike expectations build - Reuters",
+          "title": "Mounting rate hike bets keep weekly loss in sight for gold - Reuters",
           "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNX3F4eFFXZE5rZGRwVFhHYUsxZlhGeFlzSEF1Y0xYc2JmT0YtdkgtRmRhbFVTYVk3NGZRRUlsd3dCTDlCSmdnT1Y5OWN5MERTdzlibVdVQmhSeGc4SHIxWEhpRDJ6bjNLZXNURWdHbHBVOHNqU3FlUHJFc3lQRmN0SWlFRzRCUWpzdkFNYS1nb29JRDJzSzkwdjVDM1VlaHNzMG5FS3ZUU29rZ2RTVWxB?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 02:23:00 GMT",
+          "pubdate": "Fri, 25 Sep 2026 18:28:19 GMT",
           "bias": "bearish",
           "score": -4
         },
@@ -114,9 +107,16 @@
         {
           "title": "S&P500 Forecast: SPX rises despite rising Fed rate hike expectations - stonex.com",
           "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOM2FOZ2JHaENtRDN4VkhNRnZoSmZuSkVrN2ZRWHRKeFkzYXJ1eVE1WDduMXB3N1l1eXpuQklOYUhib19ueHYzRGtWaWNwdnVaR0lkaGJ4Y0EydExsZjFfZVZpYk9UUzZaTDNmalhFLUxsVU1ISHVucHE4eTF5eGFrbjhLcW91aHZWQ29FR0tkcVRNZndPck8yN1Zzckh5emE5U0RrdmdOLWdHYmY2XzdScmg2ZjNERVN3?oc=5",
-          "pubdate": "Thu, 24 Sep 2026 03:39:58 GMT",
+          "pubdate": "Fri, 25 Sep 2026 03:38:37 GMT",
           "bias": "bearish",
           "score": -4
+        },
+        {
+          "title": "Fed\u2019s Barr says future interest rate hikes \u2018likely\u2019 needed to tame inflation - The Hill",
+          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9EdzJJZVlSVDhNMGMyYmJrTGVieVdLQXlBSVlYbVNYbmt0b0cxM0J3M295TnJTN25tTU9IbjVxNk9lQmpLdzdrMGV3TGNFQlcxSDZwNmduSW9ySTl6VTVqdnNLQmV5Y2EzUEpER2luOXlsZEXSAXhBVV95cUxPVE1LZHE1YzZZcHNSaVB1dTA1Qk9ramtnRENqVFl1QVVZbVhTSnNXNkFwSUNEZmxYMlU2cV8wSWcwZjNkaWdMMG1TWkJ4Y0lkX3NhMjZ4cWg2RzcyUFNqTXdtR004S0YtR0k1TlJzUmROV0lETHpUY3o?oc=5",
+          "pubdate": "Wed, 23 Sep 2026 23:12:00 GMT",
+          "bias": "bearish",
+          "score": -2
         }
       ],
       "source": "lexicon"
@@ -128,13 +128,20 @@
       "net_bias": "bearish",
       "net_score": -6,
       "counts": {
-        "bullish": 2,
-        "bearish": 4,
-        "neutral": 34
+        "bullish": 3,
+        "bearish": 5,
+        "neutral": 32
       },
       "n_total": 40,
-      "why": "SELL bias - news flow is bearish: 2 bullish vs 4 bearish headlines (net -6). Main drivers: 'US Dollar Price Forecast: DXY Eyes 101.40 as Fed Hike Bets S' (-); 'EUR/USD outlook: Hawkish Fed puts euro on the ropes - stonex' (-).",
+      "why": "SELL bias - news flow is bearish: 3 bullish vs 5 bearish headlines (net -6). Main drivers: 'US Dollar Surges as Europe's Woes Weigh on Euro. Forecast as' (-); 'US Dollar Price Forecast: DXY Eyes 101.40 as Fed Hike Bets S' (-).",
       "headlines": [
+        {
+          "title": "US Dollar Surges as Europe's Woes Weigh on Euro. Forecast as of 24.09.2026 - LiteFinance",
+          "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOM04wcjJFWG9TZGh1WkZQeDNCRERMTk40ZUQ4Wlcwb0I3WlU5NkZ0d094ZHBOM241Y1kxdTZtcWVJYzNKaGtPbDd0czA0WExjTFltUW43b1kyWUduRHlrQmhTbGFpVXFKUm45Z2FlNkZ4Sk1xWjBuS1NSZU5iRXdIWTROcnhqYzdRdW9zc0NtckhBSlhXWUkzV0h5T0NvU1pBZ0hXU2tJbWc5cl9mTi1wekpFQlhKMWdlTXNTREdpSFBuZVFmTkVtUUQ4OXZRZjNSNmRJWVMwaTZNMWtmMU8wTWVjYVJDcExlZDMxNjNPSUg?oc=5",
+          "pubdate": "Thu, 24 Sep 2026 07:24:21 GMT",
+          "bias": "bearish",
+          "score": -3
+        },
         {
           "title": "US Dollar Price Forecast: DXY Eyes 101.40 as Fed Hike Bets Strengthen; Key Levels for EUR/USD and GBP/USD - FXEmpire",
           "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPYW1mMGVOOXRZN2ZYbDdHQU9YcmNmUDQ0WlJpeV9kbEJzUEtnb1VGUVJwR3BLUFlwMjVWOWg1ZDcxWDB4NElKU2tDSy1UMGU2SXhOM1J1UFl5bjNPMlh0QWFjVlRfY1BtN19uc3FEUHozdVFmTGhVdURpQjVUeGMxbkI5YlZSZVhMbWtOS1NBdF9FbjZ3ZmhKZTBjUUE5MDhtTWRSTW1NUVhKZDNoTV8yYTFRLU5jUmh1VlVvR1ozWTVGVTE4QlJkRUlaLXZkN0Z3WnlyWmt2MExjY2I0bzZYQlBpOEwzN3A1NHc?oc=5",
@@ -150,11 +157,11 @@
           "score": -3
         },
         {
-          "title": "US Dollar Surges as Europe's Woes Weigh on Euro. Forecast as of 24.09.2026 - LiteFinance",
-          "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOM04wcjJFWG9TZGh1WkZQeDNCRERMTk40ZUQ4Wlcwb0I3WlU5NkZ0d094ZHBOM241Y1kxdTZtcWVJYzNKaGtPbDd0czA0WExjTFltUW43b1kyWUduRHlrQmhTbGFpVXFKUm45Z2FlNkZ4Sk1xWjBuS1NSZU5iRXdIWTROcnhqYzdRdW9zc0NtckhBSlhXWUkzV0h5T0NvU1pBZ0hXU2tJbWc5cl9mTi1wekpFQlhKMWdlTXNTREdpSFBuZVFmTkVtUUQ4OXZRZjNSNmRJWVMwaTZNMWtmMU8wTWVjYVJDcExlZDMxNjNPSUg?oc=5",
-          "pubdate": "Thu, 24 Sep 2026 07:24:21 GMT",
-          "bias": "bearish",
-          "score": -3
+          "title": "Nothing can harm eurozone growth (it seems) - ING Think",
+          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9jWUMzYkE0WE5JaHp1NVhZYTQxWXd6V0NtMmlucF9KcXB0UUhaeDY2dmxXRkY0bDFJTWd0S3BKc1VBdF9HWTFLMzFWNHMxaEdHZGVBRlBQLXcwNmc?oc=5",
+          "pubdate": "Thu, 24 Sep 2026 21:33:38 GMT",
+          "bias": "bullish",
+          "score": 3
         },
         {
           "title": "Eurozone Growth Defies Energy Shock as Stronger Economy Complicates ECB Rate Outlook - EU Today",
@@ -164,18 +171,11 @@
           "score": 3
         },
         {
-          "title": "Nothing can harm eurozone growth (it seems) - ing think",
-          "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9jWUMzYkE0WE5JaHp1NVhZYTQxWXd6V0NtMmlucF9KcXB0UUhaeDY2dmxXRkY0bDFJTWd0S3BKc1VBdF9HWTFLMzFWNHMxaEdHZGVBRlBQLXcwNmc?oc=5",
-          "pubdate": "Wed, 23 Sep 2026 08:38:30 GMT",
+          "title": "Eurozone Growth Hits Highest Since April 2023 According To Flash PMI - Seeking Alpha",
+          "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOR2hRSHpiVmlEQnlPay1BOF85bV82ZUxKSTFxZWtoN0FzTTlmVDljakF5bVlwa214dWxQNGc3Zks4b013NFdXbFVhMUxPSzFZZFIwM1h6SGFrbmtwQTEwaUgxLVd4cXJBcFRPMWNibU81Wm9VOXZ0azdfSExkMk9kbmNidXFYa0VvaWtyNnlaT2VaOTdmNXBNR1pFX3lzYk1RVTEzZ052dTFaUTZDN0E?oc=5",
+          "pubdate": "Thu, 24 Sep 2026 04:05:00 GMT",
           "bias": "bullish",
           "score": 3
-        },
-        {
-          "title": "U.S. dollar ascends to fresh two-month high on inflation worry, Fed hike expectations - The Globe and Mail",
-          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNOF9jZDVkNzUwbUN6X3NsN2s2WXVRUElKdHlQaXYzOF9COXFHNFRSd3RuWHpQZ1FEOTljbm53d0hVeWpxeURZek1OV213cE1mR3NncVNaX1lUUVFwZTFVcE5oMTliQkFvN0RfUFdMeGpJa0lZRnU0dXpZVTZSaWJzM2ozUWxrOGxwSWMxX3JoLVhFSVMxVjJvRVhuZ3BRdU5XM21DNmxVS0FvaDJwemxnU0dWcElub3FORzcwZw?oc=5",
-          "pubdate": "Thu, 24 Sep 2026 19:18:54 GMT",
-          "bias": "bearish",
-          "score": -3
         }
       ],
       "source": "lexicon"
@@ -187,38 +187,31 @@
       "net_bias": "bullish",
       "net_score": 46,
       "counts": {
-        "bullish": 10,
+        "bullish": 11,
         "bearish": 5,
-        "neutral": 24
+        "neutral": 22
       },
-      "n_total": 39,
-      "why": "BUY bias - news flow is bullish: 10 bullish vs 5 bearish headlines (net +46). Main drivers: 'Bitcoin ETF inflows slow to $191M as six-day streak reaches ' (+); 'Bitcoin ETF inflows drop 81% from peak despite $2.8B six-day' (+).",
+      "n_total": 38,
+      "why": "BUY bias - news flow is bullish: 11 bullish vs 5 bearish headlines (net +46). Main drivers: 'QNT surges 38% as Quant\u2019s institutional adoption deepens \u2013 3' (+); 'Bitcoin ETF inflows drop 80% after record $999M day but rema' (+).",
       "headlines": [
         {
-          "title": "Bitcoin ETF inflows slow to $191M as six-day streak reaches $2.8B - TradingView",
-          "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPWFQ3Q25xVXU4d1ZDYmtsV1pCMUpXcVE2Tk81c2VKTTFQUC1TMWlFOWxqZ3lKcGJLVExIdFplODhZUlZwa3kwOEVnTzZOU09EUzFWTUNjSkFfOUFkaFN4dGNFWWlaMXVNMmJJSTI4X0dHV0hqNnJWNk5Tc2hBUjMtc2I4dENZMVZhZGtTdFNsTkRydUtvVmQzUjFmZ29XTG9HSWRXQW43b0VxVGpkMHpVYTdFVGdkS2tHZWVNVkV2S2VIbm1fdmc?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 07:41:36 GMT",
+          "title": "QNT surges 38% as Quant\u2019s institutional adoption deepens \u2013 3 signals to watch - AMBCrypto",
+          "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQOTVITDRSVzNoTGozMm1ISWp2WWZWMjF3UHNuNnh0TEhnSmFRaE0welZEc2tHRzlCY2ZoM0FhSXBQZ0VHSC1pbU5ta2xtTmZVaF96d3Vlek04UDV5bHE4WnRoanZaZ21ja3ZKTmMzT0MyTDZrVmlBZEVGcFY5MlYyS1lkXzJrLW1VcTZZZlprdmxNZ2RNbVo1NlJOUEQ?oc=5",
+          "pubdate": "Fri, 25 Sep 2026 18:00:58 GMT",
+          "bias": "bullish",
+          "score": 8
+        },
+        {
+          "title": "Bitcoin ETF inflows drop 80% after record $999M day but remain positive overall. - pluang.com",
+          "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxObERQWDR5NFlERzdNUFhqcFprR0NtYmxJMFByeE15MjFCN2VmcnFIeE93SU1tNS1xRF9SV3lCUkpteDNVakprM0xia1RqRlVFQXBCa3dQbmxoemtwQW9uRk5ZbnRHdnI3MG84UTBhc0wyaHVmLWdLUjY0eldxSFM1aDdQNW5tanVSMG9J?oc=5",
+          "pubdate": "Sat, 26 Sep 2026 10:30:18 GMT",
           "bias": "bullish",
           "score": 7
         },
         {
-          "title": "Bitcoin ETF inflows drop 81% from peak despite $2.8B six-day streak - The Cryptonomist",
-          "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE10SkxiYmdVTUxuOXJrTGZjQzVXMTRFQXRuSTRYd2szakx5Q0JEc25JdHlXbkRENjMwdjRYd2pkSV94YXktUzQ2YVBGc1pfZzJXbEJ0WjZEV3RJS2E1YXlIOG9NWUc0a3laQ014Yml3ZFc4T1Z3?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 08:38:26 GMT",
-          "bias": "bullish",
-          "score": 7
-        },
-        {
-          "title": "Why is Bitcoin price stuck near $84,000 despite ETF inflows? - Crypto News",
-          "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBPcENWeEcxQmFDajR0VnZ0ZXdBa1pRRG5iOVk5aGtTSGl6Y1FQMUZCSUlvdERuVlJLbjhzc3JxYXpUSUhIQUxfcngyQU13RXJQQ01CRUFHRkE4dFhYaVd3TWlaWjJDMUN1M3VNSzlXRlBfTXcwSk1LWEpLdHc?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 07:06:46 GMT",
-          "bias": "bullish",
-          "score": 7
-        },
-        {
-          "title": "Bitcoin Weekly Forecast: BTC consolidates gains as ETF inflows hit highest level since October 2025 - FXStreet",
-          "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQeUNtdjExQkNQYU1tZ25uTVl4ZjNTRWRYNlh5VWxtNmZLMmlTSTdxME52QTJKYXZ4dWp2SnRPVmJuZHFiQnV6UmhkLWZXV0lOVzFxN21XWXB6Uk5UdnZ6YmFiQzNPZnhXQ3owakt0dzR4a3d6UDJSRjhUb1Y0QV9zZ0pxeUxCOFdQZFdqcjhyVjlvSkYzTGdWOUtRWkd4MVZRSllhQjgyb2tkQXM5anlfWXlBWnRCSjF6T2JaZWoxZlNYQ09pMFB6LWRob0dmVTlqVjF5UTFycWhwOHNGQzhTa1JfVG5LVWF5R1Z1QjEtRQ?oc=5",
-          "pubdate": "Fri, 25 Sep 2026 10:22:09 GMT",
+          "title": "Run of Bitcoin ETF Inflows Extends -- Market Talk - Moomoo",
+          "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOc0dNQl9zZHlwdzMydU5GbEJtT2N2WUU1Ym0tRHNMVlBVNVExVE1oX1M3WEg3RWdfZmJUblpoZ3dJZnpuYWl1RHB4VmFpWkJKelFyT3pLS0ZGN3hGX05PTUpxZ1hvakkzUHpIVGhwZ3dnYXBfc19uVTNlbUgzdFRIbUo0Y0RqOE9oOGJ6dko1bDRCR0Jy?oc=5",
+          "pubdate": "Fri, 25 Sep 2026 16:29:25 GMT",
           "bias": "bullish",
           "score": 7
         },
@@ -233,6 +226,13 @@
           "title": "Institutional crypto adoption is stickier than markets assumed, Bitwise finds - InvestmentNews",
           "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNS2dSbjZ4Q1BqeXBydWltMUcySGdfdzVuZF9INC1mOG5pQ2MyT0RaZGJpN3haZ0NKdjQwZWxFY2VsQm8tTXFRbTV3TlRoQ1hoNEVkUmhlZ2JZTGhRT282a29jY2NVMURxS0J1MTlNUW5YcTFVbzkwc01KU2ZURGdfQ2pzMUpjS3JkaGlKOW9LVVpZakJxcUYzdkc1YU5EMWJ4OW1rQnc4cW1CSExKZEpkSTFTLXBGVGNtTk9LV2xySWR3UkljR0E?oc=5",
           "pubdate": "Thu, 24 Sep 2026 10:44:59 GMT",
+          "bias": "bullish",
+          "score": 6
+        },
+        {
+          "title": "BTC Market & Institutional Adoption Forecast With UTXO\u2019s Daniel Hinton - Bitcoin Magazine",
+          "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPaHdqdEJyLTZDc3JvWE91RC1icnRCa0VPaGhRTmdCbzBiYXJqd244eDZyb0tDajg4QUh1RFF1dVlORXpUc29vblA4WVJ6S3FfbEJ6R25XYk1pajhPanBUM2NJVTB2c0EwWDN6ZWJxOWxtT2s3M2RJeTVrQWRESHFXWkhYWjdEeC1fcFgzWjhPQzA3ZEdrUnoya3QzYUJVQ0tlSGpXQQ?oc=5",
+          "pubdate": "Wed, 23 Sep 2026 13:44:19 GMT",
           "bias": "bullish",
           "score": 6
         }
