@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "BTCUSD-2026-09-27T19:15:00",
+    "symbol": "BTCUSD",
+    "created": "2026-09-27 19:15:00",
+    "direction": "long",
+    "entry": 84624.91,
+    "stop": 84560.8,
+    "target": 84881.37,
+    "rr": 4.0,
+    "confidence": 86,
+    "prob": 70,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bull'} (weighted 6) [+30]",
+      "sell-side liquidity SWEPT at 84781.7891 (0 bars ago) \u2014 stop-hunt reversal [+12]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 84560.8 voids it \u2014 bull FVG mitigated."
+  }
+]
