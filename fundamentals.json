@@ -1,21 +1,21 @@
 {
-  "generated": "2026-09-30T11:48:48+00:00",
-  "asof": "2026-09-30",
+  "generated": "2026-10-01T12:18:12+00:00",
+  "asof": "2026-10-01",
   "source": "Google News RSS (negation-aware headline sentiment)",
   "symbols": {
     "WTIUSD": {
       "label": "US Oil",
-      "signal": "BUY",
-      "strength": "HIGH",
-      "net_bias": "bullish",
-      "net_score": 11,
+      "signal": "NEUTRAL",
+      "strength": "LOW",
+      "net_bias": "mixed",
+      "net_score": -1,
       "counts": {
-        "bullish": 4,
-        "bearish": 2,
-        "neutral": 34
+        "bullish": 3,
+        "bearish": 4,
+        "neutral": 33
       },
       "n_total": 40,
-      "why": "BUY bias - news flow is bullish: 4 bullish vs 2 bearish headlines (net +11). Main drivers: 'Strait of Hormuz oil flows near pre-war levels as Iran\u2019s gri' (+); 'Iran war: Amount of oil, petroleum product going through Str' (+).",
+      "why": "NEUTRAL bias - news flow is balanced: 3 bullish vs 4 bearish headlines (net -1). Main drivers: 'Strait of Hormuz oil flows near pre-war levels as Iran\u2019s gri' (+); 'OPEC+ Agrees to Boost Oil Output When Strait of Hormuz Reope' (-).",
       "headlines": [
         {
           "title": "Strait of Hormuz oil flows near pre-war levels as Iran\u2019s grip slips and Brent\u2019s war premium fades - Oil & Gas Middle East",
@@ -25,23 +25,30 @@
           "score": 4
         },
         {
-          "title": "Iran war: Amount of oil, petroleum product going through Strait of Hormuz at 80% of pre-war levels - KHOU",
-          "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOVmx3UWlqZDZKRVdsaFQyVkR1dEFzMjJ1NHpEcUxSV1lvcTg3ZUs0SEV3OTNGdWR0MEdiN0oxNWhKQUMzaXlKN0h4ZjJWVnNUM3ZLOUtUSHRUV094aEN2TVRsUENKTDN0Q1ZXZ1p5X0VJaWhwYmlCaWxmVEoyaHpmaDZ5aVNoaHJrd2p2b283LVNjeUJtRHBHMWYxS05NZC1QSkdhYlV3QWlac2ZlNXVaby10dUUwbWFVM1hfT3hMX243aktOTjBZSmhfdkRiMFJ4VnpoWnVmUnFGSlcwR2ptTEJ0dGVKaVE2RGMxMWdLbFlabGJJYXJyYzNQUDh5SVgzWWZ0VVgweFg4eTFWeVE?oc=5",
-          "pubdate": "Wed, 30 Sep 2026 11:14:00 GMT",
-          "bias": "bullish",
-          "score": 4
+          "title": "OPEC+ Agrees to Boost Oil Output When Strait of Hormuz Reopens - EnergyNow.com",
+          "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNbHJPcmIwM1FXUFAzM0hWdlZyb2xhb0VsN3g2dGJxdFRGakxQU1VrTEMyS2NpQTV6NVpLM09Ma09UOF9PWnVQSmd6bG9JcThtUGRCeDgzaDVXY1AxUGo3NUcwNkhtMUlULUgwZWxSbnNaaTRRM2Q0T1pTUFlWQWg1b1NfTHJXTmhUUnYxQzZiWDU4NzctVlpz?oc=5",
+          "pubdate": "Wed, 30 Sep 2026 22:31:42 GMT",
+          "bias": "bearish",
+          "score": -3
         },
         {
-          "title": "Oil Inventories Headed Toward Multi-Decade Lows, US EIA Warns - EnergyNow",
-          "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPZXE0LTc3TFJjeHVDaFB1blFrbVRfdl9QdU91dUVOcE9xenpVcE14aGJNTnlETUtuTVdOMjRJRkFQa3lnd1QzOVNBTDl0OU43U1hjbXQwSzl4eE8yZnprSkVOWkNZcjRMR3duU1FyV082Z0JWTEFtRDBEQlFLMklkMHEzZ1RKX09jNUozelhnbUt1VVR0?oc=5",
-          "pubdate": "Tue, 29 Sep 2026 22:38:35 GMT",
-          "bias": "bullish",
-          "score": 4
+          "title": "Oil and gas activity increases despite cost pressures, longer supplier delivery times - Federal Reserve Bank of Dallas",
+          "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA3bEViaWRKem5STThFZ1J2NlhvMlE0TUZmUzY3NmhvejZJZE9WQXM3MV9PdTUycVRTeWpLX1oxTE9DM25CdnBaek81QmM5VGN1TnF4S3pvb1NiY1dzTWZYMW5NTHBSMnc?oc=5",
+          "pubdate": "Wed, 30 Sep 2026 19:36:37 GMT",
+          "bias": "bearish",
+          "score": -2
         },
         {
-          "title": "WTI Crude Oil Forecast: Bearish Signals Point Toward Lower Support - FXEmpire",
-          "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNVkNDR296T2xiMUpnRTlYZndiU0NyY2Q2bHZQR3FSM3JJMThNTVhiSGpJZDNoZHEzbkc1TmxYRzE2bVN0alpLeVNQOFRpcU1RWDZIaXdVSjczM2p0QU51TXUtNGtsb3ZJbFd0OTNDa2Q3b1BpRHZ4Mmx0RTVxOHh4aTNhMUVwMmxSTnJDVTJObHlqd25zcEZnMGp6cHVVdmQ2cl9jLXdxZFQzNzA?oc=5",
-          "pubdate": "Wed, 30 Sep 2026 04:28:00 GMT",
+          "title": "Crude oil exports through the Strait of Hormuz hit prewar levels, but fuel shipments remain constrained - cnbc.com",
+          "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9zcVB5MTZaYzBCWVRXclEtSGVIVTFxS0JHZTBMbzc4RFgzT3UxM21PMmpuNnVibFUtWUtrR3JiTmNWcGoyUlhNQ1hMcEtWeURtdWNRVWYzRmRfSl8yaXFXR2pUcmgtY1Z0OUdEYW9VQXpjTUZXdWlLZWhDSFZKQdIBgwFBVV95cUxNN3JnZmI4LW1mcVNsZjFZY2JrTjMtRWdqYWJ0ZGpma2tQazRSZ0ZzTTM1WWMtVmJabFBldnBaOXFTX0NFdFpucUhsTHZTanBmTlN0VTJJRFRkQUJ6SFlpZmctdkY3VXg4ZkFCWnBadFNFLUpLRGlyTkZKT0Q2aXJZazI1Zw?oc=5",
+          "pubdate": "Wed, 30 Sep 2026 17:59:31 GMT",
+          "bias": "bullish",
+          "score": 2
+        },
+        {
+          "title": "Middle East Crude Oil Exports Back at Prewar Levels, Analysts Say - WSJ",
+          "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNT244S2RDMHZTTXRPcUszQzMzT09RV0pjLThiYjNRNG1va1JwOHNrWW5rWjhSWUpwVU9CV3hRQnVBYXVVX3hYV2xhaVFsQ1lQeWxRTTJPRkRsUG1VUFJfSGlwQnhjOU1Id0Nad3BVOTY0MlE0d0l2OVZXVVFMNU1QSnRlSVpMTjFHT2dBSEJ0MGFaQ2tJVkJBQ2dBY1B4NHFyVW5RQjlwV3FLYWJOc1NFaWI4OA?oc=5",
+          "pubdate": "Wed, 30 Sep 2026 13:35:00 GMT",
           "bias": "bullish",
           "score": 2
         },
@@ -51,13 +58,6 @@
           "pubdate": "Tue, 29 Sep 2026 22:44:10 GMT",
           "bias": "bearish",
           "score": -2
-        },
-        {
-          "title": "Oil prices surge after Trump rejects Iran\u2019s plan to reopen Strait of Hormuz - Al Jazeera",
-          "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNTG9KcEZwMUZtVnNtZnBmMnBsa0RZN1I2V250T0xaSjBmT2tpNWx0T1ZodnBubENDcks5SWZiZlgwV1NWT3NDemFaX3FkRHFYNV8zdmo0elJfdGY2SWoxMUZZMTBmN1JjczNVYkVGNHNmOGNLR1NUeUJiMzJBejl1c2d5NUo0TFZKdkEtbHBEZFN0Slo5eDM3N1k5eXNpcnBNeVdOQ3U0M1FlVmk1aWNlLVkteVRKVDliUFHSAb8BQVVfeXFMT1lDRk9jWTJZZnFlQXprRWFFZ3pKVFZocjNKYTNtb014MFFXMDc0WEhNa2Exeng5Z1pRb21rWG5NUTYtUVNyeXZNck5pVVpPMDRRZHNIUDlHQUhMeTRsWGlwUWF0SEVGY3U2MGgtWjBDVlB1TWI0QldYRTZLQ0FfZDRfMW9hWXVTWldIZ3JyN2FWWlkxTkcxMHozT2gyNHdwTFM0clU2RDhFNTVGaC1WVG5Hc3d1aFNhTlk2N29VclE?oc=5",
-          "pubdate": "Tue, 29 Sep 2026 00:42:44 GMT",
-          "bias": "bearish",
-          "score": -1
         }
       ],
       "source": "lexicon"
@@ -65,16 +65,16 @@
     "XAUUSD": {
       "label": "Gold",
       "signal": "BUY",
-      "strength": "MED",
+      "strength": "HIGH",
       "net_bias": "bullish",
-      "net_score": 6,
+      "net_score": 8,
       "counts": {
-        "bullish": 9,
-        "bearish": 4,
-        "neutral": 25
+        "bullish": 8,
+        "bearish": 3,
+        "neutral": 29
       },
-      "n_total": 38,
-      "why": "BUY bias - news flow is bullish: 9 bullish vs 4 bearish headlines (net +6). Main drivers: 'No 'urgency': Fed signals next US interest rate hike could w' (-); 'Markets Push Fed Rate-Cut Expectations to Mid-2028 as Oil an' (-).",
+      "n_total": 40,
+      "why": "BUY bias - news flow is bullish: 8 bullish vs 3 bearish headlines (net +8). Main drivers: 'No 'urgency': Fed signals next US interest rate hike could w' (-); 'Swiss Franc drops to fresh 16-month lows as CPI data support' (+).",
       "headlines": [
         {
           "title": "No 'urgency': Fed signals next US interest rate hike could wait until later this year - Gulf News",
@@ -84,14 +84,14 @@
           "score": -4
         },
         {
-          "title": "Markets Push Fed Rate-Cut Expectations to Mid-2028 as Oil and Bond Yields Rise - \u041c\u0435\u0436\u0430. \u041d\u043e\u0432\u0438\u043d\u0438 \u0423\u043a\u0440\u0430\u0457\u043d\u0438.",
-          "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1ibk1wa1NPR1N2NEtCZUI0el9yeXVSMkhEcXNTNlpacGlGMmpfR296bTlkcWV5SENnREh0cTEyZ1otUExIYk5hakhSYkxTME1uRzZLMmUwbUluOS1GY1pyYUdDQQ?oc=5",
-          "pubdate": "Mon, 28 Sep 2026 06:22:47 GMT",
-          "bias": "bearish",
-          "score": -3
+          "title": "Swiss Franc drops to fresh 16-month lows as CPI data supports SNB\u2019s dovishness - FXStreet",
+          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNQ2ZLRjZGdktCblpIdGNMRjJrdlRpX2NTbGlqcmo5NzdITGlzRVdORTg2NFdZX251ZlpOZWpmS3A5c09NdE5DSjJicElHM1g0NEdQR1FRRWxfYm1xbzQxUXpkcUNoV3lkN081QUJPY0cyV25ZalM4SURfUzlOX01fVTRQWlB2Zlc5T25uUmtJdHY4a0d0RE5XWXBQczA0WGY1V2dkNkdZaEJUa3dHVWdSUnE2YWxfX2lOelYxQQ?oc=5",
+          "pubdate": "Thu, 01 Oct 2026 07:28:00 GMT",
+          "bias": "bullish",
+          "score": 3
         },
         {
-          "title": "AUD/USD outlook: Aussie slips despite hawkish RBA ahead of key data - forex.com",
+          "title": "AUD/USD outlook: Aussie slips despite hawkish RBA ahead of key data - FOREX.com",
           "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQQ3JvWmlnSkNSbmhKVmVXUmI5SWRvSUNkeHhBUnZ1OHpHb1dYUVBpdXlDUjYyNDh5OXdYa3dWZjg0UVg1REFzdXRwZzRMMlhEMWp2b2dNQmlKVHN6V21xMURIc3FKU1V4ZUJPTlRkSlY4SWNZejVEOUF4Z0FnQW90NmpGZVpqbUFTZjNSOFJDdlhyOWZFQjN2d1hHM2JaVkJfck1sN3FxYUdzSDhWZmhDc1NUUQ?oc=5",
           "pubdate": "Tue, 29 Sep 2026 15:12:34 GMT",
           "bias": "bearish",
@@ -124,16 +124,16 @@
     "EURUSD": {
       "label": "EUR / USD",
       "signal": "SELL",
-      "strength": "MED",
+      "strength": "HIGH",
       "net_bias": "bearish",
-      "net_score": -5,
+      "net_score": -9,
       "counts": {
         "bullish": 0,
-        "bearish": 2,
-        "neutral": 38
+        "bearish": 4,
+        "neutral": 35
       },
-      "n_total": 40,
-      "why": "SELL bias - news flow is bearish: 0 bullish vs 2 bearish headlines (net -5). Main drivers: 'Dollar Rises to 2-Month High on Growing Prospect of October ' (-); 'Euro slips back to its summer low as ECB President Lagarde u' (-).",
+      "n_total": 39,
+      "why": "SELL bias - news flow is bearish: 0 bullish vs 4 bearish headlines (net -9). Main drivers: 'Dollar Rises to 2-Month High on Growing Prospect of October ' (-); 'Euro slips back to its summer low as ECB President Lagarde u' (-).",
       "headlines": [
         {
           "title": "Dollar Rises to 2-Month High on Growing Prospect of October U.S. Rate-Rise - WSJ",
@@ -148,6 +148,20 @@
           "pubdate": "Mon, 28 Sep 2026 23:09:11 GMT",
           "bias": "bearish",
           "score": -2
+        },
+        {
+          "title": "The Euro slips as Europe's biggest economies report hotter inflation - FXStreet",
+          "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPWnliaHN1YmlxTmlWeEtDTVgwdDhtbW95ZXhZU01WemZjWE9hTmRrWW91aW5XcC1jTWZ3NTdjeU1zTDFheE5zQUtaeGo5LW0yamxYTTFacmxVTzdkRk9yNnh3LTRvZlcyMjhxU095bk5jVWNGb010OUIyckJDWlZjN2Y0aElZQkNRSjI2TGlaZUZMQlBqaUl6YTRCMXhuNFZtSGJLRWpDY0N2czhoUkhj?oc=5",
+          "pubdate": "Wed, 30 Sep 2026 23:31:14 GMT",
+          "bias": "bearish",
+          "score": -2
+        },
+        {
+          "title": "The Euro slips as Europe's biggest economies report hotter inflation - tmgm.com",
+          "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPUVBUN29NQXNkTW1FeURSX2Vqdm1yTVFfbkJDeVRjbjVOYlFiT2xtOTFuQ0dDVkxEeHM1TmhSTmxNMDc3SEVFRldlLThUakxzNFJjY3NKM0JGRWdxZmZuQ01DTHBUZEhVX2t5SS1CajVaR1RSNDdhZHU4WGNCNUVWSmwwTGwzb3VnUHRKdEl1dzVWLVZNLWcyT2lQTU9Oczdic0dQX1hPRkp4QW80bUEwWTg4M3V0bW1CRWN1SGhkT3VWek9CdFhvUlZNYkVpcF84T0E?oc=5",
+          "pubdate": "Thu, 01 Oct 2026 00:10:39 GMT",
+          "bias": "bearish",
+          "score": -2
         }
       ],
       "source": "lexicon"
@@ -157,56 +171,56 @@
       "signal": "BUY",
       "strength": "HIGH",
       "net_bias": "bullish",
-      "net_score": 63,
+      "net_score": 32,
       "counts": {
-        "bullish": 13,
-        "bearish": 4,
+        "bullish": 11,
+        "bearish": 5,
         "neutral": 22
       },
-      "n_total": 39,
-      "why": "BUY bias - news flow is bullish: 13 bullish vs 4 bearish headlines (net +63). Main drivers: 'Bitcoin ETF Inflows Hit $2.4 Billion: Is BTC Setting Up for ' (+); 'Bitcoin ETF Inflows Surge but ETH Still Outperforms: What Is' (+).",
+      "n_total": 38,
+      "why": "BUY bias - news flow is bullish: 11 bullish vs 5 bearish headlines (net +32). Main drivers: 'Citigroup raises 12-month bitcoin target to $113,000 as ETF ' (+); 'Bitcoin ETF Inflows Hit $2.39B in 2026, but 3 Altcoins Slip ' (+).",
       "headlines": [
         {
-          "title": "Bitcoin ETF Inflows Hit $2.4 Billion: Is BTC Setting Up for Another Major Rally? - Bitcoin Foundation",
-          "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPV1c4U2NVMEpQNnA5c2ktR3lCNWtMMEdnOEtoaFhYc2xfUmVNRkZ4MzNhMjNXR2U1Z29XN1pJcFlHWER1UWJwQzRKakVSTGxhOEV3OWFHQWlmODFkNWdtMC1jSXBTRDB4VzJBY0MxOThJUnB1VUtqOUFNS0VqaTZzTVBhdzZJZUhuVEdiaEVYUkhfTUR1YVhiRnY1aUtVb3huV2d4bkhhTkprazd0Nmd1SVpUWEhkSDBpUzk4RkxR?oc=5",
-          "pubdate": "Mon, 28 Sep 2026 13:14:33 GMT",
-          "bias": "bullish",
-          "score": 9
-        },
-        {
-          "title": "Bitcoin ETF Inflows Surge but ETH Still Outperforms: What Is Going On? - TradingView",
-          "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPQ2ZGWnl3MGZYM2lYcU51ampaQm05VngwRUhaaGlIcl80NlNiM0MxSTNpYjFIeUZ0b3F0VWowelZleEY2OEpidndmYUw2bFZuWFE3bVR1bmpib1dXSlJsWXRQcVhqbG5KQjNOd0cweWQzb1ViOGwwVm9wbmdUemxOMTZhTk9QVkhIVTRvWVpYTzB2LVhTOVpxZVdLTUFja1MwUF8tMmxLeFVZZThJQmJtb2tHdmVkd0p2YnNtX0UxM04zaEdwQUE?oc=5",
-          "pubdate": "Tue, 29 Sep 2026 12:48:43 GMT",
-          "bias": "bullish",
-          "score": 9
-        },
-        {
-          "title": "Bitcoin ETF Inflows Slow to $31 Million as $84,000 Resistance Holds Firm - finance.biggo.com",
-          "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5VMzBzNjZxZURHZzlDdDE0TUFETGZUMUR2b29oUXd2enFmcFRSQXlPS0lDMzVGODhneG56aVpaa2FZQnZKMUptMGNQRGlEM0puUkhHbDR0Rk1vQ0hnMXhsMUI3aUx2eV9QSWlYbm5uMGxaUlVJTUE?oc=5",
-          "pubdate": "Wed, 30 Sep 2026 01:35:00 GMT",
+          "title": "Citigroup raises 12-month bitcoin target to $113,000 as ETF inflows resume - CoinDesk",
+          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNa1FvampNWHlZUk1sNFhKQW9VN0s5UUZlRjlMbmdBUkYyZkdmS0NLZUxOdS1hQ1lpWjV4ZEp4MlctZEt4bDctdU1HNGxZdmMxXzA3Y0xaOWx4SmVCR0o4ZUxUWkt0NmdsT2xFbGNNX3FnNGh3aGJqRHBzMVp1SER6a3lOMjhQU0YtWTJHRzQ3U0YxQUdzZEhOSWJXbkNhZFEtU0dYSFdMZm9Td2o0NjNpMlc3UlFzSXdDbGNTRg?oc=5",
+          "pubdate": "Thu, 01 Oct 2026 09:59:30 GMT",
           "bias": "bullish",
           "score": 7
         },
         {
-          "title": "Bitcoin\u2019s $84,000 wall gets harder to break as ETF inflows sink to $31 million - CryptoSlate",
-          "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObXpZeTR2YnhTTHM2NElsa3ZuZW9mdkxuaFJvRWQtd0dNLU9HLXcwdi1MVUVMQ2NGNnAwakxQTHVYX3ZaVTdHYkRHSTlYWGFPQjVnVThyZWtab202WlM3LVBLdzZmN09TU3l2cy1zc05fSlAtRXhseUplMlk0Qnh4SkdOQVNMSW1mNm9hODlZY0liNVhxckcwSEVFMlRwUFJt?oc=5",
-          "pubdate": "Tue, 29 Sep 2026 14:20:15 GMT",
+          "title": "Bitcoin ETF Inflows Hit $2.39B in 2026, but 3 Altcoins Slip - Memeburn",
+          "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5HaXdLU1g0WUJQbkhvTTNIbTBNWnJ5a0dHT1pMQUI1aTNFenVZVXIwRTVDOVgxZnhSLWZ3NTI4UFQtVFNVT0NpeFNZYWlmTVFyU2VNcGNrTkRPUllQSDZj?oc=5",
+          "pubdate": "Thu, 01 Oct 2026 02:08:15 GMT",
           "bias": "bullish",
           "score": 7
         },
         {
-          "title": "Bitcoin ETF Inflows Extend Nine-Session Streak as Price Holds Below $86,000 - tokenpost.com",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE8xdU1PSTFFckpjcEhBeHFiczhlS0FEM01pNWVmTnRjUzIteEl1OTY4eWhWS2JCX21NZEVlZGNXZ3BJaU9OeVltb253aEtDanpjN0JYRlNQSGotZw?oc=5",
-          "pubdate": "Wed, 30 Sep 2026 09:26:56 GMT",
-          "bias": "bullish",
-          "score": 7
+          "title": "Bitcoin ETFs Pull In $66M While Ethereum ETFs Flip Back to Outflows - CryptoRank",
+          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQbExwREpnX3Q3YnowRFpzc0d0R1JZcHhHc3Zld3g1YjFKTTRLSEE1TnV5SG5Ja3BNUmN3bWplSGRLLVotaXJPdnNZZEJMQlNnLU1NNDZUWlZBcXd1amtNb2lMZmdPRTZrVXVUTk9Sa3p3NzN4d3lhMXA4WjNDa25TeWNWa1p2R3ZIR1dUTTBJbjFsQmdxa2xqeTRUOXNpSlFGdnpsakJIaw?oc=5",
+          "pubdate": "Wed, 30 Sep 2026 23:47:41 GMT",
+          "bias": "bearish",
+          "score": -6
         },
         {
-          "title": "Arthur Hayes Says Ethereum Could Hit $5,000 as Robinhood Chain Fuels Institutional Adoption - Bitcoin Foundation",
-          "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQMEgwMFotLS16aU9hZWlWbkFydEVQVzl3WHF3NFBTV0JOWUhCZVJtams5TDA3bmxteHp0ODFnMzkyZElQT0dzalpmdzh1RTNFWXdjOWpzUjVYMml3RjBmZFZCUkRMd3VpckhjUUxGWFJrU1FSWG1tZ3MyZHdCQ0hvU1RDeExINmJJb1pUUmJjU2Y3ZGVlQjVacENRZFhNaU5BcDdoN3BJWmpiOVEybktaRGIyRTlfbUhMaW10eUpKdndvdzg5VTBwVGZhSE0ycEk?oc=5",
-          "pubdate": "Mon, 28 Sep 2026 09:24:33 GMT",
+          "title": "Three themes TD Cowen says will shape the next phase of institutional Bitcoin adoption - investingLive",
+          "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNUGRGbEE5VEEyOVR6d2MyVmJDTlhmYndhLVlmaXBhWGQ0ck9LM1BIQURndDhjNkdlWmVGRFRZcUtmMGMycktxb00tWExNcW5WQkpjaEpnZHRkQ2k5UmxyT1VMUG9JeFpiYzR0UEFPUTFHaXdrMTJaSWZxNHNBazMyN05Jc1ZmaEVzbzA4RTJHeW9RNEUtbnpUY2dwYk5XRnJoRzZxVFhIcU5jTVM4VW9NUG9TRldHNERSRm9nR0RvUGZ3c3Q4enJB?oc=5",
+          "pubdate": "Thu, 01 Oct 2026 01:19:50 GMT",
           "bias": "bullish",
           "score": 6
+        },
+        {
+          "title": "Privacy is Taking Over Crypto (Again) as Institutional Adoption Grows - CoinMarketCap",
+          "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOalhkNk5GZ3NBUERtemViUUdlZjVGRzB5eDYtcG15OVNTbTdTdEd0MEx2SHR1SzRwa0R4V2ZkbmJTSzRUdlNMcnc2R3BTYkkzTlAtWmM5ZEhMeUFYRmJ3QUhlT0NHa0EzeXFiTWhPNGlaZEFxT2dIMmhkMThsSjZqdDdQVkR0LUdadmdXTWlyTjdKN3Rz?oc=5",
+          "pubdate": "Tue, 29 Sep 2026 01:05:34 GMT",
+          "bias": "bullish",
+          "score": 6
+        },
+        {
+          "title": "US Bitcoin ETFs see $6.34B inflows in Q3 amid Bitcoin's 43% surge, marking strongest quarter since 2024. - Pluang",
+          "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNZUJWQ2Z3dzgzbHktalpzOEowbmF4cTVzNUtvbENHM01VV1FZa0JNclZCbWJCUHZ2Rzg3QlFoanZ4cEZWVUFQa3I0TDNwVjhfWElHWGRyRURrc1p1UUEzdWphc05rakFGWERvNTBOSlRzZU5tSHhTeXNKek1zSmY3dWRlUjNabUZRV2ZBZEQyY285QQ?oc=5",
+          "pubdate": "Thu, 01 Oct 2026 10:25:51 GMT",
+          "bias": "bullish",
+          "score": 5
         }
       ],
       "source": "lexicon"
