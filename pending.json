@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "EURUSD-2026-10-02T11:00:00",
+    "symbol": "EURUSD",
+    "created": "2026-10-02 11:00:00",
+    "direction": "short",
+    "entry": 1.12562,
+    "stop": 1.12586,
+    "target": 1.12499,
+    "rr": 2.61,
+    "confidence": 78,
+    "prob": 64,
+    "reasons": [
+      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bull'} (weighted 4) [+20]",
+      "buy-side liquidity SWEPT at 1.1252 (0 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG overlaps order block [+6]"
+    ],
+    "invalidation": "15m close above 1.12586 voids it \u2014 bear FVG mitigated."
+  }
+]
