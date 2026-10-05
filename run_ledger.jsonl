@@ -1,10 +1,3 @@
-{"ts": "2026-08-09T13:14:38+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-09T13:14:38+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-09T13:14:39+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 14, "quality": 45, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
-{"ts": "2026-08-09T13:14:39+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 18, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
-{"ts": "2026-08-09T14:00:33+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-09T14:00:33+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-09T14:00:34+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 8, "quality": 43, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-09T14:00:34+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 15, "quality": 18, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
 {"ts": "2026-08-09T14:41:49+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 49, "quality": 56, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-09T14:41:49+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 31, "quality": 47, "transition": "medium", "tags": ["Contraction"], "mode": "advisory"}
@@ -4998,3 +4991,10 @@
 {"ts": "2026-10-05T15:58:37+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 63, "quality_score": 67, "independent_agreement": 0.617, "n_conflicts": 1}
 {"ts": "2026-10-05T15:58:37+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 63, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "seasonality", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-10-05T15:58:37+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-10-05T11:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-10-05T22:21:59+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bear Trend", "confidence": 32, "quality": 43, "transition": "high", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-10-05T22:21:59+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 92, "quality": 93, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-10-05T22:22:00+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bull Trend", "confidence": 45, "quality": 50, "transition": "medium", "tags": ["Illiquid"], "mode": "advisory"}
+{"ts": "2026-10-05T22:22:01+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 49, "quality_score": 80, "independent_agreement": 0.571, "n_conflicts": 0}
+{"ts": "2026-10-05T22:22:01+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 49, "final_tier": "rejected", "disagree": ["price action", "mean reversion (overextended)", "candlestick pattern (opposing pattern just printed)", "breaker/mitigation block (zone works against this)"]}
+{"ts": "2026-10-05T22:22:01+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-10-05T22:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-10-05T22:22:01+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 40, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
