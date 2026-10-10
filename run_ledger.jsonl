@@ -1,7 +1,3 @@
-{"ts": "2026-08-10T08:56:20+00:00", "event": "confluence_held", "symbol": "EURUSD", "score": 68, "final_tier": "watch", "disagree": ["volume profile (buying above value)", "candlestick pattern (opposing pattern just printed)", "liquidity strength (strong level may hold)"]}
-{"ts": "2026-08-10T08:56:20+00:00", "event": "decision_snapshot", "symbol": "EURUSD", "direction": "long", "decision_id": "EURUSD-2026-08-10T09:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
-{"ts": "2026-08-10T08:56:20+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 12, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-10T08:56:21+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 57, "quality_score": 64, "independent_agreement": 0.4, "n_conflicts": 1}
 {"ts": "2026-08-10T08:56:21+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 57, "final_tier": "watch", "disagree": ["price action", "COT positioning", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-10T08:56:21+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-08-10T08:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
 {"ts": "2026-08-10T08:56:22+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 18, "quality": 19, "transition": "medium", "tags": [], "mode": "advisory"}
@@ -4998,3 +4994,7 @@
 {"ts": "2026-10-10T18:00:47+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 61, "quality": 75, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-10-10T18:00:48+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 14, "quality": 46, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-10-10T18:00:48+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 43, "quality": 33, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-10-10T21:40:45+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Accumulation", "confidence": 25, "quality": 49, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-10-10T21:40:46+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 61, "quality": 75, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-10-10T21:40:46+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 22, "quality": 52, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-10-10T21:40:47+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 43, "quality": 33, "transition": "low", "tags": [], "mode": "advisory"}
