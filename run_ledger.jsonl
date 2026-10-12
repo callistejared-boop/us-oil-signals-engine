@@ -1,10 +1,3 @@
-{"ts": "2026-08-10T15:39:26+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 55, "quality_score": 80, "independent_agreement": 0.617, "n_conflicts": 1}
-{"ts": "2026-08-10T15:39:26+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 55, "final_tier": "watch", "disagree": ["price action", "gold/silver ratio", "cross-asset risk sentiment", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
-{"ts": "2026-08-10T15:39:26+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-10T11:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
-{"ts": "2026-08-10T15:39:27+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 45, "quality": 52, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-10T15:39:27+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Range", "confidence": 27, "quality": 22, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-10T15:39:28+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 0, "quality": 6, "transition": "high", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-10T16:30:33+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 47, "quality": 52, "transition": "medium", "tags": ["Expansion"], "mode": "advisory"}
 {"ts": "2026-08-10T16:30:36+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 60, "quality_score": 78, "independent_agreement": 0.514, "n_conflicts": 1}
 {"ts": "2026-08-10T16:30:36+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 60, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "gold/silver ratio", "cross-asset risk sentiment", "liquidity strength (strong level may hold)"]}
 {"ts": "2026-08-10T16:30:36+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-10T12:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
@@ -4998,3 +4991,10 @@
 {"ts": "2026-10-12T00:40:14+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 55, "quality": 74, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
 {"ts": "2026-10-12T00:40:14+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 9, "quality": 40, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-10-12T00:40:14+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 44, "quality": 33, "transition": "low", "tags": ["Low Volatility", "Contraction"], "mode": "advisory"}
+{"ts": "2026-10-12T06:31:53+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bear Trend", "confidence": 34, "quality": 47, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-10-12T06:31:54+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Strong Bear Trend", "confidence": 52, "quality": 73, "transition": "medium", "tags": ["High Volatility", "Expansion"], "mode": "advisory"}
+{"ts": "2026-10-12T06:31:54+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 17, "quality": 45, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-10-12T06:31:54+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 24, "quality": 27, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
+{"ts": "2026-10-12T06:31:56+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 48, "quality_score": 60, "independent_agreement": 0.725, "n_conflicts": 1}
+{"ts": "2026-10-12T06:31:56+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 48, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "Brent-WTI/crack spreads", "seasonality", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-10-12T06:31:56+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-10-12T02:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
