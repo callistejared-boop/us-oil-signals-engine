@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "XAUUSD-2026-10-16T16:45:00",
+    "symbol": "XAUUSD",
+    "created": "2026-10-16 16:45:00",
+    "direction": "long",
+    "entry": 4182.65,
+    "stop": 4179.12,
+    "target": 4193.3,
+    "rr": 3.02,
+    "confidence": 90,
+    "prob": 73,
+    "reasons": [
+      "HTF bias {'1d': 'bull', '4h': 'bull', '1h': 'bear'} (weighted 4) [+20]",
+      "sell-side liquidity SWEPT at 4189.3999 (2 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG born of displacement (impulse leg) [+8]",
+      "entry FVG overlaps order block [+6]",
+      "RR 3.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close below 4179.12 voids it \u2014 bull FVG mitigated."
+  }
+]
