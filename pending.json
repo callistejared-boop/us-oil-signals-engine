@@ -18,5 +18,25 @@
       "RR 3.0 >= 3 [+4]"
     ],
     "invalidation": "15m close below 4179.12 voids it \u2014 bull FVG mitigated."
+  },
+  {
+    "id": "BTCUSD-2026-10-17T14:15:00",
+    "symbol": "BTCUSD",
+    "created": "2026-10-17 14:15:00",
+    "direction": "short",
+    "entry": 81498.84,
+    "stop": 81526.93,
+    "target": 81386.49,
+    "rr": 4.0,
+    "confidence": 95,
+    "prob": 76,
+    "reasons": [
+      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bear'} (weighted 6) [+30]",
+      "buy-side liquidity SWEPT at 81515.7578 (12 bars ago) \u2014 stop-hunt reversal [+12]",
+      "entry FVG overlaps order block [+6]",
+      "inside London/NY kill zone [+8]",
+      "RR 4.0 >= 3 [+4]"
+    ],
+    "invalidation": "15m close above 81526.93 voids it \u2014 bear FVG mitigated."
   }
 ]
