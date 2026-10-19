@@ -986,3 +986,4 @@
 {"ts": "2026-10-18T19:41:07+00:00", "feed_id": "news_calendar", "ok": true, "detail": ""}
 {"ts": "2026-10-18T21:53:10+00:00", "feed_id": "news_calendar", "ok": true, "detail": ""}
 {"ts": "2026-10-18T23:50:52+00:00", "feed_id": "news_calendar", "ok": true, "detail": ""}
+{"ts": "2026-10-19T02:48:11+00:00", "feed_id": "news_calendar", "ok": false, "detail": "calendar unavailable (The read operation timed out)"}
