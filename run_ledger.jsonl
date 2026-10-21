@@ -1,10 +1,3 @@
-{"ts": "2026-08-13T15:53:28+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 46, "quality": 53, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
-{"ts": "2026-08-13T15:53:28+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 33, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-13T15:53:28+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 17, "quality": 44, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-13T15:53:29+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 18, "quality": 19, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-13T16:50:15+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 45, "quality": 52, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
-{"ts": "2026-08-13T16:50:15+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 55, "transition": "low", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-13T16:50:15+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 9, "quality": 33, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-13T16:50:16+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 19, "quality": 26, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-08-13T17:53:05+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 44, "quality": 58, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-13T17:53:05+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 55, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
@@ -4998,3 +4991,10 @@
 {"ts": "2026-10-21T19:18:06+00:00", "event": "confluence_quality", "symbol": "WTIUSD", "score": 38, "quality_score": 77, "independent_agreement": 0.571, "n_conflicts": 1}
 {"ts": "2026-10-21T19:18:06+00:00", "event": "confluence_held", "symbol": "WTIUSD", "score": 38, "final_tier": "rejected", "disagree": ["price action", "mean reversion (overextended)", "Brent-WTI/crack spreads", "seasonality", "candlestick pattern (opposing pattern just printed)", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
 {"ts": "2026-10-21T19:18:06+00:00", "event": "decision_snapshot", "symbol": "WTIUSD", "direction": "long", "decision_id": "WTIUSD-2026-10-21T15:00:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-10-21T22:33:39+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Accumulation", "confidence": 14, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-10-21T22:33:39+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 40, "quality": 57, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-10-21T22:33:40+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Distribution", "confidence": 0, "quality": 33, "transition": "high", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-10-21T22:33:42+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 61, "quality_score": 68, "independent_agreement": 0.614, "n_conflicts": 0}
+{"ts": "2026-10-21T22:33:42+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 61, "final_tier": "watch", "disagree": ["trend (HTF stack disagrees)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-10-21T22:33:42+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "long", "decision_id": "BTCUSD-2026-10-21T22:30:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-10-21T22:33:42+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 24, "quality": 27, "transition": "low", "tags": [], "mode": "advisory"}
