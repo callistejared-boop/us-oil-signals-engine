@@ -1008,3 +1008,4 @@
 {"ts": "2026-10-22T15:39:32+00:00", "feed_id": "news_calendar", "ok": true, "detail": ""}
 {"ts": "2026-10-22T19:29:52+00:00", "feed_id": "news_calendar", "ok": true, "detail": ""}
 {"ts": "2026-10-22T22:39:02+00:00", "feed_id": "news_calendar", "ok": false, "detail": "calendar unavailable (HTTP Error 429: Too Many Requests)"}
+{"ts": "2026-10-23T00:56:39+00:00", "feed_id": "news_calendar", "ok": true, "detail": ""}
