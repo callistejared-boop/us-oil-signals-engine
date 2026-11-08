@@ -1,10 +1,3 @@
-{"ts": "2026-08-16T12:31:29+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 10, "quality": 37, "transition": "medium", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-16T12:31:29+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T13:17:57+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T13:17:57+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T13:17:58+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 9, "quality": 43, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
-{"ts": "2026-08-16T13:17:58+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T13:51:31+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-16T13:51:31+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-16T13:51:32+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 9, "quality": 43, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-16T13:51:32+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
@@ -4998,3 +4991,10 @@
 {"ts": "2026-11-08T19:08:59+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 15, "quality": 46, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-11-08T19:08:59+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 27, "quality": 48, "transition": "low", "tags": [], "mode": "advisory"}
 {"ts": "2026-11-08T19:09:00+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 19, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-11-08T22:52:05+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 23, "quality": 27, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-11-08T22:52:05+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 15, "quality": 46, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-11-08T22:52:06+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 20, "quality": 33, "transition": "high", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-11-08T22:52:08+00:00", "event": "confluence_quality", "symbol": "BTCUSD", "score": 69, "quality_score": 84, "independent_agreement": 0.687, "n_conflicts": 1}
+{"ts": "2026-11-08T22:52:08+00:00", "event": "confluence_held", "symbol": "BTCUSD", "score": 69, "final_tier": "rejected", "disagree": ["mean reversion (overextended)", "volume profile (selling below value)", "news", "liquidity strength (strong level may hold)"]}
+{"ts": "2026-11-08T22:52:08+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-11-08T22:45:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-11-08T22:52:08+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 19, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
