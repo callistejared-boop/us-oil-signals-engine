@@ -1,10 +1,3 @@
-{"ts": "2026-08-16T15:38:50+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T15:38:50+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T15:38:51+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 4, "quality": 41, "transition": "low", "tags": ["Low Volatility", "Contraction", "Illiquid"], "mode": "advisory"}
-{"ts": "2026-08-16T15:38:51+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T15:56:48+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T15:56:49+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
-{"ts": "2026-08-16T15:56:49+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Accumulation", "confidence": 4, "quality": 41, "transition": "low", "tags": ["Illiquid"], "mode": "advisory"}
 {"ts": "2026-08-16T15:56:49+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Range", "confidence": 21, "quality": 26, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-16T16:21:09+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Distribution", "confidence": 37, "quality": 53, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
 {"ts": "2026-08-16T16:21:09+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Distribution", "confidence": 32, "quality": 51, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
@@ -4998,3 +4991,10 @@
 {"ts": "2026-11-09T10:00:20+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 14, "quality": 43, "transition": "medium", "tags": [], "mode": "advisory"}
 {"ts": "2026-11-09T10:00:20+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bear Trend", "confidence": 26, "quality": 41, "transition": "high", "tags": [], "mode": "advisory"}
 {"ts": "2026-11-09T10:00:20+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 34, "quality": 49, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-11-09T20:37:26+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Range", "confidence": 15, "quality": 14, "transition": "medium", "tags": ["High Volatility"], "mode": "advisory"}
+{"ts": "2026-11-09T20:37:28+00:00", "event": "confluence_quality", "symbol": "XAUUSD", "score": 48, "quality_score": 67, "independent_agreement": 0.675, "n_conflicts": 1}
+{"ts": "2026-11-09T20:37:28+00:00", "event": "confluence_held", "symbol": "XAUUSD", "score": 48, "final_tier": "rejected", "disagree": ["trend (HTF stack disagrees)", "mean reversion (overextended)", "candlestick pattern (opposing pattern just printed)", "breaker/mitigation block (zone works against this)", "liquidity strength (strong level may hold)", "session model (Judas Swing implies the opposite direction)"]}
+{"ts": "2026-11-09T20:37:28+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-11-09T15:15:00", "stage": "confluence_assessment", "final_action": "rejected"}
+{"ts": "2026-11-09T20:37:28+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 11, "quality": 45, "transition": "low", "tags": [], "mode": "advisory"}
+{"ts": "2026-11-09T20:37:29+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bear Trend", "confidence": 25, "quality": 44, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-11-09T20:37:29+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Accumulation", "confidence": 33, "quality": 42, "transition": "high", "tags": ["High Volatility"], "mode": "advisory"}
