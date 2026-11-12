@@ -1,24 +1,5 @@
 [
   {
-    "id": "EURUSD-2026-11-11T10:45:00",
-    "symbol": "EURUSD",
-    "created": "2026-11-11 10:45:00",
-    "direction": "short",
-    "entry": 1.11458,
-    "stop": 1.11482,
-    "target": 1.11363,
-    "rr": 4.0,
-    "confidence": 94,
-    "prob": 75,
-    "reasons": [
-      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bear'} (weighted 6) [+30]",
-      "buy-side liquidity SWEPT at 1.1157 (11 bars ago) \u2014 stop-hunt reversal [+12]",
-      "entry FVG born of displacement (impulse leg) [+8]",
-      "RR 4.0 >= 3 [+4]"
-    ],
-    "invalidation": "15m close above 1.11482 voids it \u2014 bear FVG mitigated."
-  },
-  {
     "id": "BTCUSD-2026-11-12T00:45:00",
     "symbol": "BTCUSD",
     "created": "2026-11-12 00:45:00",
