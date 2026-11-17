@@ -1,22 +1,21 @@
 [
   {
-    "id": "EURUSD-2026-11-17T12:15:00",
-    "symbol": "EURUSD",
-    "created": "2026-11-17 12:15:00",
+    "id": "WTIUSD-2026-11-17T16:00:00",
+    "symbol": "WTIUSD",
+    "created": "2026-11-17 16:00:00",
     "direction": "short",
-    "entry": 1.10011,
-    "stop": 1.10047,
-    "target": 1.09902,
-    "rr": 3.0,
-    "confidence": 92,
-    "prob": 74,
+    "entry": 85.85,
+    "stop": 86.02,
+    "target": 85.28,
+    "rr": 3.27,
+    "confidence": 94,
+    "prob": 75,
     "reasons": [
-      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bull'} (weighted 4) [+20]",
-      "buy-side liquidity SWEPT at 1.1006 (10 bars ago) \u2014 stop-hunt reversal [+12]",
+      "HTF bias {'1d': 'bear', '4h': 'bear', '1h': 'bear'} (weighted 6) [+30]",
+      "buy-side liquidity SWEPT at 85.47 (4 bars ago) \u2014 stop-hunt reversal [+12]",
       "entry FVG born of displacement (impulse leg) [+8]",
-      "inside London/NY kill zone [+8]",
-      "RR 3.0 >= 3 [+4]"
+      "RR 3.3 >= 3 [+4]"
     ],
-    "invalidation": "15m close above 1.10047 voids it \u2014 bear FVG mitigated."
+    "invalidation": "15m close above 86.02 voids it \u2014 bear FVG mitigated."
   }
 ]
