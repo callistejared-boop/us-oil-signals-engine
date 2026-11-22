@@ -1,7 +1,3 @@
-{"ts": "2026-08-17T17:53:18+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bull Trend", "confidence": 40, "quality": 45, "transition": "high", "tags": [], "mode": "advisory"}
-{"ts": "2026-08-17T17:53:19+00:00", "event": "market_memory_context", "symbol": "XAUUSD", "direction": "long", "comparable_count": 20, "sufficient_sample": true, "confidence_label": "sparse"}
-{"ts": "2026-08-17T17:53:26+00:00", "event": "macro_assessment", "symbol": "XAUUSD", "direction": "long", "labels": ["Mixed"], "macro_confidence": "low", "evidence_quality": "medium", "ref": "XAUUSD-2026-08-17T13:30:00"}
-{"ts": "2026-08-17T17:53:26+00:00", "event": "execution_report", "symbol": "XAUUSD", "direction": "long", "execution_score": "Excellent", "cost_r": 0.022302, "ref": "XAUUSD-2026-08-17T13:30:00", "execution_profile_style": "day", "execution_profile_within_tolerance": true}
 {"ts": "2026-08-17T17:53:26+00:00", "event": "broker_order", "symbol": "XAUUSD", "direction": "long", "status": "filled", "quantity": 0.226757, "avg_fill_price": 4471.7579055, "ref": "XAUUSD-2026-08-17T13:30:00"}
 {"ts": "2026-08-17T17:53:26+00:00", "event": "confidence_assessment", "symbol": "XAUUSD", "direction": "long", "overall_confidence": 45, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-08-17T17:53:26+00:00", "event": "decision_snapshot", "symbol": "XAUUSD", "direction": "long", "decision_id": "XAUUSD-2026-08-17T13:30:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
@@ -4998,3 +4994,7 @@
 {"ts": "2026-11-22T11:46:19+00:00", "event": "confidence_assessment", "symbol": "BTCUSD", "direction": "short", "overall_confidence": 54, "tier": "Low Confidence", "is_calibrated": false}
 {"ts": "2026-11-22T11:46:19+00:00", "event": "decision_snapshot", "symbol": "BTCUSD", "direction": "short", "decision_id": "BTCUSD-2026-11-22T11:45:00", "stage": "approval_or_rejection", "final_action": "approved_entry"}
 {"ts": "2026-11-22T11:46:19+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bear Trend", "confidence": 28, "quality": 45, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
+{"ts": "2026-11-22T18:55:29+00:00", "event": "regime", "symbol": "XAUUSD", "primary": "Weak Bear Trend", "confidence": 44, "quality": 51, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-11-22T18:55:30+00:00", "event": "regime", "symbol": "EURUSD", "primary": "Accumulation", "confidence": 47, "quality": 55, "transition": "low", "tags": ["Contraction"], "mode": "advisory"}
+{"ts": "2026-11-22T18:55:30+00:00", "event": "regime", "symbol": "BTCUSD", "primary": "Weak Bear Trend", "confidence": 39, "quality": 49, "transition": "medium", "tags": [], "mode": "advisory"}
+{"ts": "2026-11-22T18:55:30+00:00", "event": "regime", "symbol": "WTIUSD", "primary": "Weak Bear Trend", "confidence": 28, "quality": 45, "transition": "medium", "tags": ["Low Volatility"], "mode": "advisory"}
