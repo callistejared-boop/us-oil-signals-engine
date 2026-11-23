@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-22T13:57:00+00:00",
-  "asof": "2026-11-22",
+  "generated": "2026-11-23T17:11:59+00:00",
+  "asof": "2026-11-23",
   "source": "Google News RSS (negation-aware headline sentiment)",
   "symbols": {
     "WTIUSD": {
@@ -8,85 +8,85 @@
       "signal": "BUY",
       "strength": "HIGH",
       "net_bias": "bullish",
-      "net_score": 26,
+      "net_score": 9,
       "counts": {
-        "bullish": 9,
-        "bearish": 2,
-        "neutral": 29
+        "bullish": 6,
+        "bearish": 6,
+        "neutral": 27
       },
-      "n_total": 40,
-      "why": "BUY bias - news flow is bullish: 9 bullish vs 2 bearish headlines (net +26). Main drivers: 'What\u2019s behind Iran\u2019s escalation of attacks in the Gulf? - Al' (+); 'Iran prepares oil tanker convoy to break US naval blockade, ' (+).",
+      "n_total": 39,
+      "why": "BUY bias - news flow is bullish: 6 bullish vs 6 bearish headlines (net +9). Main drivers: 'Oil prices steady amid Gulf tensions and risk premium: Reute' (+); 'Iranian attacks on ships near Strait of Hormuz hit highest l' (+).",
       "headlines": [
         {
-          "title": "What\u2019s behind Iran\u2019s escalation of attacks in the Gulf? - Al Jazeera",
-          "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOM1owT2pOYVc3bXd5Z0RTeGlaemVoVXVReXNLeHcza0U3aVo2RW5FWDJjUTFGdGtrNm9OVEY4VVZCYXh6aTZ3bzZaVG1NYzdwZGRYOHRlUXVyanBTVzNTQ0FPNnpLbFl5WDBSamUxQmkxRHVUMG1sMk5xMm9sbmZKOEpwMUxVSHJCamsxdFJEZ3dKUWRoSy1SaGJn0gGfAUFVX3lxTE1sMGtPREkyMU1XR0dvQ0pkM2hraWFPblNyWGtsNC1fY1REcjFELUU2Sk9hNFNpT2dxVmxoU3JZQU9QMmlVWlladjlCRW95bEx6MGItcFNjN1VuMHJQSTZwWm1SQ3pLN28zbE05ZHo4cnBGWFZwZXhUR0VYUC1DMGFkTnV2XzlnZTRubzJtSzJ6YzhwUzgwRk1HdnhpVlNNWQ?oc=5",
-          "pubdate": "Sun, 22 Nov 2026 11:48:45 GMT",
-          "bias": "bullish",
-          "score": 6
-        },
-        {
-          "title": "Iran prepares oil tanker convoy to break US naval blockade, threatens Gulf facilities - report - The Jerusalem Post",
-          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5rV0VMYi1lUFA3MTFvdG1tZzhnLThNMElNajh4eF82d2J3SDlXU3p1RlBzdTNGakFPaG42cmxuRjRWaXlCVGtkMV9HUU1BTEdKV19fZUgtUGM2QnJ2bUdTeXFpNnBrRGFWclE?oc=5",
-          "pubdate": "Sat, 21 Nov 2026 20:07:30 GMT",
-          "bias": "bullish",
-          "score": 6
-        },
-        {
-          "title": "Strait of Hormuz Attacks Hit Highest Level Since U.S.-Israel-Iran War Began: how 17 outlets framed it - NewsCord",
-          "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQLU15RFlwS2NabF9pUlVrN3MyOU9CYjFQWmZuMFYydWhHR3daQW1oaHFXSjNKcy1tVkMtbGI1bUZaWHpPUXkyaWZYRzlBb1NsZ3MtalV5Y0ZzR1doeXowb3ZWSUI4aDJKQU5PYXpMSWhVcDd6N0QyQjI4TzY4N0ZFY2pjRmxHd1ZuWGcxa2M1NURQbjVNY0N4NG00dlpWZF80ZXFXdnNQOU1GMVlEVkpJc3pEbTJVT3FTZkQ4U0ZpbVlDRXRfN1E?oc=5",
-          "pubdate": "Sat, 21 Nov 2026 23:23:08 GMT",
+          "title": "Oil prices steady amid Gulf tensions and risk premium: Reuters - Crypto Briefing",
+          "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOTWZwTVVaVEZfNzd3dklKU1Y2RmotUWtfUDV1clRfd2ZTNHFoR0hERjdmMnAzd1BlMXN5dHVBalpPS0pjbm1hWUd2Z20yMWdDM2hMSXhsT1dWRjBPQ3NlNzFHMmUxODh1WlBoclR3RW9hckNGNkFLeEZnMkdvV09IbkhyZW0wbXVLc09QOE1kTzU5WTA?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 05:52:38 GMT",
           "bias": "bullish",
           "score": 5
         },
         {
-          "title": "Iran's high-stakes gamble: breaking the US naval blockade to force a swift endgame - Ynetnews",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JOVRoYUNVZVJDcERjLXExdHcyQ2x1bXVycWs5Zl9ZUTAteXZDNEFfbU02LUVHN0Fyb0VqSFVvM1RiSzlocnE1eE8xMUJWWm5yNEFmWkdiQzRBRzhGdml1Qk5UVEhBS2RjUFJONi1R?oc=5",
-          "pubdate": "Sun, 22 Nov 2026 10:04:33 GMT",
+          "title": "Iranian attacks on ships near Strait of Hormuz hit highest level since war began, data shows - The Jerusalem Post",
+          "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBSWDJ3dGtDQ1RaWjFnbXZ5VEdJZVR3T1IwSW5RaUpqSDdJOW5KN3h3QXFKY3Q3UW1IVUhEOXBienRvRlZLUDREaXlGSC1PM2N0aWc2eXEzMGdVS2xGeUFoX1ZSY09yUzhENmc?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 10:49:41 GMT",
+          "bias": "bullish",
+          "score": 5
+        },
+        {
+          "title": "Iran says it will use all its tools to confront US naval blockade - Reuters",
+          "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNaWxsYjRUNUVtQlVrWm1YSFE3eHduckRPNW5CN0llMTJydFI3dGJIa2ZiTENBSU9HYVYtejVzM2JVUy1nbW9wQmdOZGJhdTlMT2R6cTBYNmFUME9aZ1BhTFI2THpRdlJRY21UeW9odHdFWGZxSjlTSVQ5VlBOV2pSckFraW1JWUtOd3dqVWFDZC0yM0t4RFRKWEktV29YTFdLTlJlZ1NsNlcyZ3phdzlVcTlCQ0pTM29GODhJUDVjUQ?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 10:01:04 GMT",
           "bias": "bullish",
           "score": 4
         },
         {
-          "title": "WTI Crude Sinks More Than 5% as Global Oil Glut Fears Grow - Crude Oil Prices Today | OilPrice.com",
-          "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPSnYxaFp3anpBb2EzVFI1VTktenhoZGFKQ3pCVWhibVo0bkpxV0c0dVZGQ0podFVCYTBCTzFfRVZBY1JpTXhfTkNIeXdydzNyeDJwT2ZhTFljLTRqb3VqcmFhQlVXUUduY25vUFFNaVlHRUhiWTR0dUctbnFXdUJJZGFOdTlkVnJOR2lnOURzTHc2bS1UZ3Y1bzc5NFRSM29mTGdaanRfTUrSAa4BQVVfeXFMT1JWVzNDZXhUSTA3c1lxMkRlcWdTNlhoaGxMR0J1eDVkYlgycnFEZm1UbnU1VEpUdnNzamVxWmh2SmczMlZfV1R5QjBLWUhjN3p6ZGU1RmdhNGpKdHBPTlVCRVFJbkNiekxHQWF3Qi1yaXhFNHd1cW9KcUNiamRXVUdTY1c0NlZEaG5tTkVGQUtUUld0bjlQUlUzSEJzWGxZVkJWR1dRS3oxTDdULW5R?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 12:30:00 GMT",
-          "bias": "bearish",
-          "score": -3
+          "title": "Iran says it will use \u2018all available means\u2019 to counter US blockade - Al Jazeera",
+          "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPTktLdU1YVmxRUnlCdUNRZmlIdWloVW12TFNEZGVMdXhoWHdpWGdIMmpkMTJnNWdFdXh2WlhFYWNzckVtcFotcW9ya2JHd1VmLVY2b2hsTFdObno2Q0IxM3oyYWsySUszUEtiTHlEV3JOaW1ZbmJ3YUc4X3BndTRMbmJteXpGTG1VZDU3clloNWNtd3RXdEx5dVdQSlZ6TS14T0tpbUg2eXlZZ9IBrwFBVV95cUxObFRhRTR4SXZfbVZ4c0VMbnJvVVNZbFBjaGw5S29VUG1kcXRieXJjUEROZUoyQTRvSGFOeDdKNUpYbmN4UmZxcTAzNmZjOWR2SmJhVHVHTkxBbUJtc2hjT1NGOTZOUzhpbHZsQ0FKNWhQYkl1S0ZRcTdaTWMzU2N4QnBGV1cwOGpJNERSbmJwYzVNRERpb0JwTGlrUmp4LWczVXVxTXkzLXNRS05JNzBV?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 13:25:38 GMT",
+          "bias": "bullish",
+          "score": 4
         },
         {
-          "title": "Oil shipped through Hormuz falls as Iranian strikes increase - Financial Times",
-          "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQRGJLeFNBLUxKMHJ5aGMyd1c3NzN5UHdpcnc0M0xkNWVtTHNlNV9ENW5SN1FmanBubUlhcU5XS29JNzNiWFVGY09BT2h3OW5pM3RvcG5RLVFLbU0tMGhZZzdocWJfQk04TElreFFQVXRFVjRJWGVvWjdvUl9Tc3NMcW5iWHQ?oc=5",
-          "pubdate": "Sat, 21 Nov 2026 05:02:09 GMT",
+          "title": "Could Iran break the US naval blockade in the Strait of Hormuz? - The New Arab",
+          "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOVVdCRWVjaEM3WXFzZ2xvNEJqWGZqYXVVdmRXV0oyOHExSVVhU3dCYXd0NXVXVklvdFFaZ1IwNFdtY0hmRzV4eUJpTXBMZ1NlWVdVa183ckNpQnRpRnFQMEdiVjZiTzBISl9VS2JJdG5PaGpCTW5JUkRaOGxNUEFDX3VaZ1VLTTY20gGOAUFVX3lxTFB5VVlSaFZ4b0o1N1VXa08tXzFJN1J2WDVpMC1GbnFYOGFxdVZlWEo3U2t0aDdwbEo0T1NlNmhmUlJyN05vMGN3MHdma1F3T2VtVi1FV2FkMkZBVFlGSWRhX2hfQWRUamhHTXhxUjFmaG9VaTJYMDNsZXVYSmwtUldXTGlvT0UtR1M5cnVKWVE?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 13:56:06 GMT",
           "bias": "bullish",
-          "score": 3
+          "score": 4
+        },
+        {
+          "title": "Crude oil outlook: OPEC+ meeting, supply glut concerns to drive prices next week - The Times of India",
+          "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPVlRKam5kcWZRX1Nta1hJcU5OM1k4SFltc1BOaDBESURBcTJBa2VwYW1wR2V2UGxFYmFJRUZudngyMUlvbWxRRTNQSTBDYUZwaEU0bzJvUm80eTRhYk83SGl1UFJ3RDU4ZjdKT2w1UzhoMkJ4NjROWUZrUDJvVFBfLTk0U3lSXzZSRnZzMmNIaElRaGZ3WDNOQllkazN2NnhFM0M4RHF3SV9Wd3NhS0pjaW9qV1NKMzRJWTlyOU1fNnUzRWJhbFlIZDR3dHlKNmhibTMwbnh6YlpqN3pfTmVDVU1FZ1NwUWg2dk9SMTlBd3ZaX2FSeHfSAfsBQVVfeXFMTUpWa2VVdmZmR2d4dG1IU0VWRm5URTRlc3haNm1USFI5TC1JekZmekdiLTJTdW1USW5FS2tOSVZUaEhMOUlJWk5Lc2RWXzRXT3lVbm5VSm9rQ1BXeGY0WmpEWWtZN2VlUlNNMTRua1R5Q3YtdVNTbmliNU1fZDJKLU5xWGpQT05PS2Z6Rm5XcXJYeDZYWmQzLVVRT09DdmpSTHB2aEpZTnBqVVhUa0RyaFpNNDRaVUZkb21sR2dfcktsNE1iZ3htOGtndS0yY1N4ZTVodHZaQVRVaWxRc29mcXQtVUtpMWU1YlFPbWM0R0NtUGlBeUR3OEk2bTA?oc=5",
+          "pubdate": "Sun, 22 Nov 2026 18:12:00 GMT",
+          "bias": "bearish",
+          "score": -3
         }
       ],
       "source": "lexicon"
     },
     "XAUUSD": {
       "label": "Gold",
-      "signal": "SELL",
-      "strength": "HIGH",
-      "net_bias": "bearish",
-      "net_score": -24,
+      "signal": "BUY",
+      "strength": "MED",
+      "net_bias": "bullish",
+      "net_score": 4,
       "counts": {
-        "bullish": 2,
-        "bearish": 8,
-        "neutral": 27
+        "bullish": 9,
+        "bearish": 6,
+        "neutral": 25
       },
-      "n_total": 37,
-      "why": "SELL bias - news flow is bearish: 2 bullish vs 8 bearish headlines (net -24). Main drivers: 'Gold price today, Friday, November 20, 2026: Gold prices con' (-); 'Gold's slide deepens as AI rout, rate hike bets hurt bullion' (-).",
+      "n_total": 40,
+      "why": "BUY bias - news flow is bullish: 9 bullish vs 6 bearish headlines (net +4). Main drivers: 'COMMENTARY: AI bubble burst could put Fed rate cuts on the t' (+); 'Citi Report: Fed to Raise Rates by 25 BPS in December, Cut b' (-).",
       "headlines": [
         {
-          "title": "Gold price today, Friday, November 20, 2026: Gold prices continue to fall as rate hike expectations crystallize - Yahoo Finance",
-          "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPTWVucXBjLXNwR3NFaDRBOEtsSTVNUnFfeXRCb3hndUlvT0V4VGpuV0ZLbnI1dzEzZmtOTnNMMlFZdVVkaFFTQ0M2aXY1S3dFOFRja1FwRFpYUFpXM0J4dGxCV0pMcEhoclJfa0NxR1loR2NEalljdjNMZEpVdkNzeS1QWUtZS1laRHYydWRGTFQwNi01MDdaNmhpZzlDTGZtUExVUURYWHJ0bTNiY3R5ZXhhbThvQmtadWtOOGxmc1EzeTdVSl9keGJxdGxvTzZkNHVTQjhZQWtlY0w0M1gtOFd1VlhLRXo0aFNTdEszb0ltQ0NZOXJfVXRqdE43TERBR0U2bWUzb3U4TVRwQ3hOdw?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 12:11:16 GMT",
-          "bias": "bearish",
-          "score": -4
+          "title": "COMMENTARY: AI bubble burst could put Fed rate cuts on the table - Reuters",
+          "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOeUxld0JxUDNGX2hDTXg0REFBSFoyWWRXbWcwdUtLMTJmOEJMbl94TG1zSHIwN2hKUUxOWWVFUy12dnlYNGpCVnBoejVLbTRZY1RrdjVCT2UyczA5WkUwUnRJQWZHOHU0ZjFHT1JBWHJSbGZkNmJEaWN5ODViNW5JYm02ekhBNDlXRzB2TG1yWVRHWGdma3F3SmRXU1BVWVVRZ3JDNTVfOThnWnVGdzMzdzA1bXI?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 14:08:27 GMT",
+          "bias": "bullish",
+          "score": 4
         },
         {
-          "title": "Gold's slide deepens as AI rout, rate hike bets hurt bullion - CNBC",
-          "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQSlpvRGxSc1NfT0l5cnd2STJ2d01EeUk4aDBIem9Jc1JXRm0yUEoxWWR6NG50b0N1MU5walEtWlk4eU9yeE9MeXIyNmF5YjlSRVhJaHR6STVNQXJhTlV1QzRoRXd3dXo1UlVaT0pYeTZCYjdIa1lMQkV5WktIQlpENW50QdIBiAFBVV95cUxNelZwb3pwWXdnZjNzVzR1UldsYTl0TUlSMHdTMjRrS2ZlX3BvM19HSVkzYlZmLUh4TFlhV2dEVXcyTmNNWV9rUXZIbmI4UnZ1cmUzX0NBTkNiMnliR3ZOU2RKbVFQSDJHbEJNbkdyTVN1bnN0Uy1WMHRrdnRxNHRKS1lPcHZ5Qm9I?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 05:05:43 GMT",
+          "title": "Citi Report: Fed to Raise Rates by 25 BPS in December, Cut by 75 BPS in 2027 - KuCoin",
+          "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOY3k0ZHZoc1NnY0x2R1lIT01GOVFGMWRLY3JFRHhBUmloMlRXcWxobTN4LS12Q1oyNFFrUDRCVm8wemF1VDkyQ0owaHAzS0ZjSDQwai1WX3NId1RMQVctYjFLSC1HeTJhd290N29PaHF1c2MxaFJhQmtjWlBjLTdrWTNaUXhYYVpfaEZSQl80anhyRWp0U3kzVWUzYkRVRlBCU2hN?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 09:04:36 GMT",
           "bias": "bearish",
           "score": -4
         },
@@ -105,16 +105,16 @@
           "score": -4
         },
         {
-          "title": "CPI data bolsters December BoJ rate hike expectations, nudging Japanese Yen higher - www.tmgm.com",
-          "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOT1NSUUJOdGczR2dwU05WdjFNUXgzUFFhemM0NjRkSGgteEpWLTZVamhmODMtRzJfeTdzRDJxdnpxSUxOYTRzRkpfeERvV3MyWFJ0MGNmZnN2OG91blVIMUdkajdfa3paVTNVMGVtdVZCTlZSR1VBeVR3cG1XTy02ZXJNWVpaSlItNURyMlQtSVM5WHpIU3ZXNFZnSEdfbm5wbHZmaVVXTEI4VTh0ZmF5ajdzemRLS0dKVXNubWo2NjJNTVEzd0JCbWFVdUJlY0FBTEt1WHJYdGZSR2JaeUYwTWVpSlNLSXdE?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 10:05:43 GMT",
+          "title": "December BoJ rate hike expectations firm on CPI data as Japanese Yen ticks higher - www.tmgm.com",
+          "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOWnA3QUN3WEpXQkQ0ZUVJVzBJTUJaMF9UNmlRMk1hV1J6ZEYzdDBIOTZyLUFON05xVkNQNnMzcmM0b3g2VllyOC12SzgwcWN1Vk5LM0FJS3lDVEFQN3BQSlRHNjFDWEhFWGtVMUVXVG8zZW5YV1Bla0tNWFhMeU9zN2FtRUc1ckpFQTljVVNEMmZjZzVLVDdpRXFXQktTTWtKWFRXQ1IzVE5veXloLW5qOVZjcEVGd29QVWJRczFLeXBXYnZWV3hBeXplN1lNcHB4anMtN25fOWlmb1lYRnk5ZzhmdDktZw?oc=5",
+          "pubdate": "Fri, 20 Nov 2026 21:03:11 GMT",
           "bias": "bearish",
           "score": -4
         },
         {
-          "title": "Japanese Yen edges higher as CPI data reinforces December BoJ rate hike expectations - FXStreet",
-          "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNU0tYTUhHZWdVS2hJUXY2VDB2SDJLOFMzd1hnTUJobi1VemFDLXpHRWpBYks5dXNRWmtGZENQdTdTUEFRRnNLTmZkRkN1bGVvZnM2aGZJVEpET2t2QU1GdHhYemk2aDhOQzZlcklDckZXR2JZVzQyUHlLeTNzX1JxRUVjdlItbWZGb2dETUROYlJZeWx6UXM5dm85S2pEalREZGFJRXdfYjBNbU91RklzeURYeVpVMUlIV1ViM1pwZUhXUGlvTVE?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 06:30:17 GMT",
+          "title": "Gold Price Forecast: Cooling CPI Weakens Fed Rate Hike Expectations, Can PPI Push Gold Above $4,500? - TradingKey",
+          "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQmxvR2RiRWFwdlM5aXg1NktjWkhQak5CZUU2TGQ4WjhDZmowYWZmRjhZVnFnZlVEX3BwRExDazZxZExNS3paUEpuSE5yTFBjV2JJVzA3R204eWNxOHdMSXJIa29qSmE1b2dQdUE4M2EyRlZQNnNId0dZNXV5ZHFJYWl0Tko2THVpYWdSdmgtQnZtd041WG5KUjZST0swd08wWXppUEEyRUx5YjBldVJsRUtYalJ4NHlWTTc4Qng3WWZOUQ?oc=5",
+          "pubdate": "Sat, 21 Nov 2026 22:10:11 GMT",
           "bias": "bearish",
           "score": -4
         }
@@ -124,44 +124,37 @@
     "EURUSD": {
       "label": "EUR / USD",
       "signal": "SELL",
-      "strength": "HIGH",
+      "strength": "MED",
       "net_bias": "bearish",
-      "net_score": -12,
+      "net_score": -3,
       "counts": {
-        "bullish": 0,
-        "bearish": 4,
-        "neutral": 35
+        "bullish": 1,
+        "bearish": 2,
+        "neutral": 36
       },
       "n_total": 39,
-      "why": "SELL bias - news flow is bearish: 0 bullish vs 4 bearish headlines (net -12). Main drivers: 'Interest Rate Forecast: December Fed Hike Bets Support US Do' (-); 'Colombia\u2019s Dollar Surges on Friday - ColombiaOne.com' (-).",
+      "why": "SELL bias - news flow is bearish: 1 bullish vs 2 bearish headlines (net -3). Main drivers: 'EUR/USD Weekly Forecast: Euro Stays Down Bad as Fed Hike Bet' (-); 'Interest Rate Forecast: December Fed Hike Bets Support US Do' (-).",
       "headlines": [
+        {
+          "title": "EUR/USD Weekly Forecast: Euro Stays Down Bad as Fed Hike Bets Put 1.0955 Support in Focus - Yahoo Finance",
+          "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNaWxjR2o2RkFWMUF3ZzVlSktVbTJtZnVLYUJhcEVqV0ZzWlF5dFNZa1FsRHRvRC1yOVNyRERqeVFOckhIbzJaX3pqZ3M4TUJyZXY4VjlxRXdtVzVRMWNGSHMwYXd6a1FDV2VfTWYtX1hFeTFFQUhsZWJxVWRSOFBTRFVXZVcyMEVaUlZuRGpnal9rUnhmTjAzaU5LV2hCZw?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 08:04:53 GMT",
+          "bias": "bearish",
+          "score": -3
+        },
         {
           "title": "Interest Rate Forecast: December Fed Hike Bets Support US Dollar - FXEmpire",
           "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNMXQ0allURzByRktqOG9jVVR3Mlc4elhCeVMyWTQ3eHQ1YUdlOXhIa29ZWU5kY2JmRTlyVW5QeEpSN1lROWxMdWM0bDdjbGtpZUJwc0F1RTRJbm1CVjhxdndULVJiZzF1X0h0aUh0eDMwM0ZyZy1XY0xscFQ0SUVHNEhDSWxvZ1BoRkZnUUprcVEtWm5DVG9mUHFnSHBvY1Rza3RqdUdlM3RMYVJJazU3eWlpQjA?oc=5",
-          "pubdate": "Sun, 22 Nov 2026 10:57:50 GMT",
+          "pubdate": "Mon, 23 Nov 2026 05:05:58 GMT",
           "bias": "bearish",
           "score": -3
         },
         {
-          "title": "Colombia\u2019s Dollar Surges on Friday - ColombiaOne.com",
-          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ydERTdUNUU2dtMnlWSmw5dGpLU05kZGE0WlVubjJaSEVfbXBXandia1BGUTlmc2J4R1o0N21ackhrbXNoTEFrUVFwNUJsbG5vbHN6d280SEo0NFdvVUFqMTQ3VEVITzRQd3JOZGJsSURaMTg?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 14:31:00 GMT",
-          "bias": "bearish",
-          "score": -3
-        },
-        {
-          "title": "Gold Set for Worst Week in Eight Months as Firm Dollar, Fed Hike Bets Weigh - ASHARQ AL-AWSAT English",
-          "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQU1NoTXNuQVpjZENycF9YOG96eF96SW9nY2ZpSFl0RmJFeFFWOU5zdVBLVm1weWlWOXBXNkFhMDFkb0p5SzJSSkI5VTYzNGtlSEQ3UEl1Q3hiWFhyMDZDN3hyZDdRdFFsYmVORE5fMy1Bd1F6V3BYUE1feEVTeGJSS09PTUlNQVhfVGlZcmlqMDBaVUZoVXpzN0VBNmFtTV85eW41R3QyWFZtMHJp?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 12:53:19 GMT",
-          "bias": "bearish",
-          "score": -3
-        },
-        {
-          "title": "Gold Prices Hit 14-Month Low as Strong Dollar and Fed Rate Hike Bets Drive Weekly Sell-Off - Yahoo Finance UK",
-          "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9hZlFpTWljQTB3bFhudTY3NW1yVEdYelJBVGNpZDI4NVp1T3pucGRfR1FLSl9GNFhHVVplNHB5TVN2UEd2TEVYVE56bGQ4YV9ONU9KZTl2RzFWTGdqeDNjdkZvS1liYnp2WFVlVWRlb0RvZVBKY1pSVXdYd0ltQQ?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 09:52:39 GMT",
-          "bias": "bearish",
-          "score": -3
+          "title": "Eurozone growth sustained despite deepening downturn in France - Forex Factory",
+          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOZ0NzUV9HRlhXZEVINmpIX2pjUkxob0FtTEM1bXplODRZVkpxMVZlc2VNMEpVNE5nX3kxOTlEbXNEMFhMbmhhOUJGcDhaeDhMZDViSUl3eUdHeEllVFdFMEJidFhVQ1lUYndzUW5rWllidmhZMHlOblVtVkVpd2tBVGxRTWpPNlpYOGE3TGdQYXA2SGhJYkhiY2ZOMlBFWTdmQlFNb3Jrd9IBrAFBVV95cUxPaWpjbldvazVHbHlkeS1oOF9yMFZGWENtM2pHTFZwREFFby1oMHd5YmdZWEl4RTUxVzNUZ2FEb1h1eVg1UElDb29zWGhyR1U2NzllWXdDd1FZWEpOLW9CdDdSaTE5aldIM21mZmxSSTNfam9DcnpZcXQyam5vTHZsOGpwSTJrdm0tV1JlWlhDTWlCQUhnQy16Ujl0VWI4U0dUU01lT1lvN2xha0M5?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 09:04:24 GMT",
+          "bias": "bullish",
+          "score": 3
         }
       ],
       "source": "lexicon"
@@ -171,56 +164,56 @@
       "signal": "SELL",
       "strength": "HIGH",
       "net_bias": "bearish",
-      "net_score": -11,
+      "net_score": -9,
       "counts": {
-        "bullish": 2,
-        "bearish": 4,
-        "neutral": 34
+        "bullish": 7,
+        "bearish": 8,
+        "neutral": 25
       },
       "n_total": 40,
-      "why": "SELL bias - news flow is bearish: 2 bullish vs 4 bearish headlines (net -11). Main drivers: 'US spot bitcoin ETFs see $582 million in daily net outflows ' (-); ''Shockingly Low'\u2014Trump\u2019s Worst Nightmare Is Suddenly Coming ' (-).",
+      "why": "SELL bias - news flow is bearish: 7 bullish vs 8 bearish headlines (net -9). Main drivers: 'Bitcoin price recovery hinges on tech stocks and ETF inflows' (+); 'Weekly Bitcoin ETF Outflows Hit $1.8B as Ethereum Extends Ei' (-).",
       "headlines": [
         {
-          "title": "US spot bitcoin ETFs see $582 million in daily net outflows as November total nears $3.5 billion - The Block",
-          "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPQ3VVSWJtUmNqZ2I2c05rTFVodUVQY3B1V1FXR0ZYcjZvY1h1cWpqeEJ4OFFCeFhMc1lKMEwwUGFMWlFHcFNHMFpXN2U1WXZUVmRnRDk5RF9Hako5WG5Cd0VRZThMQjRPVWVQT1hzbVoxMy0yeFhPTHNweDNZTkRJWG4yVG5DVFR6UWVQTlBxb01HX2dJUmdTQmZmMzZGNy1HdE4xOUdKNURnak5TVTBVaW42ODdEczJIN2hwUVVyb2pxTnBoQVpwd3ZQTTU3RXhralR5OEZOVW0zTjJWWDRxZDlibw?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 12:29:00 GMT",
+          "title": "Bitcoin price recovery hinges on tech stocks and ETF inflows, QCP says - Crypto News",
+          "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBsVXpqb3VjLXBnVHh6eDA1Y3RXS0hNZ0lMQ0Fub0phUHBoY0F6UzQ4N0E0QXF2XzlTeE55QTdSQ0VMeVh1QVVTT1A1d0FsRmpHM2tUVThFbl91SmJNYmQ0QUV5OXJRbXNVMzliTEhLR0pjVG1CekRycTRMMA?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 11:00:59 GMT",
+          "bias": "bullish",
+          "score": 7
+        },
+        {
+          "title": "Weekly Bitcoin ETF Outflows Hit $1.8B as Ethereum Extends Eight-Week Retreat - Bitcoin Foundation",
+          "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPLW9xZ09ZekpRRkszRTNoZWVlVFRjR1NDQnh5ei1TdDBCejU4QlY1NUZwcEtENmdGODJPcnQxNEh6M21vNGdWdFp0cUg0aTJ1SzdoakxGY1dmMDJxNVR2dGNSdVpucHQ2NDlFcTRFMndhWEhtSGhVd0ZKVFVKUU4wTGNDWXJIQjBvLUE4Q0pZY1lZWFl1c1lWaUtwNmdWWjRsZ01RXzR3OVdzUDc5dnN1NFdDNE5MMXl3UmVz?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 07:57:38 GMT",
           "bias": "bearish",
           "score": -6
         },
         {
-          "title": "'Shockingly Low'\u2014Trump\u2019s Worst Nightmare Is Suddenly Coming True As The Bitcoin Price And His Crypto Memecoin Crash - Forbes",
-          "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOaEdfUVMtY2hLZmlsX19wcTh2Yzdyczh3RDQySGt0T2VwSEZnSlFVZ0Q1U1N3NW5KSkdXenRWVTNYTldabUtmSWJRa2FzME5EZEwwb2NRNlFjTmJOUUlKSTF0S3o1TklCU2xxLWZPU2NXR2Rxbkp3MUctMTNDSG93RUFkNHYyU1R6eTdVWGx6QVJpWVcxU3U5SkZySEZ4Z2E0N3dTZmpB?oc=5",
-          "pubdate": "Sun, 22 Nov 2026 12:42:28 GMT",
+          "title": "BlackRock and other Bitcoin ETF issuers see $1.79 billion in weekly outflows - TradingView",
+          "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxONDE5dE1UNGhHZmZRVzVqa2Niem9JLWVpN2ZtRFBWTTgxajNDMW5iRVJiZ2pDdXZFSTFianhpMElvZkJneUJlRFpwOFZ1V0stV2hXUDA5cDV1MEsxbGtPU0NHb0RaQWhsblg5QUtPN2NuVlBPNjVhaFhMOURGWWhEeGp5TjJWMVFNQ0RvVFk2bmMtZUQ1ZXc2OHBFM2MweEQyV0E2a2NTNk9aT3cySlBzWGU2d0tSQ3BMcElfam90LTJETEpkTnBtdHRnWk4yYjVXZFBXNWhhcw?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 04:03:00 GMT",
           "bias": "bearish",
-          "score": -4
+          "score": -6
         },
         {
-          "title": "Solana ETFs Defy Wall Street\u2019s Big Crypto Sell-Off - BeInCrypto",
-          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9PNElVSkdIaWJoT0M2b3FvSGljZGZLVlVURnBCVnc2ZWhsLWtLX0hyLUhZcmFKekwwVHBOWXZ2SnZiLVlNQ3BYU0JZNDNvd25mTWcwZU54TTZJNWtOVXJhN2N6VzBLZGtSb01mMXduZzhlbjA?oc=5",
-          "pubdate": "Sat, 21 Nov 2026 21:24:25 GMT",
+          "title": "BlackRock and other Bitcoin ETF issuers see $1.79 billion in weekly outflows - Crypto Briefing",
+          "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5BX2Z1T3A1azAxWEhzR1JHN2pjN0lZZmNfeVZtc2kwNWdYOFhSejZZN0JqSlFleS1ib1lDenVfa19xSjRnMUdMUlU0alE3WWU3RXROQ0xsNWFfbXdNTmZLczVtTzA5V2ZKN09DMXE2Q2tidXYwTzNZNkF3?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 04:03:04 GMT",
           "bias": "bearish",
-          "score": -3
+          "score": -6
         },
         {
-          "title": "BlackRock Bitcoin ETF Outflow Sets $541M Single-Day Record - Bitcoin Foundation",
-          "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOYzJmWVVBMFhibzI0bWpuekEyYmtvMDNnOGQwRE15MXU5VmVBSGdsMmhrWnN1OHZoX3dfdFNzLW1FZEhsb1JiT3BuTUVURDB5QVc1RHdnQXZsZUVya1lxZ3RuaUMxaGNmMW5ud0ZDTF80SzVESmhOMC1zUktmekxLWlhBdlpTNDU5aU1MX2dqUzM2QW1PazhBRXFnOU5ydGMtZklV?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 16:42:31 GMT",
+          "title": "Bitcoin ETF Outflows Hit Record $6.4B as BTC Drops 17% - CoinMarketCap",
+          "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOczFtTzFvT2VLUHk5RVo2NVhYNXdldnYyeWFiZGRwZEJ4d1JBcG12Z1E0QVhULXVtMDNnZ05kN0wwZjBUQ0JQb1hkWDNRazg5cmVETThhUHIzbi1mdURCRU1YTEZOVU9FV01URURkUmVJUGJrZGRVNlpNekl5TjMtYXEtdmZNT19uWFktWHA2YjJrU1BQSENic2NURDhvUVhCSW1OOFdyX01zUQ?oc=5",
+          "pubdate": "Mon, 23 Nov 2026 06:31:23 GMT",
           "bias": "bearish",
-          "score": -3
+          "score": -6
         },
         {
-          "title": "Wells Fargo Led Wall Street\u2019s Bitcoin Buying Spree in September as Institutional Holdings Hit a Record - CryptoRank",
-          "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOUFhmUHlzVVNsSzBzQjdxaENLVmgyVlAyNi03T0ExOFVtSHFwVURIZlR6UmhiZ1ZSUlFjTTNSMFAweEt4S3ZId0pRbmFqOVNpbC1lMkZPR1dSU3VDUW1kdWJRTVhpM3dDODFha3dIVGZNUWJieG5QMFRqMnFQTURmMnVORzRDV0tYOHdFaGJkNWFQYTdOQ1FLSjBkS2xueTZnVU0tWVFLS1BMeHdPcFFOTU4yaFoteHphbG9DWlZBUmpBaFpodUZXY3hDZFZwa050ZTROUnVB?oc=5",
-          "pubdate": "Fri, 20 Nov 2026 21:10:12 GMT",
+          "title": "XRP\u2019s institutional adoption story has a catch that investors may be overlooking - CryptoSlate",
+          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQQXc2Ml9jVXU5S1lpOVNhaFRYM1V4WU9xNFRBd0hyMHAxcnFPR3EyVzlmRm5oSVhqZkxuelFGdGNJa0NuQzB3TnJhdXAzanc4QzdCNjRnaGd6NEV5cUV1YXF1bC1UbHRXbnhqSnBqTGJmdi0xejZEQkVka21rNXY1dzZ3UFZpazZQalBySXFDRDA2MjBvaG5fbXdHSnljM0RRdmdfbjBDQQ?oc=5",
+          "pubdate": "Sun, 22 Nov 2026 17:05:07 GMT",
           "bias": "bullish",
-          "score": 3
-        },
-        {
-          "title": "After the Midterm Elections, VanEck's Matthew Sigel Is Still Bullish on Bitcoin. Here's Why He's Right. - The Globe and Mail",
-          "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxOc1BaU2VuQjNHZGhNTmNLcVZiZE5ZYWhxS19ic1p6NmQ1VTdxRjFhc2w4MHlZcWNfcXgzUGlmbng0MWIzRDN1Mk9lX2twSlh1dnMyUkY0RXFsTFVLUUdLWXF1VGpvRF9veU9RX1BqZ08wMTRyeXVMOUV4NmRuQUJza1pIVDFabTBCYXJ6RWxaN0wxd1VVTTBCWTVGa243YXFXUWFfSDdwOFlRVUVwdFBsb0JMM1RyQlhQc0E5cmlBZ0Qxd2JoMmRyQjhYV2lPdFRFSHB1blJWVXE3YnRjbndMRVVvR1hWWXZkUEV1VEU0RG9neHV2aUtxV2V5WUMtVjBkdnRxN0RTUG5xUXc?oc=5",
-          "pubdate": "Sat, 21 Nov 2026 15:22:37 GMT",
-          "bias": "bullish",
-          "score": 2
+          "score": 6
         }
       ],
       "source": "lexicon"
